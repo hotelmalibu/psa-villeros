@@ -36,6 +36,27 @@ if (INDEX_PATH) {
   );
 }
 
+// Endpoint temporal de diagnóstico — ver por qué "/" no encuentra el index.html
+// en este host. Borrar una vez resuelto.
+app.get("/api/debug", (req, res) => {
+  function safeListDir(p) {
+    try {
+      return fs.readdirSync(p);
+    } catch (e) {
+      return "ERROR: " + e.message;
+    }
+  }
+  res.json({
+    __dirname,
+    cwd: process.cwd(),
+    indexCandidates: INDEX_CANDIDATES,
+    indexFound: INDEX_PATH || null,
+    lsDirname: safeListDir(__dirname),
+    lsParent: safeListDir(path.join(__dirname, "..")),
+    lsCwd: safeListDir(process.cwd()),
+  });
+});
+
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
   console.warn(
