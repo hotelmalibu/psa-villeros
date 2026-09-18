@@ -266,6 +266,13 @@
   #lightbox img{max-width:100%; max-height:100%; box-shadow:0 10px 40px rgba(0,0,0,.4);}
   .lightbox-close{position:fixed; top:1.1rem; right:1.3rem; background:var(--paper-raised); border:1px solid var(--rule-strong); width:38px; height:38px; font-size:1.1rem;}
 
+  /* mapa virtual (dron) */
+  .drone-frame{border:1px solid var(--rule); background:var(--paper-sunken); height:600px; overflow:hidden;}
+  .drone-frame iframe{width:100%; height:100%; border:0; display:block;}
+  @media (max-width:760px){.drone-frame{height:420px;}}
+  .drone-slow-notice{margin:.6rem 0 0; padding:.6rem .8rem; border:1px dashed var(--alert); background:var(--alert-soft); color:var(--ink-soft); font-size:.82rem;}
+  .drone-slow-notice a{color:var(--navy-dark); font-weight:600;}
+
   /* recorrido stepper */
   .tour-stage{display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; align-items:start;}
   @media (max-width:900px){.tour-stage{grid-template-columns:1fr;}}
@@ -1052,9 +1059,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <nav class="sidebar" id="sidebar" aria-label="Secciones de la plataforma">
     <button class="nav-btn active" data-view="presentacion"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="9" rx="1.2"></rect><line x1="7" y1="17" x2="13" y2="17"></line><line x1="10" y1="13" x2="10" y2="17"></line></svg></span> Presentación</button>
     <button class="nav-btn" data-view="componentes"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,3 17,7 10,11 3,7"></polygon><polyline points="3,10.5 10,14.5 17,10.5"></polyline><polyline points="3,13.5 10,17.5 17,13.5"></polyline></svg></span> Componentes</button>
+    <button class="nav-btn" data-view="economia"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="17" x2="17" y2="17"></line><rect x="5" y="11" width="2.6" height="6"></rect><rect x="9" y="7" width="2.6" height="10"></rect><rect x="13" y="9.5" width="2.6" height="7.5"></rect></svg></span> Gestión económica</button>
     <button class="nav-btn" data-view="participacion"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6.5" r="2.5"></circle><path d="M2.2 16c0-3.3 2.1-5.3 4.8-5.3s4.8 2 4.8 5.3"></path><circle cx="15" cy="8" r="1.9"></circle><path d="M12.6 16c.1-2.5 1.6-4.1 3.5-4.1"></path></svg></span> Participación</button>
     <button class="nav-btn" data-view="atlas"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17s6-5.5 6-9.5A6 6 0 1 0 4 7.5C4 11.5 10 17 10 17Z"></path><circle cx="10" cy="7.5" r="2"></circle></svg></span> Atlas</button>
-    <button class="nav-btn" data-view="recorrido"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"></circle><polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none"></polygon></svg></span> Recorrido virtual</button>
+    <button class="nav-btn" data-view="recorrido"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"></circle><polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none"></polygon></svg></span> Mapa virtual</button>
     <button class="nav-btn" id="nav-documentos" data-view="documentos"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 2.5h6l3 3v12h-9v-15Z"></path><path d="M11.5 2.5v3h3"></path><line x1="7.5" y1="10" x2="12.5" y2="10"></line><line x1="7.5" y1="13" x2="12.5" y2="13"></line></svg></span> Documentos <span class="nav-lock">🔒</span></button>
     <div class="sidebar-foot">
       <div class="allies">
@@ -1170,10 +1178,60 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </table>
     </section>
 
+    <!-- ---------------- GESTIÓN ECONÓMICA ---------------- -->
+    <section class="view" id="view-economia">
+      <div class="view-head">
+        <div class="eyebrow">03 · GESTIÓN ECONÓMICA</div>
+        <h1>Localización predial, costo de oportunidad y portafolio de inversión</h1>
+        <p class="lead">Valoración económica del incentivo para los 60 predios del área de intervención, calculada por el método del menor valor entre Beneficio Económico Neto (BEN) y Valor de Renta de la Tierra (VRT), contrastada contra el tope legal del 15% del avalúo catastral (Decreto 1076 de 2015, art. 2.2.9.8.2.5).</p>
+      </div>
+
+      <div class="stat-grid" id="econ-stats-grid"></div>
+
+      <h3 style="margin-top:1.8rem;">Localización e identificación predial</h3>
+      <p class="lead" style="margin-bottom:1rem;">Los 9 predios de intervención directa dentro del polígono estricto de la cuenca, con coordenadas verificadas en el Sistema Nacional Catastral del IGAC. Por la Ley 1581 de 2012, no se publican nombres de propietarios — solo el código predial (P01–P60).</p>
+      <div id="predios-map" style="height:380px; border:1px solid var(--rule); background:var(--paper-sunken); margin-bottom:1.6rem;"></div>
+
+      <div class="grid-2">
+        <div>
+          <h3>Hectáreas por uso predominante del suelo</h3>
+          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Clasificación ESA WorldCover 2021 (10 m) sobre los 60 predios · 294 ha totales.</p>
+          <div id="econ-uso-chart"></div>
+        </div>
+        <div>
+          <h3>Frontera presupuesto–prioridad</h3>
+          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Módulo de optimización M12: % de la prioridad total cubierta según presupuesto anual disponible.</p>
+          <div id="econ-frontera-chart"></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.8rem;">Costo de oportunidad y valoración del incentivo</h3>
+      <p class="lead" style="margin-bottom:.8rem;">El costo de oportunidad de referencia surge de comparar dos métodos — BEN (sistema ganadero de doble propósito) y VRT — y adoptar el menor. Para Villeros, el resultado agregado es de USD 334/ha/año, sustancialmente por debajo del valor de referencia regional ($8,36 M/ha/año), porque buena parte del área no sostiene hoy ganadería intensiva.</p>
+      <table class="data">
+        <thead><tr><th>Método</th><th>Resultado</th><th>¿Se adopta?</th></tr></thead>
+        <tbody>
+          <tr><td>BEN — Beneficio Económico Neto (ganadería de referencia)</td><td class="num">$1.295.833 /ha·mes</td><td><span class="tag pending">Mayor — no se adopta</span></td></tr>
+          <tr><td>VRT — Valor de Renta de la Tierra (ganadería de referencia)</td><td class="num">$696.675 /ha·mes</td><td><span class="tag done">Menor — costo de oportunidad de referencia</span></td></tr>
+          <tr><td>Aplicado en Villeros (agregado, 294 ha)</td><td class="num">USD 334 /ha·año</td><td><span class="tag done">≈ COP 1,34 M/ha·año</span></td></tr>
+        </tbody>
+      </table>
+
+      <p class="lead" style="margin:1rem 0 .6rem;">Incentivo calculado (VRT) frente al tope legal del 15% del avalúo — núcleo del portafolio recomendado. Ningún predio agota su propio tope: el uso va de 18% a 66%, lo que deja margen técnico para ajustar el incentivo al alza si el comité lo decide.</p>
+      <div id="econ-tope-chart"></div>
+
+      <h3 style="margin-top:1.8rem;">Alternativas de financiación — portafolio óptimo (módulo M12)</h3>
+      <p class="lead" style="margin-bottom:.8rem;">Pagar el incentivo a los 60 predios costaría $342 M/año. El portafolio recomendado como punto de arranque —$105 M/año, 46 predios, 134 ha— cubre el 56% de la prioridad total y protege un estimado de 557 t/año de sedimento. Su costo se concentra en un núcleo de apenas 7 predios; los 39 restantes tienen costo de oportunidad de cero y requieren definir un piso mínimo al incentivo antes de suscribir acuerdos.</p>
+      <table class="data">
+        <thead><tr><th>Predio</th><th>Área (ha)</th><th>Modalidad</th><th>Índice</th><th>Costo anual (COP)</th></tr></thead>
+        <tbody id="econ-nucleo-tbody"></tbody>
+      </table>
+      <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Documento técnico del esquema de PSA (Producto 2), capítulos 4, 6 y 7 — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026.</p>
+    </section>
+
     <!-- ---------------- PARTICIPACIÓN ---------------- -->
     <section class="view" id="view-participacion">
       <div class="view-head">
-        <div class="eyebrow">03 · PARTICIPACIÓN</div>
+        <div class="eyebrow">04 · PARTICIPACIÓN</div>
         <h1>Talleres de participación para la construcción del perfil del esquema ambiental</h1>
         <p class="lead">Socialización institucional desarrollada por la Alcaldía de Coveñas, con acompañamiento técnico del Consorcio Servicios Ambientales 2026. El PSA es voluntario: cada acuerdo de conservación se concerta con el propietario o poseedor del predio.</p>
       </div>
@@ -1211,7 +1269,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- ---------------- ATLAS ---------------- -->
     <section class="view" id="view-atlas">
       <div class="view-head">
-        <div class="eyebrow">04 · ATLAS</div>
+        <div class="eyebrow">05 · ATLAS</div>
         <h1>Visor SIG</h1>
         <p class="lead">Atlas cartográfico desarrollado por capas, que incluyen modelo digital de elevación, zonificación ambiental, coberturas y otros.</p>
       </div>
@@ -1254,10 +1312,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- ---------------- RECORRIDO VIRTUAL ---------------- -->
     <section class="view" id="view-recorrido">
       <div class="view-head">
-        <div class="eyebrow">05 · RECORRIDO VIRTUAL (CAPAS)</div>
-        <h1>La misma cartografía, en una secuencia guiada</h1>
-        <p class="lead">Recorra el proyecto capa por capa, en el orden en que se construye el esquema: de la cuenca completa al portafolio de predios priorizados.</p>
+        <div class="eyebrow">06 · MAPA VIRTUAL</div>
+        <h1>Mapa virtual del área de intervención</h1>
+        <p class="lead">Ortomosaico de dron del área de la Represa Villeros, con las capas de sanidad vegetal, elevación y vista 3D generadas a partir del vuelo. Use los controles del visor para alternar capas, medir y ampliar.</p>
       </div>
+
+      <div class="drone-frame" id="drone-frame">
+        <iframe id="drone-iframe" src="https://www.dronedeploy.com/app2/sites/6aa61b5e71cf6530e5f81bdb/maps/6aa9c2458e558d594eca78c8?jwt_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYTljMjRlZmIxNGQ5NWFmMDE0NWVmZCIsInR5cGUiOiJQdWJsaWNTaGFyZVYyIiwiYWNjZXNzX3R5cGUiOiJwbGFuIn0.GrL6-hCumfbvadElsca14AbbOLZ39lPBoAOKKzUq3C4s7LBBYpp0Emazs2X3oINbbQBOs7063wSNYhoOKuLSxQ" loading="lazy" allow="fullscreen" allowfullscreen title="Mapa virtual — ortomosaico dron Represa Villeros"></iframe>
+      </div>
+      <p class="drone-slow-notice" id="drone-slow-notice" hidden>El visor está tardando más de lo normal en cargar (es un servicio externo, DroneDeploy). <a href="https://www.dronedeploy.com/app2/sites/6aa61b5e71cf6530e5f81bdb/maps/6aa9c2458e558d594eca78c8?jwt_token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYTljMjRlZmIxNGQ5NWFmMDE0NWVmZCIsInR5cGUiOiJQdWJsaWNTaGFyZVYyIiwiYWNjZXNzX3R5cGUiOiJwbGFuIn0.GrL6-hCumfbvadElsca14AbbOLZ39lPBoAOKKzUq3C4s7LBBYpp0Emazs2X3oINbbQBOs7063wSNYhoOKuLSxQ" target="_blank" rel="noopener">Ábralo directo en una pestaña nueva ↗</a></p>
+      <p class="map-caption">
+        Ortomosaico capturado el 15 de septiembre de 2026 (1.778 fotografías aéreas). Capas disponibles en el visor: <b>Mapa</b> (ortofoto RGB), <b>Sanidad vegetal</b> (índice de vigor de la cobertura) y <b>Elevación</b> (modelo digital de superficie), además de vista 3D y modo interior/exterior.
+        <span class="src">Fuente: levantamiento con dron, componente SIG — Consorcio Servicios Ambientales 2026 (DroneDeploy). Vista en vivo mediante enlace público de DroneDeploy — pendiente de reemplazar por una capa propia una vez se exporte el ortomosaico procesado (ver nota técnica del equipo SIG).</span>
+      </p>
+
+      <h3 style="margin-top:2.2rem;">Recorrido guiado paso a paso</h3>
+      <p class="lead" style="margin-bottom:1rem;">Recorra el proyecto capa por capa, en el orden en que se construye el esquema: de la cuenca completa al portafolio de predios priorizados.</p>
 
       <div class="tour-stage">
         <div class="tour-copy">
@@ -1280,7 +1350,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- ---------------- DOCUMENTOS ---------------- -->
     <section class="view" id="view-documentos">
       <div class="view-head">
-        <div class="eyebrow">06 · DOCUMENTOS</div>
+        <div class="eyebrow">07 · DOCUMENTOS</div>
         <h1>Subproductos del contrato</h1>
         <p class="lead">Los archivos originales viven en el Drive del proyecto. Esta sección exige una clave adicional, distinta de la del ingreso, antes de mostrar los enlaces de descarga.</p>
       </div>
@@ -1432,6 +1502,62 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {t:"Costo de oportunidad", p:15},
     {t:"Recarga de acuífero", p:9},
     {t:"Amenaza por incendio", p:8}
+  ];
+
+  /* ================= GESTIÓN ECONÓMICA (Documento técnico PSA, cap. 4, 6 y 7) ================= */
+  var ECON_STATS = [
+    {v:"$10.644 M", l:"Valor catastral oficial total · 60 predios"},
+    {v:"USD 98.135/año", l:"Costo de oportunidad agregado · 294 ha (≈COP 1,34 M/ha·año)"},
+    {v:"$342 M/año", l:"Costo si se paga el incentivo a los 60 predios"},
+    {v:"$105 M/año", l:"Portafolio recomendado (M12) · 46 predios · 134 ha"},
+    {v:"$104,77 M/año", l:"Núcleo pagado del portafolio · 7 predios · 100 ha"},
+    {v:"557 t/año", l:"Sedimento protegido · escenario del portafolio recomendado"}
+  ];
+
+  var ECON_USO_SUELO = [
+    {n:"Pastizal", ha:223.4, predios:33},
+    {n:"Bosque / arbolado", ha:36.7, predios:25},
+    {n:"Agua (represa)", ha:33.8, predios:1},
+    {n:"Construido", ha:0.1, predios:1}
+  ];
+
+  var ECON_FRONTERA = [
+    {y:"$51 M", v:41},
+    {y:"$120 M", v:59},
+    {y:"$171 M", v:70},
+    {y:"$342 M", v:100}
+  ];
+
+  var ECON_TOPE_LEGAL = [
+    {predio:"P03", pct:66},
+    {predio:"P08", pct:45},
+    {predio:"P02", pct:45},
+    {predio:"P09", pct:44},
+    {predio:"P01", pct:40},
+    {predio:"P06", pct:25},
+    {predio:"P11", pct:18}
+  ];
+
+  var ECON_NUCLEO = [
+    {predio:"P08", ha:"26,0", modalidad:"Rehabilitación", indice:"56,8", costo:"38.934.000"},
+    {predio:"P09", ha:"11,8", modalidad:"Rehabilitación", indice:"56,1", costo:"17.231.507"},
+    {predio:"P02", ha:"11,0", modalidad:"Rehabilitación", indice:"60,4", costo:"16.509.000"},
+    {predio:"P01", ha:"7,6", modalidad:"Restauración", indice:"52,6", costo:"9.330.564"},
+    {predio:"P11", ha:"5,7", modalidad:"Restauración", indice:"53,3", costo:"8.590.500"},
+    {predio:"P06", ha:"33,8", modalidad:"Conservación", indice:"67,4", costo:"8.071.097"},
+    {predio:"P03", ha:"4,1", modalidad:"Rehabilitación", indice:"58,7", costo:"6.103.500"}
+  ];
+
+  var ECON_PREDIOS_CUENCA = [
+    {predio:"P02", lat:9.3745, lon:-75.7002, ha:"8,64", avaluo:"$328.791.000"},
+    {predio:"P03", lat:9.3769, lon:-75.7011, ha:"3,91", avaluo:"$58.947.000"},
+    {predio:"P06", lat:9.3805, lon:-75.6981, ha:"30,94", avaluo:"$195.595.000"},
+    {predio:"P07", lat:9.3770, lon:-75.6960, ha:"15,28", avaluo:"$342.655.000"},
+    {predio:"P08", lat:9.3809, lon:-75.7019, ha:"11,05", avaluo:"$373.492.000"},
+    {predio:"P09", lat:9.3746, lon:-75.7027, ha:"12,17", avaluo:"$302.518.000"},
+    {predio:"P17", lat:9.3707, lon:-75.6935, ha:"12,48", avaluo:"$237.301.000"},
+    {predio:"P18", lat:9.3722, lon:-75.6954, ha:"6,09", avaluo:"$175.760.000"},
+    {predio:"P19", lat:9.3704, lon:-75.6958, ha:"3,31", avaluo:"$55.278.000"}
   ];
 
   var TIMELINE = [
@@ -1634,6 +1760,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
     });
   })();
 
+  /* ================= MAPA VIRTUAL: aviso si el visor externo tarda ================= */
+  (function(){
+    var frame = document.getElementById("drone-iframe");
+    var notice = document.getElementById("drone-slow-notice");
+    if(!frame || !notice) return;
+    var timer = setTimeout(function(){ notice.hidden = false; }, 12000);
+    frame.addEventListener("load", function(){ clearTimeout(timer); }, {once:true});
+  })();
+
   /* ================= NAV ================= */
   document.getElementById("sidebar").addEventListener("click", function(e){
     var btn = e.target.closest(".nav-btn");
@@ -1646,6 +1781,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
     if(v === "atlas"){
       initLeafletMap();
       setTimeout(function(){ if(leafletMapInstance) leafletMapInstance.invalidateSize(); }, 60);
+    }
+    if(v === "economia"){
+      initPrediosMap();
+      setTimeout(function(){ if(prediosMapInstance) prediosMapInstance.invalidateSize(); }, 60);
     }
   });
 
@@ -1753,6 +1892,64 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '<div style="height:8px; background:var(--paper-sunken); border:1px solid var(--rule);">'+
         '<div style="height:100%; width:'+m.p+'%; background:var(--navy);"></div></div></div>';
     }).join("");
+  }
+
+  /* ================= RENDER: GESTIÓN ECONÓMICA ================= */
+  function renderEconomia(){
+    var stats = document.getElementById("econ-stats-grid");
+    if(!stats) return;
+    stats.innerHTML = ECON_STATS.map(function(s){
+      return '<div class="stat"><div class="num" style="font-size:1.15rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
+    }).join("");
+
+    var usoMax = Math.max.apply(null, ECON_USO_SUELO.map(function(d){ return d.ha; }));
+    var usoEl = document.getElementById("econ-uso-chart");
+    usoEl.innerHTML = '<div class="bars-h">' + ECON_USO_SUELO.map(function(d){
+      var w = Math.max(6, Math.round((d.ha/usoMax)*100));
+      return '<div class="bar-h-row"><span>'+d.n+'</span>'+
+        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+w+'%;"></div></div>'+
+        '<span class="mono">'+d.ha.toLocaleString("es-CO",{minimumFractionDigits:1})+' ha</span></div>';
+    }).join("") + '</div>';
+
+    var frontEl = document.getElementById("econ-frontera-chart");
+    frontEl.innerHTML = '<div class="bars-v">' + ECON_FRONTERA.map(function(d){
+      return '<div class="bar-v-col"><div class="bar-v-fill" style="height:'+d.v+'%;"></div>'+
+        '<div class="bar-v-label">'+d.y+'<br>'+d.v+'%</div></div>';
+    }).join("") + '</div>';
+
+    var topeMax = 100;
+    var topeEl = document.getElementById("econ-tope-chart");
+    topeEl.innerHTML = '<div class="bars-h">' + ECON_TOPE_LEGAL.map(function(d){
+      var w = Math.max(6, Math.round((d.pct/topeMax)*100));
+      return '<div class="bar-h-row"><span>'+d.predio+'</span>'+
+        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+w+'%;"></div></div>'+
+        '<span class="mono">'+d.pct+'%</span></div>';
+    }).join("") + '</div>';
+
+    var nucleoBody = document.getElementById("econ-nucleo-tbody");
+    nucleoBody.innerHTML = ECON_NUCLEO.map(function(n){
+      return '<tr><td>'+n.predio+'</td><td class="num">'+n.ha+'</td><td>'+n.modalidad+'</td><td class="num">'+n.indice+'</td><td class="num">$'+n.costo+'</td></tr>';
+    }).join("") + '<tr><td><b>Total núcleo</b></td><td class="num"><b>100,0</b></td><td></td><td></td><td class="num"><b>$104.770.168</b></td></tr>';
+  }
+
+  var prediosMapInstance = null;
+  function initPrediosMap(){
+    if(prediosMapInstance) return;
+    var el = document.getElementById("predios-map");
+    if(!el || typeof L === "undefined") return;
+    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:12, maxZoom:18 });
+    var pts = ECON_PREDIOS_CUENCA.map(function(p){ return [p.lat, p.lon]; });
+    map.fitBounds(pts, { padding:[30,30] });
+
+    ECON_PREDIOS_CUENCA.forEach(function(p){
+      var marker = L.circleMarker([p.lat, p.lon], {
+        radius:8, color:"#082F5E", weight:2, fillColor:"#3FA9F5", fillOpacity:0.9
+      }).addTo(map);
+      marker.bindPopup('<div class="zon-popup"><b>Predio '+p.predio+'</b>Área catastral: '+p.ha+' ha<br>Avalúo catastral: '+p.avaluo+'</div>');
+      marker.bindTooltip(p.predio, {direction:"top", permanent:true, className:"mono", offset:[0,-8]});
+    });
+
+    prediosMapInstance = map;
   }
 
   /* ================= RENDER: PARTICIPACIÓN ================= */
@@ -2087,6 +2284,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderSedimentoChart();
     renderCalidadChart();
     renderComponentes();
+    renderEconomia();
     renderParticipacion();
     renderAtlas();
     renderTour();
