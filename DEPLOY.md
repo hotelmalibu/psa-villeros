@@ -1,22 +1,38 @@
 # Despliegue — Plataforma PSA Represa Villeros
 
-Arquitectura: **Hostinger** sirve el sitio estático (`index.html`), **Render**
-corre los servicios que necesitan un proceso vivo (la API de autenticación, y
-opcionalmente GeoServer). El HTML sigue siendo un solo archivo sin build step;
-solo se conecta por `fetch` a los servicios de Render.
+Arquitectura real (no la que se planeó al principio — ver nota abajo):
+**`backend/server.js` sirve el sitio Y la API desde un solo proceso Node**,
+desplegado dos veces por separado con el mismo código: una en **Hostinger**
+(vía su integración Git de hosting Node, ya conectada al dominio real) y otra
+en **Render** (de respaldo / para pruebas). No hay División estático vs. API:
+cada despliegue es autosuficiente.
 
 ```
-┌─────────────────────┐        fetch (HTTPS)        ┌──────────────────────────┐
-│  Hostinger           │ ───────────────────────────▶│  Render                  │
-│  index.html (5+ MB)  │                              │  psa-villeros-api        │
-│  hosting estático    │ ◀─────────────────────────── │  (Node/Express + JWT)    │
-└─────────────────────┘        JSON + token           └──────────────────────────┘
+                    push a GitHub (hotelmalibu/psa-villeros)
+                                  │
+                 ┌────────────────┴────────────────┐
+                 ▼                                  ▼
+   ┌───────────────────────────┐      ┌───────────────────────────┐
+   │  Hostinger (Node hosting)  │      │  Render (respaldo)         │
+   │  dominio: psacoveñas.com   │      │  psa-villeros-api.onrender │
+   │  backend/server.js         │      │  backend/server.js         │
+   │  sirve "/" (index.html)    │      │  sirve "/" (index.html)    │
+   │  y "/api/..."              │      │  y "/api/..."               │
+   └───────────────────────────┘      └───────────────────────────┘
                                                         (opcional, más adelante)
                                                        ┌──────────────────────────┐
                                                        │  GeoServer (Docker)      │
                                                        │  WMS/WFS de las capas    │
                                                        └──────────────────────────┘
 ```
+
+**Por qué cambió el plan:** originalmente la idea era Hostinger = solo
+`index.html` estático (subido por File Manager) + Render = solo la API. Pero
+Hostinger ya tenía conectada su propia integración Git de hosting Node al
+mismo repo, apuntando a `backend/` — así que en vez de pelear contra eso,
+`backend/server.js` se adaptó para servir también el sitio (ver
+`backend/README.md`), y ahora ambos despliegues son independientes y
+completos.
 
 ## Dominio
 
@@ -34,65 +50,53 @@ aparezca así en paneles técnicos — el navegador lo sigue mostrando como
 ## Estado actual
 
 - [x] Repo en GitHub: [`hotelmalibu/psa-villeros`](https://github.com/hotelmalibu/psa-villeros).
-- [x] **Backend de autenticación desplegado en Render**:
+- [x] **Backend + sitio desplegados en Render** (respaldo):
       [`psa-villeros-api`](https://dashboard.render.com) →
       `https://psa-villeros-api.onrender.com` (plan free — se "duerme" tras
       ~15 min sin tráfico, el primer request después tarda unos segundos).
       Verificado con `demo.tecnico` y `demo.publico` contra el servicio real.
-- [x] `index.html` ya apunta a esa URL (`var API_BASE`) y está pusheado a `main`.
-- [x] Carpeta local `hostinger-upload/` lista para subir tal cual (solo
-      contiene `index.html`, sin nada más del repo) — no está en git, es solo
-      una copia de conveniencia en tu máquina para arrastrar al File Manager.
-- [ ] **Falta subir `hostinger-upload/index.html` a Hostinger** y apuntar
-      `psacoveñas.com` a ese hosting (ver paso 3 abajo — necesita tus
-      credenciales, no puedo hacerlo por ti: Hostinger tiene una verificación
-      anti-bots de Cloudflare que bloquea el navegador automatizado).
-- [ ] **Falta actualizar `CORS_ORIGIN` en Render** con el dominio real (ver
-      paso 4 — también necesita que inicies sesión ahí, la sesión que tenía
-      abierta expiró).
+- [x] **Backend + sitio desplegados en Hostinger** (el dominio real) vía su
+      integración Git de hosting Node, apuntando a `backend/`.
+      `https://psacoveñas.com/api/health` responde bien.
+- [x] `index.html` duplicado en `backend/index.html` — necesario para que
+      Hostinger lo encuentre (ver por qué en `backend/README.md`).
+- [x] `API_BASE` en `index.html` es una ruta relativa (`""`) — funciona igual
+      en cualquiera de los dos despliegues, sin fijar un dominio.
+- [ ] **Falta confirmar que `https://psacoveñas.com/` ya sirve el sitio** (no
+      solo la API) — se agregó el `index.html` duplicado recién; falta ver un
+      redeploy tomar ese cambio.
+- [ ] **Falta actualizar `CORS_ORIGIN`** con el dominio real en cualquiera de
+      los dos paneles donde uses la API cross-origin (por defecto está en
+      `*`, que ya funciona; esto es solo para cerrarlo más). No es urgente
+      mientras cada despliegue sirva su propio sitio + su propia API (mismo
+      origen, no necesita CORS).
 - [ ] GeoServer: sin desplegar todavía (opcional, ver `geoserver/README.md`).
 
-## Orden recomendado
+## Si vuelves a tocar `index.html`
 
-1. ~~Backend de autenticación (`backend/`) → Render~~ — **ya hecho**, ver arriba.
-2. ~~Copiar la URL de Render en `API_BASE`~~ — **ya hecho**.
-3. **Frontend** → subir a Hostinger y apuntar el dominio.
-   - Iniciá sesión en [hpanel.hostinger.com](https://hpanel.hostinger.com).
-   - Si `psacoveñas.com` todavía no está agregado como dominio del hosting:
-     **Dominios** → agregalo (o **Websites** → creá un sitio nuevo para ese
-     dominio) y seguí el asistente para que apunte al hosting donde vas a
-     subir el archivo.
-   - **Archivos → Administrador de archivos** → entrá a `public_html/` del
-     hosting asociado a `psacoveñas.com` (si el dominio queda en una
-     subcarpeta tipo `public_html/psacoveñas.com/`, es ahí).
-   - Subí `hostinger-upload/index.html` (pesa 7,4 MB, puede tardar un poco).
-     Si ya había un `index.html`, reemplazalo.
-   - El DNS puede tardar unos minutos a unas horas en propagarse si el
-     dominio se acaba de apuntar.
-   - Esto lo tenés que hacer vos: no puedo iniciar sesión en tu cuenta de
-     Hostinger ni escribir tu contraseña por vos, y el navegador automatizado
-     queda bloqueado por la verificación anti-bots del sitio.
-4. **Cerrar la API al dominio real** → en
-   [dashboard.render.com](https://dashboard.render.com), entrá al servicio
-   `psa-villeros-api` → **Environment** → cambiá `CORS_ORIGIN` de `*` a:
-   ```
-   https://psacoveñas.com,https://www.psacoveñas.com
-   ```
-   (Render acepta el nombre en Unicode tal cual — internamente lo compara
-   contra el `Origin` que manda el navegador, que sí va en Punycode
-   `xn--psacoveas-r6a.com`; si notás que el login falla por CORS una vez
-   publicado, probá poniendo directamente la forma Punycode en su lugar).
-   Guardá — el servicio se redespliega solo con el nuevo valor.
-5. **GeoServer** (opcional, cuando lo necesites) → ver
-   [`geoserver/README.md`](geoserver/README.md). No es necesario para que el
-   sitio funcione: el Atlas ya sirve las capas reales como GeoJSON embebido.
+Copialo también a `backend/index.html` antes de subir el cambio:
+
+```bash
+cp index.html backend/index.html
+git add index.html backend/index.html
+```
+
+Si te olvidás de este paso, Hostinger seguirá sirviendo la versión vieja del
+sitio (aunque la API ya tenga el código nuevo) — es la causa más probable si
+alguna vez ves inconsistencias entre lo que ves en local y lo publicado ahí.
+
+## GeoServer (opcional, cuando lo necesites)
+
+Ver [`geoserver/README.md`](geoserver/README.md). No es necesario para que el
+sitio funcione: el Atlas ya sirve las capas reales como GeoJSON embebido.
 
 ## Qué revisar después de cada despliegue
 
-- `https://psa-villeros-api.onrender.com/api/health` responde `{"ok":true,...}`.
-- El login con `demo.tecnico` / `Villeros2026` funciona desde
-  `https://psacoveñas.com` publicado (no solo en local) — confirma que
-  `CORS_ORIGIN` en Render incluye ese dominio.
+- `https://psacoveñas.com/api/health` y `https://psa-villeros-api.onrender.com/api/health`
+  responden `{"ok":true,...}`.
+- `https://psacoveñas.com/` y la URL de Render muestran el sitio (no "Cannot
+  GET /").
+- El login con `demo.tecnico` / `Villeros2026` funciona en ambos.
 - Recargar la página estando logueado no debe pedir login de nuevo (sesión por
   `sessionStorage` + `/api/auth/me`).
 

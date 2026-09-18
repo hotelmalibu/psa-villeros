@@ -4,8 +4,20 @@ Backend mínimo en Node/Express que reemplaza el login simulado del `index.html`
 Verifica usuario + contraseña (hash bcrypt) contra `users.js` y devuelve un JWT
 que el frontend guarda en `sessionStorage` para mantener la sesión.
 
+Este mismo proceso **también sirve el sitio** (`GET /` → `index.html`), no solo
+la API — así un único despliegue de Node alcanza para todo. `index.html` está
+duplicado en esta carpeta (`backend/index.html`) además de en la raíz del repo,
+porque el despliegue Git de Hostinger solo copia el contenido de esta carpeta
+(no el repo completo como Render) — sin esa copia local, la app solo serviría
+la API y `/` daría "Cannot GET /". **Si editas `index.html`, copialo también acá**
+antes de subir el cambio:
+```bash
+cp ../index.html index.html
+```
+
 ## Endpoints
 
+- `GET /` — el sitio (`index.html`).
 - `GET /api/health` — verifica que el servicio está vivo.
 - `POST /api/auth/login` — body `{ "username": "...", "password": "..." }` → `{ token, user }`.
 - `GET /api/auth/me` — header `Authorization: Bearer <token>` → `{ user }`.
@@ -26,12 +38,10 @@ que el frontend guarda en `sessionStorage` para mantener la sesión.
    `https://psacoveñas.com,https://www.psacoveñas.com` (ver `DEPLOY.md` para el
    detalle del dominio, que es un IDN con "ñ"). Mientras tanto puede quedar en `*`.
 4. Cuando termine el deploy, Render te da una URL pública, algo como
-   `https://psa-villeros-api.onrender.com`.
-5. Copia esa URL en `index.html`, en la línea:
-   ```js
-   var API_BASE = "https://psa-villeros-api.onrender.com";
-   ```
-   y vuelve a subir el `index.html` a Hostinger.
+   `https://psa-villeros-api.onrender.com`, y al entrar ahí ya se ve el sitio
+   completo (este mismo proceso lo sirve). No hace falta tocar `API_BASE` en
+   `index.html`: ya es una ruta relativa (`""`), así que llama a la API del
+   mismo origen donde esté publicada la página, sea Render o Hostinger.
 
 **Nota sobre el plan gratis de Render:** el servicio se "duerme" tras ~15 min sin
 tráfico y el primer request después tarda unos segundos en responder (arranca de

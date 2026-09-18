@@ -12,10 +12,19 @@ app.use(express.json());
 // Sirve el sitio estático (index.html) desde el mismo proceso, para hosts
 // (como el despliegue Git de Hostinger) que solo corren esta app de Node y
 // no tienen un servidor de archivos estáticos aparte. Busca el index.html
-// en varias ubicaciones posibles según cómo se haya clonado el repo.
+// en varias ubicaciones posibles según cómo se haya desplegado el repo.
+//
+// Confirmado con /api/debug (ya retirado): Render clona el repo completo,
+// así que backend/../index.html existe. Hostinger, en cambio, con el Git
+// deploy de su hosting Node, SOLO copia el contenido de este directorio
+// (el "Application Root" que se configuró ahí) a una carpeta aislada — el
+// resto del repo (incluido el index.html de la raíz) no llega. Por eso
+// este mismo index.html también vive copiado en backend/index.html: así
+// viaja junto con el código sin importar cuál de los dos "recorta" el repo.
+// Si vuelves a editar index.html, acordate de copiarlo también acá.
 const INDEX_CANDIDATES = [
-  path.join(__dirname, "..", "index.html"), // repo completo, backend/ como subcarpeta
-  path.join(__dirname, "index.html"), // solo se clonó/copió backend/
+  path.join(__dirname, "..", "index.html"), // repo completo (Render)
+  path.join(__dirname, "index.html"), // solo se desplegó este directorio (Hostinger)
   path.join(process.cwd(), "index.html"), // cwd distinto a __dirname
 ];
 const INDEX_PATH = INDEX_CANDIDATES.find((p) => {
@@ -35,27 +44,6 @@ if (INDEX_PATH) {
       "(" + INDEX_CANDIDATES.join(", ") + "). Este proceso solo servirá la API."
   );
 }
-
-// Endpoint temporal de diagnóstico — ver por qué "/" no encuentra el index.html
-// en este host. Borrar una vez resuelto.
-app.get("/api/debug", (req, res) => {
-  function safeListDir(p) {
-    try {
-      return fs.readdirSync(p);
-    } catch (e) {
-      return "ERROR: " + e.message;
-    }
-  }
-  res.json({
-    __dirname,
-    cwd: process.cwd(),
-    indexCandidates: INDEX_CANDIDATES,
-    indexFound: INDEX_PATH || null,
-    lsDirname: safeListDir(__dirname),
-    lsParent: safeListDir(path.join(__dirname, "..")),
-    lsCwd: safeListDir(process.cwd()),
-  });
-});
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
