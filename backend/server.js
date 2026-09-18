@@ -2,10 +2,39 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const path = require("path");
 const users = require("./users");
 
 const app = express();
 app.use(express.json());
+
+// Sirve el sitio estático (index.html) desde el mismo proceso, para hosts
+// (como el despliegue Git de Hostinger) que solo corren esta app de Node y
+// no tienen un servidor de archivos estáticos aparte. Busca el index.html
+// en varias ubicaciones posibles según cómo se haya clonado el repo.
+const INDEX_CANDIDATES = [
+  path.join(__dirname, "..", "index.html"), // repo completo, backend/ como subcarpeta
+  path.join(__dirname, "index.html"), // solo se clonó/copió backend/
+  path.join(process.cwd(), "index.html"), // cwd distinto a __dirname
+];
+const INDEX_PATH = INDEX_CANDIDATES.find((p) => {
+  try {
+    return fs.existsSync(p);
+  } catch (e) {
+    return false;
+  }
+});
+
+if (INDEX_PATH) {
+  console.log("Sirviendo el sitio estático desde:", INDEX_PATH);
+  app.get("/", (req, res) => res.sendFile(INDEX_PATH));
+} else {
+  console.warn(
+    "AVISO: no se encontró index.html en ninguna ubicación esperada " +
+      "(" + INDEX_CANDIDATES.join(", ") + "). Este proceso solo servirá la API."
+  );
+}
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {

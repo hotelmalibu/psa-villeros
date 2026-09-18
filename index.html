@@ -1708,8 +1708,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var DOC_CLAVE = "COV-CMA-010-2026";
 
   /* ================= LOGIN (API real — ver /backend) ================= */
-  // Servicio psa-villeros-api desplegado en Render (Blueprint hotelmalibu/psa-villeros).
-  var API_BASE = "https://psa-villeros-api.onrender.com";
+  // Mismo origen: backend/server.js ahora sirve este index.html Y la API
+  // (/api/...) desde un solo proceso Node (Hostinger Git deploy, y también
+  // Render). Por eso alcanza con una ruta relativa: funciona en cualquiera
+  // de los dos sin tener que fijar un dominio.
+  var API_BASE = "";
   var AUTH_TOKEN_KEY = "psaVillerosToken";
   var currentUser = null;
 
