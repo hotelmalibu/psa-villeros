@@ -22,9 +22,9 @@ que el frontend guarda en `sessionStorage` para mantener la sesión.
      conecta el repo, Root Directory = `backend`, Build Command = `npm install`,
      Start Command = `npm start`.
 3. En **Environment**, confirma que `JWT_SECRET` tiene un valor generado (Render lo
-   crea solo si usaste el Blueprint) y ajusta `CORS_ORIGIN` al dominio real de
-   Hostinger cuando lo tengas (por ejemplo `https://psavilleros.tu-dominio.com`).
-   Mientras tanto puede quedar en `*`.
+   crea solo si usaste el Blueprint) y ajusta `CORS_ORIGIN` al dominio real:
+   `https://psacoveñas.com,https://www.psacoveñas.com` (ver `DEPLOY.md` para el
+   detalle del dominio, que es un IDN con "ñ"). Mientras tanto puede quedar en `*`.
 4. Cuando termine el deploy, Render te da una URL pública, algo como
    `https://psa-villeros-api.onrender.com`.
 5. Copia esa URL en `index.html`, en la línea:
