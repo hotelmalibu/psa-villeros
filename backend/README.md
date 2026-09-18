@@ -12,12 +12,15 @@ que el frontend guarda en `sessionStorage` para mantener la sesión.
 
 ## Desplegar en Render (gratis)
 
-1. Sube esta carpeta `backend/` a un repositorio de GitHub (puede ser el mismo repo
-   del proyecto o uno aparte — Render solo necesita ver esta carpeta).
-2. En [render.com](https://render.com), crea una cuenta y elige **New > Blueprint**,
-   apuntando al repo. Render detecta `render.yaml` y configura el servicio solo.
-   - Si prefieres hacerlo a mano: **New > Web Service**, conecta el repo,
-     Root Directory = `backend`, Build Command = `npm install`, Start Command = `npm start`.
+1. Este repo (`github.com/hotelmalibu/psa-villeros`) ya incluye `render.yaml` en
+   la raíz, apuntando a esta carpeta (`rootDir: backend`).
+2. En [render.com](https://render.com), inicia sesión (o crea cuenta) y elige
+   **New > Blueprint**, conecta tu cuenta de GitHub y selecciona el repo
+   `hotelmalibu/psa-villeros`. Render detecta `render.yaml` y configura el
+   servicio solo (nombre `psa-villeros-api`, plan free, `JWT_SECRET` generado).
+   - Si prefieres hacerlo a mano en vez del Blueprint: **New > Web Service**,
+     conecta el repo, Root Directory = `backend`, Build Command = `npm install`,
+     Start Command = `npm start`.
 3. En **Environment**, confirma que `JWT_SECRET` tiene un valor generado (Render lo
    crea solo si usaste el Blueprint) y ajusta `CORS_ORIGIN` al dominio real de
    Hostinger cuando lo tengas (por ejemplo `https://psavilleros.tu-dominio.com`).
