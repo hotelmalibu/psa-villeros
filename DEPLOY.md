@@ -95,9 +95,20 @@ la ortofoto, así que no ocupa espacio. Están dentro de `backend/` (no en la
 raíz) para que el despliegue Git de Hostinger también las copie.
 
 El TIF de elevación exportado de DroneDeploy viene ya coloreado, sin metros
-reales: el rango de altitud (`elevMin`/`elevMax` en `VMAP`, dentro de
-`index.html`) debe salir de la leyenda de DroneDeploy. Mientras `calibrated`
-sea `false`, el mapa marca la altitud como aproximada.
+reales. El rango de altitud del mapa (`elevMin`/`elevMax` en `VMAP`, dentro de
+`index.html`, hoy 16–55 msnm) se estimó cruzando el color del DEM con las
+alturas del modelo 3D (correlación 0,90) y anclando el espejo de agua a la cota
+oficial de 18 msnm. Si consigues la leyenda original de DroneDeploy, cámbialo
+ahí y pon `calibrated: true`.
+
+## Modelo 3D
+
+`backend/models/villeros.glb` (≈ 20 MB) es la malla fotogramétrica original
+(2,1 M de triángulos, 17 texturas de 8192 px) simplificada a ≈ 460 mil
+triángulos con texturas de 2048 px en WebP y compresión meshopt. El visor usa
+three.js alojado en `backend/vendor/three/` (sin CDN) y solo descarga el modelo
+cuando el usuario pulsa «Cargar modelo 3D». `backend/server.js` sirve
+`/models` y `/vendor`.
 
 ## GeoServer (opcional, cuando lo necesites)
 

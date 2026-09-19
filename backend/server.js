@@ -37,6 +37,9 @@ const INDEX_PATH = INDEX_CANDIDATES.find((p) => {
 
 // Teselas de la ortofoto / altitud del Mapa virtual (backend/tiles).
 app.use("/tiles", express.static(path.join(__dirname, "tiles"), { maxAge: "7d" }));
+// Modelo 3D (GLB) y librería three.js del visor 3D, alojados localmente.
+app.use("/models", express.static(path.join(__dirname, "models"), { maxAge: "7d" }));
+app.use("/vendor", express.static(path.join(__dirname, "vendor"), { maxAge: "30d" }));
 
 if (INDEX_PATH) {
   console.log("Sirviendo el sitio estático desde:", INDEX_PATH);
