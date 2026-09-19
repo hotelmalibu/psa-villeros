@@ -6,23 +6,9 @@
 <title>Plataforma PSA — Represa Villeros, Coveñas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
 <style>
-  :root{
-    --paper:#050B18; --paper-raised:#0D1B33; --paper-sunken:#02060E;
-    --ink:#F1F4FB; --ink-soft:#A9B7D4; --ink-faint:#6C82A8;
-    --rule:#182A4A; --rule-strong:#2E4A78;
-    --navy:#4C93E8; --navy-dark:#83BBF5; --navy-soft:#0F2140;
-    --gold:#F3D42E; --gold-deep:#B89200; --gold-soft:#201A05;
-    --green:#33B06B; --green-dark:#6FD89A; --green-soft:#0A2015;
-    --alert:#DE7358; --alert-soft:#2C140E;
-    --focus:#4C93E8;
-    --font-display:'Space Grotesk', 'Arial Narrow', Arial, sans-serif;
-    --font-body:'Manrope', -apple-system, 'Segoe UI', Arial, sans-serif;
-    --font-mono:'Space Mono', 'SFMono-Regular', Consolas, monospace;
-    color-scheme: dark;
-  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -93,57 +79,6 @@
   .btn-ghost:disabled{opacity:.4; cursor:default;}
   .btn-block{width:100%; justify-content:center;}
   .login-error{color:var(--alert); font-size:.87rem; margin:-.4rem 0 1rem; display:none;}
-
-  /* ---------- APP SHELL ---------- */
-  #app{min-height:100vh; display:grid; grid-template-columns:242px 1fr; grid-template-rows:auto 1fr;}
-  #app[hidden]{display:none;}
-  .topbar{
-    grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between;
-    padding:.65rem 1.3rem; border-bottom:1px solid var(--rule); background:var(--paper-raised);
-    gap:1rem; flex-wrap:wrap;
-  }
-  .topbar-id{display:flex; align-items:center; gap:.65rem; min-width:0;}
-  .topbar-id img{height:34px; width:auto; flex:none;}
-  .topbar-id .name{font-family:var(--font-display); font-weight:600; font-size:1rem; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .topbar-id .sub{font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint);}
-  .topbar-right{display:flex; align-items:center; gap:.7rem;}
-  .role-chip{font-family:var(--font-mono); font-size:.7rem; border:1px solid var(--rule-strong); padding:.25rem .55rem; color:var(--ink-soft);}
-  .icon-btn{background:none; border:1px solid var(--rule-strong); width:34px; height:34px; display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:1rem;}
-  .icon-btn:hover{border-color:var(--ink); color:var(--ink);}
-
-  .sidebar{
-    border-right:1px solid var(--rule); background:var(--paper-raised); padding:1rem .7rem;
-    display:flex; flex-direction:column; gap:.2rem;
-  }
-  .nav-btn{
-    display:flex; align-items:center; gap:.65rem; width:100%; text-align:left; background:none; border:none;
-    padding:.62rem .65rem; color:var(--ink-soft); font-size:.92rem; border-left:2px solid transparent;
-  }
-  .nav-btn .ico{width:1.35em; text-align:center; flex:none; display:inline-flex; align-items:center; justify-content:center;}
-  .nav-btn .ico svg{width:17px; height:17px; flex:none;}
-  .nav-btn:hover{background:var(--paper-sunken); color:var(--ink);}
-  .nav-btn.active{color:var(--navy-dark); border-left-color:var(--navy); background:var(--navy-soft); font-weight:600;}
-  .nav-lock{margin-left:auto; font-size:.75rem; color:var(--ink-faint);}
-  .sidebar-foot{margin-top:auto; padding-top:.9rem; border-top:1px solid var(--rule);}
-  .sidebar-foot .allies{display:flex; align-items:center; gap:.5rem; margin-bottom:.5rem;}
-  .sidebar-foot .allies img{height:20px; width:auto;}
-  .sidebar-foot p{font-size:.7rem; color:var(--ink-faint); margin:0;}
-
-  main{
-    padding:1.8rem 2rem 4rem; max-width:1100px; width:100%;
-    --paper:#F4F5EF; --paper-raised:#FFFFFF; --paper-sunken:#E9EAE0;
-    --ink:#101B2D; --ink-soft:#48546B; --ink-faint:#828C9C;
-    --rule:#D7DACB; --rule-strong:#7C879B;
-    --navy:#0B458A; --navy-dark:#082F5E; --navy-soft:#E3EBF6;
-    --gold:#F8DB18; --gold-deep:#8A6A00; --gold-soft:#FBF3C7;
-    --green:#0F8937; --green-dark:#0B6B2A; --green-soft:#E1F2E6;
-    --alert:#B5432B; --alert-soft:#F3DED6;
-    --focus:#0B458A;
-    background:var(--paper); color:var(--ink);
-  }
-  .view{display:none;}
-  .view.active{display:block; animation:fadein .3s ease;}
-  @keyframes fadein{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
 
   .view-head{margin-bottom:1.6rem; border-bottom:1px solid var(--rule); padding-bottom:1.1rem;}
   .eyebrow{font-family:var(--font-mono); font-size:.72rem; color:var(--navy-dark); margin-bottom:.5rem;}
@@ -361,13 +296,259 @@
   .asis-form button{border:1px solid var(--navy); background:var(--navy); color:#fff; padding:.5rem .8rem; font-size:.85rem;}
   .asis-form button:disabled{opacity:.5; cursor:default;}
 
-  @media (max-width:860px){
-    #app{grid-template-columns:1fr;}
-    .sidebar{flex-direction:row; overflow-x:auto; border-right:none; border-bottom:1px solid var(--rule); padding:.5rem .6rem; gap:.3rem;}
-    .nav-btn{white-space:nowrap; flex:none; border-left:none; border-bottom:2px solid transparent;}
-    .nav-btn.active{border-left-color:transparent; border-bottom-color:var(--navy);}
-    .sidebar-foot{display:none;}
-    main{padding:1.3rem 1.1rem 3rem;}
+
+  /* =====================================================================
+     TEMA "LANDING" — inspirado en sitios ambientales (natura.org.co):
+     tipografía Montserrat, portada a pantalla completa, botones en píldora,
+     tarjetas suaves y paleta petróleo / hoja / naranja sobre fondo crema.
+     ===================================================================== */
+  :root{
+    --paper:#F7F5EE; --paper-raised:#FFFFFF; --paper-sunken:#EEF1EA;
+    --ink:#13303B; --ink-soft:#43606B; --ink-faint:#6F878F;
+    --rule:#DCE3DA; --rule-strong:#A9BBB6;
+    --navy:#0F5A6E; --navy-dark:#0A3E4E; --navy-soft:#E0EFF1;
+    --gold:#F2A31F; --gold-deep:#8A5A00; --gold-soft:#FCEFD3;
+    --green:#2F8A57; --green-dark:#1E6A40; --green-soft:#E2F1E7;
+    --sky:#7CC4EA; --sky-soft:#E4F3FB;
+    --alert:#C4512F; --alert-soft:#F8E4DC;
+    --focus:#0F5A6E;
+    --font-display:'Montserrat', 'Segoe UI', Arial, sans-serif;
+    --font-body:'Montserrat', 'Segoe UI', Arial, sans-serif;
+    --font-mono:'Montserrat', 'Segoe UI', Arial, sans-serif;
+    --shadow:0 8px 28px rgba(15,58,70,.09);
+    color-scheme: light;
+  }
+  html{scroll-behavior:smooth; scroll-padding-top:86px;}
+  body{font-size:16px; line-height:1.6; font-weight:400;}
+  h1,h2,h3,h4{font-family:var(--font-display); letter-spacing:-.01em; color:var(--navy-dark);}
+  h1{font-weight:800; line-height:1.08;}
+  h3{font-size:1.25rem; font-weight:700;}
+  a{color:var(--navy); text-decoration-thickness:1px; text-underline-offset:3px;}
+  a:hover{color:var(--navy-dark);}
+  .mono{font-family:var(--font-mono); font-variant-numeric:tabular-nums; letter-spacing:0;}
+
+  /* ---------- botones y píldoras ---------- */
+  .btn{border-radius:999px; padding:.75rem 1.5rem; font-weight:600; font-size:.95rem; border-width:2px; box-shadow:none; transition:background .15s, border-color .15s, transform .15s;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-ghost{color:var(--navy); border-color:var(--navy);}
+  .btn-ghost:hover{background:var(--navy-soft); border-color:var(--navy);}
+  .pill{display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.7rem; border-radius:999px; font-weight:600; font-size:.98rem; text-decoration:none; color:#fff; transition:transform .15s, filter .15s;}
+  .pill:hover{transform:translateY(-2px); filter:brightness(1.06); color:#fff;}
+  .pill-orange{background:var(--gold); color:#3B2600;}
+  .pill-orange:hover{color:#3B2600;}
+  .pill-sky{background:var(--sky); color:#0B3242;}
+  .pill-sky:hover{color:#0B3242;}
+  .pill-teal{background:var(--navy); color:#fff;}
+  .tag{border-radius:999px; padding:.2rem .7rem; font-weight:600; letter-spacing:0;}
+  .tag.done{background:var(--green-soft);}
+  .tag.progress{background:var(--gold-soft);}
+  .tag.pending{background:var(--paper-sunken);}
+
+  /* ---------- login ---------- */
+  #login-screen{
+    background:linear-gradient(180deg, rgba(8,44,56,.55), rgba(8,44,56,.82)), url(img/hero-login.aa50fd7c.webp) center/cover no-repeat;
+  }
+  .login-card{background:#fff; border:0; border-radius:28px; box-shadow:0 24px 60px rgba(0,0,0,.35); padding:2.2rem 2.2rem 1.8rem;}
+  .plate-ticks{display:none;}
+  .login-eyebrow{font-weight:700; letter-spacing:.12em; color:var(--gold-deep);}
+  .login-card h1{font-size:1.9rem; color:var(--navy-dark);}
+  .field label{font-weight:600;}
+  .field input{border-radius:0; font-family:var(--font-body); border-bottom-color:var(--rule-strong);}
+  .login-partner span{font-size:.75rem;}
+
+  /* ---------- cabecera fija ---------- */
+  #app[hidden]{display:none;}
+  .site-header{position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; pointer-events:none;}
+  .site-header > *{pointer-events:auto;}
+  .brand{flex:none; display:flex; align-items:center; gap:.75rem; background:#fff; padding:.8rem 1.7rem 1rem 1.3rem; border-radius:0 0 34px 0; box-shadow:0 6px 24px rgba(0,0,0,.16); text-decoration:none; color:var(--navy-dark);}
+  .brand img{height:44px; width:auto;}
+  .brand-text b{display:block; white-space:nowrap; font-size:.98rem; font-weight:800; line-height:1.1; color:var(--navy-dark);}
+  .brand-text small{display:block; font-size:.66rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-top:.15rem;}
+  .site-nav{display:flex; align-items:center; gap:.15rem; margin:.9rem 1.2rem 0 0; background:var(--navy-dark); padding:.35rem .4rem; border-radius:999px; box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  .site-nav a{position:relative; color:#EAF4F6; text-decoration:none; font-size:.86rem; font-weight:600; padding:.55rem .9rem; border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; gap:.35rem;}
+  .site-nav a:hover{background:rgba(255,255,255,.1); color:#fff;}
+  .site-nav a.active{color:#fff;}
+  .site-nav a.active::after{content:''; position:absolute; left:.9rem; right:.9rem; bottom:.22rem; height:3px; border-radius:3px; background:var(--gold);}
+  .site-nav a svg{width:13px; height:13px; opacity:.85;}
+  .role-chip{display:none; font-size:.7rem; font-weight:600; color:#BFD9DE; padding:0 .5rem 0 .7rem; border-left:1px solid rgba(255,255,255,.22); margin-left:.3rem; white-space:nowrap;}
+  .logout{background:transparent; border:0; color:#EAF4F6; font-size:.82rem; font-weight:600; padding:.5rem .8rem; border-radius:999px;}
+  .logout:hover{background:rgba(255,255,255,.12);}
+  .nav-toggle{display:none; pointer-events:auto; margin:.9rem 1rem 0 0; background:var(--navy-dark); color:#fff; border:0; border-radius:999px; padding:.65rem 1.2rem; font-weight:700; font-size:.85rem; box-shadow:0 8px 26px rgba(0,0,0,.28);}
+  @media (min-width:1420px){ .role-chip{display:inline;} }
+  @media (max-width:1180px){
+    .brand{padding:.6rem 1.2rem .8rem .9rem;}
+    .brand-text small{display:none;}
+    .nav-toggle{display:block;}
+    .site-nav{display:none; position:absolute; top:3.9rem; right:1rem; margin:0; flex-direction:column; align-items:stretch; border-radius:22px; padding:.6rem; min-width:220px;}
+    .site-nav.open{display:flex;}
+    .site-nav a.active::after{left:.9rem; right:auto; width:22px;}
+    .role-chip{display:block; border-left:0; padding:.4rem .9rem 0; margin:0;}
+  }
+
+  /* ---------- portada ---------- */
+  main{display:block; padding:0; max-width:none; width:100%; background:var(--paper); color:var(--ink);}
+  .hero{position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; color:#fff; background:#0B3442 url(img/hero.73dcd166.webp) center/cover no-repeat; isolation:isolate;}
+  .hero::before{content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(5,32,42,.55) 0%, rgba(5,32,42,.15) 38%, rgba(5,32,42,.72) 78%, rgba(5,32,42,.92) 100%);}
+  .hero-inner{width:100%; max-width:1180px; margin:0 auto; padding:9rem 1.6rem 2.4rem;}
+  .hero-eyebrow{font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#FFD98A; margin-bottom:1rem;}
+  .hero h1{color:#fff; font-size:clamp(2.3rem,5.4vw,4.2rem); max-width:16ch; text-shadow:0 3px 24px rgba(0,0,0,.35);}
+  .hero-lead{max-width:60ch; font-size:clamp(1rem,1.5vw,1.2rem); color:#EAF4F6; margin:1.2rem 0 1.8rem; text-shadow:0 2px 14px rgba(0,0,0,.4);}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:.8rem;}
+  .hero-stats{width:100%; max-width:1180px; margin:0 auto; padding:0 1.6rem 2.6rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.9rem;}
+  .hero-stat{background:rgba(255,255,255,.14); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.28); border-radius:20px; padding:1rem 1.2rem;}
+  .hero-stat b{display:block; font-size:1.7rem; font-weight:800; line-height:1.1; color:#fff;}
+  .hero-stat span{display:block; font-size:.8rem; color:#D6E8EC; margin-top:.2rem;}
+  .hero-scroll{position:absolute; left:50%; bottom:.8rem; transform:translateX(-50%); width:26px; height:40px; border:2px solid rgba(255,255,255,.7); border-radius:14px; display:none;}
+
+  /* ---------- secciones ---------- */
+  .section{padding:5.2rem 0 3.6rem;}
+  .section.alt{background:var(--paper-raised);}
+  .wrap{width:100%; max-width:1180px; margin:0 auto; padding:0 1.6rem;}
+  .sec-head{text-align:center; max-width:820px; margin:0 auto 2.6rem;}
+  .sec-eyebrow{display:inline-block; font-size:.75rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:.8rem;}
+  .sec-title{font-size:clamp(1.7rem,3.3vw,2.6rem); font-weight:800; color:var(--navy); margin-bottom:1rem;}
+  .sec-title::after{content:''; display:block; width:56px; height:5px; border-radius:5px; background:var(--gold); margin:1rem auto 0;}
+  .sec-head .lead{margin:0 auto; text-align:center; max-width:70ch;}
+  .lead{color:var(--ink-soft); font-size:1.03rem;}
+  .block-title{font-size:1.5rem; font-weight:800; color:var(--navy); margin:3rem 0 .5rem; scroll-margin-top:96px;}
+  .block-title::before{content:''; display:inline-block; width:10px; height:26px; border-radius:6px; background:var(--gold); margin-right:.7rem; vertical-align:-5px;}
+  .subnav{display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center; margin:0 0 2.6rem;}
+  .subnav a{padding:.5rem 1.05rem; border-radius:999px; border:1.5px solid var(--rule-strong); font-size:.83rem; font-weight:600; text-decoration:none; color:var(--navy); background:#fff;}
+  .subnav a:hover{border-color:var(--navy); background:var(--navy-soft);}
+  .contract-strip{justify-content:center; border-top:0; margin-top:1.4rem; padding-top:0; gap:.9rem;}
+  .contract-strip span{background:var(--navy-soft); border-radius:16px; padding:.7rem 1.1rem; color:var(--ink);}
+  .contract-strip b{font-family:var(--font-body); font-weight:700; color:var(--navy); letter-spacing:.06em;}
+
+  /* ---------- tarjetas, estadísticas, tablas ---------- */
+  .card,.icon-card,.fin-card,.figure,.ally,.gallery-card,.doc-gate,.tour-fact{border-radius:20px; border:1px solid var(--rule); box-shadow:var(--shadow); background:var(--paper-raised);}
+  .card{padding:1.4rem 1.5rem;}
+  .card .meta{font-family:var(--font-body); font-weight:600; letter-spacing:.04em;}
+  .stat-grid{gap:.9rem; background:transparent; border:0; margin:1.6rem 0;}
+  .stat{border-radius:20px; border:1px solid var(--rule); box-shadow:var(--shadow); padding:1.2rem 1.3rem;}
+  .stat .num{font-family:var(--font-display); font-weight:800; color:var(--navy);}
+  .fin-card{border-top:0; border-left:5px solid var(--gold);}
+  .icon-card .glyph{border-radius:12px; border-color:var(--gold); color:var(--gold-deep); font-family:var(--font-display); font-weight:800;}
+  .figure{overflow:hidden;}
+  .bar-h-track,.bar-v-fill{border-radius:999px;}
+  .bar-h-track{height:12px; border:0; background:var(--paper-sunken);}
+  .bar-h-fill{border-radius:999px; background:var(--navy);}
+  .bar-v-fill{border-radius:10px 10px 0 0; background:var(--navy);}
+  table.data{border-radius:16px; overflow:hidden; font-size:.92rem;}
+  table.data th{background:var(--navy-soft); color:var(--navy-dark); border-bottom:0; padding:.75rem .9rem; font-weight:700;}
+  table.data td{padding:.7rem .9rem;}
+  table.data td.num{font-family:var(--font-body); font-variant-numeric:tabular-nums; font-weight:600;}
+  table.data tr.total td{background:var(--paper-sunken); font-weight:700;}
+  .tl-item::before{background:var(--gold); box-shadow:0 0 0 1.5px var(--gold);}
+  .timeline{border-left-color:var(--rule-strong);}
+  .tl-date{font-family:var(--font-body); font-weight:700; color:var(--gold-deep);}
+  .tour-dots span.on{background:var(--gold);}
+  .tour-fact{padding:1rem 1.2rem; background:var(--gold-soft); border-color:#F2D9A3; box-shadow:none;}
+  .leaflet-legend,.legend-item{border-radius:16px;}
+  .legend-item.on{border-color:var(--navy); background:var(--navy-soft);}
+  .legend-thumb{border-radius:10px;}
+  .tour-map,.map-frame{border-radius:20px; box-shadow:var(--shadow); overflow:hidden;}
+  #leaflet-map,#drone-map,#predios-map{border-radius:20px 0 0 20px;}
+  #leaflet-map,#predios-map{border-radius:20px; box-shadow:var(--shadow);}
+  .vmap,.m3d{border-radius:22px; overflow:hidden; box-shadow:var(--shadow);}
+  .vmap-panel{background:#fff;}
+  .m3d{background:#0B2530;}
+  .m3d-stage{background:#0B2530;}
+  .gallery-card{overflow:hidden;}
+  .gallery-card .cap{color:var(--navy-dark);}
+  .link-btn{background:none; border:0; color:var(--navy); font-weight:700; font-size:.8rem; padding:0; text-decoration:underline; text-underline-offset:3px;}
+  .link-btn:hover{color:var(--gold-deep);}
+
+  /* ---------- pestañas ---------- */
+  .tabs{display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin:0 0 2rem;}
+  .tab{border-radius:999px; padding:.7rem 1.4rem; border:2px solid var(--navy); background:transparent; color:var(--navy); font-weight:700; font-size:.92rem; transition:background .15s, color .15s;}
+  .tab:hover{background:var(--navy-soft);}
+  .tab[aria-selected="true"]{background:var(--navy); color:#fff;}
+  .tabpanel[hidden]{display:none;}
+
+  /* ---------- panel del atlas (dashboard) ---------- */
+  .dash-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.1rem; margin-top:1.2rem;}
+  .dash-card{margin:0;}
+  .dash-head{display:flex; justify-content:space-between; align-items:flex-start; gap:1rem;}
+  .dash-head h3{margin:0 0 .15rem; font-size:1.05rem;}
+  .dash-sub{font-size:.78rem; color:var(--ink-faint); margin:0 0 .4rem;}
+  .dash-row{display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) auto; align-items:center; gap:.7rem; font-size:.82rem; margin:.5rem 0;}
+  .dash-row .nm{display:flex; align-items:center; gap:.5rem; min-width:0;}
+  .dash-row .nm i{width:12px; height:12px; border-radius:4px; flex:none;}
+  .dash-row .nm span{line-height:1.25;}
+  .dash-row .tr{height:12px; background:var(--paper-sunken); border-radius:999px; overflow:hidden;}
+  .dash-row .tr b{display:block; height:100%; border-radius:999px;}
+  .dash-row .vl{font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .dash-note{font-size:.74rem; color:var(--ink-faint); margin:.8rem 0 0;}
+  @media (max-width:900px){.dash-grid{grid-template-columns:1fr;} .dash-row{grid-template-columns:1fr 1fr auto;}}
+
+  /* ---------- participación social ---------- */
+  .acta{display:grid; grid-template-columns:150px minmax(0,1fr); gap:1.6rem; margin-bottom:2.4rem; position:relative;}
+  .acta-num{font-size:.75rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-deep);}
+  .acta-num b{display:block; font-size:3rem; line-height:1; color:var(--navy); letter-spacing:-.03em; margin-top:.2rem;}
+  .acta-num small{display:block; margin-top:.5rem; font-size:.8rem; font-weight:600; letter-spacing:0; text-transform:none; color:var(--ink-soft);}
+  .acta-body{padding:1.5rem 1.6rem;}
+  .acta-body h3{margin-bottom:.3rem;}
+  .acta-meta{display:flex; flex-wrap:wrap; gap:.5rem; margin:.4rem 0 1rem;}
+  .acta-meta span{font-size:.76rem; font-weight:600; background:var(--navy-soft); color:var(--navy-dark); border-radius:999px; padding:.25rem .8rem;}
+  .acta-body h4{font-size:.86rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--gold-deep); margin:1.2rem 0 .4rem;}
+  .acta-body ul{margin:0; padding-left:1.15rem; font-size:.92rem; color:var(--ink-soft);}
+  .acta-body li{margin-bottom:.35rem;}
+  .acta-photos{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:.8rem; margin-top:1.2rem;}
+  .acta-photos figure{margin:0; border-radius:16px; overflow:hidden; border:1px solid var(--rule); background:#fff;}
+  .acta-photos img{width:100%; aspect-ratio:4/3; object-fit:cover; cursor:zoom-in; transition:transform .25s;}
+  .acta-photos figure:hover img{transform:scale(1.04);}
+  .acta-photos figcaption{font-size:.72rem; color:var(--ink-faint); padding:.5rem .7rem;}
+  @media (max-width:820px){.acta{grid-template-columns:1fr; gap:.8rem;} .acta-num b{font-size:2.2rem; display:inline; margin:0 .5rem 0 0;}}
+
+  /* ---------- mapa predial (análisis económico) ---------- */
+  #predios-map{height:560px; background:var(--paper-sunken);}
+  .pred-label{background:transparent !important; border:0 !important; box-shadow:none !important; color:#fff !important; font-weight:800 !important; font-size:.72rem !important; text-shadow:0 0 3px #000, 0 0 6px #000; padding:0 !important;}
+  .pred-label::before{display:none !important;}
+  .pmap-legend{background:rgba(255,255,255,.94); border-radius:14px; padding:.7rem .9rem; font-size:.74rem; line-height:1.7; box-shadow:0 4px 16px rgba(0,0,0,.25);}
+  .pmap-legend i{display:inline-block; width:22px; height:11px; border-radius:3px; vertical-align:-1px; margin-right:.5rem; border:1px solid rgba(0,0,0,.25);}
+  .pmap-bar{display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; margin:.9rem 0 0; font-size:.86rem;}
+  .pmap-bar label{display:flex; align-items:center; gap:.4rem; cursor:pointer; font-weight:600;}
+  .pred-popup{font-size:.82rem; min-width:210px;}
+  .pred-popup b.t{display:block; font-size:1rem; color:var(--navy-dark); margin-bottom:.3rem;}
+  .pred-popup table{width:100%; border-collapse:collapse;}
+  .pred-popup td{padding:.15rem 0; vertical-align:top;}
+  .pred-popup td:first-child{color:var(--ink-faint); padding-right:.8rem; white-space:nowrap;}
+
+  /* ---------- documentos ---------- */
+  .doc-gate{margin:0 auto; text-align:left;}
+  .doc-row .ico{border-radius:8px;}
+  .doc-group h3{color:var(--navy);}
+  .app-footer{background:var(--navy-dark); color:#BFD9DE; margin:0; padding:2.6rem 1.6rem; border:0; font-size:.8rem;}
+  .app-footer .foot-in{max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.4rem;}
+  .app-footer img{height:38px; width:auto; background:#fff; border-radius:12px; padding:.35rem .6rem;}
+  .foot-logos{display:flex; gap:.8rem; align-items:center;}
+  .foot-text{max-width:60ch; text-align:left;}
+
+  /* ---------- asistente ---------- */
+  #asistente-fab{background:var(--gold); color:#3B2600;}
+  #asistente-fab[hidden]{display:none;}
+  #asistente-panel{border-radius:20px; overflow:hidden;}
+
+  @media (max-width:760px){
+    .section{padding:3.6rem 0 2.4rem;}
+    .hero-inner{padding-top:7.5rem;}
+    #leaflet-map{height:420px;}
+    #predios-map{height:440px;}
+    .vmap,.m3d{border-radius:18px;}
+  }
+
+  /* casillas del visor SIG: casilla a la izquierda, texto a la derecha */
+  .leaflet-toggle{display:grid; grid-template-columns:auto 1fr; column-gap:.55rem; align-items:start; margin-bottom:.8rem; font-weight:600; font-size:.86rem; line-height:1.3;}
+  .leaflet-toggle input{margin:.2rem 0 0;}
+  .leaflet-toggle .figs{grid-column:2; margin-left:0; font-family:var(--font-body); font-weight:500; color:var(--ink-faint); font-size:.72rem;}
+
+  @media (max-width:760px){
+    table.data{display:block; overflow-x:auto; -webkit-overflow-scrolling:touch;}
+    table.data td.num{white-space:normal;}
+    .subnav a{font-size:.78rem; padding:.45rem .85rem;}
+    .sec-head{margin-bottom:1.8rem;}
+    .card{padding:1.1rem 1.1rem;}
+    .block-title{font-size:1.25rem;}
   }
 </style>
 <style id="leaflet-css">
@@ -1048,12 +1229,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </div>
     <h1>Esquema de PSA<br>Represa Villeros</h1>
-    <p class="login-sub">Plataforma de gestión, consulta y monitoreo del Contrato COV‑CMA‑010‑2026. Ingrese con su usuario institucional para continuar.</p>
+    <p class="login-sub">Plataforma de consulta del Contrato COV‑CMA‑010‑2026. Ingrese con su usuario y contraseña para continuar.</p>
 
     <form id="login-form" autocomplete="off">
       <div class="field">
         <label for="login-user">Usuario</label>
-        <input id="login-user" type="text" placeholder="usuario.institucional" required>
+        <input id="login-user" type="text" placeholder="usuario" required>
       </div>
       <div class="field">
         <label for="login-pass">Contraseña</label>
@@ -1070,243 +1251,257 @@ svg.leaflet-image-layer.leaflet-interactive path {
   </div>
 </div>
 
-<!-- ============================================================ APP ============================================================ -->
+<!-- ============================================================ APP (LANDING) ============================================================ -->
 <div id="app" hidden>
-  <header class="topbar">
-    <div class="topbar-id">
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
       <img src="img/inline1.79e0b04f.webp" alt="Escudo de Coveñas">
-      <div>
-        <div class="name">PSA · Represa Villeros</div>
-        <div class="sub">CONTRATO COV‑CMA‑010‑2026 · COVEÑAS, SUCRE</div>
-      </div>
-    </div>
-    <div class="topbar-right">
+      <span class="brand-text"><b>PSA · Represa Villeros</b><small>Coveñas, Sucre</small></span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menú</button>
+    <nav class="site-nav" id="site-nav" aria-label="Secciones de la plataforma">
+      <a href="#presentacion" data-sec="presentacion">Presentación</a>
+      <a href="#economia" data-sec="economia">Análisis económico</a>
+      <a href="#atlas" data-sec="atlas">Atlas</a>
+      <a href="#mapa-virtual" data-sec="mapa-virtual">Mapa virtual</a>
+      <a href="#participacion" data-sec="participacion">Participación social</a>
+      <a href="#documentos" data-sec="documentos">Documentos <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg></a>
       <span class="role-chip" id="role-chip">rol</span>
-      <button class="icon-btn" id="logout-btn" title="Cerrar sesión" aria-label="Cerrar sesión">⎋</button>
-    </div>
+      <button class="logout" id="logout-btn" title="Cerrar sesión">Salir</button>
+    </nav>
   </header>
-
-  <nav class="sidebar" id="sidebar" aria-label="Secciones de la plataforma">
-    <button class="nav-btn active" data-view="presentacion"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="9" rx="1.2"></rect><line x1="7" y1="17" x2="13" y2="17"></line><line x1="10" y1="13" x2="10" y2="17"></line></svg></span> Presentación</button>
-    <button class="nav-btn" data-view="componentes"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,3 17,7 10,11 3,7"></polygon><polyline points="3,10.5 10,14.5 17,10.5"></polyline><polyline points="3,13.5 10,17.5 17,13.5"></polyline></svg></span> Componentes</button>
-    <button class="nav-btn" data-view="economia"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="17" x2="17" y2="17"></line><rect x="5" y="11" width="2.6" height="6"></rect><rect x="9" y="7" width="2.6" height="10"></rect><rect x="13" y="9.5" width="2.6" height="7.5"></rect></svg></span> Gestión económica</button>
-    <button class="nav-btn" data-view="participacion"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6.5" r="2.5"></circle><path d="M2.2 16c0-3.3 2.1-5.3 4.8-5.3s4.8 2 4.8 5.3"></path><circle cx="15" cy="8" r="1.9"></circle><path d="M12.6 16c.1-2.5 1.6-4.1 3.5-4.1"></path></svg></span> Participación</button>
-    <button class="nav-btn" data-view="atlas"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17s6-5.5 6-9.5A6 6 0 1 0 4 7.5C4 11.5 10 17 10 17Z"></path><circle cx="10" cy="7.5" r="2"></circle></svg></span> Atlas</button>
-    <button class="nav-btn" data-view="recorrido"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"></circle><polygon points="8,7 14,10 8,13" fill="currentColor" stroke="none"></polygon></svg></span> Mapa virtual</button>
-    <button class="nav-btn" id="nav-documentos" data-view="documentos"><span class="ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 2.5h6l3 3v12h-9v-15Z"></path><path d="M11.5 2.5v3h3"></path><line x1="7.5" y1="10" x2="12.5" y2="10"></line><line x1="7.5" y1="13" x2="12.5" y2="13"></line></svg></span> Documentos <span class="nav-lock">🔒</span></button>
-    <div class="sidebar-foot">
-      <div class="allies">
-        <img src="img/inline1.79e0b04f.webp" alt="Coveñas">
-        <img src="img/inline2.71a139cb.webp" alt="Consorcio">
-      </div>
-      <p>Alcaldía de Coveñas / Consorcio Servicios Ambientales 2026</p>
-    </div>
-  </nav>
 
   <main>
 
+    <!-- ---------------- PORTADA ---------------- -->
+    <section class="hero" id="inicio" aria-label="Portada">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Contrato COV‑CMA‑010‑2026 · Coveñas, Sucre</div>
+        <h1>Conservar el agua que abastece a Coveñas</h1>
+        <p class="hero-lead">Perfil del esquema de Pago por Servicios Ambientales de la Represa Villeros: alternativas de incentivos económicos para la conservación y un modelo para formalizar acuerdos voluntarios con los propietarios de los predios.</p>
+        <div class="hero-cta">
+          <a class="pill pill-orange" href="#presentacion">Conocer el proyecto</a>
+          <a class="pill pill-sky" href="#atlas">Explorar el atlas</a>
+          <a class="pill pill-teal" href="#economia">Análisis económico</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>12,96 km²</b><span>Cuenca abastecedora</span></div>
+        <div class="hero-stat"><b>22,2 ha</b><span>Espejo de agua de la represa</span></div>
+        <div class="hero-stat"><b>9 predios</b><span>Priorizados · 149,6 ha</span></div>
+        <div class="hero-stat"><b>18 msnm</b><span>Cota de la represa</span></div>
+      </div>
+    </section>
+
     <!-- ---------------- PRESENTACIÓN ---------------- -->
-    <section class="view active" id="view-presentacion">
-      <div class="view-head">
-        <div class="eyebrow">01 · PRESENTACIÓN</div>
-        <h1>Perfil del esquema de Pago por Servicios Ambientales para conservar el recurso hídrico de la Represa Villeros</h1>
-        <p class="lead">El Perfil del esquema ambiental se formula para las áreas de importancia estratégica que alimentan la Represa Villeros, orientando la conservación del recurso hídrico y el bienestar de los usuarios del acueducto de Coveñas. Esta plataforma reúne el diagnóstico, la cartografía y el perfil del esquema para las partes que intervienen en el proceso.</p>
-        <div class="contract-strip">
-          <span><b>Modalidad de PSA</b> Regulación y calidad hídrica</span>
-          <span><b>Autoridad ambiental</b> CARSUCRE</span>
-          <span><b>Área de intervención</b> 60 predios · 294 ha</span>
-          <span><b>Cota de la represa</b> 18 msnm</span>
+    <section class="section" id="presentacion">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Presentación</span>
+          <h2 class="sec-title">Perfil del esquema de Pago por Servicios Ambientales para conservar el recurso hídrico de la Represa Villeros</h2>
+          <p class="lead">El perfil del esquema se formula para las áreas de importancia estratégica que alimentan la Represa Villeros. Diseña el modelo para formalizar acuerdos de conservación con los propietarios y las alternativas de incentivos económicos para conservar los predios; no contempla la adquisición de predios.</p>
+          <div class="contract-strip">
+            <span><b>Modalidad de PSA</b> Regulación y calidad hídrica</span>
+            <span><b>Contrato</b> COV‑CMA‑010‑2026</span>
+            <span><b>Área caracterizada</b> 60 predios · 294 ha</span>
+            <span><b>Cota de la represa</b> 18 msnm</span>
+          </div>
         </div>
+
+        <nav class="subnav" aria-label="Contenido de la presentación">
+          <a href="#objetivo">Objetivo y avance</a>
+          <a href="#abastecimiento">Abastecimiento y aliados</a>
+          <a href="#financiacion">Financiación</a>
+          <a href="#problema">El problema en cifras</a>
+          <a href="#componentes">Componentes técnicos</a>
+          <a href="#ficha">Ficha técnica</a>
+        </nav>
+
+        <div class="stat-grid" id="stat-grid"></div>
+
+        <div class="grid-2" id="objetivo" style="scroll-margin-top:96px;">
+          <div class="card">
+            <h3>Objetivo y meta del esquema</h3>
+            <p style="font-size:.94rem; color:var(--ink-soft); margin-bottom:.8rem;">Formular el perfil del esquema de Pago por Servicios Ambientales en áreas de importancia estratégica para la conservación del recurso hídrico de la microcuenca de la Represa Villeros, en el municipio de Coveñas, Sucre.</p>
+            <p style="font-size:.88rem; color:var(--ink-faint); margin-bottom:.8rem;"><b style="color:var(--ink-soft); font-weight:700;">Meta —</b> Orientar la conservación del recurso hídrico y el bienestar de los usuarios del servicio de acueducto de Coveñas mediante el perfil del esquema de PSA del área de importancia estratégica de la microcuenca.</p>
+            <p style="font-size:.88rem; color:var(--ink-faint); margin-bottom:0;"><b style="color:var(--ink-soft); font-weight:700;">Alcance —</b> Diseño del perfil: modelo para la formalización de acuerdos y alternativas de incentivos económicos para la conservación de los predios. No incluye la adquisición de predios.</p>
+          </div>
+          <div class="card">
+            <h3>Avance de la formulación del esquema</h3>
+            <p style="font-size:.94rem; color:var(--ink-soft);">La plataforma se actualiza a medida que cada producto del perfil del esquema avanza.</p>
+            <div id="productos-list"></div>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="abastecimiento">Sistema de abastecimiento</h3>
+        <p class="lead" style="margin-bottom:1.1rem;">Cuatro captaciones dependen de la misma represa — por eso su colmatación es un problema compartido, no solo municipal.</p>
+        <div class="grid-3" id="captaciones-grid"></div>
+
+        <h4 style="margin:2rem 0 .2rem; font-size:1.05rem;">Aliados institucionales</h4>
+        <div class="allies-grid" id="allies-grid"></div>
+
+        <h3 class="block-title" id="financiacion">Financiación del esquema</h3>
+        <p class="lead" style="margin-bottom:1.1rem;">La obligación de conservar la cuenca recae sobre quien se benefició de la concesión de aguas; el municipio y otros actores cofinancian.</p>
+        <div class="grid-3" id="financiacion-grid"></div>
+
+        <h3 class="block-title">Antecedentes: 19 años de expedientes sobre la misma represa</h3>
+        <figure class="figure">
+          <img src="img/inline6.a1e4be20.webp" alt="Línea de tiempo 2007–2026 de expedientes, obras y mortandades de peces en la Represa Villeros" loading="lazy">
+          <figcaption>Del expediente de 2007 a la formulación del esquema de PSA en 2026. Fuente: Consorcio Servicios Ambientales 2026, socialización institucional.</figcaption>
+        </figure>
+
+        <h3 class="block-title" id="problema">El problema en cifras</h3>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Sedimentación acumulada de la represa</h3>
+            <div id="sedimento-chart"></div>
+            <p style="font-size:.78rem; color:var(--ink-faint); margin:.6rem 0 0;">73.677,9 m³ entre 2009 y 2018 · 8.186 m³/año · medición con software Hypack Max.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Calidad del agua cruda frente a la norma (Res. 2115/2007)</h3>
+            <div id="calidad-chart"></div>
+            <p style="font-size:.78rem; color:var(--ink-faint); margin:.6rem 0 0;">Veces que cada parámetro supera el límite normativo.</p>
+          </div>
+        </div>
+        <table class="data" style="margin-top:1rem;">
+          <thead><tr><th>Variable</th><th>Dato verificado</th></tr></thead>
+          <tbody>
+            <tr><td>Contaminación bacteriológica</td><td class="num">200/100 UFC coliformes · 100 mL</td></tr>
+            <tr><td>Transformación del paisaje de la cuenca</td><td class="num">96,5% · pastos 68,5%</td></tr>
+            <tr><td>Población que depende de la represa</td><td class="num">5.420 (Base I.M. No. 6) + &gt;1.500 familias rurales</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.82rem; color:var(--ink-faint);">Fuente: Resolución 1070 de 2023 (estudio Inalter S.A.S., 2019) · Producto 1, Consorcio Servicios Ambientales 2026.</p>
+
+        <h3 class="block-title">¿Cómo funciona el incentivo?</h3>
+        <figure class="figure" style="max-width:680px;">
+          <img src="img/inline7.3bf7acbd.webp" alt="Ciclo del incentivo de PSA: interesados, acuerdo voluntario, beneficiarios, servicios hidrológicos recuperados" loading="lazy">
+          <figcaption>El PSA es voluntario y condicionado: quien se beneficia del servicio hidrológico aporta; quien conserva el ecosistema que lo produce, recibe.</figcaption>
+        </figure>
+
+        <h3 class="block-title" id="componentes">Componentes técnicos, un solo esquema</h3>
+        <p class="lead" style="margin-bottom:1.1rem;">El equipo del Consorcio Servicios Ambientales 2026 estructura el esquema desde siete frentes técnicos. Cada uno alimenta una parte distinta del perfil del PSA.</p>
+        <div class="grid-3" id="componentes-grid"></div>
+
+        <h4 style="margin:2rem 0 .2rem; font-size:1.05rem;">Modalidades de intervención por predio</h4>
+        <p class="lead" style="margin-bottom:1rem;">De los 60 predios caracterizados (294 ha), cada uno recibe una modalidad según su cobertura actual.</p>
+        <div class="grid-3" id="modalidades-grid"></div>
+
+        <h4 style="margin:2rem 0 .2rem; font-size:1.05rem;">Índice de prioridad predial (MCDA)</h4>
+        <p class="lead" style="margin-bottom:.8rem;">Seis criterios ponderados, combinados con análisis multicriterio (AHP), priorizan qué predios atender primero. Rango del índice: 28,9–67,4.</p>
+        <div id="mcda-bars"></div>
+
+        <h3 class="block-title" id="ficha">Ficha técnica del proyecto</h3>
+        <table class="data" style="max-width:720px;">
+          <tr><td style="color:var(--ink-faint);">Sector</td><td>Ambiente y desarrollo sostenible</td></tr>
+          <tr><td style="color:var(--ink-faint);">Plan de Desarrollo</td><td>Coveñas + Social 2024–2027 · línea "Coveñas + Social e Influyente"</td></tr>
+          <tr><td style="color:var(--ink-faint);">Indicador de producto</td><td class="num">3202043 — Apoyo financiero a esquemas de PSA</td></tr>
+          <tr><td style="color:var(--ink-faint);">Fuente de financiación</td><td>Recursos propios del Municipio — vigencia 2026</td></tr>
+        </table>
       </div>
-
-      <div class="stat-grid" id="stat-grid"></div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Objetivo y meta del esquema</h3>
-          <p style="font-size:.92rem; color:var(--ink-soft); margin-bottom:.8rem;">Formular el perfil del esquema de Pago por Servicios Ambientales en áreas de importancia estratégica para la conservación del recurso hídrico de la microcuenca de la Represa Villeros, en el municipio de Coveñas, Sucre.</p>
-          <p style="font-size:.85rem; color:var(--ink-faint); margin-bottom:0;"><b style="color:var(--ink-soft); font-weight:700;">Meta —</b> Orientar la conservación del recurso hídrico y el bienestar de los usuarios del servicio de acueducto de Coveñas mediante el perfil del esquema de PSA del área de importancia estratégica de la microcuenca.</p>
-        </div>
-        <div class="card">
-          <h3>Avance de la formulación del esquema</h3>
-          <p style="font-size:.92rem; color:var(--ink-soft);">La plataforma se actualiza a medida que cada producto del perfil del esquema avanza.</p>
-          <div id="productos-list"></div>
-        </div>
-      </div>
-
-      <h3 style="margin-top:1.8rem;">Sistema de abastecimiento</h3>
-      <p class="lead" style="margin-bottom:1rem;">Cuatro captaciones dependen de la misma represa — por eso su colmatación es un problema compartido, no solo municipal.</p>
-      <div class="grid-3" id="captaciones-grid"></div>
-
-      <h3 style="margin-top:1.8rem;">Aliados institucionales</h3>
-      <div class="allies-grid" id="allies-grid"></div>
-
-      <h3 style="margin-top:1.8rem;">Financiación del esquema</h3>
-      <p class="lead" style="margin-bottom:1rem;">La obligación de conservar la cuenca recae sobre quien se benefició de la concesión de aguas; el municipio y otros actores cofinancian.</p>
-      <div class="grid-3" id="financiacion-grid"></div>
-
-      <h3 style="margin-top:1.8rem;">Antecedentes: 19 años de expedientes sobre la misma represa</h3>
-      <figure class="figure">
-        <img src="img/inline6.a1e4be20.webp" alt="Línea de tiempo 2007–2026 de expedientes, obras y mortandades de peces en la Represa Villeros" loading="lazy">
-        <figcaption>Del expediente CARSUCRE de 2007 a la formulación del esquema de PSA en 2026. Fuente: Consorcio Servicios Ambientales 2026, socialización institucional.</figcaption>
-      </figure>
-
-      <h3>El problema en cifras</h3>
-      <div class="grid-2" style="align-items:start;">
-        <div class="card">
-          <h3 style="font-size:1rem;">Sedimentación acumulada de la represa</h3>
-          <div id="sedimento-chart"></div>
-          <p style="font-size:.78rem; color:var(--ink-faint); margin:.6rem 0 0;">73.677,9 m³ entre 2009 y 2018 · 8.186 m³/año · medición con software Hypack Max.</p>
-        </div>
-        <div class="card">
-          <h3 style="font-size:1rem;">Calidad del agua cruda frente a la norma (Res. 2115/2007)</h3>
-          <div id="calidad-chart"></div>
-          <p style="font-size:.78rem; color:var(--ink-faint); margin:.6rem 0 0;">Veces que cada parámetro supera el límite normativo.</p>
-        </div>
-      </div>
-      <table class="data" style="margin-top:1rem;">
-        <thead><tr><th>Variable</th><th>Dato verificado</th></tr></thead>
-        <tbody>
-          <tr><td>Contaminación bacteriológica</td><td class="num">200/100 UFC coliformes · 100 mL</td></tr>
-          <tr><td>Transformación del paisaje de la cuenca</td><td class="num">96,5% · pastos 68,5%</td></tr>
-          <tr><td>Población que depende de la represa</td><td class="num">5.420 (Base I.M. No. 6) + &gt;1.500 familias rurales</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:.82rem; color:var(--ink-faint);">Fuente: CARSUCRE, Resolución 1070 de 2023 (estudio Inalter S.A.S., 2019) · Producto 1, Consorcio Servicios Ambientales 2026.</p>
-
-      <h3 style="margin-top:1.8rem;">¿Cómo funciona el incentivo?</h3>
-      <figure class="figure" style="max-width:640px;">
-        <img src="img/inline7.3bf7acbd.webp" alt="Ciclo del incentivo de PSA: interesados, acuerdo voluntario, beneficiarios, servicios hidrológicos recuperados" loading="lazy">
-        <figcaption>El PSA es voluntario y condicionado: quien se beneficia del servicio hidrológico aporta; quien conserva el ecosistema que lo produce, recibe.</figcaption>
-      </figure>
     </section>
 
-    <!-- ---------------- COMPONENTES ---------------- -->
-    <section class="view" id="view-componentes">
-      <div class="view-head">
-        <div class="eyebrow">02 · COMPONENTES</div>
-        <h1>Siete componentes técnicos, un solo esquema</h1>
-        <p class="lead">El equipo del Consorcio Servicios Ambientales 2026 estructura el esquema desde siete frentes técnicos. Cada uno alimenta una parte distinta del perfil del PSA.</p>
-      </div>
-      <div class="grid-3" id="componentes-grid"></div>
-
-      <h3 style="margin-top:1.8rem;">Modalidades de intervención por predio</h3>
-      <p class="lead" style="margin-bottom:1rem;">De los 60 predios del área de intervención (294 ha), cada uno recibe una modalidad según su cobertura actual. El código de color reutiliza los tres colores institucionales de Coveñas.</p>
-      <div class="grid-3" id="modalidades-grid"></div>
-
-
-      <h3 style="margin-top:1.8rem;">Índice de prioridad predial (MCDA)</h3>
-      <p class="lead" style="margin-bottom:.8rem;">Seis criterios ponderados, combinados con análisis multicriterio (AHP), priorizan qué predios firmar primero. Rango del índice: 28,9–67,4.</p>
-      <div id="mcda-bars"></div>
-
-      <h3 style="margin-top:1.8rem;">Ficha técnica del proyecto</h3>
-      <table class="data" style="max-width:640px;">
-        <tr><td style="color:var(--ink-faint);">Sector</td><td>Ambiente y desarrollo sostenible</td></tr>
-        <tr><td style="color:var(--ink-faint);">Plan de Desarrollo</td><td>Coveñas + Social 2024–2027 · línea "Coveñas + Social e Influyente"</td></tr>
-        <tr><td style="color:var(--ink-faint);">Indicador de producto</td><td class="num">3202043 — Apoyo financiero a esquemas de PSA</td></tr>
-        <tr><td style="color:var(--ink-faint);">Fuente de financiación</td><td>Recursos propios del Municipio — vigencia 2026</td></tr>
-      </table>
-    </section>
-
-    <!-- ---------------- GESTIÓN ECONÓMICA ---------------- -->
-    <section class="view" id="view-economia">
-      <div class="view-head">
-        <div class="eyebrow">03 · GESTIÓN ECONÓMICA</div>
-        <h1>Localización predial, costo de oportunidad y portafolio de inversión</h1>
-        <p class="lead">Valoración económica del incentivo para los 60 predios del área de intervención, calculada por el método del menor valor entre Beneficio Económico Neto (BEN) y Valor de Renta de la Tierra (VRT), contrastada contra el tope legal del 15% del avalúo catastral (Decreto 1076 de 2015, art. 2.2.9.8.2.5).</p>
-      </div>
-
-      <div class="stat-grid" id="econ-stats-grid"></div>
-
-      <h3 style="margin-top:1.8rem;">Localización e identificación predial</h3>
-      <p class="lead" style="margin-bottom:1rem;">Los 9 predios de intervención directa dentro del polígono estricto de la cuenca, con coordenadas verificadas en el Sistema Nacional Catastral del IGAC. Por la Ley 1581 de 2012, no se publican nombres de propietarios — solo el código predial (P01–P60).</p>
-      <div id="predios-map" style="height:380px; border:1px solid var(--rule); background:var(--paper-sunken); margin-bottom:1.6rem;"></div>
-
-      <div class="grid-2">
-        <div>
-          <h3>Hectáreas por uso predominante del suelo</h3>
-          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Clasificación ESA WorldCover 2021 (10 m) sobre los 60 predios · 294 ha totales.</p>
-          <div id="econ-uso-chart"></div>
+    <!-- ---------------- ANÁLISIS ECONÓMICO ---------------- -->
+    <section class="section alt" id="economia">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Análisis económico</span>
+          <h2 class="sec-title">Localización predial, costo de oportunidad y portafolio de los 9 predios priorizados</h2>
+          <p class="lead">Análisis del incentivo económico para los 9 predios priorizados del área de intervención, calculado por el método del menor valor entre Beneficio Económico Neto (BEN) y Valor de Renta de la Tierra (VRT), y contrastado contra el tope legal del 15% del avalúo catastral (Decreto 1076 de 2015, art. 2.2.9.8.2.5). Valores en pesos colombianos (COP).</p>
         </div>
-        <div>
-          <h3>Frontera presupuesto–prioridad</h3>
-          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Módulo de optimización M12: % de la prioridad total cubierta según presupuesto anual disponible.</p>
-          <div id="econ-frontera-chart"></div>
+
+        <div class="stat-grid" id="econ-stats-grid"></div>
+
+        <h3 class="block-title" id="econ-localizacion">Localización e identificación predial</h3>
+        <p class="lead" style="margin-bottom:1rem;">Delimitación de los 9 predios priorizados según el levantamiento predial (KMZ), con coordenadas verificadas en el Sistema Nacional Catastral del IGAC, sobre la ortofoto del vuelo y el límite de la cuenca. Por la Ley 1581 de 2012 no se publican nombres de propietarios, solo el código predial.</p>
+        <div id="predios-map" role="application" aria-label="Mapa de los 9 predios priorizados"></div>
+        <div class="pmap-bar">
+          <label><input type="checkbox" id="pm-ortho" checked> Ortofoto de fondo</label>
+          <label><input type="checkbox" id="pm-ronda" checked> Ronda hídrica</label>
+          <span style="color:var(--ink-faint); font-size:.8rem;">Toque un predio para ver su ficha.</span>
         </div>
-      </div>
 
-      <h3 style="margin-top:1.8rem;">Costo de oportunidad y valoración del incentivo</h3>
-      <p class="lead" style="margin-bottom:.8rem;">El costo de oportunidad de referencia surge de comparar dos métodos — BEN (sistema ganadero de doble propósito) y VRT — y adoptar el menor. Para Villeros, el resultado agregado es de USD 334/ha/año, sustancialmente por debajo del valor de referencia regional ($8,36 M/ha/año), porque buena parte del área no sostiene hoy ganadería intensiva.</p>
-      <table class="data">
-        <thead><tr><th>Método</th><th>Resultado</th><th>¿Se adopta?</th></tr></thead>
-        <tbody>
-          <tr><td>BEN — Beneficio Económico Neto (ganadería de referencia)</td><td class="num">$1.295.833 /ha·mes</td><td><span class="tag pending">Mayor — no se adopta</span></td></tr>
-          <tr><td>VRT — Valor de Renta de la Tierra (ganadería de referencia)</td><td class="num">$696.675 /ha·mes</td><td><span class="tag done">Menor — costo de oportunidad de referencia</span></td></tr>
-          <tr><td>Aplicado en Villeros (agregado, 294 ha)</td><td class="num">USD 334 /ha·año</td><td><span class="tag done">≈ COP 1,34 M/ha·año</span></td></tr>
-        </tbody>
-      </table>
-
-      <p class="lead" style="margin:1rem 0 .6rem;">Incentivo calculado (VRT) frente al tope legal del 15% del avalúo — núcleo del portafolio recomendado. Ningún predio agota su propio tope: el uso va de 18% a 66%, lo que deja margen técnico para ajustar el incentivo al alza si el comité lo decide.</p>
-      <div id="econ-tope-chart"></div>
-
-      <h3 style="margin-top:1.8rem;">Alternativas de financiación — portafolio óptimo (módulo M12)</h3>
-      <p class="lead" style="margin-bottom:.8rem;">Pagar el incentivo a los 60 predios costaría $342 M/año. El portafolio recomendado como punto de arranque —$105 M/año, 46 predios, 134 ha— cubre el 56% de la prioridad total y protege un estimado de 557 t/año de sedimento. Su costo se concentra en un núcleo de apenas 7 predios; los 39 restantes tienen costo de oportunidad de cero y requieren definir un piso mínimo al incentivo antes de suscribir acuerdos.</p>
-      <table class="data">
-        <thead><tr><th>Predio</th><th>Área (ha)</th><th>Modalidad</th><th>Índice</th><th>Costo anual (COP)</th></tr></thead>
-        <tbody id="econ-nucleo-tbody"></tbody>
-      </table>
-      <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Documento técnico del esquema de PSA (Producto 2), capítulos 4, 6 y 7 — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026.</p>
-    </section>
-
-    <!-- ---------------- PARTICIPACIÓN ---------------- -->
-    <section class="view" id="view-participacion">
-      <div class="view-head">
-        <div class="eyebrow">04 · PARTICIPACIÓN</div>
-        <h1>Talleres de participación para la construcción del perfil del esquema ambiental</h1>
-        <p class="lead">Socialización institucional desarrollada por la Alcaldía de Coveñas, con acompañamiento técnico del Consorcio Servicios Ambientales 2026. El PSA es voluntario: cada acuerdo de conservación se concerta con el propietario o poseedor del predio.</p>
-      </div>
-
-      <div class="grid-2" style="align-items:start;">
-        <div>
-          <h3>Cronología de socialización</h3>
-          <div class="timeline" id="timeline"></div>
+        <div class="grid-2" style="margin-top:2.2rem; align-items:start;">
+          <div>
+            <h3>Uso predominante del suelo (contexto)</h3>
+            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Clasificación ESA WorldCover 2021 (10 m) sobre los 60 predios caracterizados · 294 ha.</p>
+            <div id="econ-uso-chart"></div>
+          </div>
+          <div>
+            <h3>Uso del tope legal del 15% del avalúo</h3>
+            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Incentivo calculado (VRT) frente al tope legal, en los predios del portafolio con costo ya calculado. Ninguno agota su propio tope.</p>
+            <div id="econ-tope-chart"></div>
+          </div>
         </div>
-        <div>
-          <h3>Actores institucionales</h3>
-          <table class="data" id="actores-table">
-            <thead><tr><th>Actor</th><th>Rol en el esquema</th></tr></thead>
-            <tbody></tbody>
+
+        <h3 class="block-title" id="econ-costo">Costo de oportunidad y valoración del incentivo</h3>
+        <p class="lead" style="margin-bottom:.8rem;">El costo de oportunidad de referencia surge de comparar dos métodos — BEN (sistema ganadero de doble propósito) y VRT — y adoptar el menor. Para Villeros, el resultado es de ≈ $1,34 M por hectárea al año, sustancialmente por debajo del valor de referencia regional ($8,36 M/ha·año), porque buena parte del área no sostiene hoy ganadería intensiva.</p>
+        <table class="data">
+          <thead><tr><th>Método</th><th>Resultado (COP)</th><th>¿Se adopta?</th></tr></thead>
+          <tbody>
+            <tr><td>BEN — Beneficio Económico Neto (ganadería de referencia)</td><td class="num">$1.295.833 /ha·mes</td><td><span class="tag pending">Mayor — no se adopta</span></td></tr>
+            <tr><td>VRT — Valor de Renta de la Tierra (ganadería de referencia)</td><td class="num">$696.675 /ha·mes</td><td><span class="tag done">Menor — costo de oportunidad de referencia</span></td></tr>
+            <tr><td>Aplicado en Villeros</td><td class="num">≈ $1,34 M /ha·año</td><td><span class="tag done">Referencia para los predios</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="block-title" id="econ-portafolio">Portafolio de los 9 predios priorizados</h3>
+        <p class="lead" style="margin-bottom:.8rem;">Seis predios de prioridad alta (P02, P03, P06, P07, P08 y P09) y tres de prioridad media (P17, P18 y P19). Las áreas provienen del levantamiento predial; el incentivo anual figura donde el documento técnico ya lo calculó, y «por definir» en los demás.</p>
+        <div class="scrollx">
+          <table class="data" id="econ-predios-table">
+            <thead><tr><th>Predio</th><th>Prioridad</th><th>Área total (ha)</th><th>En cuenca (ha)</th><th>Modalidad</th><th>Avalúo catastral (COP)</th><th>Incentivo anual (COP)</th></tr></thead>
+            <tbody id="econ-predios-tbody"></tbody>
           </table>
         </div>
-      </div>
-
-      <h3>Espacios de socialización</h3>
-      <p class="lead" style="margin-bottom:1rem;">Registro fotográfico del Taller de articulación institucional del 3 de septiembre de 2026, en la Biblioteca Pública Municipal de Coveñas. Fuente: Acta de Articulación N.º 3, Consorcio Servicios Ambientales 2026.</p>
-      <div class="gallery-grid" id="gallery-grid"></div>
-
-      <div class="card" style="max-width:560px;">
-        <h3>¿Tiene una observación sobre su predio o la microcuenca?</h3>
-        <p style="font-size:.88rem; color:var(--ink-soft);">Este formulario es una demostración de interfaz: no envía datos a un servidor. En producción se conecta al canal oficial de la Secretaría de Desarrollo Social y Comunitario.</p>
-        <form id="participa-form">
-          <div class="field"><label for="p-nombre">Nombre</label><input id="p-nombre" type="text" placeholder="Su nombre"></div>
-          <div class="field"><label for="p-msg">Mensaje</label><input id="p-msg" type="text" placeholder="Su observación o pregunta"></div>
-          <button type="submit" class="btn">Enviar al canal oficial</button>
-        </form>
-        <p id="participa-ok" style="display:none; color:var(--green-dark); font-size:.85rem; margin-top:.7rem;">Registrado en esta sesión — en producción se enruta a la Secretaría de Desarrollo Social y Comunitario para respuesta.</p>
+        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Documento técnico del esquema de PSA (Producto 2), capítulos 4, 6 y 7, y levantamiento predial (KMZ) — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026. Cifras originalmente expresadas en dólares se convirtieron a COP con la TRM de referencia implícita en el documento técnico (≈ $4.012 por dólar).</p>
       </div>
     </section>
 
     <!-- ---------------- ATLAS ---------------- -->
-    <section class="view" id="view-atlas">
-      <div class="view-head">
-        <div class="eyebrow">05 · ATLAS</div>
-        <h1>Visor SIG</h1>
-        <p class="lead">Atlas cartográfico desarrollado por capas, que incluyen modelo digital de elevación, zonificación ambiental, coberturas y otros.</p>
-      </div>
+    <section class="section" id="atlas">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Atlas cartográfico</span>
+          <h2 class="sec-title">Atlas cartográfico del proyecto</h2>
+          <p class="lead">Panel de indicadores, visor SIG con capas reales, planchas del proyecto y un recorrido guiado de la cuenca completa al portafolio de predios priorizados.</p>
+        </div>
 
-      <h3>Mapa interactivo — coordenadas reales (WGS84)</h3>
-      <p class="lead" style="margin-bottom:.9rem;">Arrastre para desplazarse y use la rueda del mouse o los botones +/− para acercar. El modelo de elevación y la zonificación están reproyectados desde la cartografía original del proyecto (MAGNA-SIRGAS-CTM12); no hay mapa base de fondo porque esta página no puede solicitar mosaicos a servidores externos.</p>
-      <div class="leaflet-wrap">
+        <div class="tabs" role="tablist" aria-label="Secciones del atlas" data-tabs="atlas">
+          <button class="tab" role="tab" id="tab-atlas-dashboard" aria-controls="atlas-dashboard" aria-selected="true">Panel de indicadores</button>
+          <button class="tab" role="tab" id="tab-atlas-visor" aria-controls="atlas-visor" aria-selected="false">Visor SIG</button>
+          <button class="tab" role="tab" id="tab-atlas-planchas" aria-controls="atlas-planchas" aria-selected="false">Planchas</button>
+          <button class="tab" role="tab" id="tab-atlas-recorrido" aria-controls="atlas-recorrido" aria-selected="false">Recorrido guiado</button>
+        </div>
+
+        <div class="tabpanel" id="atlas-dashboard" role="tabpanel" aria-labelledby="tab-atlas-dashboard">
+          <div class="stat-grid" id="atlas-kpis"></div>
+          <div class="dash-grid">
+            <div class="card dash-card">
+              <div class="dash-head"><div><h3>Zonificación ambiental</h3><p class="dash-sub">Hectáreas por categoría · cuenca abastecedora</p></div><button class="link-btn" data-open-layer="zon">Ver en el visor →</button></div>
+              <div id="dash-zon"></div>
+            </div>
+            <div class="card dash-card">
+              <div class="dash-head"><div><h3>Amenaza por incendio forestal</h3><p class="dash-sub">Hectáreas por categoría de amenaza</p></div><button class="link-btn" data-open-layer="amenaza">Ver en el visor →</button></div>
+              <div id="dash-amenaza"></div>
+            </div>
+            <div class="card dash-card">
+              <div class="dash-head"><div><h3>Cobertura del suelo (CORINE)</h3><p class="dash-sub">Hectáreas por clase · principales coberturas</p></div><button class="link-btn" data-open-layer="cobertura">Ver en el visor →</button></div>
+              <div id="dash-cobertura"></div>
+            </div>
+            <div class="card dash-card">
+              <div class="dash-head"><div><h3>Predios priorizados</h3><p class="dash-sub">Área total por predio · 9 predios</p></div><button class="link-btn" data-open-layer="predios9">Ver en el visor →</button></div>
+              <div id="dash-predios"></div>
+              <h3 style="font-size:1rem; margin:1.3rem 0 .1rem;">Reparto jurisdiccional de la cuenca</h3>
+              <p class="dash-sub">Porcentaje de la cuenca abastecedora por municipio</p>
+              <div id="dash-juris"></div>
+            </div>
+          </div>
+          <p class="dash-note">Zonificación, amenaza y reparto jurisdiccional: cifras oficiales de los mapas del proyecto. Cobertura del suelo: superficies calculadas sobre la capa vectorial del atlas (coincide con los mapas dentro de ±1 %).</p>
+        </div>
+
+        <div class="tabpanel" id="atlas-visor" role="tabpanel" aria-labelledby="tab-atlas-visor" hidden>
+          <p class="lead" style="margin-bottom:.9rem;">Arrastre para desplazarse; para acercar con la rueda del mouse, haga primero clic sobre el mapa. El modelo de elevación y la zonificación están reproyectados desde la cartografía original del proyecto (MAGNA-SIRGAS-CTM12).</p>
+          <div class="leaflet-wrap">
         <div id="leaflet-map"></div>
         <div class="leaflet-legend">
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-dem" checked> Modelo digital de elevación<span class="figs">ALOS PALSAR 30 m · 16–238 msnm</span></label>
@@ -1318,13 +1513,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-drenaje"> Drenaje<span class="figs">Red hídrica dentro del área de estudio</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-vias"> Vías<span class="figs">16 tramos · IGAC</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-catastro"> Catastro<span class="figs">137 predios · IGAC</span></label>
+          <label class="leaflet-toggle"><input type="checkbox" id="toggle-predios9"> Predios priorizados<span class="figs">9 predios · 149,6 ha · levantamiento predial</span></label>
           <div class="leaflet-hint">Toque cualquier polígono para ver su categoría exacta. El punto azul marca la ubicación aproximada de la represa.</div>
         </div>
       </div>
+        </div>
 
-      <h3 style="margin-top:2rem;">Otras planchas del proyecto</h3>
-      <p class="lead" style="margin-bottom:.9rem;">Seleccione una capa para verla en detalle o amplíela a pantalla completa.</p>
-      <div class="atlas-wrap">
+        <div class="tabpanel" id="atlas-planchas" role="tabpanel" aria-labelledby="tab-atlas-planchas" hidden>
+          <p class="lead" style="margin-bottom:.9rem;">Seleccione una plancha para verla en detalle o amplíela a pantalla completa.</p>
+          <div class="atlas-wrap">
         <div>
           <div class="map-frame" id="map-frame">
             <img id="map-img" src="" alt="">
@@ -1337,17 +1534,39 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </div>
         <div class="legend" id="atlas-legend"></div>
       </div>
+        </div>
+
+        <div class="tabpanel" id="atlas-recorrido" role="tabpanel" aria-labelledby="tab-atlas-recorrido" hidden>
+          <p class="lead" style="margin-bottom:1rem;">Recorra el proyecto capa por capa, en el orden en que se construye el esquema: de la cuenca completa al portafolio de predios priorizados.</p>
+          <div class="tour-stage">
+        <div class="tour-copy">
+          <div class="step-count" id="tour-count">Parada 1 de 7</div>
+          <h2 id="tour-title"></h2>
+          <p class="lead" id="tour-text"></p>
+          <div class="tour-fact" id="tour-fact"></div>
+          <div class="tour-nav">
+            <button class="btn-ghost btn" id="tour-prev">← Anterior</button>
+            <button class="btn" id="tour-next">Siguiente →</button>
+          </div>
+          <div class="tour-dots" id="tour-dots"></div>
+        </div>
+        <div class="tour-map">
+          <img id="tour-img" src="" alt="">
+        </div>
+      </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ---------------- RECORRIDO VIRTUAL ---------------- -->
-    <section class="view" id="view-recorrido">
-      <div class="view-head">
-        <div class="eyebrow">06 · MAPA VIRTUAL</div>
-        <h1>Mapa virtual del área de intervención</h1>
-        <p class="lead">Ortofoto de alta resolución (7,75 cm por píxel) del vuelo de dron sobre la Represa Villeros, navegable con zoom continuo, con dos capas derivadas: un índice de vegetación calculado píxel a píxel sobre la propia foto y el modelo de elevación con altitudes. Todo está alojado en esta plataforma, sin depender de ningún visor externo.</p>
-      </div>
-
-      <div class="vmap" id="vmap">
+    <!-- ---------------- MAPA VIRTUAL ---------------- -->
+    <section class="section alt" id="mapa-virtual">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Mapa virtual</span>
+          <h2 class="sec-title">Mapa virtual del área de intervención</h2>
+          <p class="lead">Ortofoto de alta resolución (7,75 cm por píxel) del vuelo de dron sobre la Represa Villeros, navegable con zoom continuo, con dos capas derivadas: un índice de vegetación calculado píxel a píxel sobre la propia foto y el modelo de elevación con altitudes. Incluye un modelo 3D del área. Todo está alojado en esta plataforma, sin depender de ningún visor externo.</p>
+        </div>
+        <div class="vmap" id="vmap">
         <div class="vmap-stage">
           <div id="drone-map" role="application" aria-label="Mapa virtual: ortofoto, vegetación y altitud de la Represa Villeros"></div>
           <div class="vmap-loading" id="vmap-loading">Cargando mapa…</div>
@@ -1390,7 +1609,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <span class="src">Fuente: vuelo y procesamiento fotogramétrico — componente SIG, Consorcio Servicios Ambientales 2026.</span>
       </p>
 
-      <h3 style="margin-top:2.2rem;">Modelo 3D del área</h3>
+      <h3 class="block-title">Modelo 3D del área</h3>
       <p class="lead" style="margin-bottom:1rem;">Malla fotogramétrica texturizada del mismo vuelo. Arrastre para girar, use la rueda o el pellizco para acercar y el clic derecho (o dos dedos) para desplazarse. Toque un punto del terreno para conocer su altitud aproximada.</p>
       <div class="m3d" id="m3d">
         <div class="m3d-stage" id="m3d-stage">
@@ -1417,64 +1636,70 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <span class="src">Fuente: procesamiento fotogramétrico — componente SIG, Consorcio Servicios Ambientales 2026.</span>
       </p>
 
-      <h3 style="margin-top:1.8rem;">Galería del vuelo</h3>
-      <p class="lead" style="margin-bottom:1rem;">Las mismas 30 tomas, en el orden en que se capturaron durante el vuelo.</p>
-      <div class="gallery-grid" id="drone-gallery"></div>
+      
+        <h3 class="block-title">Galería del vuelo</h3>
+        <p class="lead" style="margin-bottom:1rem;">Las 30 tomas aéreas, en el orden en que se capturaron durante el vuelo.</p>
+        <div class="gallery-grid" id="drone-gallery"></div>
+      </div>
+    </section>
 
-      <h3 style="margin-top:2.2rem;">Recorrido guiado paso a paso</h3>
-      <p class="lead" style="margin-bottom:1rem;">Recorra el proyecto capa por capa, en el orden en que se construye el esquema: de la cuenca completa al portafolio de predios priorizados.</p>
+    <!-- ---------------- PARTICIPACIÓN SOCIAL ---------------- -->
+    <section class="section" id="participacion">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Participación social</span>
+          <h2 class="sec-title">Construcción participativa del perfil del esquema</h2>
+          <p class="lead">Socialización institucional desarrollada por la Alcaldía de Coveñas, con acompañamiento técnico del Consorcio Servicios Ambientales 2026. El PSA es voluntario: cada acuerdo de conservación se concerta con el propietario o poseedor del predio.</p>
+        </div>
 
-      <div class="tour-stage">
-        <div class="tour-copy">
-          <div class="step-count" id="tour-count">Parada 1 de 7</div>
-          <h2 id="tour-title"></h2>
-          <p class="lead" id="tour-text"></p>
-          <div class="tour-fact" id="tour-fact"></div>
-          <div class="tour-nav">
-            <button class="btn-ghost btn" id="tour-prev">← Anterior</button>
-            <button class="btn" id="tour-next">Siguiente →</button>
-          </div>
-          <div class="tour-dots" id="tour-dots"></div>
-        </div>
-        <div class="tour-map">
-          <img id="tour-img" src="" alt="">
-        </div>
+        <div id="actas-list"></div>
+
+        <h3 class="block-title">Actores institucionales</h3>
+        <table class="data" id="actores-table">
+          <thead><tr><th>Actor</th><th>Rol en el esquema</th></tr></thead>
+          <tbody></tbody>
+        </table>
       </div>
     </section>
 
     <!-- ---------------- DOCUMENTOS ---------------- -->
-    <section class="view" id="view-documentos">
-      <div class="view-head">
-        <div class="eyebrow">07 · DOCUMENTOS</div>
-        <h1>Subproductos del contrato</h1>
-        <p class="lead">Los archivos originales viven en el Drive del proyecto. Esta sección exige una clave adicional, distinta de la del ingreso, antes de mostrar los enlaces de descarga.</p>
-      </div>
-
-      <div id="doc-gate-wrap">
-        <div class="doc-gate">
-          <h3>Clave de acceso a subproductos</h3>
-          <p style="font-size:.88rem; color:var(--ink-soft);">Uso previsto para el equipo técnico y la supervisión municipal.</p>
-          <form id="doc-gate-form">
-            <div class="field"><label for="doc-clave">Clave</label><input id="doc-clave" type="password" placeholder="••••••••••••"></div>
-            <p class="login-error" id="doc-gate-error">Clave incorrecta.</p>
-            <button type="submit" class="btn">Desbloquear documentos</button>
-          </form>
-          <p class="doc-hint">Clave de demostración: <code class="mono">COV-CMA-010-2026</code> — el número del propio contrato. En producción, esta clave se reemplaza por autenticación por usuario con registro de auditoría (ver especificación técnica, sección 3).</p>
+    <section class="section alt" id="documentos">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Sección interna</span>
+          <h2 class="sec-title">Documentos del contrato</h2>
+          <p class="lead">Los archivos originales viven en el Drive del proyecto. Esta sección exige una clave de acceso adicional a la del ingreso antes de mostrar los enlaces.</p>
         </div>
+        <div id="doc-gate-wrap">
+          <div class="doc-gate card">
+            <h3>Clave de acceso a documentos</h3>
+            <p style="font-size:.9rem; color:var(--ink-soft);">Uso previsto para el equipo técnico y la supervisión municipal.</p>
+            <form id="doc-gate-form">
+              <div class="field"><label for="doc-clave">Clave</label><input id="doc-clave" type="password" placeholder="••••••••••••" autocomplete="off"></div>
+              <p class="login-error" id="doc-gate-error">Clave incorrecta.</p>
+              <button type="submit" class="btn">Desbloquear documentos</button>
+            </form>
+          </div>
+        </div>
+        <div id="doc-content" hidden></div>
       </div>
-
-      <div id="doc-content" hidden></div>
     </section>
 
-    <footer class="app-footer">Información desarrollada en el marco de la consultoría COV‑CMA‑010‑2026 por el Consorcio Servicios Ambientales 2026, para el Municipio de Coveñas, Sucre.</footer>
+    <footer class="app-footer">
+      <div class="foot-in">
+        <div class="foot-logos">
+          <img src="img/covenasLockup.b74a554c.webp" alt="Municipio de Coveñas">
+          <img src="img/consorcioLockup.428b9e46.webp" alt="Consorcio Servicios Ambientales 2026">
+        </div>
+        <p class="foot-text" style="margin:0;">Información desarrollada en el marco de la consultoría COV‑CMA‑010‑2026 por el Consorcio Servicios Ambientales 2026, para el Municipio de Coveñas, Sucre.</p>
+      </div>
+    </footer>
   </main>
 </div>
-
 <div id="lightbox" hidden>
   <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
-
 <button id="asistente-fab" aria-label="Abrir asistente virtual PSA" hidden>💬</button>
 <div id="asistente-panel" hidden>
   <div class="asis-head">
@@ -1589,14 +1814,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   var PRODUCTOS = [
     {n:1, nombre:"Diagnóstico y línea base ambiental", estado:"done", label:"Completado"},
-    {n:2, nombre:"Perfil del esquema: predios, incentivo y acuerdos", estado:"progress", label:"En curso"},
-    {n:3, nombre:"Adquisición de predios / formalización de acuerdos", estado:"pending", label:"Pendiente"}
+    {n:2, nombre:"Perfil del modelo de formalización de acuerdos y alternativas de incentivos económicos", estado:"progress", label:"En curso"}
   ];
 
   var STATS = [
     {n:12.96, dec:2, suffix:" km²", label:"Cuenca abastecedora (1.296 ha)"},
     {n:22.20, dec:2, suffix:" ha", label:"Espejo de agua de la represa"},
-    {n:60, dec:0, suffix:"", label:"Predios en el área de intervención"},
+    {n:60, dec:0, suffix:"", label:"Predios caracterizados en el área de intervención"},
     {n:294, dec:0, suffix:" ha", label:"Superficie caracterizada"},
     {n:77, dec:0, suffix:"%", label:"Del espejo de agua colmatado"},
     {n:8186, dec:0, suffix:" m³", label:"Sedimento acumulado por año"}
@@ -1610,9 +1834,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
   ];
 
   var FINANCIACION = [
-    {amt:"Batallón I.M. N.º 6", lbl:"Financiador ancla — obligado por la Resolución CARSUCRE 1070 de 2023"},
-    {amt:"≈105 M COP/año", lbl:"Portafolio óptimo M12 · 46 predios · 134 ha priorizadas"},
-    {amt:"USD 593.698/año", lbl:"Cofinanciación potencial identificada — banco de hábitat"}
+    {amt:"Batallón I.M. N.º 6", lbl:"Financiador ancla — obligado por la Resolución 1070 de 2023"},
+    {amt:"$86,85 M/año", lbl:"Incentivo ya calculado para 5 de los 9 predios priorizados"},
+    {amt:"≈ $2.382 M/año", lbl:"Cofinanciación potencial identificada — banco de hábitat (TRM de referencia ≈ $4.012)"}
   ];
 
   var SEDIMENTO_SERIE = [
@@ -1640,7 +1864,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   ];
 
   var COMPONENTES = [
-    {t:"Dirección del proyecto", p:"Ingeniero ambiental o sanitario con posgrado", d:"Dirección técnica, articulación institucional y control de calidad del contrato."},
+    {t:"Componente técnico", p:"Ingeniero ambiental o sanitario con posgrado", d:"Dirección técnica, articulación institucional y control de calidad del contrato."},
     {t:"Componente hídrico", p:"Ingeniero civil / hidrólogo", d:"Hidrología, balance hídrico, sedimentación y calidad del agua cruda de la represa."},
     {t:"Componente SIG", p:"Profesional en geografía o afines", d:"Cartografía temática, delimitación del área de estudio y análisis espacial."},
     {t:"Componente económico", p:"Economista / administrador", d:"Costo de oportunidad, valoración del incentivo y fuentes de financiación."},
@@ -1664,16 +1888,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {t:"Amenaza por incendio", p:8}
   ];
 
-  /* ================= GESTIÓN ECONÓMICA (Documento técnico PSA, cap. 4, 6 y 7) ================= */
-  var ECON_STATS = [
-    {v:"$10.644 M", l:"Valor catastral oficial total · 60 predios"},
-    {v:"USD 98.135/año", l:"Costo de oportunidad agregado · 294 ha (≈COP 1,34 M/ha·año)"},
-    {v:"$342 M/año", l:"Costo si se paga el incentivo a los 60 predios"},
-    {v:"$105 M/año", l:"Portafolio recomendado (M12) · 46 predios · 134 ha"},
-    {v:"$104,77 M/año", l:"Núcleo pagado del portafolio · 7 predios · 100 ha"},
-    {v:"557 t/año", l:"Sedimento protegido · escenario del portafolio recomendado"}
-  ];
-
+  /* ================= ANÁLISIS ECONÓMICO (Documento técnico PSA, cap. 4, 6 y 7 + levantamiento predial KMZ) ================= */
   var ECON_USO_SUELO = [
     {n:"Pastizal", ha:223.4, predios:33},
     {n:"Bosque / arbolado", ha:36.7, predios:25},
@@ -1681,53 +1896,60 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {n:"Construido", ha:0.1, predios:1}
   ];
 
-  var ECON_FRONTERA = [
-    {y:"$51 M", v:41},
-    {y:"$120 M", v:59},
-    {y:"$171 M", v:70},
-    {y:"$342 M", v:100}
+  // Datos económicos publicados por predio (documento técnico). Donde no hay costo calculado: sin "incentivo".
+  var PREDIOS_ECON = {
+    P02:{avaluo:328791000, incentivo:16509000, modalidad:"Rehabilitación", indice:"60,4", tope:45},
+    P03:{avaluo:58947000, incentivo:6103500, modalidad:"Rehabilitación", indice:"58,7", tope:66},
+    P06:{avaluo:195595000, incentivo:8071097, modalidad:"Conservación", indice:"67,4", tope:25},
+    P07:{avaluo:342655000},
+    P08:{avaluo:373492000, incentivo:38934000, modalidad:"Rehabilitación", indice:"56,8", tope:45},
+    P09:{avaluo:302518000, incentivo:17231507, modalidad:"Rehabilitación", indice:"56,1", tope:44},
+    P17:{avaluo:237301000},
+    P18:{avaluo:175760000},
+    P19:{avaluo:55278000}
+  };
+
+  var ECON_STATS = [
+    {v:"9 predios · 149,6 ha", l:"Predios priorizados del portafolio (6 de prioridad alta y 3 de media)"},
+    {v:"47,4 ha", l:"Superficie de los 9 predios dentro de la cuenca estricta"},
+    {v:"$2.070 M", l:"Avalúo catastral de los 9 predios (COP)"},
+    {v:"≈ $1,34 M/ha·año", l:"Costo de oportunidad de referencia adoptado (menor entre BEN y VRT)"},
+    {v:"$86,85 M/año", l:"Incentivo ya calculado en 5 de los 9 predios; los otros 4 están por definir"},
+    {v:"15%", l:"Tope legal del incentivo sobre el avalúo catastral (Decreto 1076 de 2015)"}
   ];
 
-  var ECON_TOPE_LEGAL = [
-    {predio:"P03", pct:66},
-    {predio:"P08", pct:45},
-    {predio:"P02", pct:45},
-    {predio:"P09", pct:44},
-    {predio:"P01", pct:40},
-    {predio:"P06", pct:25},
-    {predio:"P11", pct:18}
-  ];
-
-  var ECON_NUCLEO = [
-    {predio:"P08", ha:"26,0", modalidad:"Rehabilitación", indice:"56,8", costo:"38.934.000"},
-    {predio:"P09", ha:"11,8", modalidad:"Rehabilitación", indice:"56,1", costo:"17.231.507"},
-    {predio:"P02", ha:"11,0", modalidad:"Rehabilitación", indice:"60,4", costo:"16.509.000"},
-    {predio:"P01", ha:"7,6", modalidad:"Restauración", indice:"52,6", costo:"9.330.564"},
-    {predio:"P11", ha:"5,7", modalidad:"Restauración", indice:"53,3", costo:"8.590.500"},
-    {predio:"P06", ha:"33,8", modalidad:"Conservación", indice:"67,4", costo:"8.071.097"},
-    {predio:"P03", ha:"4,1", modalidad:"Rehabilitación", indice:"58,7", costo:"6.103.500"}
-  ];
-
-  var ECON_PREDIOS_CUENCA = [
-    {predio:"P02", lat:9.3745, lon:-75.7002, ha:"8,64", avaluo:"$328.791.000"},
-    {predio:"P03", lat:9.3769, lon:-75.7011, ha:"3,91", avaluo:"$58.947.000"},
-    {predio:"P06", lat:9.3805, lon:-75.6981, ha:"30,94", avaluo:"$195.595.000"},
-    {predio:"P07", lat:9.3770, lon:-75.6960, ha:"15,28", avaluo:"$342.655.000"},
-    {predio:"P08", lat:9.3809, lon:-75.7019, ha:"11,05", avaluo:"$373.492.000"},
-    {predio:"P09", lat:9.3746, lon:-75.7027, ha:"12,17", avaluo:"$302.518.000"},
-    {predio:"P17", lat:9.3707, lon:-75.6935, ha:"12,48", avaluo:"$237.301.000"},
-    {predio:"P18", lat:9.3722, lon:-75.6954, ha:"6,09", avaluo:"$175.760.000"},
-    {predio:"P19", lat:9.3704, lon:-75.6958, ha:"3,31", avaluo:"$55.278.000"}
-  ];
-
-  var TIMELINE = [
-    {fecha:"Julio de 2026", t:"Socialización institucional y comunitaria", d:"Presentación del proyecto de formulación del perfil del esquema de PSA ante la Alcaldía de Coveñas y la comunidad rural del área de intervención."},
-    {fecha:"3 de septiembre de 2026", t:"Presentación y socialización N.º 3", d:"Taller de articulación con actores institucionales: avances del Documento técnico del esquema de PSA (Producto 2)."}
+  /* ================= PARTICIPACIÓN SOCIAL: actas de socialización ================= */
+  var ACTAS = [
+    {n:1, fecha:"Julio de 2026", lugar:"Municipio de Coveñas", t:"Socialización institucional y comunitaria",
+     d:"Presentación del proyecto de formulación del perfil del esquema de PSA ante la Alcaldía de Coveñas y la comunidad rural del área de intervención.",
+     fotos:[]},
+    {n:2, fecha:"19 de agosto de 2026", hora:"10:00 a. m. – 11:00 a. m.", lugar:"Secretaría de Desarrollo Social y Comunitario · Alcaldía de Coveñas",
+     t:"Socialización del Producto N.º 1 con la Secretaría de Desarrollo Social y Comunitario",
+     participan:"Secretaría de Desarrollo Social y Comunitario y equipo técnico de la consultoría",
+     d:"Entrega formal a la Secretaría del Producto N.º 1, «Documento del área de estudio con análisis, recomendaciones y prospectiva» de la microcuenca de la Represa Villeros, y presentación de los avances del Producto N.º 2.",
+     puntos:["Socialización y entrega formal del Producto N.º 1.","Coordinación de las acciones de articulación con los actores sociales, comunitarios e institucionales del municipio, para facilitar las actividades de la siguiente fase del contrato."],
+     compromisos:[
+       "Radicar el oficio a la Secretaría solicitando su apoyo en la articulación y convocatoria de los actores para la segunda fase del proyecto.",
+       "Radicar las invitaciones a los talleres de articulación dirigidas a los actores sociales, comunitarios e institucionales identificados.",
+       "Radicar y entregar formalmente el Producto N.º 1 para conocimiento y revisión de la Secretaría.",
+       "La Secretaría apoyará la articulación con los actores y realizará las gestiones para facilitar su participación en los talleres.",
+       "La Secretaría remitirá al Consorcio los soportes de recepción y aceptación de las invitaciones.",
+       "Las partes mantendrán comunicación y coordinación para definir los aspectos logísticos de los talleres."
+     ],
+     fotos:[
+       {src:"img/acta2-a.6e949079.webp", cap:"Equipo técnico y Secretaría de Desarrollo Social y Comunitario"},
+       {src:"img/acta2-b.ed660520.webp", cap:"Presentación de los avances del proyecto"},
+       {src:"img/acta2-c.0b156edb.webp", cap:"Socialización del Producto N.º 1"},
+       {src:"img/acta2-d.e0b4ff11.webp", cap:"Coordinación de acciones de articulación"}
+     ]},
+    {n:3, fecha:"3 de septiembre de 2026", lugar:"Biblioteca Pública Municipal de Coveñas", t:"Taller de articulación institucional",
+     participan:"Armada Nacional, Alcaldía de San Antero, CENIT, Personería, Fundifami y comunidad",
+     d:"Avances del Documento técnico del esquema de PSA (Producto 2) y ejercicio de articulación con actores: matriz de problema, alternativa y compromiso por entidad. Fuente: Acta de Articulación N.º 3.",
+     fotos:"GALERIA"}
   ];
 
   var ACTORES = [
     ["Municipio de Coveñas", "Contratante · Secretaría de Desarrollo Social y Comunitario (supervisión)"],
-    ["CARSUCRE", "Autoridad ambiental"],
     ["CVS (Valles del Sinú y San Jorge)", "Concurrencia por jurisdicción en Córdoba"],
     ["Batallón de Infantería de Marina N.º 6", "Beneficiario de la concesión · financiador ancla"],
     ["ECOPETROL / CENIT", "Cofinanciador potencial (1%)"],
@@ -1786,52 +2008,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   var TOUR = [
     {title:"La cuenca abastecedora", text:"1.296 hectáreas alimentan la represa, repartidas entre tres municipios. Solo el 4% está en jurisdicción de Coveñas.", fact:"San Antero (Córdoba) 76,8% · Momil (Córdoba) 19,2% · Coveñas (Sucre) 4,0%", img:"mapa08"},
-    {title:"La Represa Villeros", text:"22,20 hectáreas de espejo de agua, declaradas en fase de vejez por CARSUCRE: pierde capacidad a medida que se colmata.", fact:"77% del espejo de agua afectado por colmatación · 8.186 m³/año de sedimento", img:"mapa01"},
+    {title:"La Represa Villeros", text:"22,20 hectáreas de espejo de agua, en fase de vejez: pierde capacidad a medida que se colmata.", fact:"77% del espejo de agua afectado por colmatación · 8.186 m³/año de sedimento", img:"mapa01"},
     {title:"El área de intervención del esquema", text:"Lo que Coveñas sí controla y puede ejecutar de forma directa: 60 predios rurales alrededor de la represa.", fact:"60 predios · 294 ha · 100% en jurisdicción de Coveñas", img:"mapa09"},
     {title:"Zonificación ambiental", text:"Cada predio se clasifica según su cobertura actual, para decidir si se conserva, se restaura o se recupera.", fact:"Restauración ecológica 456,07 ha (41,7%) · Recuperación 637,2 ha (58,3%)", img:"mapa04"},
     {title:"Modalidades de PSA por predio", text:"El uso del suelo de cada predio determina su modalidad de incentivo: conservación, rehabilitación o restauración.", fact:"Conservación 23 predios/47 ha · Rehabilitación 15/81 ha · Restauración 22/166 ha", img:"mapa11"},
-    {title:"El portafolio priorizado (escenario M12)", text:"No todos los predios entran al mismo tiempo: el índice de prioridad arma el portafolio que rinde más por peso invertido.", fact:"46 predios · 134 ha · ≈105 M COP/año · 557 t/año de sedimento evitado", img:"mapa15"},
-    {title:"Lo que sigue: Producto 3", text:"Con el perfil del esquema aprobado, el contrato pasa a la adquisición de predios y la formalización de los acuerdos de conservación con cada propietario, empezando por el corredor de ronda hídrica.", fact:"Producto 3 · Adquisición de predios — pendiente", img:"mapa06"}
+    {title:"El portafolio de los 9 predios priorizados", text:"El índice de prioridad selecciona los predios con mayor efecto sobre el recurso hídrico: seis de prioridad alta y tres de prioridad media conforman el portafolio de análisis económico.", fact:"9 predios · 149,6 ha · 47,4 ha dentro de la cuenca estricta", img:"mapa15"},
+    {title:"Lo que sigue: modelo de acuerdos e incentivos", text:"El perfil culmina con el diseño del modelo para formalizar acuerdos de conservación voluntarios y las alternativas de incentivos económicos para los propietarios de los predios priorizados, empezando por el corredor de ronda hídrica. El proyecto no contempla la adquisición de predios.", fact:"Producto 2 · Perfil del modelo de acuerdos e incentivos — en curso", img:"mapa06"}
   ];
 
-  var DOC_GROUPS = [
-    {
-      titulo: "Producto 1 · Diagnóstico y línea base",
-      docs: [
-        {n:"Documento del área de estudio — diagnóstico técnico ambiental", s:"Anexo No. 2", fmt:"DOCX", u:"https://drive.google.com/file/d/14yMIxIN-3NjyGKtHLt_BfRWlBrJTPU1r/view?usp=drivesdk"},
-        {n:"Informe Técnico N.º 1 — Identificación, análisis y priorización predial", s:"Subproducto 1.1 · 14 mapas", fmt:"DOCX", u:"https://drive.google.com/file/d/1bQstOYFeAyWuvJnqk5e_4ht5tg_j5QU9/view?usp=drivesdk"},
-        {n:"Matriz de trazabilidad de la información", s:"Subproducto 1.3", fmt:"DOCX", u:"https://drive.google.com/file/d/1JtAjWJYaJfwDwPHW3SY0FyDJu0Zpyh-S/view?usp=drivesdk"}
-      ]
-    },
-    {
-      titulo: "Producto 2 · Perfil del esquema de PSA",
-      docs: [
-        {n:"Documento técnico del esquema de PSA — versión 1", s:"Producto 2", fmt:"DOCX", u:"https://drive.google.com/file/d/1WPXFVgVgEcURUCD1VXiP0J05K1VENwk6/view?usp=drivesdk"},
-        {n:"Informe técnico de priorización predial SELVACODE v2", s:"Insumo técnico", fmt:"DOCX", u:"https://drive.google.com/file/d/1AaFPyx9FHx379DmL7lv13x8XorajkFVw/view?usp=drivesdk"},
-        {n:"Informe técnico de avances N.º 1 (SELVACODE)", s:"Insumo técnico", fmt:"DOCX", u:"https://drive.google.com/file/d/1AZqoJtE1d2L74bGP009HE7cfyOnVACAA/view?usp=drivesdk"}
-      ]
-    },
-    {
-      titulo: "Socialización y participación",
-      docs: [
-        {n:"Presentación y socialización N.º 3 — avances (3 sept. 2026)", s:"Contrato COV-CMA-010-2026", fmt:"PPTX", u:"https://drive.google.com/file/d/1xsjGkT2jFTAn45qsnq9QBCi89yyXTSdv/view?usp=drivesdk"},
-        {n:"Anexo No. 3 — socialización institucional y comunitaria", s:"Julio de 2026", fmt:"PPTX", u:"https://drive.google.com/file/d/1fLn3V2HVWvPaC3u3FWFrudAgw4ZMvNom/view?usp=drivesdk"},
-        {n:"Copia de Anexo No. 4 — socialización PSA Represa Villeros", s:"Julio de 2026", fmt:"PPTX", u:"https://drive.google.com/file/d/1XVg8HNsPjoRFvHaXaZo1UzJ5qQgi6YPH/view?usp=drivesdk"}
-      ]
-    },
-    {
-      titulo: "Cartografía base (SIG)",
-      docs: [
-        {n:"DEM VILLEROS — modelo digital de elevación", s:"ALOS PALSAR 30 m", fmt:"TIF", u:"https://drive.google.com/file/d/1vVWEkPgyNZgUIYPxLlEFGFrqLtE6y--l/view?usp=drivesdk"},
-        {n:"Plancha de localización — escala 1:25.000", s:"Imagen de la plancha", fmt:"PNG", u:"https://drive.google.com/file/d/1OimGqj7F8ZtfAC6ij6giFCsujZJYJOvr/view?usp=drivesdk"},
-        {n:"Zonificación final — Villeros", s:"MAGNA-SIRGAS-CTM12", fmt:"SHP", u:"https://drive.google.com/file/d/1Qyqa9Tx0kaZYcuw-8dxvwCuk9W_0AEdu/view?usp=drivesdk"},
-        {n:"Reporte de zonificación — cuadro de áreas", s:"Cuadro de áreas y porcentajes", fmt:"HTML", u:"https://drive.google.com/file/d/1T1HVQ3cTxYqhIGsbcc9QrnQ6zHNLSXQ4/view?usp=drivesdk"}
-      ]
-    }
-  ];
-  var DOC_REPO_URL = "https://drive.google.com/drive/folders/1Lj9vwrcY3HCiDmCAT-rDeKHzEFsCr1gr";
-
-  var DOC_CLAVE = "COV-CMA-010-2026";
+  var PREDIOS9_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"P02","prioridad":"1-Alta","area":11.006,"cuenca":10.2,"ronda":1.846,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010068000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.701474,9.372316],[-75.701386,9.372674],[-75.701458,9.372832],[-75.701602,9.372933],[-75.701659,9.373135],[-75.701658,9.373393],[-75.701585,9.373622],[-75.701454,9.373751],[-75.701309,9.373994],[-75.701351,9.374138],[-75.701495,9.374425],[-75.701652,9.374785],[-75.70168,9.375172],[-75.70162,9.375545],[-75.70149,9.37576],[-75.70097,9.375629],[-75.70084,9.375614],[-75.700261,9.375942],[-75.699957,9.376084],[-75.699581,9.376169],[-75.699219,9.376382],[-75.698885,9.376697],[-75.698508,9.376954],[-75.698263,9.376996],[-75.698075,9.376981],[-75.698018,9.376794],[-75.698309,9.376221],[-75.698657,9.375792],[-75.698847,9.375434],[-75.698934,9.37519],[-75.698921,9.374932],[-75.69885,9.374587],[-75.698851,9.374343],[-75.69901,9.374215],[-75.69917,9.374],[-75.699403,9.373714],[-75.699664,9.373385],[-75.699897,9.372941],[-75.700173,9.372612],[-75.700348,9.372139],[-75.701474,9.372316]]]}},{"type":"Feature","properties":{"id":"P03","prioridad":"1-Alta","area":4.069,"cuenca":0.923,"ronda":0.06,"dist":0,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010238000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.699957,9.376084],[-75.700261,9.375942],[-75.70084,9.375614],[-75.70097,9.375629],[-75.70149,9.37576],[-75.701431,9.37596],[-75.701401,9.376219],[-75.701529,9.376764],[-75.701758,9.377167],[-75.702322,9.377212],[-75.701988,9.37757],[-75.701711,9.378214],[-75.700819,9.377135],[-75.700618,9.376933],[-75.700344,9.376817],[-75.700069,9.376888],[-75.699866,9.37716],[-75.699619,9.377388],[-75.699474,9.377574],[-75.699214,9.377645],[-75.699026,9.377573],[-75.69894,9.3773],[-75.699014,9.37707],[-75.699188,9.376928],[-75.699434,9.376814],[-75.699651,9.376642],[-75.699753,9.376542],[-75.699898,9.376356],[-75.699957,9.376084]]]}},{"type":"Feature","properties":{"id":"P06","prioridad":"1-Alta","area":33.785,"cuenca":0.441,"ronda":1.066,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010141000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696122,9.384879],[-75.695748,9.384548],[-75.695359,9.384116],[-75.695212,9.383944],[-75.695177,9.383903],[-75.694986,9.38368],[-75.694841,9.383511],[-75.694755,9.383418],[-75.69451,9.383151],[-75.694108,9.382719],[-75.694253,9.38239],[-75.69437,9.382046],[-75.694382,9.381981],[-75.694459,9.381573],[-75.694532,9.381257],[-75.69488,9.381086],[-75.695083,9.380786],[-75.695489,9.3805],[-75.695866,9.3802],[-75.69601,9.380201],[-75.696183,9.380133],[-75.696227,9.380116],[-75.696416,9.379844],[-75.696533,9.379529],[-75.696535,9.379055],[-75.696681,9.378812],[-75.696899,9.378296],[-75.697422,9.377552],[-75.698018,9.376794],[-75.698075,9.376981],[-75.698263,9.376996],[-75.698508,9.376954],[-75.698885,9.376697],[-75.699219,9.376382],[-75.699581,9.376169],[-75.699957,9.376084],[-75.699898,9.376356],[-75.699753,9.376542],[-75.699651,9.376642],[-75.699434,9.376814],[-75.699188,9.376928],[-75.699014,9.37707],[-75.69894,9.3773],[-75.699026,9.377573],[-75.699214,9.377645],[-75.699474,9.377574],[-75.699619,9.377388],[-75.700556,9.37788],[-75.700845,9.378082],[-75.700901,9.378326],[-75.700741,9.378584],[-75.700481,9.378798],[-75.69993,9.379111],[-75.699655,9.379283],[-75.699568,9.379383],[-75.699582,9.379584],[-75.69974,9.37967],[-75.700159,9.379672],[-75.700694,9.37976],[-75.700648,9.38042],[-75.700733,9.380765],[-75.700731,9.381123],[-75.700774,9.38121],[-75.700687,9.381353],[-75.700456,9.381323],[-75.700095,9.381236],[-75.699647,9.381363],[-75.699097,9.381605],[-75.698763,9.381876],[-75.698502,9.382162],[-75.698155,9.382333],[-75.697779,9.382461],[-75.697532,9.382589],[-75.697402,9.382818],[-75.697516,9.383005],[-75.697675,9.38312],[-75.697834,9.383164],[-75.697689,9.383321],[-75.697601,9.38345],[-75.697514,9.383579],[-75.697484,9.383794],[-75.697614,9.383895],[-75.697729,9.384111],[-75.697815,9.384312],[-75.697699,9.384455],[-75.697568,9.384498],[-75.697409,9.384483],[-75.697251,9.38431],[-75.697151,9.38418],[-75.696833,9.384165],[-75.69663,9.384207],[-75.696514,9.384336],[-75.696456,9.384479],[-75.696339,9.384722],[-75.696122,9.384879]]]}},{"type":"Feature","properties":{"id":"P07","prioridad":"1-Alta","area":42.187,"cuenca":19.009,"ronda":0,"dist":0,"zon":"Sin dato","cob":"Vias","predial":"702210002000000010047000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.694108,9.382719],[-75.693791,9.382345],[-75.69359,9.382114],[-75.693316,9.381927],[-75.692941,9.381796],[-75.692494,9.381565],[-75.692321,9.381478],[-75.692831,9.380246],[-75.692949,9.379845],[-75.693167,9.379329],[-75.693241,9.378985],[-75.693244,9.378167],[-75.69339,9.377838],[-75.693898,9.377251],[-75.694508,9.376479],[-75.694871,9.375906],[-75.695133,9.375477],[-75.695352,9.374961],[-75.695571,9.374402],[-75.695586,9.374144],[-75.69582,9.373585],[-75.696096,9.373084],[-75.696431,9.372397],[-75.696765,9.371939],[-75.696897,9.371609],[-75.697303,9.371152],[-75.697591,9.37144],[-75.697907,9.3718],[-75.698211,9.371887],[-75.698702,9.371918],[-75.699453,9.372007],[-75.700348,9.372139],[-75.700173,9.372612],[-75.699897,9.372941],[-75.699664,9.373385],[-75.699403,9.373714],[-75.69917,9.374],[-75.69901,9.374215],[-75.698851,9.374343],[-75.69885,9.374587],[-75.698921,9.374932],[-75.698934,9.37519],[-75.698847,9.375434],[-75.698657,9.375792],[-75.698309,9.376221],[-75.698018,9.376794],[-75.697422,9.377552],[-75.696899,9.378296],[-75.696681,9.378812],[-75.696535,9.379055],[-75.696533,9.379529],[-75.696416,9.379844],[-75.696227,9.380116],[-75.696183,9.380133],[-75.69601,9.380201],[-75.695866,9.3802],[-75.695489,9.3805],[-75.695083,9.380786],[-75.69488,9.381086],[-75.694532,9.381257],[-75.694459,9.381573],[-75.694382,9.381981],[-75.69437,9.382046],[-75.694253,9.38239],[-75.694108,9.382719]]]}},{"type":"Feature","properties":{"id":"P08","prioridad":"1-Alta","area":25.956,"cuenca":6.801,"ronda":2.12,"dist":3.3,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010144000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697834,9.383164],[-75.697675,9.38312],[-75.697516,9.383005],[-75.697402,9.382818],[-75.697532,9.382589],[-75.697779,9.382461],[-75.698155,9.382333],[-75.698502,9.382162],[-75.698763,9.381876],[-75.699097,9.381605],[-75.699647,9.381363],[-75.700095,9.381236],[-75.700456,9.381323],[-75.700687,9.381353],[-75.700774,9.38121],[-75.700731,9.381123],[-75.700733,9.380765],[-75.700648,9.38042],[-75.700694,9.37976],[-75.700985,9.379073],[-75.701391,9.378658],[-75.701711,9.378214],[-75.701988,9.37757],[-75.702322,9.377212],[-75.703521,9.377217],[-75.702785,9.384274],[-75.702395,9.384387],[-75.701628,9.384499],[-75.70121,9.384426],[-75.700792,9.384123],[-75.700633,9.384122],[-75.699897,9.383875],[-75.699768,9.383731],[-75.699493,9.38363],[-75.699147,9.383557],[-75.697834,9.383164]]]}},{"type":"Feature","properties":{"id":"P09","prioridad":"1-Alta","area":11.775,"cuenca":9.597,"ronda":0.96,"dist":69.8,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010143000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.703521,9.377217],[-75.702322,9.377212],[-75.701758,9.377167],[-75.701529,9.376764],[-75.701401,9.376219],[-75.701431,9.37596],[-75.70149,9.37576],[-75.70162,9.375545],[-75.70168,9.375172],[-75.701652,9.374785],[-75.701495,9.374425],[-75.701351,9.374138],[-75.701309,9.373994],[-75.701454,9.373751],[-75.701585,9.373622],[-75.701658,9.373393],[-75.701659,9.373135],[-75.701602,9.372933],[-75.701458,9.372832],[-75.701386,9.372674],[-75.701474,9.372316],[-75.701936,9.372476],[-75.701946,9.372481],[-75.702253,9.372663],[-75.702743,9.372895],[-75.703364,9.373113],[-75.703681,9.373171],[-75.703941,9.37333],[-75.703521,9.377217]]]}},{"type":"Feature","properties":{"id":"P17","prioridad":"2-Media","area":12.964,"cuenca":0.013,"ronda":0,"dist":464.3,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010049000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.692284,9.368793],[-75.693092,9.369284],[-75.693398,9.368539],[-75.694003,9.368915],[-75.694442,9.367697],[-75.694829,9.368272],[-75.695016,9.368689],[-75.695116,9.369005],[-75.695244,9.369293],[-75.695381,9.369393],[-75.695461,9.369451],[-75.69498,9.370497],[-75.694805,9.370898],[-75.694949,9.370999],[-75.694934,9.371186],[-75.694846,9.371372],[-75.694598,9.371902],[-75.694394,9.372461],[-75.694363,9.372977],[-75.694709,9.373194],[-75.695544,9.373857],[-75.695486,9.374043],[-75.695053,9.373726],[-75.69478,9.373481],[-75.694607,9.373394],[-75.693512,9.372558],[-75.692706,9.371823],[-75.692245,9.371347],[-75.691972,9.371059],[-75.692106,9.370127],[-75.692284,9.368793]]]}},{"type":"Feature","properties":{"id":"P18","prioridad":"2-Media","area":5.33,"cuenca":0.278,"ronda":0,"dist":477.4,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010071000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696739,9.371451],[-75.696505,9.371995],[-75.695865,9.373069],[-75.695544,9.373857],[-75.694709,9.373194],[-75.694363,9.372977],[-75.694394,9.372461],[-75.694598,9.371902],[-75.694846,9.371372],[-75.694934,9.371186],[-75.694949,9.370999],[-75.694805,9.370898],[-75.69498,9.370497],[-75.696739,9.371451]]]}},{"type":"Feature","properties":{"id":"P19","prioridad":"2-Media","area":2.536,"cuenca":0.11,"ronda":0,"dist":608.7,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010048000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697188,9.370936],[-75.696739,9.371451],[-75.69498,9.370497],[-75.695461,9.369451],[-75.695763,9.369596],[-75.696555,9.370259],[-75.697188,9.370936]]]}}]};
+  var CONTEXTO_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"kind":"represa","name":"Represa Villeros"},"geometry":{"type":"Polygon","coordinates":[[[-75.69697,9.38425],[-75.69681,9.38415],[-75.69664,9.38413],[-75.69647,9.3842],[-75.69635,9.38435],[-75.69623,9.38448],[-75.69604,9.38453],[-75.69585,9.3845],[-75.69577,9.38441],[-75.69573,9.38437],[-75.69563,9.38421],[-75.69551,9.38407],[-75.69538,9.38394],[-75.69529,9.38383],[-75.69527,9.3838],[-75.69514,9.38367],[-75.69501,9.38354],[-75.69489,9.3834],[-75.69482,9.38323],[-75.6948,9.38305],[-75.69488,9.38289],[-75.69501,9.38276],[-75.69513,9.38263],[-75.69524,9.38248],[-75.69534,9.38231],[-75.6954,9.38212],[-75.69536,9.38196],[-75.69521,9.38184],[-75.69507,9.38172],[-75.69504,9.38155],[-75.69507,9.38137],[-75.69511,9.38119],[-75.69513,9.38101],[-75.69515,9.38083],[-75.69521,9.38066],[-75.69528,9.38049],[-75.69532,9.38031],[-75.69538,9.38014],[-75.69551,9.38],[-75.69569,9.37995],[-75.69584,9.38004],[-75.69595,9.38021],[-75.69603,9.38038],[-75.69615,9.3805],[-75.69633,9.38056],[-75.69651,9.38052],[-75.69667,9.38043],[-75.69679,9.38031],[-75.69693,9.38017],[-75.69707,9.38003],[-75.69701,9.37991],[-75.69684,9.37979],[-75.69684,9.37964],[-75.69696,9.37947],[-75.69702,9.37929],[-75.69702,9.37911],[-75.69704,9.37892],[-75.69715,9.37879],[-75.69732,9.37871],[-75.69748,9.3786],[-75.69759,9.37845],[-75.69762,9.37828],[-75.69763,9.37809],[-75.69769,9.37792],[-75.69778,9.37777],[-75.69788,9.3776],[-75.69799,9.37742],[-75.69812,9.37735],[-75.69825,9.37746],[-75.69832,9.37766],[-75.69829,9.37784],[-75.69824,9.37801],[-75.69824,9.37819],[-75.69825,9.37837],[-75.69821,9.37855],[-75.6981,9.37877],[-75.69809,9.37888],[-75.69828,9.37884],[-75.69838,9.3789],[-75.69843,9.37893],[-75.69844,9.37913],[-75.69834,9.3793],[-75.69822,9.37943],[-75.69821,9.37962],[-75.69831,9.3798],[-75.69847,9.37982],[-75.69864,9.37972],[-75.6988,9.37963],[-75.69896,9.37956],[-75.69914,9.37951],[-75.69927,9.37939],[-75.69937,9.37923],[-75.69948,9.37908],[-75.69961,9.37896],[-75.69977,9.37886],[-75.69996,9.37884],[-75.70013,9.37891],[-75.70023,9.37908],[-75.70018,9.37923],[-75.70002,9.37933],[-75.69987,9.37945],[-75.69976,9.3796],[-75.69963,9.37972],[-75.69948,9.37983],[-75.69936,9.37996],[-75.69928,9.38013],[-75.69927,9.38031],[-75.69934,9.38048],[-75.6994,9.38057],[-75.69945,9.38063],[-75.69958,9.38077],[-75.69973,9.38084],[-75.69991,9.38083],[-75.70012,9.38078],[-75.70031,9.38077],[-75.70036,9.38087],[-75.70037,9.3809],[-75.7003,9.38109],[-75.70014,9.3812],[-75.69995,9.38121],[-75.69977,9.38117],[-75.69959,9.38114],[-75.69941,9.38116],[-75.69924,9.38123],[-75.6991,9.38135],[-75.69895,9.38146],[-75.69879,9.38154],[-75.69862,9.3816],[-75.69844,9.38166],[-75.69827,9.38173],[-75.69811,9.38181],[-75.69796,9.38192],[-75.69784,9.38204],[-75.69771,9.38217],[-75.69758,9.38231],[-75.69745,9.38245],[-75.69735,9.38259],[-75.69735,9.38277],[-75.6974,9.38296],[-75.69745,9.38313],[-75.69747,9.38331],[-75.69745,9.38349],[-75.69738,9.38367],[-75.69736,9.38384],[-75.69741,9.38402],[-75.69739,9.3842],[-75.69724,9.38434],[-75.69697,9.38425]]]}},{"type":"Feature","properties":{"kind":"represa","name":"Represa Villeros"},"geometry":{"type":"Polygon","coordinates":[[[-75.6998,9.37711],[-75.69966,9.37724],[-75.69951,9.37733],[-75.69932,9.37733],[-75.69924,9.37727],[-75.69917,9.37722],[-75.69913,9.37704],[-75.69921,9.37688],[-75.69932,9.37673],[-75.69942,9.37657],[-75.69952,9.37642],[-75.69963,9.37628],[-75.69977,9.37616],[-75.69991,9.37604],[-75.70002,9.37593],[-75.70003,9.37591],[-75.70016,9.37578],[-75.70032,9.3757],[-75.70052,9.3757],[-75.70069,9.37579],[-75.70079,9.37595],[-75.70073,9.3761],[-75.70055,9.37621],[-75.70036,9.37627],[-75.70021,9.37635],[-75.70013,9.37651],[-75.70008,9.37668],[-75.70004,9.37687],[-75.7,9.37709],[-75.6998,9.37711]]]}},{"type":"Feature","properties":{"kind":"ronda","name":"Ronda hídrica"},"geometry":{"type":"Polygon","coordinates":[[[-75.71683,9.34705],[-75.71543,9.34778],[-75.71467,9.34978],[-75.71464,9.34983],[-75.71327,9.35207],[-75.71325,9.35541],[-75.71325,9.35702],[-75.71324,9.35706],[-75.71323,9.3571],[-75.71291,9.35812],[-75.71289,9.35817],[-75.71288,9.3582],[-75.71213,9.35952],[-75.71199,9.35991],[-75.71185,9.3603],[-75.71183,9.36035],[-75.7118,9.36039],[-75.71177,9.36042],[-75.71145,9.36068],[-75.71143,9.3607],[-75.7114,9.36072],[-75.71102,9.36089],[-75.71075,9.3611],[-75.71058,9.36143],[-75.71057,9.36143],[-75.71037,9.3618],[-75.71035,9.36183],[-75.71009,9.36217],[-75.71007,9.3622],[-75.70977,9.36251],[-75.70953,9.3628],[-75.7094,9.3631],[-75.70936,9.36346],[-75.7094,9.36387],[-75.70944,9.36429],[-75.70944,9.36435],[-75.70939,9.36477],[-75.70938,9.36482],[-75.70937,9.36486],[-75.70918,9.36525],[-75.70915,9.36529],[-75.70912,9.36532],[-75.70883,9.3656],[-75.70862,9.36588],[-75.70853,9.36621],[-75.70853,9.36645],[-75.70853,9.36663],[-75.70853,9.36664],[-75.7085,9.36705],[-75.7085,9.3671],[-75.70849,9.36713],[-75.70847,9.36717],[-75.70845,9.36721],[-75.70842,9.36724],[-75.70811,9.36752],[-75.70811,9.36753],[-75.70782,9.36779],[-75.70766,9.3681],[-75.70753,9.3685],[-75.70752,9.36852],[-75.70735,9.36891],[-75.70734,9.36894],[-75.70712,9.36931],[-75.70711,9.36933],[-75.70686,9.36968],[-75.70684,9.3697],[-75.70655,9.37002],[-75.70652,9.37004],[-75.70632,9.37021],[-75.7062,9.37031],[-75.70591,9.37058],[-75.70568,9.37092],[-75.70565,9.37095],[-75.70562,9.37097],[-75.70559,9.37099],[-75.70555,9.37101],[-75.70519,9.37116],[-75.70514,9.37117],[-75.70509,9.37118],[-75.70504,9.37117],[-75.70459,9.3711],[-75.70458,9.37109],[-75.70418,9.371],[-75.70383,9.37097],[-75.70356,9.37107],[-75.70334,9.37132],[-75.70315,9.37166],[-75.703,9.37202],[-75.70291,9.37241],[-75.7029,9.37244],[-75.70276,9.37284],[-75.70275,9.37288],[-75.70272,9.37291],[-75.70247,9.37326],[-75.70245,9.37328],[-75.70242,9.3733],[-75.7021,9.37358],[-75.7018,9.37384],[-75.70154,9.37415],[-75.70153,9.37416],[-75.70124,9.37447],[-75.7012,9.37451],[-75.70086,9.37476],[-75.70059,9.37499],[-75.70044,9.37528],[-75.70031,9.37586],[-75.70028,9.37599],[-75.70027,9.37603],[-75.70025,9.37606],[-75.70023,9.3761],[-75.7002,9.37613],[-75.70016,9.37616],[-75.70013,9.37618],[-75.70009,9.37619],[-75.70004,9.3762],[-75.7,9.3762],[-75.69996,9.37619],[-75.69992,9.37618],[-75.69988,9.37616],[-75.69984,9.37614],[-75.69981,9.37611],[-75.69979,9.37607],[-75.69977,9.37603],[-75.69975,9.37599],[-75.69974,9.37595],[-75.69974,9.37591],[-75.69975,9.37587],[-75.69978,9.37574],[-75.69992,9.37513],[-75.69993,9.37509],[-75.69994,9.37506],[-75.70013,9.37469],[-75.70016,9.37465],[-75.70019,9.37462],[-75.7005,9.37434],[-75.70052,9.37432],[-75.70085,9.37409],[-75.70112,9.3738],[-75.70139,9.37348],[-75.70142,9.37344],[-75.70174,9.37317],[-75.70174,9.37316],[-75.70205,9.37291],[-75.70226,9.37262],[-75.70238,9.37227],[-75.70248,9.37187],[-75.70249,9.37184],[-75.70265,9.37144],[-75.70266,9.37141],[-75.70288,9.37103],[-75.70291,9.37099],[-75.70319,9.37066],[-75.70323,9.37063],[-75.70327,9.3706],[-75.70331,9.37058],[-75.7037,9.37044],[-75.70374,9.37043],[-75.70378,9.37043],[-75.70381,9.37043],[-75.70425,9.37046],[-75.70429,9.37047],[-75.70469,9.37056],[-75.70506,9.37062],[-75.70528,9.37054],[-75.70548,9.37024],[-75.70552,9.3702],[-75.70583,9.36991],[-75.70584,9.3699],[-75.70597,9.3698],[-75.70616,9.36964],[-75.70642,9.36935],[-75.70666,9.36903],[-75.70685,9.36869],[-75.70701,9.36832],[-75.70715,9.36792],[-75.70716,9.36788],[-75.70735,9.3675],[-75.70738,9.36746],[-75.70741,9.36742],[-75.70774,9.36713],[-75.70797,9.36692],[-75.70798,9.36662],[-75.70798,9.36645],[-75.70798,9.36617],[-75.70799,9.36614],[-75.70799,9.3661],[-75.70811,9.36569],[-75.70813,9.36564],[-75.70815,9.3656],[-75.70841,9.36526],[-75.70843,9.36523],[-75.70871,9.36496],[-75.70885,9.36467],[-75.70889,9.36432],[-75.70885,9.36392],[-75.70885,9.36392],[-75.70882,9.36348],[-75.70882,9.36343],[-75.70886,9.363],[-75.70887,9.36296],[-75.70888,9.36292],[-75.70904,9.36254],[-75.70906,9.36251],[-75.70909,9.36248],[-75.70936,9.36215],[-75.70937,9.36214],[-75.70966,9.36184],[-75.7099,9.36153],[-75.7101,9.36117],[-75.7103,9.36079],[-75.71032,9.36076],[-75.71034,9.36073],[-75.71037,9.36071],[-75.7107,9.36044],[-75.71073,9.36043],[-75.71076,9.36041],[-75.71113,9.36024],[-75.71136,9.36005],[-75.71148,9.35973],[-75.71148,9.35972],[-75.71163,9.35932],[-75.71165,9.35928],[-75.7124,9.35793],[-75.7124,9.35793],[-75.7127,9.35698],[-75.71271,9.3554],[-75.71272,9.352],[-75.71272,9.35195],[-75.71274,9.3519],[-75.71276,9.35186],[-75.71416,9.34957],[-75.71495,9.3475],[-75.71497,9.34746],[-75.71499,9.34743],[-75.71502,9.3474],[-75.71505,9.34737],[-75.71508,9.34735],[-75.71658,9.34657],[-75.71659,9.34657],[-75.71862,9.34561],[-75.71866,9.3456],[-75.7187,9.34559],[-75.71874,9.34559],[-75.71879,9.34559],[-75.71883,9.3456],[-75.71887,9.34562],[-75.7189,9.34564],[-75.71894,9.34567],[-75.71896,9.3457],[-75.71898,9.34574],[-75.719,9.34578],[-75.71901,9.34582],[-75.71901,9.34586],[-75.71901,9.34591],[-75.71899,9.34595],[-75.71898,9.34599],[-75.71895,9.34602],[-75.71892,9.34605],[-75.71889,9.34608],[-75.71885,9.3461],[-75.71683,9.34705]]]}},{"type":"Feature","properties":{"kind":"ronda","name":"Ronda hídrica"},"geometry":{"type":"Polygon","coordinates":[[[-75.71191,9.37639],[-75.71151,9.37665],[-75.71146,9.37668],[-75.71141,9.37669],[-75.71039,9.37691],[-75.71007,9.37713],[-75.71007,9.37713],[-75.70972,9.37736],[-75.70971,9.37737],[-75.70933,9.37759],[-75.70929,9.37761],[-75.70925,9.37763],[-75.70885,9.37772],[-75.70881,9.37772],[-75.70876,9.37772],[-75.70872,9.37771],[-75.70831,9.3776],[-75.70828,9.3776],[-75.7079,9.37746],[-75.70763,9.37747],[-75.70734,9.37767],[-75.70731,9.37769],[-75.70728,9.37771],[-75.70724,9.37772],[-75.70684,9.37781],[-75.7068,9.37782],[-75.70675,9.37782],[-75.70671,9.37781],[-75.70666,9.37779],[-75.70662,9.37777],[-75.70626,9.37751],[-75.70622,9.37748],[-75.70619,9.37745],[-75.70617,9.37741],[-75.70599,9.37703],[-75.70585,9.37687],[-75.70561,9.37687],[-75.70526,9.37702],[-75.70498,9.37727],[-75.70473,9.37759],[-75.70472,9.37759],[-75.70446,9.37791],[-75.70443,9.37795],[-75.70411,9.37821],[-75.70408,9.37824],[-75.70371,9.37847],[-75.70371,9.37847],[-75.70334,9.37869],[-75.703,9.37892],[-75.70285,9.37903],[-75.70266,9.37917],[-75.70266,9.37917],[-75.70232,9.37943],[-75.7023,9.37943],[-75.70195,9.37967],[-75.70193,9.37968],[-75.70156,9.37989],[-75.70155,9.3799],[-75.70116,9.38009],[-75.70115,9.38009],[-75.70039,9.38043],[-75.69951,9.38082],[-75.69947,9.38083],[-75.69943,9.38084],[-75.69939,9.38084],[-75.69935,9.38084],[-75.69931,9.38082],[-75.69927,9.38081],[-75.69923,9.38078],[-75.6992,9.38075],[-75.69917,9.38072],[-75.69915,9.38068],[-75.69914,9.38064],[-75.69913,9.3806],[-75.69913,9.38056],[-75.69914,9.38051],[-75.69915,9.38047],[-75.69917,9.38044],[-75.69919,9.3804],[-75.69922,9.38037],[-75.69925,9.38034],[-75.69929,9.38032],[-75.70017,9.37993],[-75.70093,9.3796],[-75.7013,9.37941],[-75.70166,9.37921],[-75.70199,9.37899],[-75.70233,9.37874],[-75.70252,9.3786],[-75.70267,9.37848],[-75.70268,9.37848],[-75.70304,9.37823],[-75.70305,9.37823],[-75.70343,9.37801],[-75.70377,9.37779],[-75.70405,9.37755],[-75.7043,9.37725],[-75.70456,9.37692],[-75.70459,9.37688],[-75.70493,9.37659],[-75.70496,9.37657],[-75.705,9.37655],[-75.70544,9.37635],[-75.70547,9.37634],[-75.70551,9.37633],[-75.70555,9.37633],[-75.70598,9.37633],[-75.70602,9.37633],[-75.70607,9.37634],[-75.70611,9.37636],[-75.70615,9.37639],[-75.70618,9.37642],[-75.70643,9.3767],[-75.70645,9.37673],[-75.70647,9.37677],[-75.70663,9.37711],[-75.70684,9.37726],[-75.70706,9.3772],[-75.70737,9.37698],[-75.70741,9.37696],[-75.70744,9.37694],[-75.70748,9.37693],[-75.70753,9.37693],[-75.70794,9.37692],[-75.70799,9.37692],[-75.70804,9.37693],[-75.70846,9.37708],[-75.70879,9.37717],[-75.70909,9.37711],[-75.70942,9.37691],[-75.70977,9.37668],[-75.71013,9.37643],[-75.71018,9.37641],[-75.71023,9.37639],[-75.71125,9.37617],[-75.71161,9.37594],[-75.71201,9.37567],[-75.71205,9.37565],[-75.71209,9.37564],[-75.71213,9.37563],[-75.71217,9.37563],[-75.71221,9.37563],[-75.71226,9.37565],[-75.71229,9.37566],[-75.71233,9.37569],[-75.71236,9.37572],[-75.71239,9.37575],[-75.71241,9.37579],[-75.71242,9.37583],[-75.71243,9.37587],[-75.71243,9.37591],[-75.71243,9.37595],[-75.71241,9.37599],[-75.7124,9.37603],[-75.71237,9.37607],[-75.71234,9.3761],[-75.71231,9.37613],[-75.71191,9.37639]]]}},{"type":"Feature","properties":{"kind":"ronda","name":"Ronda hídrica"},"geometry":{"type":"Polygon","coordinates":[[[-75.72833,9.34482],[-75.72835,9.34488],[-75.7284,9.34531],[-75.7284,9.34535],[-75.7284,9.34539],[-75.72833,9.34581],[-75.72832,9.34584],[-75.72831,9.34587],[-75.72813,9.34626],[-75.72811,9.34629],[-75.72789,9.34667],[-75.72767,9.34706],[-75.72745,9.34745],[-75.72743,9.34747],[-75.72719,9.34782],[-75.72714,9.34786],[-75.72683,9.34814],[-75.72679,9.34817],[-75.72643,9.34839],[-75.72611,9.34861],[-75.72587,9.3489],[-75.72573,9.34925],[-75.7257,9.34961],[-75.72578,9.34996],[-75.72592,9.35036],[-75.72593,9.35041],[-75.72594,9.35045],[-75.72595,9.35088],[-75.72594,9.35092],[-75.72594,9.35096],[-75.72576,9.35158],[-75.72563,9.35211],[-75.72555,9.3532],[-75.72555,9.35324],[-75.72554,9.35328],[-75.72518,9.35418],[-75.72516,9.35423],[-75.72513,9.35426],[-75.72457,9.35489],[-75.72454,9.35491],[-75.72451,9.35494],[-75.72447,9.35496],[-75.72324,9.3555],[-75.72195,9.35643],[-75.71944,9.35911],[-75.71941,9.35914],[-75.71937,9.35916],[-75.71934,9.35918],[-75.7193,9.35919],[-75.71811,9.35947],[-75.71807,9.35947],[-75.71803,9.35947],[-75.71799,9.35947],[-75.71652,9.35919],[-75.71649,9.35918],[-75.71646,9.35917],[-75.71483,9.35842],[-75.71279,9.35834],[-75.71263,9.35834],[-75.71258,9.35833],[-75.71254,9.35832],[-75.7125,9.3583],[-75.71247,9.35828],[-75.71244,9.35825],[-75.71241,9.35822],[-75.71239,9.35818],[-75.71237,9.35814],[-75.71237,9.3581],[-75.71236,9.35805],[-75.71237,9.35801],[-75.71238,9.35797],[-75.7124,9.35793],[-75.71242,9.3579],[-75.71245,9.35787],[-75.71248,9.35784],[-75.71252,9.35782],[-75.71256,9.3578],[-75.7126,9.3578],[-75.71265,9.35779],[-75.71281,9.3578],[-75.71491,9.35788],[-75.71495,9.35788],[-75.71498,9.35789],[-75.71501,9.3579],[-75.71666,9.35866],[-75.71804,9.35893],[-75.71909,9.35868],[-75.72157,9.35604],[-75.72161,9.35601],[-75.72294,9.35504],[-75.72299,9.35501],[-75.7242,9.35448],[-75.72469,9.35394],[-75.72501,9.35312],[-75.72508,9.35205],[-75.72509,9.352],[-75.72523,9.35145],[-75.72523,9.35144],[-75.7254,9.35086],[-75.72539,9.3505],[-75.72526,9.35013],[-75.72525,9.3501],[-75.72515,9.34969],[-75.72515,9.34965],[-75.72515,9.3496],[-75.72519,9.34916],[-75.7252,9.34912],[-75.72521,9.34908],[-75.72538,9.34866],[-75.7254,9.34863],[-75.72542,9.34859],[-75.72571,9.34825],[-75.72573,9.34822],[-75.72576,9.34819],[-75.72612,9.34794],[-75.72614,9.34793],[-75.72649,9.34772],[-75.72676,9.34748],[-75.72698,9.34717],[-75.72719,9.3468],[-75.72719,9.34679],[-75.72741,9.3464],[-75.72742,9.3464],[-75.72763,9.34603],[-75.72779,9.34568],[-75.72786,9.34534],[-75.72781,9.34498],[-75.72771,9.34473],[-75.7277,9.34468],[-75.7277,9.34464],[-75.7277,9.3446],[-75.72771,9.34456],[-75.72772,9.34452],[-75.72774,9.34448],[-75.72777,9.34445],[-75.7278,9.34442],[-75.72784,9.3444],[-75.72788,9.34438],[-75.72792,9.34437],[-75.72796,9.34436],[-75.728,9.34436],[-75.72804,9.34437],[-75.72808,9.34439],[-75.72812,9.34441],[-75.72816,9.34443],[-75.72818,9.34446],[-75.72821,9.3445],[-75.72823,9.34454],[-75.72833,9.34482]]]}},{"type":"Feature","properties":{"kind":"cuenca","name":"Límite de cuenca"},"geometry":{"type":"Polygon","coordinates":[[[-75.69977,9.3763],[-75.69977,9.37596],[-75.69898,9.37596],[-75.69898,9.37619],[-75.69886,9.37619],[-75.69886,9.3763],[-75.69875,9.3763],[-75.69875,9.37641],[-75.69852,9.37641],[-75.69852,9.37653],[-75.69841,9.37653],[-75.69841,9.37664],[-75.69773,9.37664],[-75.69773,9.37675],[-75.6975,9.37675],[-75.6975,9.37687],[-75.69739,9.37687],[-75.69739,9.37698],[-75.69704,9.37698],[-75.69704,9.37687],[-75.69682,9.37687],[-75.69682,9.37675],[-75.6967,9.37676],[-75.6967,9.37653],[-75.69659,9.37653],[-75.69659,9.3763],[-75.69647,9.3763],[-75.69647,9.37608],[-75.69636,9.37608],[-75.69636,9.37596],[-75.69625,9.37596],[-75.69624,9.37585],[-75.69613,9.37585],[-75.69613,9.37563],[-75.69602,9.37563],[-75.69602,9.37529],[-75.69567,9.37529],[-75.69567,9.37495],[-75.69556,9.37495],[-75.69556,9.37484],[-75.69545,9.37484],[-75.69544,9.37427],[-75.69556,9.37427],[-75.69556,9.37393],[-75.69544,9.37393],[-75.69544,9.37337],[-75.69567,9.37337],[-75.69567,9.37303],[-75.69578,9.37303],[-75.69578,9.3728],[-75.6959,9.3728],[-75.6959,9.37269],[-75.69601,9.37269],[-75.69601,9.37257],[-75.69612,9.37257],[-75.69612,9.37246],[-75.69624,9.37246],[-75.69624,9.37235],[-75.69635,9.37235],[-75.69635,9.37223],[-75.69647,9.37223],[-75.69647,9.37212],[-75.69658,9.37212],[-75.69658,9.37201],[-75.69669,9.37201],[-75.69669,9.37122],[-75.6968,9.37122],[-75.6968,9.3711],[-75.69692,9.3711],[-75.69692,9.37099],[-75.69703,9.37099],[-75.69703,9.37088],[-75.69726,9.37088],[-75.69726,9.37076],[-75.69806,9.37076],[-75.69806,9.37031],[-75.69817,9.37031],[-75.69817,9.37008],[-75.69828,9.37008],[-75.69828,9.36997],[-75.6984,9.36997],[-75.6984,9.36986],[-75.69851,9.36986],[-75.69851,9.36974],[-75.69862,9.36974],[-75.69862,9.36963],[-75.69874,9.36963],[-75.69874,9.36952],[-75.69885,9.36952],[-75.69885,9.3694],[-75.69896,9.3694],[-75.69896,9.36906],[-75.69908,9.36906],[-75.69908,9.36895],[-75.69919,9.36895],[-75.69919,9.36884],[-75.6993,9.36884],[-75.6993,9.36861],[-75.69942,9.36861],[-75.69942,9.3685],[-75.69965,9.3685],[-75.69965,9.36861],[-75.69976,9.36861],[-75.69976,9.36872],[-75.69987,9.36872],[-75.69987,9.36884],[-75.70022,9.36883],[-75.70021,9.36872],[-75.70033,9.36872],[-75.70033,9.36861],[-75.70044,9.36861],[-75.70044,9.36849],[-75.70067,9.36849],[-75.70067,9.36838],[-75.70078,9.36838],[-75.70078,9.36827],[-75.7009,9.36827],[-75.7009,9.36815],[-75.70101,9.36815],[-75.70101,9.36793],[-75.70135,9.36793],[-75.70135,9.36781],[-75.70158,9.36781],[-75.70158,9.3677],[-75.70181,9.3677],[-75.70181,9.36759],[-75.70203,9.36759],[-75.70203,9.36747],[-75.70215,9.36747],[-75.70215,9.36736],[-75.70272,9.36736],[-75.70272,9.36747],[-75.70306,9.36747],[-75.70306,9.36713],[-75.70317,9.36713],[-75.70317,9.36691],[-75.70328,9.36691],[-75.70328,9.36679],[-75.7034,9.36679],[-75.7034,9.36668],[-75.70351,9.36668],[-75.70351,9.36657],[-75.70363,9.36657],[-75.70363,9.36645],[-75.70374,9.36645],[-75.70374,9.36623],[-75.70385,9.36623],[-75.70385,9.36577],[-75.70397,9.36577],[-75.70397,9.36566],[-75.70408,9.36566],[-75.70408,9.36555],[-75.70419,9.36555],[-75.70419,9.36532],[-75.70431,9.36532],[-75.70431,9.36498],[-75.70442,9.36498],[-75.70442,9.36476],[-75.70453,9.36476],[-75.70453,9.36453],[-75.70465,9.36453],[-75.70465,9.36442],[-75.70476,9.36442],[-75.70476,9.36419],[-75.70487,9.36419],[-75.70487,9.36408],[-75.70499,9.36408],[-75.70499,9.36385],[-75.7051,9.36385],[-75.7051,9.36362],[-75.70521,9.36362],[-75.70521,9.36351],[-75.70533,9.36351],[-75.70533,9.36328],[-75.70544,9.36328],[-75.70544,9.36317],[-75.70555,9.36317],[-75.70555,9.36306],[-75.70567,9.36306],[-75.70567,9.36283],[-75.70578,9.36283],[-75.70578,9.36261],[-75.70589,9.36261],[-75.70589,9.36249],[-75.70601,9.36249],[-75.70601,9.36227],[-75.70612,9.36227],[-75.70612,9.36215],[-75.70623,9.36215],[-75.70623,9.36204],[-75.70635,9.36204],[-75.70635,9.36193],[-75.70646,9.36193],[-75.70646,9.3617],[-75.70658,9.3617],[-75.70657,9.36147],[-75.70646,9.36147],[-75.70646,9.36136],[-75.70657,9.36136],[-75.70657,9.36068],[-75.70669,9.36068],[-75.70669,9.36057],[-75.7068,9.36057],[-75.7068,9.36034],[-75.70691,9.36034],[-75.70691,9.36023],[-75.70703,9.36023],[-75.70703,9.36012],[-75.70714,9.36012],[-75.70714,9.35989],[-75.70725,9.35989],[-75.70725,9.35944],[-75.70737,9.35944],[-75.70737,9.35921],[-75.70748,9.35921],[-75.70748,9.35898],[-75.70759,9.35898],[-75.70759,9.35864],[-75.70771,9.35864],[-75.70771,9.35842],[-75.70782,9.35842],[-75.70782,9.35831],[-75.70793,9.35831],[-75.70793,9.35785],[-75.70805,9.35785],[-75.70805,9.35774],[-75.70816,9.35774],[-75.70816,9.35763],[-75.70782,9.35763],[-75.70782,9.35751],[-75.70771,9.35751],[-75.70771,9.3574],[-75.70748,9.3574],[-75.70748,9.35729],[-75.70736,9.35729],[-75.70736,9.35718],[-75.70714,9.35718],[-75.70714,9.35706],[-75.70691,9.35706],[-75.70691,9.35684],[-75.70679,9.35684],[-75.70679,9.35672],[-75.70668,9.35672],[-75.70668,9.3565],[-75.70656,9.3565],[-75.70656,9.35639],[-75.70645,9.35639],[-75.70645,9.35627],[-75.70634,9.35627],[-75.70634,9.35616],[-75.70622,9.35616],[-75.70622,9.35605],[-75.70611,9.35605],[-75.70611,9.35593],[-75.70588,9.35594],[-75.70588,9.35582],[-75.70577,9.35582],[-75.70577,9.35571],[-75.70565,9.35571],[-75.70565,9.3556],[-75.70542,9.3556],[-75.70542,9.35548],[-75.70531,9.35548],[-75.70531,9.35537],[-75.7052,9.35537],[-75.7052,9.35526],[-75.70497,9.35526],[-75.70497,9.35515],[-75.70463,9.35515],[-75.70463,9.35503],[-75.70451,9.35503],[-75.70451,9.35492],[-75.70429,9.35492],[-75.70428,9.35481],[-75.70417,9.35481],[-75.70417,9.35447],[-75.70428,9.35447],[-75.70428,9.35424],[-75.7044,9.35424],[-75.7044,9.35413],[-75.70451,9.35413],[-75.70451,9.35402],[-75.70462,9.35402],[-75.70462,9.3539],[-75.70474,9.3539],[-75.70474,9.35379],[-75.70485,9.35379],[-75.70485,9.35368],[-75.70497,9.35368],[-75.70497,9.35356],[-75.70508,9.35356],[-75.70508,9.35277],[-75.70496,9.35277],[-75.70496,9.35232],[-75.70508,9.35232],[-75.70508,9.35221],[-75.70519,9.35221],[-75.70519,9.35209],[-75.70565,9.35209],[-75.70565,9.35198],[-75.70576,9.35198],[-75.70576,9.35187],[-75.70599,9.35186],[-75.70599,9.35175],[-75.7061,9.35175],[-75.7061,9.35164],[-75.70621,9.35164],[-75.70621,9.35153],[-75.70667,9.35152],[-75.70667,9.35141],[-75.70701,9.35141],[-75.70701,9.35062],[-75.70712,9.35062],[-75.70712,9.35051],[-75.70724,9.35051],[-75.70724,9.35028],[-75.70735,9.35028],[-75.70735,9.34994],[-75.70746,9.34994],[-75.70746,9.34971],[-75.70758,9.34971],[-75.70758,9.34949],[-75.70769,9.34949],[-75.70769,9.34937],[-75.7078,9.34937],[-75.7078,9.34892],[-75.70792,9.34892],[-75.70792,9.34881],[-75.70803,9.34881],[-75.70803,9.3487],[-75.70814,9.3487],[-75.70814,9.34847],[-75.70826,9.34847],[-75.70826,9.34813],[-75.70837,9.34813],[-75.70837,9.34802],[-75.70848,9.34802],[-75.70848,9.34756],[-75.7086,9.34756],[-75.7086,9.34745],[-75.70871,9.34745],[-75.70871,9.34734],[-75.70905,9.34734],[-75.70905,9.34722],[-75.70916,9.34722],[-75.70916,9.34711],[-75.70939,9.34711],[-75.70939,9.347],[-75.70951,9.347],[-75.70951,9.34688],[-75.70962,9.34688],[-75.70962,9.34677],[-75.70973,9.34677],[-75.70973,9.34666],[-75.70985,9.34666],[-75.70985,9.34654],[-75.70996,9.34654],[-75.70996,9.34643],[-75.71007,9.34643],[-75.71007,9.34632],[-75.71019,9.34632],[-75.71019,9.3462],[-75.7103,9.3462],[-75.7103,9.34609],[-75.71041,9.34609],[-75.71041,9.34598],[-75.71053,9.34598],[-75.71053,9.34541],[-75.71064,9.34541],[-75.71064,9.3453],[-75.71087,9.3453],[-75.71087,9.34541],[-75.71098,9.34541],[-75.71098,9.34552],[-75.71167,9.34552],[-75.71167,9.34564],[-75.71178,9.34564],[-75.71178,9.34575],[-75.71223,9.34575],[-75.71223,9.34541],[-75.71235,9.34541],[-75.71235,9.3453],[-75.71246,9.34529],[-75.71246,9.34518],[-75.71269,9.34518],[-75.71269,9.34507],[-75.71326,9.34507],[-75.71326,9.34484],[-75.71337,9.34484],[-75.71337,9.34473],[-75.71348,9.34473],[-75.71348,9.3445],[-75.7136,9.3445],[-75.7136,9.34428],[-75.71371,9.34427],[-75.71371,9.34405],[-75.71382,9.34405],[-75.71382,9.34394],[-75.71394,9.34394],[-75.71394,9.34371],[-75.71405,9.34371],[-75.71405,9.34303],[-75.71416,9.34303],[-75.71416,9.34292],[-75.71439,9.34292],[-75.71439,9.3428],[-75.71451,9.3428],[-75.7145,9.34258],[-75.71462,9.34258],[-75.71462,9.34246],[-75.71473,9.34246],[-75.71473,9.34212],[-75.71485,9.34212],[-75.71484,9.3419],[-75.71496,9.3419],[-75.71496,9.34167],[-75.71507,9.34167],[-75.71507,9.34156],[-75.71519,9.34156],[-75.71519,9.34145],[-75.7153,9.34145],[-75.7153,9.34133],[-75.71632,9.34133],[-75.71632,9.34122],[-75.71655,9.34122],[-75.71655,9.3411],[-75.71666,9.3411],[-75.71666,9.34099],[-75.7194,9.34098],[-75.7194,9.34065],[-75.71951,9.34065],[-75.71951,9.34031],[-75.71962,9.34031],[-75.71962,9.34019],[-75.71985,9.34019],[-75.71985,9.34008],[-75.71996,9.34008],[-75.71996,9.33985],[-75.72008,9.33985],[-75.72008,9.33974],[-75.72019,9.33974],[-75.72019,9.33963],[-75.7203,9.33963],[-75.7203,9.3394],[-75.72042,9.3394],[-75.72042,9.33929],[-75.72053,9.33929],[-75.72053,9.33906],[-75.72064,9.33906],[-75.72064,9.33895],[-75.72076,9.33895],[-75.72076,9.33883],[-75.72087,9.33883],[-75.72087,9.33861],[-75.72098,9.33861],[-75.72098,9.33849],[-75.7211,9.33849],[-75.7211,9.33838],[-75.72121,9.33838],[-75.72121,9.33827],[-75.72133,9.33827],[-75.72132,9.33804],[-75.72144,9.33804],[-75.72144,9.33793],[-75.72155,9.33793],[-75.72155,9.3377],[-75.72167,9.3377],[-75.72167,9.33748],[-75.72178,9.33748],[-75.72178,9.33736],[-75.72189,9.33736],[-75.72189,9.33725],[-75.7228,9.33725],[-75.7228,9.33736],[-75.72292,9.33736],[-75.72292,9.33747],[-75.72303,9.33747],[-75.72303,9.33759],[-75.72315,9.33759],[-75.72315,9.33781],[-75.72383,9.33781],[-75.72383,9.33792],[-75.72508,9.33792],[-75.72508,9.33826],[-75.72679,9.33826],[-75.72679,9.33814],[-75.7269,9.33814],[-75.7269,9.33803],[-75.72724,9.33803],[-75.72724,9.33792],[-75.72815,9.33791],[-75.72815,9.33758],[-75.72827,9.33758],[-75.72827,9.3369],[-75.72838,9.3369],[-75.72838,9.33656],[-75.72849,9.33656],[-75.72849,9.33633],[-75.72861,9.33633],[-75.72861,9.33588],[-75.72872,9.33588],[-75.72872,9.33565],[-75.7286,9.33565],[-75.7286,9.33554],[-75.72872,9.33554],[-75.72872,9.33509],[-75.72883,9.33509],[-75.72883,9.33475],[-75.72894,9.33475],[-75.72894,9.33418],[-75.72906,9.33418],[-75.72906,9.33407],[-75.72928,9.33407],[-75.72928,9.33396],[-75.72951,9.33396],[-75.72951,9.33373],[-75.72963,9.33373],[-75.72962,9.33339],[-75.72974,9.33339],[-75.72974,9.33328],[-75.72997,9.33328],[-75.72997,9.33316],[-75.73008,9.33316],[-75.73008,9.33305],[-75.73053,9.33305],[-75.73053,9.33316],[-75.73076,9.33316],[-75.73076,9.33327],[-75.73099,9.33327],[-75.73099,9.33339],[-75.7311,9.33339],[-75.7311,9.3335],[-75.73122,9.3335],[-75.73122,9.33361],[-75.73133,9.33361],[-75.73133,9.33373],[-75.73145,9.33372],[-75.73145,9.33384],[-75.73156,9.33384],[-75.73156,9.33406],[-75.73167,9.33406],[-75.73168,9.33486],[-75.7319,9.33485],[-75.7319,9.33497],[-75.73202,9.33497],[-75.73202,9.33508],[-75.73213,9.33508],[-75.73213,9.33519],[-75.7335,9.33519],[-75.7335,9.33598],[-75.73339,9.33598],[-75.73339,9.33621],[-75.73327,9.33621],[-75.73327,9.33643],[-75.73316,9.33643],[-75.73316,9.33666],[-75.73305,9.33666],[-75.73305,9.33689],[-75.73293,9.33689],[-75.73293,9.33711],[-75.73282,9.33711],[-75.73282,9.33723],[-75.73293,9.33723],[-75.73293,9.33734],[-75.73305,9.33734],[-75.73305,9.33745],[-75.73316,9.33745],[-75.73316,9.33757],[-75.73328,9.33757],[-75.73328,9.33768],[-75.73339,9.33768],[-75.73339,9.33949],[-75.73328,9.33949],[-75.73328,9.33983],[-75.73317,9.33983],[-75.73317,9.34005],[-75.73305,9.34005],[-75.73306,9.3422],[-75.73294,9.3422],[-75.73294,9.34243],[-75.73306,9.34243],[-75.73306,9.34265],[-75.73317,9.34265],[-75.73317,9.34277],[-75.73329,9.34277],[-75.73329,9.34288],[-75.7334,9.34288],[-75.7334,9.34299],[-75.73363,9.34299],[-75.73363,9.3431],[-75.73374,9.3431],[-75.73374,9.34322],[-75.73386,9.34322],[-75.73386,9.34333],[-75.73397,9.34333],[-75.73397,9.34344],[-75.73408,9.34344],[-75.73409,9.34367],[-75.7342,9.34367],[-75.7342,9.34378],[-75.73431,9.34378],[-75.73431,9.34389],[-75.73443,9.34389],[-75.73443,9.34401],[-75.73454,9.34401],[-75.73454,9.34412],[-75.73466,9.34412],[-75.73466,9.34423],[-75.73477,9.34423],[-75.73477,9.34435],[-75.735,9.34434],[-75.735,9.34457],[-75.73511,9.34457],[-75.73511,9.34468],[-75.73523,9.34468],[-75.73523,9.34514],[-75.73534,9.34514],[-75.73534,9.34525],[-75.73545,9.34525],[-75.73545,9.34536],[-75.73557,9.34536],[-75.73557,9.34559],[-75.73568,9.34559],[-75.73568,9.3457],[-75.7358,9.3457],[-75.7358,9.34638],[-75.73591,9.34638],[-75.73591,9.34672],[-75.73603,9.34672],[-75.73603,9.34864],[-75.73592,9.34864],[-75.73592,9.34875],[-75.7358,9.34875],[-75.7358,9.34898],[-75.73569,9.34898],[-75.73569,9.34932],[-75.73558,9.34932],[-75.73558,9.34943],[-75.73546,9.34943],[-75.73546,9.34954],[-75.73535,9.34954],[-75.73535,9.35],[-75.73524,9.35],[-75.73524,9.35034],[-75.73512,9.35034],[-75.73512,9.35056],[-75.73501,9.35056],[-75.73501,9.35237],[-75.7349,9.35237],[-75.7349,9.35271],[-75.73479,9.35271],[-75.73479,9.35395],[-75.73456,9.35395],[-75.73456,9.35407],[-75.73445,9.35407],[-75.73445,9.35418],[-75.73433,9.35418],[-75.73434,9.35588],[-75.73445,9.35588],[-75.73445,9.3561],[-75.73457,9.3561],[-75.73457,9.35622],[-75.73468,9.35622],[-75.73468,9.35655],[-75.73616,9.35655],[-75.73616,9.35666],[-75.73628,9.35666],[-75.73628,9.35678],[-75.73639,9.35678],[-75.73639,9.35689],[-75.7365,9.35689],[-75.7365,9.357],[-75.73673,9.357],[-75.73673,9.35712],[-75.73696,9.35712],[-75.73696,9.35723],[-75.73719,9.35723],[-75.73719,9.35734],[-75.73753,9.35734],[-75.73753,9.35757],[-75.73764,9.35757],[-75.73764,9.35791],[-75.73776,9.35791],[-75.73776,9.35802],[-75.73787,9.35802],[-75.73787,9.35904],[-75.73776,9.35904],[-75.73776,9.35915],[-75.73765,9.35915],[-75.73765,9.35926],[-75.73753,9.35926],[-75.73753,9.35949],[-75.73708,9.35949],[-75.73708,9.3596],[-75.73696,9.3596],[-75.73696,9.35972],[-75.73685,9.35972],[-75.73685,9.35983],[-75.73674,9.35983],[-75.73674,9.36006],[-75.73651,9.36006],[-75.73651,9.36017],[-75.7364,9.36017],[-75.7364,9.36028],[-75.73628,9.36028],[-75.73628,9.3604],[-75.73606,9.3604],[-75.73606,9.36051],[-75.73594,9.36051],[-75.73594,9.36062],[-75.73571,9.36062],[-75.73571,9.36074],[-75.7356,9.36074],[-75.7356,9.36096],[-75.73549,9.36096],[-75.73549,9.36108],[-75.73537,9.36108],[-75.73537,9.3613],[-75.73526,9.3613],[-75.73526,9.36153],[-75.73515,9.36153],[-75.73515,9.36164],[-75.73492,9.36164],[-75.73492,9.36175],[-75.73469,9.36176],[-75.73469,9.36187],[-75.73458,9.36187],[-75.73458,9.36198],[-75.73435,9.36198],[-75.73435,9.3621],[-75.73424,9.3621],[-75.73424,9.36221],[-75.73412,9.36221],[-75.73412,9.36243],[-75.73401,9.36244],[-75.73401,9.36255],[-75.7339,9.36255],[-75.7339,9.36277],[-75.73378,9.36277],[-75.73378,9.363],[-75.73356,9.363],[-75.73356,9.36311],[-75.73344,9.36311],[-75.73344,9.36323],[-75.73333,9.36323],[-75.73333,9.36334],[-75.7331,9.36334],[-75.7331,9.36357],[-75.73299,9.36357],[-75.73299,9.36425],[-75.73288,9.36425],[-75.73288,9.36447],[-75.73276,9.36447],[-75.73276,9.36481],[-75.73265,9.36481],[-75.73265,9.36493],[-75.73254,9.36493],[-75.73254,9.36504],[-75.73242,9.36504],[-75.73242,9.36515],[-75.73219,9.36515],[-75.7322,9.36527],[-75.73197,9.36527],[-75.73197,9.36538],[-75.73163,9.36538],[-75.73163,9.36549],[-75.73151,9.36549],[-75.73151,9.36561],[-75.7314,9.36561],[-75.7314,9.36572],[-75.73129,9.36572],[-75.73129,9.36583],[-75.73117,9.36583],[-75.73117,9.36595],[-75.73106,9.36595],[-75.73106,9.36606],[-75.73094,9.36606],[-75.73095,9.36629],[-75.73083,9.36629],[-75.73083,9.3664],[-75.7306,9.3664],[-75.7306,9.36651],[-75.73049,9.36651],[-75.73049,9.36663],[-75.73038,9.36663],[-75.73038,9.36674],[-75.73015,9.36674],[-75.73015,9.36663],[-75.73004,9.36663],[-75.73003,9.36651],[-75.72969,9.36651],[-75.72969,9.3664],[-75.72947,9.3664],[-75.72947,9.36651],[-75.72912,9.36652],[-75.72912,9.36663],[-75.72901,9.36663],[-75.72901,9.36674],[-75.72833,9.36674],[-75.72833,9.36686],[-75.72821,9.36686],[-75.72821,9.36697],[-75.72799,9.36697],[-75.72799,9.36708],[-75.72787,9.36708],[-75.72787,9.3672],[-75.72708,9.3672],[-75.72708,9.36708],[-75.72639,9.36709],[-75.72639,9.3672],[-75.72617,9.3672],[-75.72617,9.36731],[-75.72605,9.36731],[-75.72605,9.36743],[-75.72582,9.36743],[-75.72583,9.36765],[-75.72457,9.36765],[-75.72457,9.36777],[-75.72446,9.36777],[-75.72446,9.36799],[-75.72435,9.36799],[-75.72435,9.36811],[-75.72446,9.36811],[-75.72446,9.36879],[-75.72435,9.36879],[-75.72435,9.36901],[-75.72423,9.36901],[-75.72423,9.36913],[-75.72412,9.36913],[-75.72412,9.36924],[-75.72401,9.36924],[-75.72401,9.36946],[-75.72389,9.36947],[-75.72389,9.36958],[-75.72378,9.36958],[-75.72378,9.36969],[-75.72355,9.36969],[-75.72355,9.3698],[-75.72344,9.36981],[-75.72344,9.36992],[-75.72333,9.36992],[-75.72333,9.37003],[-75.72321,9.37003],[-75.72321,9.37014],[-75.72287,9.37015],[-75.72287,9.37003],[-75.72276,9.37003],[-75.72276,9.36992],[-75.72264,9.36992],[-75.72264,9.36969],[-75.72253,9.36969],[-75.72253,9.36947],[-75.72241,9.36947],[-75.72241,9.36913],[-75.72219,9.36913],[-75.72219,9.36902],[-75.72196,9.36902],[-75.72196,9.3689],[-75.72173,9.3689],[-75.72173,9.36879],[-75.7215,9.36879],[-75.7215,9.36868],[-75.72139,9.36868],[-75.72139,9.36857],[-75.72105,9.36857],[-75.72105,9.36845],[-75.72093,9.36845],[-75.72093,9.36834],[-75.72082,9.36834],[-75.72082,9.36823],[-75.7207,9.36823],[-75.7207,9.36789],[-75.72082,9.36789],[-75.72082,9.36744],[-75.72093,9.36744],[-75.72093,9.36732],[-75.72082,9.36732],[-75.72082,9.36687],[-75.71797,9.36688],[-75.71797,9.36699],[-75.71729,9.36699],[-75.71729,9.3671],[-75.71717,9.3671],[-75.71718,9.36812],[-75.71706,9.36812],[-75.71706,9.36846],[-75.71695,9.36846],[-75.71695,9.36891],[-75.71684,9.36891],[-75.71684,9.36903],[-75.71672,9.36903],[-75.71672,9.36914],[-75.71661,9.36914],[-75.71661,9.36925],[-75.71649,9.36925],[-75.71649,9.36937],[-75.71627,9.36937],[-75.71627,9.36959],[-75.71615,9.36959],[-75.71615,9.36971],[-75.71604,9.36971],[-75.71604,9.36993],[-75.71593,9.36993],[-75.71593,9.37016],[-75.71581,9.37016],[-75.71581,9.37039],[-75.7157,9.37039],[-75.7157,9.37061],[-75.71559,9.37061],[-75.71559,9.37095],[-75.71547,9.37095],[-75.71547,9.37106],[-75.71536,9.37107],[-75.71536,9.37163],[-75.71525,9.37163],[-75.71525,9.37174],[-75.71513,9.37174],[-75.71513,9.3722],[-75.71502,9.3722],[-75.71502,9.37355],[-75.71491,9.37355],[-75.71491,9.37367],[-75.71502,9.37367],[-75.71502,9.37389],[-75.71502,9.37412],[-75.71491,9.37412],[-75.71491,9.37434],[-75.7148,9.37434],[-75.7148,9.37536],[-75.71469,9.37536],[-75.71469,9.37548],[-75.71457,9.37548],[-75.71457,9.3757],[-75.71446,9.3757],[-75.71446,9.37582],[-75.71434,9.37582],[-75.71435,9.37649],[-75.71446,9.37649],[-75.71446,9.37661],[-75.71457,9.37661],[-75.71458,9.3774],[-75.71469,9.3774],[-75.71469,9.37751],[-75.7148,9.37751],[-75.7148,9.37774],[-75.71492,9.37774],[-75.71492,9.37796],[-75.71515,9.37796],[-75.71515,9.37807],[-75.71549,9.37807],[-75.71549,9.37819],[-75.71526,9.37819],[-75.71526,9.3783],[-75.71515,9.3783],[-75.71515,9.37841],[-75.71503,9.37841],[-75.71503,9.37853],[-75.71492,9.37853],[-75.71492,9.37864],[-75.71481,9.37864],[-75.71481,9.37875],[-75.71469,9.37875],[-75.71469,9.37887],[-75.71446,9.37887],[-75.71447,9.37898],[-75.71435,9.37898],[-75.71435,9.37909],[-75.71424,9.37909],[-75.71424,9.37921],[-75.71401,9.37921],[-75.71401,9.37909],[-75.71321,9.3791],[-75.71321,9.37898],[-75.71299,9.37898],[-75.71299,9.37887],[-75.7123,9.37887],[-75.7123,9.3791],[-75.71219,9.3791],[-75.71219,9.37921],[-75.71208,9.37921],[-75.71207,9.3791],[-75.71196,9.3791],[-75.71196,9.37899],[-75.71162,9.37899],[-75.71162,9.37887],[-75.71116,9.37887],[-75.71116,9.37899],[-75.71105,9.37899],[-75.71105,9.37921],[-75.71094,9.37921],[-75.71094,9.37933],[-75.71082,9.37933],[-75.71082,9.37944],[-75.71071,9.37944],[-75.71071,9.37955],[-75.71048,9.37955],[-75.71048,9.37967],[-75.70991,9.37967],[-75.70991,9.37956],[-75.70877,9.37956],[-75.70878,9.38103],[-75.70866,9.38103],[-75.70866,9.38125],[-75.70855,9.38125],[-75.70855,9.38137],[-75.70844,9.38137],[-75.70844,9.38159],[-75.70832,9.38159],[-75.70832,9.38171],[-75.70821,9.38171],[-75.70821,9.38193],[-75.70764,9.38193],[-75.70764,9.38182],[-75.70741,9.38182],[-75.70741,9.3816],[-75.70593,9.3816],[-75.70593,9.38148],[-75.70582,9.38149],[-75.70582,9.38137],[-75.70491,9.38137],[-75.70491,9.38115],[-75.70468,9.38115],[-75.70468,9.38104],[-75.70297,9.38104],[-75.70297,9.38115],[-75.70206,9.38115],[-75.70206,9.38104],[-75.70195,9.38104],[-75.70195,9.38093],[-75.70001,9.38093],[-75.70001,9.38071],[-75.70013,9.38071],[-75.70012,9.38059],[-75.70024,9.38059],[-75.70024,9.38037],[-75.70058,9.38037],[-75.70058,9.38025],[-75.70069,9.38025],[-75.70069,9.38014],[-75.70081,9.38014],[-75.70081,9.38003],[-75.70103,9.38003],[-75.70103,9.37991],[-75.70115,9.37991],[-75.70115,9.3798],[-75.70138,9.3798],[-75.70138,9.37969],[-75.70149,9.37968],[-75.70149,9.37957],[-75.70172,9.37957],[-75.70172,9.37946],[-75.70183,9.37946],[-75.70183,9.37923],[-75.70194,9.37923],[-75.70194,9.37912],[-75.70206,9.37912],[-75.70206,9.37901],[-75.70217,9.37901],[-75.70217,9.37889],[-75.7024,9.37889],[-75.7024,9.37867],[-75.70251,9.37867],[-75.70251,9.37787],[-75.70274,9.37787],[-75.70274,9.37776],[-75.70285,9.37776],[-75.70285,9.37765],[-75.70296,9.37765],[-75.70296,9.37742],[-75.70308,9.37742],[-75.70308,9.37731],[-75.70319,9.37731],[-75.70319,9.37719],[-75.70331,9.37719],[-75.70331,9.37708],[-75.70342,9.37708],[-75.70342,9.37697],[-75.70353,9.37697],[-75.70353,9.37685],[-75.70365,9.37685],[-75.70365,9.37674],[-75.70376,9.37674],[-75.70376,9.3764],[-75.70376,9.37629],[-75.69977,9.3763]]]}}]};
 
   /* ================= LOGIN (API real — ver /backend) ================= */
   // Mismo origen: backend/server.js ahora sirve este index.html Y la API
@@ -1886,14 +2072,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var app = document.getElementById("app");
     app.hidden = false;
     document.getElementById("role-chip").textContent = currentUser.role;
-    if(!currentUser.full){
-      document.getElementById("nav-documentos").remove();
-    }
     document.getElementById("logout-btn").addEventListener("click", function(){
       sessionStorage.removeItem(AUTH_TOKEN_KEY);
       location.reload();
     });
     renderAll();
+    initLanding();
   }
 
   // Si ya hay una sesión válida en este navegador (recarga de página), la reutiliza sin pedir login de nuevo.
@@ -1913,28 +2097,83 @@ svg.leaflet-image-layer.leaflet-interactive path {
     });
   })();
 
-  /* ================= NAV ================= */
-  document.getElementById("sidebar").addEventListener("click", function(e){
-    var btn = e.target.closest(".nav-btn");
-    if(!btn) return;
-    document.querySelectorAll(".nav-btn").forEach(function(b){ b.classList.remove("active"); });
-    btn.classList.add("active");
-    var v = btn.getAttribute("data-view");
-    document.querySelectorAll(".view").forEach(function(s){ s.classList.remove("active"); });
-    document.getElementById("view-"+v).classList.add("active");
-    if(v === "atlas"){
+  /* ================= NAVEGACIÓN DE LA LANDING ================= */
+  // En pantallas táctiles la rueda del mouse no aplica; en escritorio el zoom con rueda solo
+  // se activa tras un clic sobre el mapa, para no atrapar el scroll de la página.
+  function wheelOnClick(map){
+    if(!map.scrollWheelZoom) return;
+    map.scrollWheelZoom.disable();
+    map.on("click focus", function(){ map.scrollWheelZoom.enable(); });
+    map.on("mouseout", function(){ map.scrollWheelZoom.disable(); });
+  }
+
+  function lazyInit(el, fn){
+    if(!el) return;
+    if(!("IntersectionObserver" in window)){ fn(); return; }
+    var io = new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){ io.disconnect(); fn(); }
+    }, { rootMargin:"300px" });
+    io.observe(el);
+  }
+
+  function selectTab(group, panelId){
+    var tabs = document.querySelectorAll('[data-tabs="'+group+'"] .tab');
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", t.getAttribute("aria-controls") === panelId ? "true" : "false"); });
+    document.querySelectorAll('[id^="'+group+'-"].tabpanel').forEach(function(p){ p.hidden = (p.id !== panelId); });
+    if(panelId === "atlas-visor"){
       initLeafletMap();
       setTimeout(function(){ if(leafletMapInstance) leafletMapInstance.invalidateSize(); }, 60);
     }
-    if(v === "economia"){
-      initPrediosMap();
-      setTimeout(function(){ if(prediosMapInstance) prediosMapInstance.invalidateSize(); }, 60);
+  }
+
+  function openAtlasLayer(key){
+    selectTab("atlas", "atlas-visor");
+    var cb = document.getElementById("toggle-" + key);
+    if(cb && !cb.checked){ cb.checked = true; cb.dispatchEvent(new Event("change")); }
+    var wrap = document.getElementById("atlas-visor");
+    if(wrap) wrap.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function initLanding(){
+    var nav = document.getElementById("site-nav");
+    var toggle = document.getElementById("nav-toggle");
+    toggle.addEventListener("click", function(){
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    nav.addEventListener("click", function(e){
+      if(e.target.closest("a")){ nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+    });
+
+    // resalta la sección visible en el menú
+    var links = {};
+    nav.querySelectorAll("a[data-sec]").forEach(function(a){ links[a.getAttribute("data-sec")] = a; });
+    if("IntersectionObserver" in window){
+      var spy = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(!en.isIntersecting) return;
+          Object.keys(links).forEach(function(k){ links[k].classList.toggle("active", k === en.target.id); });
+        });
+      }, { rootMargin:"-45% 0px -50% 0px" });
+      Object.keys(links).concat(["inicio"]).forEach(function(k){ var s = document.getElementById(k); if(s) spy.observe(s); });
     }
-    if(v === "recorrido"){
-      initDroneMap();
-      setTimeout(function(){ if(droneMapInstance) droneMapInstance.invalidateSize(); }, 60);
-    }
-  });
+
+    // pestañas
+    document.querySelectorAll("[data-tabs]").forEach(function(group){
+      var g = group.getAttribute("data-tabs");
+      group.addEventListener("click", function(e){
+        var t = e.target.closest(".tab");
+        if(t) selectTab(g, t.getAttribute("aria-controls"));
+      });
+    });
+    document.querySelectorAll("[data-open-layer]").forEach(function(b){
+      b.addEventListener("click", function(){ openAtlasLayer(b.getAttribute("data-open-layer")); });
+    });
+
+    // mapas: se crean cuando se acercan a la pantalla
+    lazyInit(document.getElementById("predios-map"), initPrediosMap);
+    lazyInit(document.getElementById("drone-map"), initDroneMap);
+  }
 
   /* ================= COUNT-UP STATS ================= */
   function formatCO(n, dec){
@@ -2042,42 +2281,96 @@ svg.leaflet-image-layer.leaflet-interactive path {
     }).join("");
   }
 
-  /* ================= RENDER: GESTIÓN ECONÓMICA ================= */
+  /* ================= RENDER: ANÁLISIS ECONÓMICO ================= */
+  function fmtCOP(n){ return "$" + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function fmtHa(n, dec){ return n.toLocaleString("es-CO", { minimumFractionDigits:dec, maximumFractionDigits:dec }); }
+  var PRED_COLORS = { "1-Alta":"#E4572E", "2-Media":"#F2A31F", "3-Baja":"#7CB342" };
+
   function renderEconomia(){
     var stats = document.getElementById("econ-stats-grid");
     if(!stats) return;
     stats.innerHTML = ECON_STATS.map(function(s){
-      return '<div class="stat"><div class="num" style="font-size:1.15rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
+      return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
     }).join("");
 
     var usoMax = Math.max.apply(null, ECON_USO_SUELO.map(function(d){ return d.ha; }));
-    var usoEl = document.getElementById("econ-uso-chart");
-    usoEl.innerHTML = '<div class="bars-h">' + ECON_USO_SUELO.map(function(d){
+    document.getElementById("econ-uso-chart").innerHTML = '<div class="bars-h">' + ECON_USO_SUELO.map(function(d){
       var w = Math.max(6, Math.round((d.ha/usoMax)*100));
       return '<div class="bar-h-row"><span>'+d.n+'</span>'+
         '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+w+'%;"></div></div>'+
-        '<span class="mono">'+d.ha.toLocaleString("es-CO",{minimumFractionDigits:1})+' ha</span></div>';
+        '<span class="mono">'+fmtHa(d.ha,1)+' ha</span></div>';
     }).join("") + '</div>';
 
-    var frontEl = document.getElementById("econ-frontera-chart");
-    frontEl.innerHTML = '<div class="bars-v">' + ECON_FRONTERA.map(function(d){
-      return '<div class="bar-v-col"><div class="bar-v-fill" style="height:'+d.v+'%;"></div>'+
-        '<div class="bar-v-label">'+d.y+'<br>'+d.v+'%</div></div>';
+    var conTope = Object.keys(PREDIOS_ECON).filter(function(k){ return PREDIOS_ECON[k].tope; })
+      .sort(function(a,b){ return PREDIOS_ECON[b].tope - PREDIOS_ECON[a].tope; });
+    document.getElementById("econ-tope-chart").innerHTML = '<div class="bars-h">' + conTope.map(function(k){
+      var pct = PREDIOS_ECON[k].tope;
+      return '<div class="bar-h-row"><span>'+k+'</span>'+
+        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+Math.max(6,pct)+'%;"></div></div>'+
+        '<span class="mono">'+pct+'%</span></div>';
     }).join("") + '</div>';
 
-    var topeMax = 100;
-    var topeEl = document.getElementById("econ-tope-chart");
-    topeEl.innerHTML = '<div class="bars-h">' + ECON_TOPE_LEGAL.map(function(d){
-      var w = Math.max(6, Math.round((d.pct/topeMax)*100));
-      return '<div class="bar-h-row"><span>'+d.predio+'</span>'+
-        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+w+'%;"></div></div>'+
-        '<span class="mono">'+d.pct+'%</span></div>';
-    }).join("") + '</div>';
+    var feats = PREDIOS9_GEOJSON.features.map(function(f){ return f.properties; })
+      .sort(function(a,b){ return a.id < b.id ? -1 : 1; });
+    var totArea = 0, totCuenca = 0, totAvaluo = 0, totInc = 0;
+    var rows = feats.map(function(p){
+      var e = PREDIOS_ECON[p.id] || {};
+      totArea += p.area; totCuenca += p.cuenca; totAvaluo += e.avaluo || 0; totInc += e.incentivo || 0;
+      var col = PRED_COLORS[p.prioridad] || "#999";
+      return '<tr><td><b>'+p.id+'</b></td>'+
+        '<td><span class="tag" style="border-color:'+col+'; color:#13303B; background:'+col+'33;">'+p.prioridad.replace("-"," · ")+'</span></td>'+
+        '<td class="num">'+fmtHa(p.area,3)+'</td><td class="num">'+fmtHa(p.cuenca,3)+'</td>'+
+        '<td>'+(e.modalidad || '<span style="color:var(--ink-faint);">Por definir</span>')+'</td>'+
+        '<td class="num">'+fmtCOP(e.avaluo)+'</td>'+
+        '<td class="num">'+(e.incentivo ? fmtCOP(e.incentivo) : '<span style="color:var(--ink-faint); font-weight:500;">Por definir</span>')+'</td></tr>';
+    }).join("");
+    rows += '<tr class="total"><td>Total</td><td></td><td class="num">'+fmtHa(totArea,3)+'</td><td class="num">'+fmtHa(totCuenca,3)+'</td><td></td>'+
+      '<td class="num">'+fmtCOP(totAvaluo)+'</td><td class="num">'+fmtCOP(totInc)+' <span style="font-weight:500; color:var(--ink-faint);">(5 de 9)</span></td></tr>';
+    document.getElementById("econ-predios-tbody").innerHTML = rows;
+  }
 
-    var nucleoBody = document.getElementById("econ-nucleo-tbody");
-    nucleoBody.innerHTML = ECON_NUCLEO.map(function(n){
-      return '<tr><td>'+n.predio+'</td><td class="num">'+n.ha+'</td><td>'+n.modalidad+'</td><td class="num">'+n.indice+'</td><td class="num">$'+n.costo+'</td></tr>';
-    }).join("") + '<tr><td><b>Total núcleo</b></td><td class="num"><b>100,0</b></td><td></td><td></td><td class="num"><b>$104.770.168</b></td></tr>';
+  function predioPopup(p){
+    var e = PREDIOS_ECON[p.id] || {};
+    var rows = [
+      ["Prioridad", p.prioridad.replace("-"," · ")],
+      ["Número predial", p.predial],
+      ["Área total", fmtHa(p.area,3)+" ha"],
+      ["En la cuenca", fmtHa(p.cuenca,3)+" ha"],
+      ["En ronda hídrica", fmtHa(p.ronda,3)+" ha"],
+      ["Distancia a la represa", fmtHa(p.dist,1)+" m"],
+      ["Zonificación", p.zon && p.zon !== "Sin dato" ? p.zon : "—"],
+      ["Avalúo catastral", e.avaluo ? fmtCOP(e.avaluo) : "—"],
+      ["Incentivo anual", e.incentivo ? fmtCOP(e.incentivo) : "Por definir"]
+    ];
+    return '<div class="pred-popup"><b class="t">Predio '+p.id+'</b><table>'+rows.map(function(r){
+      return '<tr><td>'+r[0]+'</td><td><b>'+r[1]+'</b></td></tr>';
+    }).join("")+'</table></div>';
+  }
+
+  function buildPrediosLayer(labels, fillOpacity){
+    return L.geoJSON(PREDIOS9_GEOJSON, {
+      style: function(f){
+        return { color:"#FFFFFF", weight:2, fillColor: PRED_COLORS[f.properties.prioridad] || "#999", fillOpacity: fillOpacity };
+      },
+      onEachFeature: function(f, layer){
+        layer.bindPopup(predioPopup(f.properties), { maxWidth:320 });
+        if(labels){
+          layer.bindTooltip(f.properties.id + " · " + fmtHa(f.properties.area,3) + " ha", { permanent:true, direction: f.properties.id === "P19" ? "bottom" : "center", className:"pred-label" });
+        }
+      }
+    });
+  }
+
+  function contextoLayer(kind, style){
+    return L.geoJSON(CONTEXTO_GEOJSON, { filter:function(f){ return f.properties.kind === kind; }, style:style, interactive:false });
+  }
+
+  var vmapIndexPromise = null;
+  function vmapGetIndex(){
+    if(!vmapIndexPromise){
+      vmapIndexPromise = fetch(VMAP.dir + "index.json").then(function(r){ if(!r.ok) throw new Error("índice"); return r.json(); });
+    }
+    return vmapIndexPromise;
   }
 
   var prediosMapInstance = null;
@@ -2085,16 +2378,39 @@ svg.leaflet-image-layer.leaflet-interactive path {
     if(prediosMapInstance) return;
     var el = document.getElementById("predios-map");
     if(!el || typeof L === "undefined") return;
-    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:12, maxZoom:18 });
-    var pts = ECON_PREDIOS_CUENCA.map(function(p){ return [p.lat, p.lon]; });
-    map.fitBounds(pts, { padding:[30,30] });
+    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:13, maxZoom:20, scrollWheelZoom:false });
+    wheelOnClick(map);
 
-    ECON_PREDIOS_CUENCA.forEach(function(p){
-      var marker = L.circleMarker([p.lat, p.lon], {
-        radius:8, color:"#082F5E", weight:2, fillColor:"#3FA9F5", fillOpacity:0.9
-      }).addTo(map);
-      marker.bindPopup('<div class="zon-popup"><b>Predio '+p.predio+'</b>Área catastral: '+p.ha+' ha<br>Avalúo catastral: '+p.avaluo+'</div>');
-      marker.bindTooltip(p.predio, {direction:"top", permanent:true, className:"mono", offset:[0,-8]});
+    var rondaLayer = contextoLayer("ronda", { color:"#7CC4EA", weight:1, fillColor:"#7CC4EA", fillOpacity:0.38, dashArray:"4 3" }).addTo(map);
+    contextoLayer("represa", { color:"#0B458A", weight:1.5, fillColor:"#3FA9F5", fillOpacity:0.3 }).addTo(map);
+    contextoLayer("cuenca", { color:"#F5D93A", weight:3, fill:false, dashArray:"9 6" }).addTo(map);
+    var predios = buildPrediosLayer(true, 0.5).addTo(map);
+    map.fitBounds(predios.getBounds(), { padding:[30,30] });
+
+    var legend = L.control({ position:"bottomleft" });
+    legend.onAdd = function(){
+      var d = L.DomUtil.create("div", "pmap-legend");
+      d.innerHTML = '<i style="background:#E4572E;"></i>Prioridad 1 · Alta<br><i style="background:#F2A31F;"></i>Prioridad 2 · Media<br>'+
+        '<i style="background:#7CC4EA;"></i>Ronda hídrica<br><i style="background:#3FA9F5;"></i>Represa Villeros<br>'+
+        '<i style="background:transparent; border:2px dashed #F5D93A; height:9px;"></i>Límite de la cuenca';
+      return d;
+    };
+    legend.addTo(map);
+
+    var orthoLayer = null;
+    var orthoCb = document.getElementById("pm-ortho");
+    function syncOrtho(){
+      if(!orthoLayer) return;
+      if(orthoCb.checked){ orthoLayer.addTo(map); } else { map.removeLayer(orthoLayer); }
+    }
+    vmapGetIndex().then(function(index){
+      orthoLayer = vmapMakeLayers(index).ortho;
+      syncOrtho();
+    }).catch(function(){});
+    orthoCb.addEventListener("change", syncOrtho);
+    var rondaCb = document.getElementById("pm-ronda");
+    rondaCb.addEventListener("change", function(){
+      if(rondaCb.checked){ rondaLayer.addTo(map); } else { map.removeLayer(rondaLayer); }
     });
 
     prediosMapInstance = map;
@@ -2200,7 +2516,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var el = document.getElementById("drone-map");
     if(!el || typeof L === "undefined") return;
     var loading = document.getElementById("vmap-loading");
-    var map = L.map(el, { attributionControl: false, zoomControl: true, minZoom: 14, maxZoom: 21, zoomSnap: 0.5, maxBoundsViscosity: 0.6 });
+    var map = L.map(el, { attributionControl: false, zoomControl: true, minZoom: 14, maxZoom: 21, zoomSnap: 0.5, maxBoundsViscosity: 0.6, scrollWheelZoom: false });
+    wheelOnClick(map);
     map.fitBounds(VMAP.bounds);
     map.setMaxBounds(L.latLngBounds(VMAP.bounds).pad(0.35));
     L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
@@ -2258,7 +2575,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
     // La cuadrícula de altitud (≈ 2 MB) se baja en segundo plano: el mapa no espera por ella.
     fetch(VMAP.dir + "dem_t.bin").then(function(r){ return r.ok ? r.arrayBuffer() : null; }).then(function(buf){ if(buf) demGrid = new Uint8Array(buf); }).catch(function(){});
-    fetch(VMAP.dir + "index.json").then(function(r){ if(!r.ok) throw new Error("índice"); return r.json(); }).then(function(index){
+    vmapGetIndex().then(function(index){
       var layers = vmapMakeLayers(index);
       function bind(id, layer){
         var cb = document.getElementById("vl-" + id), sl = document.getElementById("vo-" + id);
@@ -2286,32 +2603,116 @@ svg.leaflet-image-layer.leaflet-interactive path {
     }).join("");
   }
 
-  /* ================= RENDER: PARTICIPACIÓN ================= */
+  /* ================= RENDER: PARTICIPACIÓN SOCIAL ================= */
   function renderParticipacion(){
-    var tl = document.getElementById("timeline");
-    tl.innerHTML = TIMELINE.map(function(t){
-      return '<div class="tl-item"><div class="tl-date">'+t.fecha+'</div><h3 style="margin-bottom:.2rem;">'+t.t+'</h3>'+
-        '<p style="font-size:.87rem; color:var(--ink-soft); margin:0;">'+t.d+'</p></div>';
+    var list = document.getElementById("actas-list");
+    list.innerHTML = ACTAS.map(function(a){
+      var fotos = a.fotos === "GALERIA" ? GALERIA.map(function(g){ return {src:GALERIA_IMG[g.img], cap:g.cap}; }) : (a.fotos || []);
+      var meta = '<span>'+a.fecha+'</span>' + (a.hora ? '<span>'+a.hora+'</span>' : '') + '<span>'+a.lugar+'</span>';
+      var html = '<article class="acta"><div class="acta-num">Acta N.º<b>'+String(a.n).padStart(2,"0")+'</b><small>'+a.fecha+'</small></div>'+
+        '<div class="card acta-body"><h3>'+a.t+'</h3><div class="acta-meta">'+meta+'</div>'+
+        '<p style="font-size:.94rem; color:var(--ink-soft); margin:0;">'+a.d+'</p>';
+      if(a.participan){ html += '<h4>Participan</h4><p style="font-size:.9rem; color:var(--ink-soft); margin:0;">'+a.participan+'</p>'; }
+      if(a.puntos){ html += '<h4>Desarrollo de la reunión</h4><ul>'+a.puntos.map(function(p){ return '<li>'+p+'</li>'; }).join("")+'</ul>'; }
+      if(a.compromisos){ html += '<h4>Resultados y compromisos</h4><ul>'+a.compromisos.map(function(p){ return '<li>'+p+'</li>'; }).join("")+'</ul>'; }
+      if(fotos.length){
+        html += '<h4>Evidencia fotográfica</h4><div class="acta-photos">'+fotos.map(function(f){
+          return '<figure><img src="'+f.src+'" alt="'+f.cap+'" loading="lazy" decoding="async"><figcaption>'+f.cap+'</figcaption></figure>';
+        }).join("")+'</div>';
+      }
+      return html + '</div></article>';
     }).join("");
 
     var tbody = document.querySelector("#actores-table tbody");
     tbody.innerHTML = ACTORES.map(function(a){
       return '<tr><td>'+a[0]+'</td><td style="color:var(--ink-soft);">'+a[1]+'</td></tr>';
     }).join("");
+  }
 
-    var gal = document.getElementById("gallery-grid");
-    if(gal){
-      gal.innerHTML = GALERIA.map(function(g){
-        return '<figure class="gallery-card"><img src="'+GALERIA_IMG[g.img]+'" alt="'+g.cap+'" loading="lazy">'+
-          '<figcaption><span class="cap">'+g.cap+'</span><span class="sub">'+g.sub+'</span></figcaption></figure>';
-      }).join("");
+  /* ================= ATLAS: PANEL DE INDICADORES (calculado sobre las capas vectoriales) ================= */
+  function ringM2(ring){
+    var kx = 111320 * Math.cos(9.37 * Math.PI / 180), ky = 110574, s = 0;
+    for(var i = 0, n = ring.length, j = n - 1; i < n; j = i++){
+      s += (ring[j][0] * kx) * (ring[i][1] * ky) - (ring[i][0] * kx) * (ring[j][1] * ky);
     }
+    return Math.abs(s) / 2;
+  }
+  function polyHa(poly){
+    var a = ringM2(poly[0]);
+    for(var i = 1; i < poly.length; i++){ a -= ringM2(poly[i]); }
+    return a / 10000;
+  }
+  function featureHa(f){
+    var g = f.geometry;
+    if(g.type === "Polygon") return polyHa(g.coordinates);
+    var t = 0; g.coordinates.forEach(function(p){ t += polyHa(p); });
+    return t;
+  }
+  function haBy(gj, prop){
+    var out = {};
+    gj.features.forEach(function(f){ var k = f.properties[prop]; out[k] = (out[k] || 0) + featureHa(f); });
+    return out;
+  }
+  function dashRows(id, rows, total, unit){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.innerHTML = rows.map(function(r){
+      var pct = total ? (r.v / total) * 100 : 0;
+      return '<div class="dash-row"><div class="nm"><i style="background:'+r.color+';"></i><span title="'+r.name+'">'+r.name+'</span></div>'+
+        '<div class="tr"><b style="width:'+Math.max(2, Math.min(100, unit === "%" ? r.v : pct))+'%; background:'+r.color+';"></b></div>'+
+        '<div class="vl">'+(unit === "%" ? fmtHa(r.v,1)+' %' : fmtHa(r.v, r.dec === undefined ? 1 : r.dec)+' ha')+'</div></div>';
+    }).join("");
+  }
 
-    document.getElementById("participa-form").addEventListener("submit", function(e){
-      e.preventDefault();
-      document.getElementById("participa-ok").style.display = "block";
-      this.reset();
+  function renderAtlasDashboard(){
+    // Zonificación y amenaza: cifras oficiales de los mapas del proyecto (las capas embebidas del visor son
+    // versiones simplificadas y no reproducen exactamente estos totales).
+    var ZON_REST = 456.07, ZON_REC = 637.20, ZON_TOT = ZON_REST + ZON_REC;
+    dashRows("dash-zon", [
+      { name:"Recuperación o Reclamación", v:ZON_REC, color:"#F2A31F", dec:2 },
+      { name:"Restauración Ecológica", v:ZON_REST, color:"#0B6B2A", dec:2 }
+    ], ZON_TOT);
+
+    var AM_MUY_ALTA = 643, AM_ALTA = 426, CUENCA_HA = 1296;
+    dashRows("dash-amenaza", [
+      { name:"Muy alta", v:AM_MUY_ALTA, color:AMENAZA_COLORS["Muy alta"] || "#B5432B", dec:0 },
+      { name:"Alta", v:AM_ALTA, color:AMENAZA_COLORS["Alta"] || "#E4572E", dec:0 },
+      { name:"Media, baja y muy baja", v:CUENCA_HA - AM_MUY_ALTA - AM_ALTA, color:"#9AA9A4", dec:0 }
+    ], CUENCA_HA);
+    var cob = haBy(COBERTURA_GEOJSON, "CAT"), cobTot = 0;
+    Object.keys(cob).forEach(function(k){ cobTot += cob[k]; });
+    var cobRows = Object.keys(cob).sort(function(a,b){ return cob[b]-cob[a]; }).map(function(k){
+      return { name:k.replace(/^[\d.]+\s*/, ""), v:cob[k], color:COBERTURA_COLORS[k] || "#999" };
     });
+    var top = cobRows.slice(0, 7), resto = 0;
+    cobRows.slice(7).forEach(function(r){ resto += r.v; });
+    if(resto > 0){ top.push({ name:"Otras coberturas", v:resto, color:"#9AA9A4" }); }
+    dashRows("dash-cobertura", top, cobTot);
+
+    var pr = PREDIOS9_GEOJSON.features.map(function(f){ return f.properties; })
+      .sort(function(a,b){ return a.prioridad === b.prioridad ? b.area - a.area : (a.prioridad < b.prioridad ? -1 : 1); });
+    var prTot = 0; pr.forEach(function(p){ prTot += p.area; });
+    dashRows("dash-predios", pr.map(function(p){
+      return { name:p.id + " · " + p.prioridad.split("-")[1], v:p.area, color:PRED_COLORS[p.prioridad] || "#999", dec:3 };
+    }), pr.reduce(function(m,p){ return Math.max(m, p.area); }, 0));
+
+    dashRows("dash-juris", [
+      { name:"San Antero (Córdoba)", v:76.8, color:"#0F5A6E" },
+      { name:"Momil (Córdoba)", v:19.2, color:"#7CC4EA" },
+      { name:"Coveñas (Sucre)", v:4.0, color:"#F2A31F" }
+    ], 100, "%");
+
+    var kpis = [
+      { v:"12,96 km²", l:"Cuenca abastecedora (1.296 ha)" },
+      { v:"22,2 ha", l:"Espejo de agua de la represa · cota 18 msnm" },
+      { v:"456,07 ha", l:"Zona de restauración ecológica (41,7 % de la cuenca)" },
+      { v:"1.069 ha", l:"Con amenaza alta o muy alta de incendio forestal" },
+      { v:"60 predios · 294 ha", l:"Caracterizados en el área de intervención" },
+      { v:"9 predios · " + fmtHa(prTot, 1) + " ha", l:"Priorizados para el portafolio" }
+    ];
+    document.getElementById("atlas-kpis").innerHTML = kpis.map(function(k){
+      return '<div class="stat"><div class="num" style="font-size:1.3rem;">'+k.v+'</div><div class="lbl">'+k.l+'</div></div>';
+    }).join("");
   }
 
   /* ================= ATLAS: real map viewer ================= */
@@ -2354,7 +2755,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var el = document.getElementById("leaflet-map");
     if(!el || typeof L === "undefined") return;
 
-    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:11, maxZoom:17 });
+    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:11, maxZoom:17, scrollWheelZoom:false });
+    wheelOnClick(map);
     var demBounds = DEM_BOUNDS;
     map.fitBounds(demBounds, { padding:[10,10] });
 
@@ -2465,18 +2867,20 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(e.target.checked){ catastroLayer.addTo(map); } else { map.removeLayer(catastroLayer); }
     });
 
+    // Predios priorizados (levantamiento predial KMZ)
+    var predios9Layer = buildPrediosLayer(true, 0.55);
+    document.getElementById("toggle-predios9").addEventListener("change", function(e){
+      if(e.target.checked){ predios9Layer.addTo(map); } else { map.removeLayer(predios9Layer); }
+    });
+
     leafletMapInstance = map;
   }
 
   /* lightbox: open on click of main map image */
   document.getElementById("map-img").addEventListener("click", function(){ openLightbox(this); });
   document.getElementById("map-zoom-btn").addEventListener("click", function(){ openLightbox(document.getElementById("map-img")); });
-  document.getElementById("gallery-grid").addEventListener("click", function(e){
-    var img = e.target.closest("img");
-    if(img) openLightbox(img);
-  });
-  document.getElementById("drone-gallery").addEventListener("click", function(e){
-    var img = e.target.closest("img");
+  document.addEventListener("click", function(e){
+    var img = e.target.closest(".acta-photos img, #drone-gallery img");
     if(img) openLightbox(img);
   });
   function openLightbox(img){
@@ -2518,24 +2922,42 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderTour();
   });
 
-  /* ================= DOCUMENTOS ================= */
+  /* ================= DOCUMENTOS (sección interna protegida) ================= */
+  // El listado no viaja en esta página: se pide al servidor con la sesión iniciada y la clave de acceso.
   document.getElementById("doc-gate-form").addEventListener("submit", function(e){
     e.preventDefault();
     var v = document.getElementById("doc-clave").value.trim();
     var err = document.getElementById("doc-gate-error");
-    if(v === DOC_CLAVE){
+    var btn = this.querySelector("button[type=submit]");
+    btn.disabled = true;
+    fetch(API_BASE + "/api/docs", {
+      method: "POST",
+      headers: { "Content-Type":"application/json", "Authorization":"Bearer " + sessionStorage.getItem(AUTH_TOKEN_KEY) },
+      body: JSON.stringify({ clave:v })
+    }).then(function(res){
+      return res.json().then(function(body){ return { ok:res.ok, body:body }; });
+    }).then(function(r){
+      btn.disabled = false;
+      if(!r.ok){
+        err.textContent = r.body.error || "Clave incorrecta.";
+        err.style.display = "block";
+        return;
+      }
       err.style.display = "none";
       document.getElementById("doc-gate-wrap").hidden = true;
-      renderDocumentos();
+      renderDocumentos(r.body);
       document.getElementById("doc-content").hidden = false;
-    } else {
+      document.getElementById("doc-clave").value = "";
+    }).catch(function(){
+      btn.disabled = false;
+      err.textContent = "No se pudo verificar la clave. Intente de nuevo.";
       err.style.display = "block";
-    }
+    });
   });
 
-  function renderDocumentos(){
+  function renderDocumentos(data){
     var el = document.getElementById("doc-content");
-    var html = DOC_GROUPS.map(function(g){
+    var html = data.groups.map(function(g){
       var rows = g.docs.map(function(d){
         return '<div class="doc-row"><span class="ico">'+d.fmt+'</span>'+
           '<span class="name">'+d.n+'<small>'+d.s+'</small></span>'+
@@ -2543,12 +2965,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
       }).join("");
       return '<div class="doc-group"><h3>'+g.titulo+'</h3>'+rows+'</div>';
     }).join("");
-    html += '<p class="doc-note">Repositorio completo del contrato (siete subcarpetas: documentación del proceso, propuesta, contrato, hojas de vida, matriz de seguimiento, ejecución y ejecución interna) — <a href="'+DOC_REPO_URL+'" target="_blank" rel="noopener">abrir carpeta en Google Drive ↗</a></p>';
+    html += '<p class="doc-note">Repositorio completo del contrato (siete subcarpetas: documentación del proceso, propuesta, contrato, hojas de vida, matriz de seguimiento, ejecución y ejecución interna) — <a href="'+data.repoUrl+'" target="_blank" rel="noopener">abrir carpeta en Drive ↗</a></p>';
     el.innerHTML = html;
   }
 
   /* ================= ASISTENTE (sample capability) ================= */
-  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Autoridad ambiental: CARSUCRE (concurrencia CVS). Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución CARSUCRE 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio óptimo M12: 46 predios, 134 ha, ~105 M COP/año, 557 t/año de sedimento evitado; costo de oportunidad USD 334/ha-año. Productos: 1 diagnóstico (completado), 2 perfil del esquema (en curso), 3 adquisición de predios (pendiente). El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
+  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media); costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del modelo de formalización de acuerdos y alternativas de incentivos económicos (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
   var asisTurns = [{role:"user", content: ASIS_CONTEXT}];
   var sampleFn = null;
 
@@ -2625,6 +3047,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderEconomia();
     renderParticipacion();
     renderAtlas();
+    renderAtlasDashboard();
     renderTour();
     renderDroneGallery();
     initAsistente();
@@ -2671,6 +3094,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
     controls.enableDamping = true; controls.dampingFactor = 0.08;
     controls.maxPolarAngle = Math.PI * 0.495; controls.minDistance = 25; controls.maxDistance = 6500;
     controls.zoomToCursor = true; controls.screenSpacePanning = false;
+    controls.enableZoom = false;
+    renderer.domElement.addEventListener("pointerdown", function(){ controls.enableZoom = true; });
+    renderer.domElement.addEventListener("pointerleave", function(){ controls.enableZoom = false; });
 
     var loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
     var maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());

@@ -54,7 +54,7 @@ aparezca así en paneles técnicos — el navegador lo sigue mostrando como
       [`psa-villeros-api`](https://dashboard.render.com) →
       `https://psa-villeros-api.onrender.com` (plan free — se "duerme" tras
       ~15 min sin tráfico, el primer request después tarda unos segundos).
-      Verificado con `demo.tecnico` y `demo.publico` contra el servicio real.
+      Verificado con el usuario `publico` contra el servicio real.
 - [x] **Backend + sitio desplegados en Hostinger** (el dominio real) vía su
       integración Git de hosting Node, apuntando a `backend/`.
       `https://psacoveñas.com/api/health` responde bien.
@@ -115,6 +115,11 @@ meshopt, en dos versiones dentro de `backend/models/`:
 El visor usa three.js alojado en `backend/vendor/three/` (sin CDN).
 `backend/server.js` sirve `/models` y `/vendor`.
 
+## Acceso y documentos protegidos
+
+- Ingreso: un único usuario, `publico` (contraseña en `backend/users.js`, solo su hash bcrypt). Para cambiarla: `npm run hash -- "nueva"` dentro de `backend/`.
+- Documentos: el listado de enlaces vive en `backend/docs.js` y solo se entrega por `POST /api/docs`, que exige sesión iniciada y la clave de acceso a documentos (hash bcrypt en `server.js`, o variable de entorno `DOC_KEY_HASH`). Los enlaces ya no van en el HTML de la página.
+
 ## Rendimiento
 
 - Las imágenes del sitio (logos, planchas de mapas, galería) ya no van embebidas
@@ -137,16 +142,17 @@ sitio funcione: el Atlas ya sirve las capas reales como GeoJSON embebido.
   responden `{"ok":true,...}`.
 - `https://psacoveñas.com/` y la URL de Render muestran el sitio (no "Cannot
   GET /").
-- El login con `demo.tecnico` / `Villeros2026` funciona en ambos.
+- El login con `publico` funciona en ambos y la sección Documentos solo se abre con la clave de acceso a documentos.
 - Recargar la página estando logueado no debe pedir login de nuevo (sesión por
   `sessionStorage` + `/api/auth/me`).
 
-## Qué sigue siendo simulado (a propósito, por ahora)
+## Qué queda pendiente
 
-- El formulario de "observación sobre su predio" en Participación no envía
-  datos a ningún servidor todavía.
 - El repositorio de Documentos sigue apuntando a enlaces de Google Drive, no a
-  un storage propio.
+  un storage propio (el acceso a esos enlaces depende de cómo estén compartidos
+  en Drive).
+- Los costos de incentivo de P07, P17, P18 y P19 figuran «por definir» en el
+  análisis económico: el documento técnico no los calcula todavía.
 
-Ninguno de los dos bloquea el despliegue — son mejoras futuras, no
-dependencias de Hostinger/Render.
+Ninguno bloquea el despliegue — son mejoras futuras, no dependencias de
+Hostinger/Render.

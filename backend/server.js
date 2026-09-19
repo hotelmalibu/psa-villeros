@@ -215,6 +215,26 @@ app.get("/api/auth/me", authMiddleware, (req, res) => {
   });
 });
 
+// Sección interna de documentos: exige sesión iniciada Y la clave de acceso a documentos.
+// El listado de enlaces vive en docs.js y nunca viaja en el HTML de la página.
+const docs = require("./docs");
+const DOC_KEY_HASH =
+  process.env.DOC_KEY_HASH || "$2a$10$4KRp1JOwicIIlhibWTu0qeSguDY0e21S/Wro5joF2ovPhX0n/G1iu";
+
+app.post("/api/docs", authMiddleware, (req, res) => {
+  const { clave } = req.body || {};
+  const key = `${req.ip}:docs`;
+  if (isRateLimited(key)) {
+    return res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos." });
+  }
+  if (typeof clave !== "string" || !clave || !bcrypt.compareSync(clave.trim(), DOC_KEY_HASH)) {
+    registerFailure(key);
+    return res.status(401).json({ error: "Clave incorrecta." });
+  }
+  clearFailures(key);
+  res.json(docs);
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`psa-villeros-api escuchando en el puerto ${PORT}`);

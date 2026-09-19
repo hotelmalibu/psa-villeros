@@ -6,17 +6,10 @@
 
 module.exports = [
   {
-    username: "demo.tecnico",
-    passHash: "$2a$10$PeBIp54o.yOHS82kVtWpfOWnRty80qn5zFYdl0BfSSRuuHV7NvBVa",
-    role: "tecnico",
-    roleLabel: "Equipo técnico / supervisión",
-    full: true,
-  },
-  {
-    username: "demo.publico",
+    username: "publico",
     passHash: "$2a$10$7vHKszyzeKlw30EbtWcSg.lbNajS1tIwULdmkA4yhNnW52/hpkpm2",
     role: "publico",
     roleLabel: "Consulta pública",
-    full: false,
+    full: true,
   },
 ];
