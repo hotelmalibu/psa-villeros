@@ -561,6 +561,52 @@
   .acta-card .acta-photos{margin-top:1.1rem;}
   .acta-photos figcaption b{display:block; font-size:.78rem; color:var(--navy-dark); font-weight:700;}
   table.data .tag{white-space:nowrap;}
+
+  /* ---------- pie de página ---------- */
+  .site-footer{background:var(--navy-dark); color:#C9DEE3; padding:3.6rem 0 0;}
+  .foot-wrap{max-width:1180px; margin:0 auto; padding:0 1.6rem;}
+  .foot-grid{display:grid; grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,1fr)); gap:2.2rem 1.6rem; padding-bottom:2.6rem;}
+  .foot-logos{display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-bottom:1.1rem;}
+  .foot-logos img{height:46px; width:auto; background:#fff; border-radius:12px; padding:.35rem .6rem;}
+  .foot-tagline{font-size:.9rem; line-height:1.5; color:#E4F0F3; margin:0 0 1rem; font-weight:600;}
+  .foot-contract{display:inline-flex; align-items:center; gap:.6rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:.4rem 1rem; font-size:.85rem; font-weight:700; color:#fff; margin:0 0 1rem;}
+  .foot-contract span{font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#FFD98A;}
+  .foot-small{font-size:.76rem; line-height:1.55; color:#9FBFC7; margin:0;}
+  .foot-col h4{font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#FFD98A; margin:0 0 .9rem;}
+  .foot-col h4 a{color:inherit; text-decoration:none;}
+  .foot-col h4 a:hover{color:#fff;}
+  .foot-col ul{list-style:none; margin:0; padding:0;}
+  .foot-col li{margin:0 0 .5rem;}
+  .foot-col li a{color:#C9DEE3; text-decoration:none; font-size:.86rem; line-height:1.35; display:inline-block; transition:color .15s, transform .15s;}
+  .foot-col li a:hover{color:#fff; transform:translateX(2px); text-decoration:underline; text-underline-offset:3px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.16); padding:1.1rem 0 1.4rem; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.6rem 1.4rem; font-size:.78rem; color:#9FBFC7;}
+  .foot-bottom-links{display:flex; flex-wrap:wrap; gap:.4rem 1.3rem;}
+  .foot-bottom a{color:#C9DEE3; text-decoration:none;}
+  .foot-bottom a:hover{color:#fff; text-decoration:underline; text-underline-offset:3px;}
+  @media (max-width:1180px){ .foot-grid{grid-template-columns:repeat(3,minmax(0,1fr));} .foot-brand{grid-column:1 / -1;} }
+  @media (max-width:640px){ .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr));} .site-footer{padding-top:2.6rem;} }
+
+  /* enlace de política en el ingreso */
+  .login-legal{margin:.9rem 0 0; text-align:center; font-size:.76rem;}
+  .login-legal a{color:var(--ink-faint);}
+  .login-legal a:hover{color:var(--navy);}
+
+  /* panel de información */
+  .no-scroll{overflow:hidden;}
+  .info-modal{position:fixed; inset:0; z-index:6000; background:rgba(6,32,42,.72); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; padding:1.4rem;}
+  .info-modal[hidden]{display:none;}
+  .info-panel{position:relative; background:#fff; color:var(--ink); border-radius:26px; width:min(860px,100%); max-height:min(88vh,900px); overflow:hidden; display:flex; flex-direction:column; box-shadow:0 30px 80px rgba(0,0,0,.45);}
+  .info-panel h2{margin:0; padding:1.6rem 4rem 1rem 1.9rem; font-size:1.5rem; font-weight:800; color:var(--navy); border-bottom:1px solid var(--rule);}
+  .info-close{position:absolute; top:1rem; right:1rem; width:40px; height:40px; border-radius:50%; border:1.5px solid var(--rule-strong); background:#fff; font-size:1.05rem; color:var(--navy-dark);}
+  .info-close:hover{background:var(--navy-soft);}
+  .info-body{padding:1.2rem 1.9rem 1.9rem; overflow-y:auto; font-size:.93rem; line-height:1.6; color:var(--ink-soft);}
+  .info-body h3{font-size:1.02rem; font-weight:800; color:var(--navy-dark); margin:1.5rem 0 .4rem;}
+  .info-body p{margin:0 0 .8rem;}
+  .info-body ul{margin:0 0 .6rem; padding-left:1.15rem;}
+  .info-body li{margin-bottom:.45rem;}
+  .info-body b{color:var(--ink);}
+  .info-meta{display:inline-block; font-size:.74rem; font-weight:700; color:var(--gold-deep); background:var(--gold-soft); border-radius:999px; padding:.25rem .8rem;}
+  @media (max-width:640px){ .info-panel h2{font-size:1.2rem; padding:1.3rem 3.6rem .8rem 1.2rem;} .info-body{padding:1rem 1.2rem 1.5rem;} }
 </style>
 <style id="leaflet-css">
 /* required styles */
@@ -1240,7 +1286,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </div>
     <h1>Esquema de PSA<br>Represa Villeros</h1>
-    <p class="login-sub">Plataforma de consulta del Contrato COV‑CMA‑010‑2026. Ingrese con su usuario y contraseña para continuar.</p>
+    <p class="login-sub">Plataforma de consulta del esquema de PSA de la Represa Villeros. Ingrese con su usuario y contraseña para continuar.</p>
 
     <form id="login-form" autocomplete="off">
       <div class="field">
@@ -1259,6 +1305,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <img src="img/inline2.71a139cb.webp" alt="Consorcio Servicios Ambientales 2026">
       <span>Formulado por el Consorcio Servicios Ambientales 2026, bajo supervisión de la Alcaldía de Coveñas</span>
     </div>
+    <p class="login-legal"><a href="#politica-datos" data-info="politica-datos">Política de protección de datos</a></p>
   </div>
 </div>
 
@@ -1287,7 +1334,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- ---------------- PORTADA ---------------- -->
     <section class="hero" id="inicio" aria-label="Portada">
       <div class="hero-inner">
-        <div class="hero-eyebrow">Contrato COV‑CMA‑010‑2026 · Coveñas, Sucre</div>
+        <div class="hero-eyebrow">Coveñas, Sucre · Pago por Servicios Ambientales</div>
         <h1>Conservar el agua que abastece a Coveñas</h1>
         <p class="hero-lead">Perfil del esquema de Pago por Servicios Ambientales de la Represa Villeros: alternativas de incentivos económicos para la conservación y un modelo para formalizar acuerdos voluntarios con los propietarios de los predios.</p>
         <div class="hero-cta">
@@ -1313,7 +1360,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <p class="lead">El perfil del esquema se formula para las áreas de importancia estratégica que alimentan la Represa Villeros. Diseña el modelo para formalizar acuerdos de conservación con los propietarios y las alternativas de incentivos económicos para conservar los predios; no contempla la adquisición de predios.</p>
           <div class="contract-strip">
             <span><b>Modalidad de PSA</b> Regulación y calidad hídrica</span>
-            <span><b>Contrato</b> COV‑CMA‑010‑2026</span>
+            <span><b>Ubicación</b> Coveñas, Sucre</span>
             <span><b>Área caracterizada</b> 60 predios · 294 ha</span>
             <span><b>Cota de la represa</b> 18 msnm</span>
           </div>
@@ -1620,7 +1667,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <span class="src">Fuente: vuelo y procesamiento fotogramétrico — componente SIG, Consorcio Servicios Ambientales 2026.</span>
       </p>
 
-      <h3 class="block-title">Modelo 3D del área</h3>
+      <h3 class="block-title" id="modelo-3d">Modelo 3D del área</h3>
       <p class="lead" style="margin-bottom:1rem;">Malla fotogramétrica texturizada del mismo vuelo. Arrastre para girar, use la rueda o el pellizco para acercar y el clic derecho (o dos dedos) para desplazarse. Toque un punto del terreno para conocer su altitud aproximada.</p>
       <div class="m3d" id="m3d">
         <div class="m3d-stage" id="m3d-stage">
@@ -1648,7 +1695,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </p>
 
       
-        <h3 class="block-title">Galería del vuelo</h3>
+        <h3 class="block-title" id="galeria-vuelo">Galería del vuelo</h3>
         <p class="lead" style="margin-bottom:1rem;">Las 30 tomas aéreas, en el orden en que se capturaron durante el vuelo.</p>
         <div class="gallery-grid" id="drone-gallery"></div>
       </div>
@@ -1691,17 +1738,189 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </section>
 
-    <footer class="app-footer">
-      <div class="foot-in">
-        <div class="foot-logos">
-          <img src="img/covenasLockup.b74a554c.webp" alt="Municipio de Coveñas">
-          <img src="img/consorcioLockup.428b9e46.webp" alt="Consorcio Servicios Ambientales 2026">
+    <footer class="site-footer" id="pie">
+      <div class="foot-wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <div class="foot-logos">
+              <img src="img/covenasLockup.b74a554c.webp" alt="Municipio de Coveñas">
+              <img src="img/consorcioLockup.428b9e46.webp" alt="Consorcio Servicios Ambientales 2026">
+            </div>
+            <p class="foot-tagline">Esquema de Pago por Servicios Ambientales de la Represa Villeros · Coveñas, Sucre.</p>
+            <p class="foot-contract"><span>Contrato</span> COV‑CMA‑010‑2026</p>
+            <p class="foot-small">Información desarrollada en el marco de la consultoría por el Consorcio Servicios Ambientales 2026, para el Municipio de Coveñas, Sucre.</p>
+          </div>
+
+          <nav class="foot-col" aria-label="Análisis económico">
+            <h4><a href="#economia">Análisis económico</a></h4>
+            <ul>
+              <li><a href="#econ-localizacion">Localización predial</a></li>
+              <li><a href="#econ-costo">Costo de oportunidad</a></li>
+              <li><a href="#econ-portafolio">Portafolio de 9 predios</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Atlas">
+            <h4><a href="#atlas">Atlas</a></h4>
+            <ul>
+              <li><a href="#atlas" data-goto-tab="atlas-dashboard">Panel de indicadores</a></li>
+              <li><a href="#atlas" data-goto-tab="atlas-visor">Visor SIG</a></li>
+              <li><a href="#atlas" data-goto-tab="atlas-planchas">Planchas del proyecto</a></li>
+              <li><a href="#atlas" data-goto-tab="atlas-recorrido">Recorrido guiado</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Mapa virtual">
+            <h4><a href="#mapa-virtual">Mapa virtual</a></h4>
+            <ul>
+              <li><a href="#vmap">Ortofoto, vegetación y altitud</a></li>
+              <li><a href="#modelo-3d">Modelo 3D del área</a></li>
+              <li><a href="#galeria-vuelo">Galería del vuelo</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Participación social">
+            <h4><a href="#participacion">Participación social</a></h4>
+            <ul>
+              <li><a href="#reunion-1">Socialización institucional y comunitaria</a></li>
+              <li><a href="#reunion-2">Socialización del Producto N.º 1</a></li>
+              <li><a href="#reunion-3">Taller de articulación institucional</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Información">
+            <h4>Información</h4>
+            <ul>
+              <li><a href="#politica-datos" data-info="politica-datos">Política de protección de datos</a></li>
+              <li><a href="#fuentes" data-info="fuentes">Fuentes de información</a></li>
+              <li><a href="#tecnologias" data-info="tecnologias">Tecnologías y créditos</a></li>
+              <li><a href="#documentos">Documentos del contrato</a></li>
+            </ul>
+          </nav>
         </div>
-        <p class="foot-text" style="margin:0;">Información desarrollada en el marco de la consultoría COV‑CMA‑010‑2026 por el Consorcio Servicios Ambientales 2026, para el Municipio de Coveñas, Sucre.</p>
+
+        <div class="foot-bottom">
+          <span>© 2026 Municipio de Coveñas · Consorcio Servicios Ambientales 2026</span>
+          <span class="foot-bottom-links">
+            <a href="#politica-datos" data-info="politica-datos">Protección de datos</a>
+            <a href="#fuentes" data-info="fuentes">Fuentes</a>
+            <a href="#tecnologias" data-info="tecnologias">Créditos</a>
+            <a href="#inicio">Volver arriba ↑</a>
+          </span>
+        </div>
       </div>
     </footer>
   </main>
 </div>
+<!-- ============================================================ PANEL DE INFORMACIÓN (política, fuentes, tecnologías) ============================================================ -->
+<div id="info-modal" class="info-modal" hidden>
+  <div class="info-panel" role="dialog" aria-modal="true" aria-labelledby="info-title">
+    <button type="button" class="info-close" aria-label="Cerrar">✕</button>
+    <h2 id="info-title"></h2>
+    <div id="info-body" class="info-body"></div>
+  </div>
+</div>
+
+<template id="info-politica" data-title="Política de protección de datos personales">
+  <p class="info-meta">Versión 1.0 · Última actualización: 19 de septiembre de 2026</p>
+  <p>Esta política explica qué información recoge la plataforma del esquema de Pago por Servicios Ambientales (PSA) de la Represa Villeros y cómo se protege, conforme a la Ley 1581 de 2012 y sus normas reglamentarias.</p>
+
+  <h3>1. Responsable del tratamiento</h3>
+  <p>Municipio de Coveñas (Sucre), a través de la Alcaldía Municipal, contratante del proyecto. El Consorcio Servicios Ambientales 2026 desarrolla y opera técnicamente la plataforma como encargado. Las consultas, solicitudes y reclamos sobre esta política se atienden por los canales oficiales de atención de la Alcaldía de Coveñas.</p>
+
+  <h3>2. Qué datos trata la plataforma</h3>
+  <ul>
+    <li><b>No solicita datos personales.</b> No hay formularios de registro, contacto ni comentarios. El ingreso se hace con un usuario compartido («Link público») que no identifica a personas.</li>
+    <li><b>Datos técnicos de seguridad.</b> Para limitar los intentos fallidos de ingreso, el servidor conserva temporalmente en memoria la dirección IP y el usuario digitado; no se guardan en una base de datos ni se comparten. El proveedor de alojamiento puede conservar registros técnicos de acceso (IP, fecha y hora) con fines de seguridad y operación.</li>
+    <li><b>Almacenamiento en su navegador.</b> La plataforma no usa cookies de seguimiento. Guarda una ficha de sesión (se elimina al cerrar la pestaña) y una copia del modelo 3D para que cargue más rápido. Ninguna contiene datos personales y puede borrarlas desde la configuración del navegador.</li>
+    <li><b>Sin analítica ni publicidad.</b> No se usan herramientas de analítica, perfilamiento ni publicidad.</li>
+    <li><b>Servicios de terceros.</b> La tipografía Montserrat se descarga desde Google Fonts, por lo que Google recibe la dirección IP del visitante cuando se carga la página.</li>
+  </ul>
+
+  <h3>3. Información de predios y propietarios</h3>
+  <p>Solo se publican datos catastrales oficiales: código predial, área y avalúo catastral, junto con la delimitación geográfica de los predios. No se publican nombres, documentos de identidad, direcciones ni datos de contacto de propietarios o poseedores.</p>
+
+  <h3>4. Fotografías de reuniones</h3>
+  <p>Las fotografías de la sección Participación social documentan actividades institucionales del proyecto. Quien aparezca en ellas y desee que se retire o se difumine su imagen puede solicitarlo por los canales oficiales de la Alcaldía de Coveñas.</p>
+
+  <h3>5. Finalidad</h3>
+  <p>Dar a conocer y facilitar la consulta de la información del proyecto, con fines de transparencia y participación institucional. Los datos técnicos descritos se usan únicamente para la seguridad y el funcionamiento del servicio.</p>
+
+  <h3>6. Derechos de los titulares</h3>
+  <p>Conforme al artículo 8 de la Ley 1581 de 2012, el titular puede conocer, actualizar y rectificar sus datos; solicitar prueba de la autorización cuando aplique; ser informado sobre el uso dado a sus datos; presentar quejas ante la Superintendencia de Industria y Comercio; revocar la autorización o solicitar la supresión de sus datos cuando no se respeten los principios y garantías legales; y acceder de forma gratuita a sus datos. Puede ejercerlos por los canales oficiales de la Alcaldía de Coveñas.</p>
+
+  <h3>7. Seguridad</h3>
+  <p>La comunicación con la plataforma va cifrada (HTTPS); las contraseñas se almacenan solo como resumen criptográfico (hash); la sección de documentos exige una clave adicional y el ingreso limita los intentos fallidos.</p>
+
+  <h3>8. Marco normativo</h3>
+  <p>Constitución Política, artículo 15; Ley Estatutaria 1581 de 2012; Decreto 1074 de 2015 (que compila el Decreto 1377 de 2013).</p>
+
+  <h3>9. Cambios a esta política</h3>
+  <p>Cualquier modificación se publicará en esta misma página, con su fecha de actualización.</p>
+</template>
+
+<template id="info-fuentes" data-title="Fuentes de información">
+  <p>Datos, estudios y normas en los que se apoya el proyecto. Las cifras de la plataforma provienen de estos documentos y del procesamiento realizado por el Consorcio Servicios Ambientales 2026.</p>
+
+  <h3>Cartografía y datos geoespaciales</h3>
+  <ul>
+    <li><b>Instituto Geográfico Agustín Codazzi (IGAC).</b> Base catastral (capa R_TERRENO), vías, ficha de caracterización predial y avalúos catastrales (vigencia: 1 de enero de 2026). <a href="https://www.igac.gov.co" target="_blank" rel="noopener">igac.gov.co</a></li>
+    <li><b>ESA WorldCover 2021 (10 m).</b> Uso predominante del suelo y porcentaje de cobertura natural por predio. © ESA WorldCover project 2021 / Contiene datos modificados de Copernicus Sentinel (2021) procesados por el consorcio ESA WorldCover. Licencia CC BY 4.0. <a href="https://esa-worldcover.org" target="_blank" rel="noopener">esa-worldcover.org</a></li>
+    <li><b>CORINE Land Cover.</b> Cobertura del suelo de la cuenca abastecedora.</li>
+    <li><b>ALOS PALSAR (JAXA).</b> Modelo digital de elevación de 30 m usado en el visor SIG. <a href="https://www.eorc.jaxa.jp/ALOS/en/" target="_blank" rel="noopener">eorc.jaxa.jp/ALOS</a></li>
+    <li><b>Levantamiento predial (KMZ).</b> Delimitación de los 60 predios, ronda hídrica, represa y límite de la cuenca — Consorcio Servicios Ambientales 2026.</li>
+    <li><b>Vuelo de dron y procesamiento fotogramétrico.</b> Ortofoto de 7,75 cm por píxel, modelo de elevación y modelo 3D, obtenidos con dron DJI Mini 3 Pro y procesados con DroneDeploy.</li>
+  </ul>
+
+  <h3>Estudios técnicos</h3>
+  <ul>
+    <li>Documento técnico del esquema de PSA (Producto 2) e Informe Técnico N.º 1: identificación, análisis y priorización predial (Producto 1) — Consorcio Servicios Ambientales 2026.</li>
+    <li>Estudio Inalter S.A.S. (2019) y Resolución 1070 de 2023: sedimentación, calidad del agua cruda y fase de vejez de la represa.</li>
+    <li>Batimetría con software Hypack Max (2009–2018): sedimentación acumulada.</li>
+  </ul>
+
+  <h3>Marco normativo y guías</h3>
+  <ul>
+    <li>Ley 99 de 1993, artículo 111 (modificado por el artículo 210 de la Ley 1450 de 2011, la Ley 1955 de 2019 y la Ley 2320 de 2023).</li>
+    <li>Decreto Ley 870 de 2017 (Pago por Servicios Ambientales) y Decreto 1076 de 2015 (artículos 2.2.9.8.2.2 y 2.2.9.8.2.5: modalidad de regulación y calidad hídrica y tope del 15 % del avalúo catastral).</li>
+    <li>Resolución 2115 de 2007: calidad del agua para consumo humano.</li>
+    <li>Guía del Proyecto Tipo PSA, modalidad hídrica (Ministerio de Ambiente y Desarrollo Sostenible, 2021).</li>
+    <li>Plan de Desarrollo Municipal «Coveñas + Social 2024–2027».</li>
+    <li>Ley 1581 de 2012 y Decreto 1074 de 2015: protección de datos personales.</li>
+  </ul>
+</template>
+
+<template id="info-tecnologias" data-title="Tecnologías y créditos">
+  <p>Software libre y servicios de terceros que hacen posible la plataforma, con su licencia cuando exige reconocimiento.</p>
+
+  <h3>Mapas y visualización</h3>
+  <ul>
+    <li><b>Leaflet 1.9.4</b> — visores de mapas. Licencia BSD‑2‑Clause. <a href="https://leafletjs.com" target="_blank" rel="noopener">leafletjs.com</a></li>
+    <li><b>three.js</b> — visor del modelo 3D. Licencia MIT. <a href="https://threejs.org" target="_blank" rel="noopener">threejs.org</a></li>
+    <li><b>meshoptimizer</b> — compresión y decodificación de la malla 3D. Licencia MIT. <a href="https://github.com/zeux/meshoptimizer" target="_blank" rel="noopener">github.com/zeux/meshoptimizer</a></li>
+    <li><b>glTF 2.0</b> (Khronos Group) — formato del modelo 3D. <a href="https://www.khronos.org/gltf/" target="_blank" rel="noopener">khronos.org/gltf</a></li>
+    <li><b>WebP</b> (Google) — formato de las imágenes y teselas del mapa. <a href="https://developers.google.com/speed/webp" target="_blank" rel="noopener">developers.google.com/speed/webp</a></li>
+    <li><b>DroneDeploy</b> — procesamiento fotogramétrico de la ortofoto, el modelo de elevación y el modelo 3D. <a href="https://www.dronedeploy.com" target="_blank" rel="noopener">dronedeploy.com</a></li>
+  </ul>
+
+  <h3>Tipografía</h3>
+  <ul>
+    <li><b>Montserrat</b> (Julieta Ulanovsky y colaboradores), licencia SIL Open Font License 1.1, servida por Google Fonts. <a href="https://fonts.google.com/specimen/Montserrat" target="_blank" rel="noopener">fonts.google.com</a></li>
+  </ul>
+
+  <h3>Servidor y seguridad</h3>
+  <ul>
+    <li><b>Node.js</b> y <b>Express</b> — servidor web y API. <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> · <a href="https://expressjs.com" target="_blank" rel="noopener">expressjs.com</a></li>
+    <li><b>bcrypt (bcryptjs)</b> y <b>JSON Web Tokens</b> — resumen criptográfico de contraseñas y sesiones firmadas. <a href="https://jwt.io" target="_blank" rel="noopener">jwt.io</a></li>
+    <li><b>Hostinger</b> y <b>Render</b> — alojamiento. <a href="https://www.hostinger.com" target="_blank" rel="noopener">hostinger.com</a> · <a href="https://render.com" target="_blank" rel="noopener">render.com</a></li>
+  </ul>
+
+  <h3>Datos</h3>
+  <ul>
+    <li>ESA WorldCover 2021, ALOS PALSAR (JAXA) e IGAC: ver «Fuentes de información».</li>
+  </ul>
+</template>
+
 <div id="lightbox" hidden>
   <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
   <img id="lightbox-img" src="" alt="">
@@ -2129,6 +2348,58 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var wrap = document.getElementById("atlas-visor");
     if(wrap) wrap.scrollIntoView({ behavior:"smooth", block:"start" });
   }
+
+  // Enlaces internos del pie de página que abren una pestaña del atlas.
+  function gotoTab(group, panelId){
+    selectTab(group, panelId);
+    var s = document.getElementById(group);
+    if(s) s.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("[data-goto-tab]");
+    if(!a) return;
+    e.preventDefault();
+    gotoTab("atlas", a.getAttribute("data-goto-tab"));
+  });
+
+  // Panel de información (política de datos, fuentes, tecnologías): se abre desde el pie o desde el ingreso
+  // y también por enlace directo (#politica-datos, #fuentes, #tecnologias).
+  (function initInfoModal(){
+    var modal = document.getElementById("info-modal");
+    if(!modal) return;
+    var body = document.getElementById("info-body"), title = document.getElementById("info-title"), lastFocus = null;
+    var KEYS = { "politica-datos":"info-politica", "fuentes":"info-fuentes", "tecnologias":"info-tecnologias" };
+    function open(key, updateHash){
+      var tpl = document.getElementById(KEYS[key]);
+      if(!tpl) return;
+      title.textContent = tpl.getAttribute("data-title");
+      body.innerHTML = tpl.innerHTML;
+      body.scrollTop = 0;
+      modal.hidden = false;
+      document.body.classList.add("no-scroll");
+      lastFocus = document.activeElement;
+      modal.querySelector(".info-close").focus();
+      if(updateHash !== false && location.hash !== "#" + key){ history.replaceState(null, "", "#" + key); }
+    }
+    function close(){
+      if(modal.hidden) return;
+      modal.hidden = true;
+      document.body.classList.remove("no-scroll");
+      if(KEYS[location.hash.slice(1)]){ history.replaceState(null, "", location.pathname + location.search); }
+      if(lastFocus && lastFocus.focus){ lastFocus.focus(); }
+    }
+    document.addEventListener("click", function(e){
+      var a = e.target.closest("[data-info]");
+      if(a){ e.preventDefault(); open(a.getAttribute("data-info")); return; }
+      if(e.target === modal || e.target.closest(".info-close")){ close(); }
+    });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape"){ close(); } });
+    window.addEventListener("hashchange", function(){
+      var k = location.hash.slice(1);
+      if(KEYS[k]){ open(k, false); } else { close(); }
+    });
+    if(KEYS[location.hash.slice(1)]){ open(location.hash.slice(1), false); }
+  })();
 
   function initLanding(){
     var nav = document.getElementById("site-nav");
@@ -2618,7 +2889,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var list = document.getElementById("actas-list");
     list.innerHTML = ACTAS.map(function(a){
       var fotos = a.fotos === "GALERIA" ? GALERIA.map(function(g){ return {src:GALERIA_IMG[g.img], cap:g.cap, sub:g.sub}; }) : (a.fotos || []);
-      var html = '<article class="acta-card"><div class="acta-head"><h3>'+a.t+'</h3><span class="acta-date">'+a.fecha+'</span></div>';
+      var html = '<article class="acta-card" id="reunion-'+a.n+'"><div class="acta-head"><h3>'+a.t+'</h3><span class="acta-date">'+a.fecha+'</span></div>';
       if(fotos.length){
         html += '<div class="acta-photos">'+fotos.map(function(f){
           return '<figure><img src="'+f.src+'" alt="'+f.cap+'" loading="lazy" decoding="async"><figcaption><b>'+f.cap+'</b>'+(f.sub ? '<br>'+f.sub : '')+'</figcaption></figure>';
