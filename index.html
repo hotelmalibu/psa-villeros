@@ -520,6 +520,15 @@
 
   /* ---------- documentos ---------- */
   .doc-gate{margin:0 auto; text-align:left;}
+  .gate-msg{display:none; margin:.3rem 0 1.1rem; padding:.8rem 1rem; border-radius:12px; font-size:.9rem; line-height:1.45; border:1px solid transparent;}
+  .gate-msg.show{display:block;}
+  .gate-msg b{display:block; font-weight:700; margin-bottom:.15rem; font-size:.95rem;}
+  .gate-msg.info{background:#E4F1F7; color:#0F5A6E; border-color:#B9DCEB;}
+  .gate-msg.error{background:var(--alert-soft); color:#8E2F15; border-color:#E9B9A7;}
+  .gate-msg.warn{background:#FDF3DC; color:#7A4B00; border-color:#F2D28A;}
+  .gate-msg.info b::before{content:""; display:inline-block; width:.8em; height:.8em; margin-right:.5em; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; vertical-align:-.1em; animation:gate-spin .8s linear infinite;}
+  .gate-msg .gate-act{display:inline-block; margin-top:.5rem; font:inherit; font-weight:700; color:inherit; background:transparent; border:1.5px solid currentColor; border-radius:999px; padding:.3rem .9rem; cursor:pointer;}
+  @keyframes gate-spin{to{transform:rotate(360deg)}}
   .doc-row .ico{border-radius:8px;}
   .doc-group h3{color:var(--navy);}
   .app-footer{background:var(--navy-dark); color:#BFD9DE; margin:0; padding:2.6rem 1.6rem; border:0; font-size:.8rem;}
@@ -1512,7 +1521,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <p style="font-size:.9rem; color:var(--ink-soft);">Ingrese la misma clave de la sección Documentos. Uso previsto para el equipo técnico y la supervisión municipal.</p>
             <form id="port-gate-form">
               <div class="field"><label for="port-clave">Clave</label><input id="port-clave" type="password" placeholder="••••••••••••" autocomplete="off"></div>
-              <p class="login-error" id="port-gate-error">Clave incorrecta.</p>
+              <div class="gate-msg" id="port-gate-error" role="alert" aria-live="assertive"></div>
               <button type="submit" class="btn">Desbloquear portafolio</button>
             </form>
           </div>
@@ -1749,7 +1758,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <p style="font-size:.9rem; color:var(--ink-soft);">Uso previsto para el equipo técnico y la supervisión municipal.</p>
             <form id="doc-gate-form">
               <div class="field"><label for="doc-clave">Clave</label><input id="doc-clave" type="password" placeholder="••••••••••••" autocomplete="off"></div>
-              <p class="login-error" id="doc-gate-error">Clave incorrecta.</p>
+              <div class="gate-msg" id="doc-gate-error" role="alert" aria-live="assertive"></div>
               <button type="submit" class="btn">Desbloquear documentos</button>
             </form>
           </div>
@@ -3185,14 +3194,57 @@ svg.leaflet-image-layer.leaflet-interactive path {
   // servidor con la sesión iniciada y la clave de acceso (la misma para ambas secciones).
   var docsShown = false, portShown = false;
 
+  // Devuelve siempre un resultado (nunca rechaza): { ok, status, body, timeout }. status 0 = sin conexion.
   function gateRequest(path, clave){
-    return fetch(API_BASE + path, {
+    var ctl = ("AbortController" in window) ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function(){ ctl.abort(); }, 25000) : null;
+    var opts = {
       method: "POST",
       headers: { "Content-Type":"application/json", "Authorization":"Bearer " + sessionStorage.getItem(AUTH_TOKEN_KEY) },
       body: JSON.stringify({ clave:clave })
-    }).then(function(res){
-      return res.json().then(function(body){ return { ok:res.ok, body:body }; });
+    };
+    if(ctl){ opts.signal = ctl.signal; }
+    return fetch(API_BASE + path, opts).then(function(res){
+      if(timer){ clearTimeout(timer); }
+      return res.text().then(function(txt){
+        var body = null;
+        try { body = JSON.parse(txt); } catch(e){}
+        return { ok:res.ok, status:res.status, body:body };
+      });
+    }, function(err){
+      if(timer){ clearTimeout(timer); }
+      return { ok:false, status:0, body:null, timeout:!!(err && err.name === "AbortError") };
     });
+  }
+
+  // Mensaje visible junto al campo: kind = info | error | warn
+  function showMsg(el, kind, title, text, action){
+    el.className = "gate-msg show " + kind;
+    el.textContent = "";
+    var b = document.createElement("b"); b.textContent = title; el.appendChild(b);
+    if(text){ el.appendChild(document.createTextNode(text)); }
+    if(action){
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "gate-act"; btn.textContent = action.label;
+      btn.addEventListener("click", action.run);
+      el.appendChild(document.createElement("br")); el.appendChild(btn);
+    }
+    if(el.scrollIntoView){ el.scrollIntoView({ block:"nearest" }); }
+  }
+  function hideMsg(el){ el.className = "gate-msg"; el.textContent = ""; }
+
+  // Traduce el fallo del servidor a un mensaje que diga que esta pasando.
+  function describeFailure(r){
+    var code = r.body && r.body.code, srv = r.body && r.body.error;
+    if(r.timeout){ return { kind:"warn", title:"El servidor tardó demasiado en responder", text:"Puede estar iniciando o con mala conexión. Espere unos segundos e intente de nuevo." }; }
+    if(r.status === 0){ return { kind:"warn", title:"No hay conexión con el servidor", text:"Revise su conexión a internet e intente de nuevo." }; }
+    if(r.status === 429 || code === "limite"){ return { kind:"warn", title:"Demasiados intentos fallidos", text:"Por seguridad el acceso se bloquea unos minutos (hasta 10). Espere y vuelva a intentarlo." }; }
+    if(r.status === 401 && (code === "sesion" || (!code && /sesi|token/i.test(srv || "")))){
+      return { kind:"warn", title:"Su sesión expiró", text:"Vuelva a iniciar sesión para continuar.", action:{ label:"Volver a ingresar", run:function(){ sessionStorage.removeItem(AUTH_TOKEN_KEY); location.reload(); } } };
+    }
+    if(r.status === 401){ return { kind:"error", title:"Clave incorrecta", text:"Revise que esté escrita tal cual (mayúsculas y guiones) y que el navegador no haya rellenado el campo con otra contraseña. Vuelva a intentarlo." }; }
+    if(r.status === 403){ return { kind:"error", title:"El servidor bloqueó la solicitud (código 403)", text:"Recargue la página e intente de nuevo; si continúa, avise al equipo técnico." }; }
+    return { kind:"error", title:"El servidor no pudo atender la solicitud" + (r.status ? " (código " + r.status + ")" : ""), text:(srv ? srv + " " : "") + "Intente de nuevo en unos minutos; si continúa, avise al equipo técnico." };
   }
 
   var GATES = {
@@ -3224,24 +3276,24 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var g = GATES[name];
     document.getElementById(g.form).addEventListener("submit", function(e){
       e.preventDefault();
-      var input = document.getElementById(g.input), err = document.getElementById(g.err), v = input.value.trim();
-      var btn = this.querySelector("button[type=submit]");
-      btn.disabled = true;
+      var input = document.getElementById(g.input), msg = document.getElementById(g.err), v = input.value.trim();
+      var btn = this.querySelector("button[type=submit]"), label = btn.textContent;
+      if(!v){ showMsg(msg, "warn", "Escriba la clave", "El campo está vacío."); input.focus(); return; }
+      btn.disabled = true; btn.textContent = "Verificando…";
+      showMsg(msg, "info", "Verificando la clave…", "Un momento, consultando al servidor.");
       gateRequest(g.path, v).then(function(r){
-        btn.disabled = false;
-        if(!r.ok){
-          err.textContent = r.body.error || "Clave incorrecta.";
-          err.style.display = "block";
+        btn.disabled = false; btn.textContent = label;
+        if(!r.ok){ var d = describeFailure(r); showMsg(msg, d.kind, d.title, d.text, d.action); return; }
+        try {
+          if(!r.body){ throw new Error("respuesta inesperada del servidor"); }
+          openGate(name, r.body);
+        } catch(ex){
+          if(window.console){ console.error(ex); }
+          showMsg(msg, "error", "La clave es correcta, pero no se pudo mostrar la información", (ex && ex.message ? "(" + ex.message + ") " : "") + "Recargue la página e intente de nuevo; si continúa, avise al equipo técnico.");
           return;
         }
-        err.style.display = "none";
-        input.value = "";
-        openGate(name, r.body);
+        hideMsg(msg); input.value = "";
         openOthers(name, v);
-      }).catch(function(){
-        btn.disabled = false;
-        err.textContent = "No se pudo verificar la clave. Intente de nuevo.";
-        err.style.display = "block";
       });
     });
   });

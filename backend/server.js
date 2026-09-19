@@ -201,12 +201,12 @@ app.post("/api/auth/login", (req, res) => {
 function authMiddleware(req, res, next) {
   const header = req.headers.authorization || "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : null;
-  if (!token) return res.status(401).json({ error: "Falta el token de sesión." });
+  if (!token) return res.status(401).json({ error: "Falta el token de sesión.", code: "sesion" });
   try {
     req.auth = jwt.verify(token, SECRET);
     next();
   } catch (e) {
-    res.status(401).json({ error: "Sesión inválida o expirada." });
+    res.status(401).json({ error: "Sesión inválida o expirada.", code: "sesion" });
   }
 }
 
@@ -243,12 +243,12 @@ function claveValida(req, res) {
   const { clave } = req.body || {};
   const key = `${req.ip}:clave`;
   if (isRateLimited(key)) {
-    res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos." });
+    res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos.", code: "limite" });
     return false;
   }
   if (typeof clave !== "string" || !clave || !bcrypt.compareSync(normalizarClave(clave), DOC_KEY_HASH)) {
     registerFailure(key);
-    res.status(401).json({ error: "Clave incorrecta." });
+    res.status(401).json({ error: "Clave incorrecta.", code: "clave" });
     return false;
   }
   clearFailures(key);
