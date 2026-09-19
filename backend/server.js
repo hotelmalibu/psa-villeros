@@ -91,6 +91,12 @@ app.use("/vendor", staticDir("vendor", 30 * 86400));
 // Imágenes del sitio (nombres con hash del contenido: se pueden cachear un año).
 app.use("/img", staticDir("img", 365 * 86400, { "Cache-Control": "public, max-age=31536000, immutable" }));
 
+// Los navegadores piden /favicon.ico por costumbre; se responde con el mismo ícono de la pestaña.
+app.get("/favicon.ico", (req, res) => {
+  res.set("Cache-Control", "public, max-age=86400");
+  res.type("png").sendFile(path.join(__dirname, "favicon.png"));
+});
+
 if (INDEX_PATH) {
   console.log("Sirviendo el sitio estático desde:", INDEX_PATH);
   app.get("/", (req, res) => {
