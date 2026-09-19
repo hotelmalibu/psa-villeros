@@ -391,7 +391,7 @@
   .hero::before{content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(5,32,42,.55) 0%, rgba(5,32,42,.15) 38%, rgba(5,32,42,.72) 78%, rgba(5,32,42,.92) 100%);}
   .hero-inner{width:100%; max-width:1180px; margin:0 auto; padding:9rem 1.6rem 2.4rem;}
   .hero-eyebrow{font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#FFD98A; margin-bottom:1rem;}
-  .hero h1{color:#fff; font-size:clamp(2.3rem,5.4vw,4.2rem); max-width:16ch; text-shadow:0 3px 24px rgba(0,0,0,.35);}
+  .hero h1{color:#fff; font-size:clamp(2.1rem,4.6vw,3.7rem); max-width:22ch; text-shadow:0 3px 24px rgba(0,0,0,.35);}
   .hero-lead{max-width:60ch; font-size:clamp(1rem,1.5vw,1.2rem); color:#EAF4F6; margin:1.2rem 0 1.8rem; text-shadow:0 2px 14px rgba(0,0,0,.4);}
   .hero-cta{display:flex; flex-wrap:wrap; gap:.8rem;}
   .hero-stats{width:100%; max-width:1180px; margin:0 auto; padding:0 1.6rem 2.6rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.9rem;}
@@ -607,6 +607,9 @@
   .info-body b{color:var(--ink);}
   .info-meta{display:inline-block; font-size:.74rem; font-weight:700; color:var(--gold-deep); background:var(--gold-soft); border-radius:999px; padding:.25rem .8rem;}
   @media (max-width:640px){ .info-panel h2{font-size:1.2rem; padding:1.3rem 3.6rem .8rem 1.2rem;} .info-body{padding:1rem 1.2rem 1.5rem;} }
+
+  .hero-stat-2 b{font-size:1.2rem; line-height:1.25;}
+  .hero-stat-2 span{font-size:.95rem; font-weight:600; color:#EAF4F6; margin-top:.35rem;}
 </style>
 <style id="leaflet-css">
 /* required styles */
@@ -1335,7 +1338,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <section class="hero" id="inicio" aria-label="Portada">
       <div class="hero-inner">
         <div class="hero-eyebrow">Coveñas, Sucre · Pago por Servicios Ambientales</div>
-        <h1>Conservar el agua que abastece a Coveñas</h1>
+        <h1>Conservar Servicios Ambientales de la Represa Villeros, Coveñas</h1>
         <p class="hero-lead">Perfil del esquema de Pago por Servicios Ambientales de la Represa Villeros: alternativas de incentivos económicos para la conservación y un modelo para formalizar acuerdos voluntarios con los propietarios de los predios.</p>
         <div class="hero-cta">
           <a class="pill pill-orange" href="#presentacion">Conocer el proyecto</a>
@@ -1346,7 +1349,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="hero-stats">
         <div class="hero-stat"><b>12,96 km²</b><span>Cuenca abastecedora</span></div>
         <div class="hero-stat"><b>22,2 ha</b><span>Espejo de agua de la represa</span></div>
-        <div class="hero-stat"><b>9 predios</b><span>Priorizados · 149,6 ha</span></div>
+        <div class="hero-stat hero-stat-2"><b>Priorizados: 149,6 ha</b><span>Cuenca estricta: 47,4 ha</span></div>
         <div class="hero-stat"><b>18 msnm</b><span>Cota de la represa</span></div>
       </div>
     </section>
