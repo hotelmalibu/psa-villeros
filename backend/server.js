@@ -228,6 +228,16 @@ const portafolio = require("./portafolio");
 const DOC_KEY_HASH =
   process.env.DOC_KEY_HASH || "$2a$10$4KRp1JOwicIIlhibWTu0qeSguDY0e21S/Wro5joF2ovPhX0n/G1iu";
 
+// Copiar y pegar la clave suele traer guiones tipográficos (‑ – —), espacios invisibles o minúsculas;
+// se normalizan antes de comparar para no rechazar una clave correcta.
+function normalizarClave(s) {
+  return s
+    .normalize("NFKC")
+    .replace(/[‐-―−﹘﹣－]/g, "-")
+    .replace(/[\s​-‍⁠﻿]/g, "")
+    .toUpperCase();
+}
+
 // Comprueba la clave; los intentos fallidos se cuentan juntos para ambas secciones.
 function claveValida(req, res) {
   const { clave } = req.body || {};
@@ -236,7 +246,7 @@ function claveValida(req, res) {
     res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos." });
     return false;
   }
-  if (typeof clave !== "string" || !clave || !bcrypt.compareSync(clave.trim(), DOC_KEY_HASH)) {
+  if (typeof clave !== "string" || !clave || !bcrypt.compareSync(normalizarClave(clave), DOC_KEY_HASH)) {
     registerFailure(key);
     res.status(401).json({ error: "Clave incorrecta." });
     return false;
