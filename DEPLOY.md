@@ -107,8 +107,8 @@ La malla fotogramétrica original (2,1 M de triángulos, 17 texturas de 8192 px)
 está simplificada a ≈ 450 mil triángulos, con texturas en WebP y compresión
 meshopt, en dos versiones dentro de `backend/models/`:
 
-- `villeros-lite.glb` (≈ 8 MB, texturas de 1024 px): es la que se carga al pulsar
-  «Cargar modelo 3D».
+- `villeros-lite.glb` (≈ 8 MB, texturas de 1024 px): es la que se carga sola al
+  ingresar a la plataforma.
 - `villeros.glb` (≈ 20 MB, texturas de 2048 px): alta calidad. Se ofrece con un
   botón y se descarga sola solo en equipos de escritorio con buena conexión.
 
@@ -118,7 +118,8 @@ El visor usa three.js alojado en `backend/vendor/three/` (sin CDN).
 ## Acceso y documentos protegidos
 
 - Ingreso: un único usuario, `publico` (contraseña en `backend/users.js`, solo su hash bcrypt). Para cambiarla: `npm run hash -- "nueva"` dentro de `backend/`.
-- Documentos: el listado de enlaces vive en `backend/docs.js` y solo se entrega por `POST /api/docs`, que exige sesión iniciada y la clave de acceso a documentos (hash bcrypt en `server.js`, o variable de entorno `DOC_KEY_HASH`). Los enlaces ya no van en el HTML de la página.
+- Documentos: el listado (solo nombres, sin enlaces a Drive) vive en `backend/docs.js` y solo se entrega por `POST /api/docs`, que exige sesión iniciada y la clave de acceso a documentos (hash bcrypt en `server.js`, o variable de entorno `DOC_KEY_HASH`).
+- El modelo 3D se carga solo al ingresar y se guarda en el navegador (Cache Storage, clave `psa-models-v1`). Si cambias el GLB, sube el número de versión (`?v=1`) en `index.html`.
 
 ## Rendimiento
 
@@ -151,8 +152,7 @@ sitio funcione: el Atlas ya sirve las capas reales como GeoJSON embebido.
 - El repositorio de Documentos sigue apuntando a enlaces de Google Drive, no a
   un storage propio (el acceso a esos enlaces depende de cómo estén compartidos
   en Drive).
-- Los costos de incentivo de P07, P17, P18 y P19 figuran «por definir» en el
-  análisis económico: el documento técnico no los calcula todavía.
+- El incentivo de P07, P17, P18 y P19 no venía en el documento técnico: se calculó con su método (tarifa de referencia de $1.500.000/ha·año, limitada al 15% del avalúo) y se marca con † en la tabla. Conviene validarlo con el equipo económico.
 
 Ninguno bloquea el despliegue — son mejoras futuras, no dependencias de
 Hostinger/Render.

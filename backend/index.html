@@ -550,6 +550,17 @@
     .card{padding:1.1rem 1.1rem;}
     .block-title{font-size:1.25rem;}
   }
+
+  /* financiación: 4 tarjetas */
+  #financiacion-grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+  /* participación: título, fecha y fotos */
+  .acta-card{background:var(--paper-raised); border:1px solid var(--rule); border-radius:22px; box-shadow:var(--shadow); padding:1.4rem 1.6rem 1.6rem; margin-bottom:1.6rem;}
+  .acta-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:.6rem 1.2rem;}
+  .acta-head h3{margin:0; font-size:1.2rem; color:var(--navy);}
+  .acta-date{font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-deep); background:var(--gold-soft); border-radius:999px; padding:.3rem .9rem; white-space:nowrap;}
+  .acta-card .acta-photos{margin-top:1.1rem;}
+  .acta-photos figcaption b{display:block; font-size:.78rem; color:var(--navy-dark); font-weight:700;}
+  table.data .tag{white-space:nowrap;}
 </style>
 <style id="leaflet-css">
 /* required styles */
@@ -1429,7 +1440,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           </div>
           <div>
             <h3>Uso del tope legal del 15% del avalúo</h3>
-            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Incentivo calculado (VRT) frente al tope legal, en los predios del portafolio con costo ya calculado. Ninguno agota su propio tope.</p>
+            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Incentivo anual frente al tope legal del 15% del avalúo, en los 9 predios. P07 alcanza el tope, que es el que fija su valor.</p>
             <div id="econ-tope-chart"></div>
           </div>
         </div>
@@ -1446,14 +1457,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </table>
 
         <h3 class="block-title" id="econ-portafolio">Portafolio de los 9 predios priorizados</h3>
-        <p class="lead" style="margin-bottom:.8rem;">Seis predios de prioridad alta (P02, P03, P06, P07, P08 y P09) y tres de prioridad media (P17, P18 y P19). Las áreas provienen del levantamiento predial; el incentivo anual figura donde el documento técnico ya lo calculó, y «por definir» en los demás.</p>
+        <p class="lead" style="margin-bottom:.8rem;">Seis predios de prioridad alta (P02, P03, P06, P07, P08 y P09) y tres de prioridad media (P17, P18 y P19). Las áreas provienen del levantamiento predial. El incentivo de P02, P03, P06, P08 y P09 proviene del documento técnico; el de P07, P17, P18 y P19 (†) se calculó con el mismo método.</p>
         <div class="scrollx">
           <table class="data" id="econ-predios-table">
-            <thead><tr><th>Predio</th><th>Prioridad</th><th>Área total (ha)</th><th>En cuenca (ha)</th><th>Modalidad</th><th>Avalúo catastral (COP)</th><th>Incentivo anual (COP)</th></tr></thead>
+            <thead><tr><th>Predio</th><th>Prioridad</th><th>Área total (ha)</th><th>Modalidad</th><th>Avalúo catastral (COP)</th><th>Avalúo por ha (COP)</th><th>Tope legal 15% (COP/año)</th><th>Incentivo anual (COP)</th></tr></thead>
             <tbody id="econ-predios-tbody"></tbody>
           </table>
         </div>
-        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Documento técnico del esquema de PSA (Producto 2), capítulos 4, 6 y 7, y levantamiento predial (KMZ) — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026. Cifras originalmente expresadas en dólares se convirtieron a COP con la TRM de referencia implícita en el documento técnico (≈ $4.012 por dólar).</p>
+        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">† Incentivo calculado con el método del documento técnico: tarifa de referencia de $1.500.000 por hectárea al año (la aplicada en P02, P03, P08 y P11), limitada al 15% del avalúo catastral; en P07 el tope legal fija el valor. La modalidad sigue el umbral de cobertura natural (≥ 60% conservación; 30–60% rehabilitación; &lt; 30% restauración; ESA WorldCover 2021, Mapa 12). Fuente: Documento técnico del esquema de PSA, capítulos 4, 6 y 7, y levantamiento predial (KMZ) — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026. Cifras originalmente expresadas en dólares se convirtieron a COP con la TRM de referencia implícita en el documento técnico (≈ $4.012 por dólar).</p>
       </div>
     </section>
 
@@ -1615,7 +1626,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="m3d-stage" id="m3d-stage">
           <div class="m3d-poster" id="m3d-poster">
             <div>
-              <p>Modelo tridimensional de la Represa Villeros y su entorno (1,5 × 2,1 km), con relieve y fotografía real sobre la superficie. Se descarga solo si lo solicita, porque pesa cerca de 8 MB (en equipos y conexiones potentes puede mejorarse después a alta calidad, de unos 20 MB).</p>
+              <p>Modelo tridimensional de la Represa Villeros y su entorno (1,5 × 2,1 km), con relieve y fotografía real sobre la superficie. Se carga automáticamente al abrir la plataforma (≈ 8 MB) y queda guardado en su navegador; en equipos y conexiones potentes puede mejorarse después a alta calidad, de unos 20 MB.</p>
               <button type="button" class="btn" id="m3d-load">Cargar modelo 3D (≈ 8 MB)</button>
               <div class="m3d-prog" id="m3d-prog" hidden><i id="m3d-prog-bar"></i></div>
               <div class="m3d-msg" id="m3d-msg"></div>
@@ -1648,17 +1659,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="wrap">
         <div class="sec-head">
           <span class="sec-eyebrow">Participación social</span>
-          <h2 class="sec-title">Construcción participativa del perfil del esquema</h2>
+          <h2 class="sec-title">Reuniones de participación social</h2>
           <p class="lead">Socialización institucional desarrollada por la Alcaldía de Coveñas, con acompañamiento técnico del Consorcio Servicios Ambientales 2026. El PSA es voluntario: cada acuerdo de conservación se concerta con el propietario o poseedor del predio.</p>
         </div>
 
         <div id="actas-list"></div>
 
-        <h3 class="block-title">Actores institucionales</h3>
-        <table class="data" id="actores-table">
-          <thead><tr><th>Actor</th><th>Rol en el esquema</th></tr></thead>
-          <tbody></tbody>
-        </table>
       </div>
     </section>
 
@@ -1668,7 +1674,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="sec-head">
           <span class="sec-eyebrow">Sección interna</span>
           <h2 class="sec-title">Documentos del contrato</h2>
-          <p class="lead">Los archivos originales viven en el Drive del proyecto. Esta sección exige una clave de acceso adicional a la del ingreso antes de mostrar los enlaces.</p>
+          <p class="lead">Listado de los documentos del contrato. Esta sección exige una clave de acceso adicional a la del ingreso.</p>
         </div>
         <div id="doc-gate-wrap">
           <div class="doc-gate card">
@@ -1814,7 +1820,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   var PRODUCTOS = [
     {n:1, nombre:"Diagnóstico y línea base ambiental", estado:"done", label:"Completado"},
-    {n:2, nombre:"Perfil del modelo de formalización de acuerdos y alternativas de incentivos económicos", estado:"progress", label:"En curso"}
+    {n:2, nombre:"Perfil del esquema ambiental", estado:"done", label:"Completado"},
+    {n:3, nombre:"Diseño de alternativas de formalización de acuerdos en los predios", estado:"progress", label:"En curso"}
   ];
 
   var STATS = [
@@ -1834,8 +1841,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
   ];
 
   var FINANCIACION = [
+    {amt:"Alcaldía de Coveñas", lbl:"Fuente de financiación del esquema — recursos propios del Municipio, vigencia 2026"},
     {amt:"Batallón I.M. N.º 6", lbl:"Financiador ancla — obligado por la Resolución 1070 de 2023"},
-    {amt:"$86,85 M/año", lbl:"Incentivo ya calculado para 5 de los 9 predios priorizados"},
+    {amt:"$169,49 M/año", lbl:"Incentivo anual calculado para los 9 predios priorizados"},
     {amt:"≈ $2.382 M/año", lbl:"Cofinanciación potencial identificada — banco de hábitat (TRM de referencia ≈ $4.012)"}
   ];
 
@@ -1896,56 +1904,43 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {n:"Construido", ha:0.1, predios:1}
   ];
 
-  // Datos económicos publicados por predio (documento técnico). Donde no hay costo calculado: sin "incentivo".
+  // Datos por predio. avalúo y modalidad completos para los 9 predios. El incentivo viene del documento
+  // técnico en P02, P03, P06, P08 y P09; en los demás se calcula con el mismo método (ver renderEconomia).
+  // Modalidad: umbral de cobertura natural (ESA WorldCover 2021, Mapa 12): >= 60% conservación,
+  // 30-60% rehabilitación, < 30% restauración.
+  var TARIFA_HA = 1500000, TOPE_PCT = 0.15;
   var PREDIOS_ECON = {
-    P02:{avaluo:328791000, incentivo:16509000, modalidad:"Rehabilitación", indice:"60,4", tope:45},
-    P03:{avaluo:58947000, incentivo:6103500, modalidad:"Rehabilitación", indice:"58,7", tope:66},
-    P06:{avaluo:195595000, incentivo:8071097, modalidad:"Conservación", indice:"67,4", tope:25},
-    P07:{avaluo:342655000},
-    P08:{avaluo:373492000, incentivo:38934000, modalidad:"Rehabilitación", indice:"56,8", tope:45},
-    P09:{avaluo:302518000, incentivo:17231507, modalidad:"Rehabilitación", indice:"56,1", tope:44},
-    P17:{avaluo:237301000},
-    P18:{avaluo:175760000},
-    P19:{avaluo:55278000}
+    P02:{avaluo:328791000, incentivo:16509000, modalidad:"Rehabilitación"},
+    P03:{avaluo:58947000, incentivo:6103500, modalidad:"Rehabilitación"},
+    P06:{avaluo:195595000, incentivo:8071097, modalidad:"Conservación"},
+    P07:{avaluo:342655000, modalidad:"Restauración"},
+    P08:{avaluo:373492000, incentivo:38934000, modalidad:"Rehabilitación"},
+    P09:{avaluo:302518000, incentivo:17231507, modalidad:"Rehabilitación"},
+    P17:{avaluo:237301000, modalidad:"Restauración"},
+    P18:{avaluo:175760000, modalidad:"Restauración"},
+    P19:{avaluo:55278000, modalidad:"Rehabilitación"}
   };
 
   var ECON_STATS = [
     {v:"9 predios · 149,6 ha", l:"Predios priorizados del portafolio (6 de prioridad alta y 3 de media)"},
     {v:"47,4 ha", l:"Superficie de los 9 predios dentro de la cuenca estricta"},
     {v:"$2.070 M", l:"Avalúo catastral de los 9 predios (COP)"},
+    {v:"$169,49 M/año", l:"Incentivo anual calculado para los 9 predios"},
     {v:"≈ $1,34 M/ha·año", l:"Costo de oportunidad de referencia adoptado (menor entre BEN y VRT)"},
-    {v:"$86,85 M/año", l:"Incentivo ya calculado en 5 de los 9 predios; los otros 4 están por definir"},
     {v:"15%", l:"Tope legal del incentivo sobre el avalúo catastral (Decreto 1076 de 2015)"}
   ];
 
-  /* ================= PARTICIPACIÓN SOCIAL: actas de socialización ================= */
+  /* ================= PARTICIPACIÓN SOCIAL: reuniones (título, fecha y fotos con pie) ================= */
   var ACTAS = [
-    {n:1, fecha:"Julio de 2026", lugar:"Municipio de Coveñas", t:"Socialización institucional y comunitaria",
-     d:"Presentación del proyecto de formulación del perfil del esquema de PSA ante la Alcaldía de Coveñas y la comunidad rural del área de intervención.",
-     fotos:[]},
-    {n:2, fecha:"19 de agosto de 2026", hora:"10:00 a. m. – 11:00 a. m.", lugar:"Secretaría de Desarrollo Social y Comunitario · Alcaldía de Coveñas",
-     t:"Socialización del Producto N.º 1 con la Secretaría de Desarrollo Social y Comunitario",
-     participan:"Secretaría de Desarrollo Social y Comunitario y equipo técnico de la consultoría",
-     d:"Entrega formal a la Secretaría del Producto N.º 1, «Documento del área de estudio con análisis, recomendaciones y prospectiva» de la microcuenca de la Represa Villeros, y presentación de los avances del Producto N.º 2.",
-     puntos:["Socialización y entrega formal del Producto N.º 1.","Coordinación de las acciones de articulación con los actores sociales, comunitarios e institucionales del municipio, para facilitar las actividades de la siguiente fase del contrato."],
-     compromisos:[
-       "Radicar el oficio a la Secretaría solicitando su apoyo en la articulación y convocatoria de los actores para la segunda fase del proyecto.",
-       "Radicar las invitaciones a los talleres de articulación dirigidas a los actores sociales, comunitarios e institucionales identificados.",
-       "Radicar y entregar formalmente el Producto N.º 1 para conocimiento y revisión de la Secretaría.",
-       "La Secretaría apoyará la articulación con los actores y realizará las gestiones para facilitar su participación en los talleres.",
-       "La Secretaría remitirá al Consorcio los soportes de recepción y aceptación de las invitaciones.",
-       "Las partes mantendrán comunicación y coordinación para definir los aspectos logísticos de los talleres."
-     ],
+    {n:1, fecha:"Julio de 2026", t:"Socialización institucional y comunitaria", fotos:[]},
+    {n:2, fecha:"19 de agosto de 2026", t:"Socialización del Producto N.º 1 con la Secretaría de Desarrollo Social y Comunitario",
      fotos:[
        {src:"img/acta2-a.6e949079.webp", cap:"Equipo técnico y Secretaría de Desarrollo Social y Comunitario"},
        {src:"img/acta2-b.ed660520.webp", cap:"Presentación de los avances del proyecto"},
        {src:"img/acta2-c.0b156edb.webp", cap:"Socialización del Producto N.º 1"},
        {src:"img/acta2-d.e0b4ff11.webp", cap:"Coordinación de acciones de articulación"}
      ]},
-    {n:3, fecha:"3 de septiembre de 2026", lugar:"Biblioteca Pública Municipal de Coveñas", t:"Taller de articulación institucional",
-     participan:"Armada Nacional, Alcaldía de San Antero, CENIT, Personería, Fundifami y comunidad",
-     d:"Avances del Documento técnico del esquema de PSA (Producto 2) y ejercicio de articulación con actores: matriz de problema, alternativa y compromiso por entidad. Fuente: Acta de Articulación N.º 3.",
-     fotos:"GALERIA"}
+    {n:3, fecha:"3 de septiembre de 2026", t:"Taller de articulación institucional", fotos:"GALERIA"}
   ];
 
   var ACTORES = [
@@ -1964,15 +1959,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
   ];
 
   var ATLAS_MAPS = [
-    {img:"mapa01", title:"Mapa 1 · Localización general", figs:"Cuenca 1.199 ha · drenajes · vías · represa 22,2 ha", cap:"Localización de la microcuenca de la Represa Villeros: límite de cuenca, drenajes del arroyo Villeros, red vial y el espejo de agua de la represa.", href:"https://drive.google.com/file/d/1vVWEkPgyNZgUIYPxLlEFGFrqLtE6y--l/view?usp=drivesdk"},
-    {img:"mapa08", title:"Mapa 8 · Contexto y reparto jurisdiccional", figs:"San Antero 77% · Momil 19% · Coveñas 4%", cap:"Reparto catastral IGAC de la cuenca abastecedora entre San Antero, Momil (Córdoba) y Coveñas (Sucre). El recuadro naranja señala el área ampliada en el Mapa 9.", href:"https://drive.google.com/drive/folders/1Lj9vwrcY3HCiDmCAT-rDeKHzEFsCr1gr"},
-    {img:"mapa09", title:"Mapa 9 · Zoom — área de intervención", figs:"60 predios · 294 ha · catastro IGAC 100%", cap:"Perímetro de la Represa Villeros en jurisdicción de Coveñas: 9 predios dentro de la cuenca estricta (47,4 ha) y 51 predios en el perímetro de 500 m (resto del área de intervención).", href:"https://drive.google.com/file/d/1bQstOYFeAyWuvJnqk5e_4ht5tg_j5QU9/view?usp=drivesdk"},
-    {img:"mapa02", title:"Mapa 2 · Cobertura del suelo", figs:"Pastos limpios 594 ha · vegetación secundaria 239 ha", cap:"Cobertura del suelo de la cuenca según Corine Land Cover: predominan los pastos limpios, con bosque de galería (110 ha) a lo largo de los drenajes.", href:"https://drive.google.com/file/d/1Qyqa9Tx0kaZYcuw-8dxvwCuk9W_0AEdu/view?usp=drivesdk"},
-    {img:"mapa11", title:"Mapa 11 · Uso predominante por predio", figs:"ESA WorldCover 2021 (10 m) · pastizal 223 ha", cap:"Uso predominante del suelo por predio en el área de intervención: pastizal en 33 predios, bosque o arbolado en 25, y el espejo de agua de la represa.", href:"https://drive.google.com/file/d/1Qyqa9Tx0kaZYcuw-8dxvwCuk9W_0AEdu/view?usp=drivesdk"},
-    {img:"mapa06", title:"Mapa 6 · Ronda hídrica", figs:"Corredor prioritario de restauración · 53 ha", cap:"Ronda hídrica y buffer de drenajes de toda la cuenca: el corredor que el esquema prioriza para restauración de bosque de galería.", href:"https://drive.google.com/drive/folders/1Lj9vwrcY3HCiDmCAT-rDeKHzEFsCr1gr"},
-    {img:"mapa04", title:"Mapa 4 · Zonificación ambiental", figs:"Restauración 456 ha (41,7%) · Recuperación 637 ha (58,3%)", cap:"Zonificación de toda la cuenca: dónde restaurar cobertura ecológica y dónde recuperar mediante manejo productivo sostenible.", href:"https://drive.google.com/file/d/1Qyqa9Tx0kaZYcuw-8dxvwCuk9W_0AEdu/view?usp=drivesdk"},
-    {img:"mapa05", title:"Mapa 5 · Amenaza por incendio forestal", figs:"Muy alta 643 ha · alta 426 ha", cap:"Amenaza por incendio forestal en la cuenca: más de 1.000 ha en categoría alta o muy alta, concentradas fuera del corredor húmedo.", href:"https://drive.google.com/drive/folders/1Lj9vwrcY3HCiDmCAT-rDeKHzEFsCr1gr"},
-    {img:"mapa15", title:"Mapa 15 · Índice de prioridad PSA (v1)", figs:"MCDA de 6 criterios · rango 28,9–67,4", cap:"Índice de prioridad por predio en el área de intervención: el predio P06, junto a la represa, encabeza la priorización con 67 puntos.", href:"https://drive.google.com/file/d/1AaFPyx9FHx379DmL7lv13x8XorajkFVw/view?usp=drivesdk"}
+    {img:"mapa01", title:"Mapa 1 · Localización general", figs:"Cuenca 1.199 ha · drenajes · vías · represa 22,2 ha", cap:"Localización de la microcuenca de la Represa Villeros: límite de cuenca, drenajes del arroyo Villeros, red vial y el espejo de agua de la represa."},
+    {img:"mapa08", title:"Mapa 8 · Contexto y reparto jurisdiccional", figs:"San Antero 77% · Momil 19% · Coveñas 4%", cap:"Reparto catastral IGAC de la cuenca abastecedora entre San Antero, Momil (Córdoba) y Coveñas (Sucre). El recuadro naranja señala el área ampliada en el Mapa 9."},
+    {img:"mapa09", title:"Mapa 9 · Zoom — área de intervención", figs:"60 predios · 294 ha · catastro IGAC 100%", cap:"Perímetro de la Represa Villeros en jurisdicción de Coveñas: 9 predios dentro de la cuenca estricta (47,4 ha) y 51 predios en el perímetro de 500 m (resto del área de intervención)."},
+    {img:"mapa02", title:"Mapa 2 · Cobertura del suelo", figs:"Pastos limpios 594 ha · vegetación secundaria 239 ha", cap:"Cobertura del suelo de la cuenca según Corine Land Cover: predominan los pastos limpios, con bosque de galería (110 ha) a lo largo de los drenajes."},
+    {img:"mapa11", title:"Mapa 11 · Uso predominante por predio", figs:"ESA WorldCover 2021 (10 m) · pastizal 223 ha", cap:"Uso predominante del suelo por predio en el área de intervención: pastizal en 33 predios, bosque o arbolado en 25, y el espejo de agua de la represa."},
+    {img:"mapa06", title:"Mapa 6 · Ronda hídrica", figs:"Corredor prioritario de restauración · 53 ha", cap:"Ronda hídrica y buffer de drenajes de toda la cuenca: el corredor que el esquema prioriza para restauración de bosque de galería."},
+    {img:"mapa04", title:"Mapa 4 · Zonificación ambiental", figs:"Restauración 456 ha (41,7%) · Recuperación 637 ha (58,3%)", cap:"Zonificación de toda la cuenca: dónde restaurar cobertura ecológica y dónde recuperar mediante manejo productivo sostenible."},
+    {img:"mapa05", title:"Mapa 5 · Amenaza por incendio forestal", figs:"Muy alta 643 ha · alta 426 ha", cap:"Amenaza por incendio forestal en la cuenca: más de 1.000 ha en categoría alta o muy alta, concentradas fuera del corredor húmedo."},
+    {img:"mapa15", title:"Mapa 15 · Índice de prioridad PSA (v1)", figs:"MCDA de 6 criterios · rango 28,9–67,4", cap:"Índice de prioridad por predio en el área de intervención: el predio P06, junto a la represa, encabeza la priorización con 67 puntos."}
   ];
 
   /* ===== Real interactive map data (reprojected from the project's own shapefiles/DEM to WGS84) ===== */
@@ -2013,7 +2008,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {title:"Zonificación ambiental", text:"Cada predio se clasifica según su cobertura actual, para decidir si se conserva, se restaura o se recupera.", fact:"Restauración ecológica 456,07 ha (41,7%) · Recuperación 637,2 ha (58,3%)", img:"mapa04"},
     {title:"Modalidades de PSA por predio", text:"El uso del suelo de cada predio determina su modalidad de incentivo: conservación, rehabilitación o restauración.", fact:"Conservación 23 predios/47 ha · Rehabilitación 15/81 ha · Restauración 22/166 ha", img:"mapa11"},
     {title:"El portafolio de los 9 predios priorizados", text:"El índice de prioridad selecciona los predios con mayor efecto sobre el recurso hídrico: seis de prioridad alta y tres de prioridad media conforman el portafolio de análisis económico.", fact:"9 predios · 149,6 ha · 47,4 ha dentro de la cuenca estricta", img:"mapa15"},
-    {title:"Lo que sigue: modelo de acuerdos e incentivos", text:"El perfil culmina con el diseño del modelo para formalizar acuerdos de conservación voluntarios y las alternativas de incentivos económicos para los propietarios de los predios priorizados, empezando por el corredor de ronda hídrica. El proyecto no contempla la adquisición de predios.", fact:"Producto 2 · Perfil del modelo de acuerdos e incentivos — en curso", img:"mapa06"}
+    {title:"Lo que sigue: Producto 3", text:"Con el perfil del esquema ambiental completado, el Producto 3 diseña las alternativas de formalización de acuerdos de conservación voluntarios en los predios, con las alternativas de incentivos económicos para sus propietarios, empezando por el corredor de ronda hídrica. El proyecto no contempla la adquisición de predios.", fact:"Producto 3 · Diseño de alternativas de formalización de acuerdos en los predios — en curso", img:"mapa06"}
   ];
 
   var PREDIOS9_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"P02","prioridad":"1-Alta","area":11.006,"cuenca":10.2,"ronda":1.846,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010068000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.701474,9.372316],[-75.701386,9.372674],[-75.701458,9.372832],[-75.701602,9.372933],[-75.701659,9.373135],[-75.701658,9.373393],[-75.701585,9.373622],[-75.701454,9.373751],[-75.701309,9.373994],[-75.701351,9.374138],[-75.701495,9.374425],[-75.701652,9.374785],[-75.70168,9.375172],[-75.70162,9.375545],[-75.70149,9.37576],[-75.70097,9.375629],[-75.70084,9.375614],[-75.700261,9.375942],[-75.699957,9.376084],[-75.699581,9.376169],[-75.699219,9.376382],[-75.698885,9.376697],[-75.698508,9.376954],[-75.698263,9.376996],[-75.698075,9.376981],[-75.698018,9.376794],[-75.698309,9.376221],[-75.698657,9.375792],[-75.698847,9.375434],[-75.698934,9.37519],[-75.698921,9.374932],[-75.69885,9.374587],[-75.698851,9.374343],[-75.69901,9.374215],[-75.69917,9.374],[-75.699403,9.373714],[-75.699664,9.373385],[-75.699897,9.372941],[-75.700173,9.372612],[-75.700348,9.372139],[-75.701474,9.372316]]]}},{"type":"Feature","properties":{"id":"P03","prioridad":"1-Alta","area":4.069,"cuenca":0.923,"ronda":0.06,"dist":0,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010238000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.699957,9.376084],[-75.700261,9.375942],[-75.70084,9.375614],[-75.70097,9.375629],[-75.70149,9.37576],[-75.701431,9.37596],[-75.701401,9.376219],[-75.701529,9.376764],[-75.701758,9.377167],[-75.702322,9.377212],[-75.701988,9.37757],[-75.701711,9.378214],[-75.700819,9.377135],[-75.700618,9.376933],[-75.700344,9.376817],[-75.700069,9.376888],[-75.699866,9.37716],[-75.699619,9.377388],[-75.699474,9.377574],[-75.699214,9.377645],[-75.699026,9.377573],[-75.69894,9.3773],[-75.699014,9.37707],[-75.699188,9.376928],[-75.699434,9.376814],[-75.699651,9.376642],[-75.699753,9.376542],[-75.699898,9.376356],[-75.699957,9.376084]]]}},{"type":"Feature","properties":{"id":"P06","prioridad":"1-Alta","area":33.785,"cuenca":0.441,"ronda":1.066,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010141000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696122,9.384879],[-75.695748,9.384548],[-75.695359,9.384116],[-75.695212,9.383944],[-75.695177,9.383903],[-75.694986,9.38368],[-75.694841,9.383511],[-75.694755,9.383418],[-75.69451,9.383151],[-75.694108,9.382719],[-75.694253,9.38239],[-75.69437,9.382046],[-75.694382,9.381981],[-75.694459,9.381573],[-75.694532,9.381257],[-75.69488,9.381086],[-75.695083,9.380786],[-75.695489,9.3805],[-75.695866,9.3802],[-75.69601,9.380201],[-75.696183,9.380133],[-75.696227,9.380116],[-75.696416,9.379844],[-75.696533,9.379529],[-75.696535,9.379055],[-75.696681,9.378812],[-75.696899,9.378296],[-75.697422,9.377552],[-75.698018,9.376794],[-75.698075,9.376981],[-75.698263,9.376996],[-75.698508,9.376954],[-75.698885,9.376697],[-75.699219,9.376382],[-75.699581,9.376169],[-75.699957,9.376084],[-75.699898,9.376356],[-75.699753,9.376542],[-75.699651,9.376642],[-75.699434,9.376814],[-75.699188,9.376928],[-75.699014,9.37707],[-75.69894,9.3773],[-75.699026,9.377573],[-75.699214,9.377645],[-75.699474,9.377574],[-75.699619,9.377388],[-75.700556,9.37788],[-75.700845,9.378082],[-75.700901,9.378326],[-75.700741,9.378584],[-75.700481,9.378798],[-75.69993,9.379111],[-75.699655,9.379283],[-75.699568,9.379383],[-75.699582,9.379584],[-75.69974,9.37967],[-75.700159,9.379672],[-75.700694,9.37976],[-75.700648,9.38042],[-75.700733,9.380765],[-75.700731,9.381123],[-75.700774,9.38121],[-75.700687,9.381353],[-75.700456,9.381323],[-75.700095,9.381236],[-75.699647,9.381363],[-75.699097,9.381605],[-75.698763,9.381876],[-75.698502,9.382162],[-75.698155,9.382333],[-75.697779,9.382461],[-75.697532,9.382589],[-75.697402,9.382818],[-75.697516,9.383005],[-75.697675,9.38312],[-75.697834,9.383164],[-75.697689,9.383321],[-75.697601,9.38345],[-75.697514,9.383579],[-75.697484,9.383794],[-75.697614,9.383895],[-75.697729,9.384111],[-75.697815,9.384312],[-75.697699,9.384455],[-75.697568,9.384498],[-75.697409,9.384483],[-75.697251,9.38431],[-75.697151,9.38418],[-75.696833,9.384165],[-75.69663,9.384207],[-75.696514,9.384336],[-75.696456,9.384479],[-75.696339,9.384722],[-75.696122,9.384879]]]}},{"type":"Feature","properties":{"id":"P07","prioridad":"1-Alta","area":42.187,"cuenca":19.009,"ronda":0,"dist":0,"zon":"Sin dato","cob":"Vias","predial":"702210002000000010047000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.694108,9.382719],[-75.693791,9.382345],[-75.69359,9.382114],[-75.693316,9.381927],[-75.692941,9.381796],[-75.692494,9.381565],[-75.692321,9.381478],[-75.692831,9.380246],[-75.692949,9.379845],[-75.693167,9.379329],[-75.693241,9.378985],[-75.693244,9.378167],[-75.69339,9.377838],[-75.693898,9.377251],[-75.694508,9.376479],[-75.694871,9.375906],[-75.695133,9.375477],[-75.695352,9.374961],[-75.695571,9.374402],[-75.695586,9.374144],[-75.69582,9.373585],[-75.696096,9.373084],[-75.696431,9.372397],[-75.696765,9.371939],[-75.696897,9.371609],[-75.697303,9.371152],[-75.697591,9.37144],[-75.697907,9.3718],[-75.698211,9.371887],[-75.698702,9.371918],[-75.699453,9.372007],[-75.700348,9.372139],[-75.700173,9.372612],[-75.699897,9.372941],[-75.699664,9.373385],[-75.699403,9.373714],[-75.69917,9.374],[-75.69901,9.374215],[-75.698851,9.374343],[-75.69885,9.374587],[-75.698921,9.374932],[-75.698934,9.37519],[-75.698847,9.375434],[-75.698657,9.375792],[-75.698309,9.376221],[-75.698018,9.376794],[-75.697422,9.377552],[-75.696899,9.378296],[-75.696681,9.378812],[-75.696535,9.379055],[-75.696533,9.379529],[-75.696416,9.379844],[-75.696227,9.380116],[-75.696183,9.380133],[-75.69601,9.380201],[-75.695866,9.3802],[-75.695489,9.3805],[-75.695083,9.380786],[-75.69488,9.381086],[-75.694532,9.381257],[-75.694459,9.381573],[-75.694382,9.381981],[-75.69437,9.382046],[-75.694253,9.38239],[-75.694108,9.382719]]]}},{"type":"Feature","properties":{"id":"P08","prioridad":"1-Alta","area":25.956,"cuenca":6.801,"ronda":2.12,"dist":3.3,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010144000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697834,9.383164],[-75.697675,9.38312],[-75.697516,9.383005],[-75.697402,9.382818],[-75.697532,9.382589],[-75.697779,9.382461],[-75.698155,9.382333],[-75.698502,9.382162],[-75.698763,9.381876],[-75.699097,9.381605],[-75.699647,9.381363],[-75.700095,9.381236],[-75.700456,9.381323],[-75.700687,9.381353],[-75.700774,9.38121],[-75.700731,9.381123],[-75.700733,9.380765],[-75.700648,9.38042],[-75.700694,9.37976],[-75.700985,9.379073],[-75.701391,9.378658],[-75.701711,9.378214],[-75.701988,9.37757],[-75.702322,9.377212],[-75.703521,9.377217],[-75.702785,9.384274],[-75.702395,9.384387],[-75.701628,9.384499],[-75.70121,9.384426],[-75.700792,9.384123],[-75.700633,9.384122],[-75.699897,9.383875],[-75.699768,9.383731],[-75.699493,9.38363],[-75.699147,9.383557],[-75.697834,9.383164]]]}},{"type":"Feature","properties":{"id":"P09","prioridad":"1-Alta","area":11.775,"cuenca":9.597,"ronda":0.96,"dist":69.8,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010143000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.703521,9.377217],[-75.702322,9.377212],[-75.701758,9.377167],[-75.701529,9.376764],[-75.701401,9.376219],[-75.701431,9.37596],[-75.70149,9.37576],[-75.70162,9.375545],[-75.70168,9.375172],[-75.701652,9.374785],[-75.701495,9.374425],[-75.701351,9.374138],[-75.701309,9.373994],[-75.701454,9.373751],[-75.701585,9.373622],[-75.701658,9.373393],[-75.701659,9.373135],[-75.701602,9.372933],[-75.701458,9.372832],[-75.701386,9.372674],[-75.701474,9.372316],[-75.701936,9.372476],[-75.701946,9.372481],[-75.702253,9.372663],[-75.702743,9.372895],[-75.703364,9.373113],[-75.703681,9.373171],[-75.703941,9.37333],[-75.703521,9.377217]]]}},{"type":"Feature","properties":{"id":"P17","prioridad":"2-Media","area":12.964,"cuenca":0.013,"ronda":0,"dist":464.3,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010049000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.692284,9.368793],[-75.693092,9.369284],[-75.693398,9.368539],[-75.694003,9.368915],[-75.694442,9.367697],[-75.694829,9.368272],[-75.695016,9.368689],[-75.695116,9.369005],[-75.695244,9.369293],[-75.695381,9.369393],[-75.695461,9.369451],[-75.69498,9.370497],[-75.694805,9.370898],[-75.694949,9.370999],[-75.694934,9.371186],[-75.694846,9.371372],[-75.694598,9.371902],[-75.694394,9.372461],[-75.694363,9.372977],[-75.694709,9.373194],[-75.695544,9.373857],[-75.695486,9.374043],[-75.695053,9.373726],[-75.69478,9.373481],[-75.694607,9.373394],[-75.693512,9.372558],[-75.692706,9.371823],[-75.692245,9.371347],[-75.691972,9.371059],[-75.692106,9.370127],[-75.692284,9.368793]]]}},{"type":"Feature","properties":{"id":"P18","prioridad":"2-Media","area":5.33,"cuenca":0.278,"ronda":0,"dist":477.4,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010071000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696739,9.371451],[-75.696505,9.371995],[-75.695865,9.373069],[-75.695544,9.373857],[-75.694709,9.373194],[-75.694363,9.372977],[-75.694394,9.372461],[-75.694598,9.371902],[-75.694846,9.371372],[-75.694934,9.371186],[-75.694949,9.370999],[-75.694805,9.370898],[-75.69498,9.370497],[-75.696739,9.371451]]]}},{"type":"Feature","properties":{"id":"P19","prioridad":"2-Media","area":2.536,"cuenca":0.11,"ronda":0,"dist":608.7,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010048000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697188,9.370936],[-75.696739,9.371451],[-75.69498,9.370497],[-75.695461,9.369451],[-75.695763,9.369596],[-75.696555,9.370259],[-75.697188,9.370936]]]}}]};
@@ -2078,6 +2073,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     });
     renderAll();
     initLanding();
+    window.dispatchEvent(new Event("psa-ready"));
   }
 
   // Si ya hay una sesión válida en este navegador (recarga de página), la reutiliza sin pedir login de nuevo.
@@ -2286,9 +2282,23 @@ svg.leaflet-image-layer.leaflet-interactive path {
   function fmtHa(n, dec){ return n.toLocaleString("es-CO", { minimumFractionDigits:dec, maximumFractionDigits:dec }); }
   var PRED_COLORS = { "1-Alta":"#E4572E", "2-Media":"#F2A31F", "3-Baja":"#7CB342" };
 
+  // Completa, para cada predio, avalúo por hectárea, tope legal e incentivo anual. Donde el documento
+  // técnico no trae el incentivo se calcula: tarifa de referencia × área, limitada al 15% del avalúo.
+  function completarEcon(){
+    PREDIOS9_GEOJSON.features.forEach(function(f){
+      var p = f.properties, e = PREDIOS_ECON[p.id];
+      if(e.tope) return;
+      e.tope = Math.round(e.avaluo * TOPE_PCT);
+      e.avaluoHa = Math.round(e.avaluo / p.area);
+      if(!e.incentivo){ e.incentivo = Math.min(Math.round(TARIFA_HA * p.area), e.tope); e.calculado = true; }
+      e.usoTope = Math.round((e.incentivo / e.tope) * 1000) / 10;
+    });
+  }
+
   function renderEconomia(){
     var stats = document.getElementById("econ-stats-grid");
     if(!stats) return;
+    completarEcon();
     stats.innerHTML = ECON_STATS.map(function(s){
       return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
     }).join("");
@@ -2301,46 +2311,46 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '<span class="mono">'+fmtHa(d.ha,1)+' ha</span></div>';
     }).join("") + '</div>';
 
-    var conTope = Object.keys(PREDIOS_ECON).filter(function(k){ return PREDIOS_ECON[k].tope; })
-      .sort(function(a,b){ return PREDIOS_ECON[b].tope - PREDIOS_ECON[a].tope; });
-    document.getElementById("econ-tope-chart").innerHTML = '<div class="bars-h">' + conTope.map(function(k){
-      var pct = PREDIOS_ECON[k].tope;
+    var ids = Object.keys(PREDIOS_ECON).sort(function(a,b){ return PREDIOS_ECON[b].usoTope - PREDIOS_ECON[a].usoTope; });
+    document.getElementById("econ-tope-chart").innerHTML = '<div class="bars-h">' + ids.map(function(k){
+      var pct = PREDIOS_ECON[k].usoTope;
       return '<div class="bar-h-row"><span>'+k+'</span>'+
-        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+Math.max(6,pct)+'%;"></div></div>'+
-        '<span class="mono">'+pct+'%</span></div>';
+        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+Math.max(6,Math.min(100,pct))+'%;"></div></div>'+
+        '<span class="mono">'+fmtHa(pct,1)+'%</span></div>';
     }).join("") + '</div>';
 
     var feats = PREDIOS9_GEOJSON.features.map(function(f){ return f.properties; })
       .sort(function(a,b){ return a.id < b.id ? -1 : 1; });
-    var totArea = 0, totCuenca = 0, totAvaluo = 0, totInc = 0;
+    var totArea = 0, totAvaluo = 0, totTope = 0, totInc = 0;
     var rows = feats.map(function(p){
-      var e = PREDIOS_ECON[p.id] || {};
-      totArea += p.area; totCuenca += p.cuenca; totAvaluo += e.avaluo || 0; totInc += e.incentivo || 0;
+      var e = PREDIOS_ECON[p.id];
+      totArea += p.area; totAvaluo += e.avaluo; totTope += e.tope; totInc += e.incentivo;
       var col = PRED_COLORS[p.prioridad] || "#999";
       return '<tr><td><b>'+p.id+'</b></td>'+
         '<td><span class="tag" style="border-color:'+col+'; color:#13303B; background:'+col+'33;">'+p.prioridad.replace("-"," · ")+'</span></td>'+
-        '<td class="num">'+fmtHa(p.area,3)+'</td><td class="num">'+fmtHa(p.cuenca,3)+'</td>'+
-        '<td>'+(e.modalidad || '<span style="color:var(--ink-faint);">Por definir</span>')+'</td>'+
-        '<td class="num">'+fmtCOP(e.avaluo)+'</td>'+
-        '<td class="num">'+(e.incentivo ? fmtCOP(e.incentivo) : '<span style="color:var(--ink-faint); font-weight:500;">Por definir</span>')+'</td></tr>';
+        '<td class="num">'+fmtHa(p.area,3)+'</td>'+
+        '<td>'+e.modalidad+'</td>'+
+        '<td class="num">'+fmtCOP(e.avaluo)+'</td><td class="num">'+fmtCOP(e.avaluoHa)+'</td><td class="num">'+fmtCOP(e.tope)+'</td>'+
+        '<td class="num">'+fmtCOP(e.incentivo)+(e.calculado ? ' †' : '')+'</td></tr>';
     }).join("");
-    rows += '<tr class="total"><td>Total</td><td></td><td class="num">'+fmtHa(totArea,3)+'</td><td class="num">'+fmtHa(totCuenca,3)+'</td><td></td>'+
-      '<td class="num">'+fmtCOP(totAvaluo)+'</td><td class="num">'+fmtCOP(totInc)+' <span style="font-weight:500; color:var(--ink-faint);">(5 de 9)</span></td></tr>';
+    rows += '<tr class="total"><td>Total</td><td></td><td class="num">'+fmtHa(totArea,3)+'</td><td></td>'+
+      '<td class="num">'+fmtCOP(totAvaluo)+'</td><td class="num">'+fmtCOP(totAvaluo/totArea)+'</td><td class="num">'+fmtCOP(totTope)+'</td><td class="num">'+fmtCOP(totInc)+'</td></tr>';
     document.getElementById("econ-predios-tbody").innerHTML = rows;
   }
 
   function predioPopup(p){
-    var e = PREDIOS_ECON[p.id] || {};
+    completarEcon();
+    var e = PREDIOS_ECON[p.id];
     var rows = [
       ["Prioridad", p.prioridad.replace("-"," · ")],
+      ["Modalidad", e.modalidad],
       ["Número predial", p.predial],
       ["Área total", fmtHa(p.area,3)+" ha"],
       ["En la cuenca", fmtHa(p.cuenca,3)+" ha"],
-      ["En ronda hídrica", fmtHa(p.ronda,3)+" ha"],
       ["Distancia a la represa", fmtHa(p.dist,1)+" m"],
-      ["Zonificación", p.zon && p.zon !== "Sin dato" ? p.zon : "—"],
-      ["Avalúo catastral", e.avaluo ? fmtCOP(e.avaluo) : "—"],
-      ["Incentivo anual", e.incentivo ? fmtCOP(e.incentivo) : "Por definir"]
+      ["Avalúo catastral", fmtCOP(e.avaluo)],
+      ["Tope legal 15%", fmtCOP(e.tope)+"/año"],
+      ["Incentivo anual", fmtCOP(e.incentivo)+(e.calculado ? " †" : "")]
     ];
     return '<div class="pred-popup"><b class="t">Predio '+p.id+'</b><table>'+rows.map(function(r){
       return '<tr><td>'+r[0]+'</td><td><b>'+r[1]+'</b></td></tr>';
@@ -2607,25 +2617,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
   function renderParticipacion(){
     var list = document.getElementById("actas-list");
     list.innerHTML = ACTAS.map(function(a){
-      var fotos = a.fotos === "GALERIA" ? GALERIA.map(function(g){ return {src:GALERIA_IMG[g.img], cap:g.cap}; }) : (a.fotos || []);
-      var meta = '<span>'+a.fecha+'</span>' + (a.hora ? '<span>'+a.hora+'</span>' : '') + '<span>'+a.lugar+'</span>';
-      var html = '<article class="acta"><div class="acta-num">Acta N.º<b>'+String(a.n).padStart(2,"0")+'</b><small>'+a.fecha+'</small></div>'+
-        '<div class="card acta-body"><h3>'+a.t+'</h3><div class="acta-meta">'+meta+'</div>'+
-        '<p style="font-size:.94rem; color:var(--ink-soft); margin:0;">'+a.d+'</p>';
-      if(a.participan){ html += '<h4>Participan</h4><p style="font-size:.9rem; color:var(--ink-soft); margin:0;">'+a.participan+'</p>'; }
-      if(a.puntos){ html += '<h4>Desarrollo de la reunión</h4><ul>'+a.puntos.map(function(p){ return '<li>'+p+'</li>'; }).join("")+'</ul>'; }
-      if(a.compromisos){ html += '<h4>Resultados y compromisos</h4><ul>'+a.compromisos.map(function(p){ return '<li>'+p+'</li>'; }).join("")+'</ul>'; }
+      var fotos = a.fotos === "GALERIA" ? GALERIA.map(function(g){ return {src:GALERIA_IMG[g.img], cap:g.cap, sub:g.sub}; }) : (a.fotos || []);
+      var html = '<article class="acta-card"><div class="acta-head"><h3>'+a.t+'</h3><span class="acta-date">'+a.fecha+'</span></div>';
       if(fotos.length){
-        html += '<h4>Evidencia fotográfica</h4><div class="acta-photos">'+fotos.map(function(f){
-          return '<figure><img src="'+f.src+'" alt="'+f.cap+'" loading="lazy" decoding="async"><figcaption>'+f.cap+'</figcaption></figure>';
+        html += '<div class="acta-photos">'+fotos.map(function(f){
+          return '<figure><img src="'+f.src+'" alt="'+f.cap+'" loading="lazy" decoding="async"><figcaption><b>'+f.cap+'</b>'+(f.sub ? '<br>'+f.sub : '')+'</figcaption></figure>';
         }).join("")+'</div>';
       }
-      return html + '</div></article>';
-    }).join("");
-
-    var tbody = document.querySelector("#actores-table tbody");
-    tbody.innerHTML = ACTORES.map(function(a){
-      return '<tr><td>'+a[0]+'</td><td style="color:var(--ink-soft);">'+a[1]+'</td></tr>';
+      return html + '</article>';
     }).join("");
   }
 
@@ -2726,7 +2725,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       imgEl.classList.remove("fading");
     }, 140);
     if(captionTextEl) captionTextEl.textContent = m.cap;
-    if(captionSrcEl) captionSrcEl.innerHTML = m.figs + ' · <a href="'+m.href+'" target="_blank" rel="noopener">↗ ver capa fuente en Drive</a>';
+    if(captionSrcEl) captionSrcEl.textContent = m.figs;
   }
   function renderAtlas(){
     var legend = document.getElementById("atlas-legend");
@@ -2957,20 +2956,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   function renderDocumentos(data){
     var el = document.getElementById("doc-content");
-    var html = data.groups.map(function(g){
+    el.innerHTML = data.groups.map(function(g){
       var rows = g.docs.map(function(d){
         return '<div class="doc-row"><span class="ico">'+d.fmt+'</span>'+
-          '<span class="name">'+d.n+'<small>'+d.s+'</small></span>'+
-          '<a class="open" href="'+d.u+'" target="_blank" rel="noopener">Abrir en Drive ↗</a></div>';
+          '<span class="name">'+d.n+'<small>'+d.s+'</small></span></div>';
       }).join("");
       return '<div class="doc-group"><h3>'+g.titulo+'</h3>'+rows+'</div>';
     }).join("");
-    html += '<p class="doc-note">Repositorio completo del contrato (siete subcarpetas: documentación del proceso, propuesta, contrato, hojas de vida, matriz de seguimiento, ejecución y ejecución interna) — <a href="'+data.repoUrl+'" target="_blank" rel="noopener">abrir carpeta en Drive ↗</a></p>';
-    el.innerHTML = html;
   }
 
   /* ================= ASISTENTE (sample capability) ================= */
-  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media); costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del modelo de formalización de acuerdos y alternativas de incentivos económicos (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
+  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media), incentivo anual calculado de $169,49 millones COP; costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
   var asisTurns = [{role:"user", content: ASIS_CONTEXT}];
   var sampleFn = null;
 
@@ -3057,26 +3053,30 @@ svg.leaflet-image-layer.leaflet-interactive path {
 <script type="module">
   var q = function(id){ return document.getElementById(id); };
   var loadBtn = q("m3d-load");
-  if(loadBtn){
-    var started = false;
-    loadBtn.addEventListener("click", function(){
-      if(started) return;
-      started = true;
-      start().catch(function(err){
-        console.error(err);
-        started = false;
-        q("m3d-msg").textContent = "No se pudo cargar el modelo 3D. Intente de nuevo.";
-        q("m3d-prog").hidden = true;
-        loadBtn.disabled = false;
-      });
+  var started = false;
+  function begin(){
+    if(started) return;
+    started = true;
+    start().catch(function(err){
+      console.error(err);
+      started = false;
+      q("m3d-msg").textContent = "No se pudo cargar el modelo 3D. Pulse el botón para reintentar.";
+      q("m3d-prog").hidden = true;
+      loadBtn.disabled = false; loadBtn.hidden = false;
     });
   }
+  if(loadBtn){ loadBtn.addEventListener("click", begin); }
+  // Carga automática al abrir la plataforma (salvo que el dispositivo tenga activado el ahorro de datos).
+  function autoLoad(){ var c = navigator.connection; if(c && c.saveData) return; begin(); }
+  var appEl = document.getElementById("app");
+  if(appEl && !appEl.hidden){ autoLoad(); } else { window.addEventListener("psa-ready", autoLoad, { once:true }); }
+
   async function start(){
-    var GLB_LITE = "models/villeros-lite.glb", LITE_BYTES = 8442808, GLB_FULL = "models/villeros.glb", FULL_BYTES = 20702044;
+    var GLB_LITE = "models/villeros-lite.glb?v=1", LITE_BYTES = 8442808, GLB_FULL = "models/villeros.glb?v=1", FULL_BYTES = 20702044;
     var Y_TO_MSNM = -6.1; // msnm = y del modelo + Y_TO_MSNM (espejo de agua = 18 msnm)
-    loadBtn.disabled = true;
+    loadBtn.disabled = true; loadBtn.hidden = true;
     q("m3d-prog").hidden = false;
-    q("m3d-msg").textContent = "Cargando visor…";
+    q("m3d-msg").textContent = "Cargando modelo 3D…";
     var THREE = await import("three");
     var OrbitControls = (await import("three/addons/controls/OrbitControls.js")).OrbitControls;
     var GLTFLoader = (await import("three/addons/loaders/GLTFLoader.js")).GLTFLoader;
@@ -3100,13 +3100,47 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
     var loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
     var maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    // El modelo se guarda en el almacenamiento del navegador (Cache Storage): las siguientes visitas
+    // lo leen de ahí, sin volver a descargarlo.
+    function fetchModel(url, bytes, onProgress){
+      var openCache = ("caches" in window) ? caches.open("psa-models-v1").catch(function(){ return null; }) : Promise.resolve(null);
+      return openCache.then(function(cache){
+        var lookup = cache ? cache.match(url).catch(function(){ return null; }) : Promise.resolve(null);
+        return lookup.then(function(hit){
+          if(hit){ return hit.arrayBuffer().then(function(b){ onProgress(b.byteLength, b.byteLength); return b; }); }
+          return fetch(url).then(function(r){
+            if(!r.ok) throw new Error("modelo " + r.status);
+            var total = +r.headers.get("Content-Length") || bytes;
+            if(!r.body || !r.body.getReader){ return r.arrayBuffer(); }
+            var reader = r.body.getReader(), chunks = [], got = 0;
+            function pump(){
+              return reader.read().then(function(x){
+                if(x.done) return;
+                chunks.push(x.value); got += x.value.length; onProgress(got, total);
+                return pump();
+              });
+            }
+            return pump().then(function(){
+              var buf = new Uint8Array(got), o = 0;
+              chunks.forEach(function(c){ buf.set(c, o); o += c.length; });
+              return buf.buffer;
+            });
+          }).then(function(buf){
+            if(cache){ cache.put(url, new Response(buf.slice(0), { headers:{ "Content-Type":"model/gltf-binary" } })).catch(function(){}); }
+            return buf;
+          });
+        });
+      });
+    }
     function loadGLB(url, bytes, onProgress){
-      return new Promise(function(resolve, reject){
-        loader.load(url, function(g){
-          var m = g.scene;
-          m.traverse(function(o){ if(o.isMesh && o.material && o.material.map){ o.material.map.anisotropy = maxAniso; } });
-          resolve(m);
-        }, function(e){ onProgress(e.loaded, e.total || bytes); }, reject);
+      return fetchModel(url, bytes, onProgress).then(function(buf){
+        return new Promise(function(resolve, reject){
+          loader.parse(buf, "", function(g){
+            var m = g.scene;
+            m.traverse(function(o){ if(o.isMesh && o.material && o.material.map){ o.material.map.anisotropy = maxAniso; } });
+            resolve(m);
+          }, reject);
+        });
       });
     }
     var model = await loadGLB(GLB_LITE, LITE_BYTES, function(l, t){

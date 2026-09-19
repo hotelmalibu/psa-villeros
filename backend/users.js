@@ -9,7 +9,7 @@ module.exports = [
     username: "publico",
     passHash: "$2a$10$7vHKszyzeKlw30EbtWcSg.lbNajS1tIwULdmkA4yhNnW52/hpkpm2",
     role: "publico",
-    roleLabel: "Consulta pública",
+    roleLabel: "Link público",
     full: true,
   },
 ];
