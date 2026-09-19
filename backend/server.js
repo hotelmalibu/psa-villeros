@@ -215,24 +215,36 @@ app.get("/api/auth/me", authMiddleware, (req, res) => {
   });
 });
 
-// Sección interna de documentos: exige sesión iniciada Y la clave de acceso a documentos.
-// El listado de enlaces vive en docs.js y nunca viaja en el HTML de la página.
+// Secciones internas (documentos y portafolio de predios): exigen sesión iniciada Y la clave de acceso.
+// Sus datos viven en docs.js y portafolio.js y nunca viajan en el HTML de la página.
 const docs = require("./docs");
+const portafolio = require("./portafolio");
 const DOC_KEY_HASH =
   process.env.DOC_KEY_HASH || "$2a$10$4KRp1JOwicIIlhibWTu0qeSguDY0e21S/Wro5joF2ovPhX0n/G1iu";
 
-app.post("/api/docs", authMiddleware, (req, res) => {
+// Comprueba la clave; los intentos fallidos se cuentan juntos para ambas secciones.
+function claveValida(req, res) {
   const { clave } = req.body || {};
-  const key = `${req.ip}:docs`;
+  const key = `${req.ip}:clave`;
   if (isRateLimited(key)) {
-    return res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos." });
+    res.status(429).json({ error: "Demasiados intentos fallidos. Intente de nuevo en unos minutos." });
+    return false;
   }
   if (typeof clave !== "string" || !clave || !bcrypt.compareSync(clave.trim(), DOC_KEY_HASH)) {
     registerFailure(key);
-    return res.status(401).json({ error: "Clave incorrecta." });
+    res.status(401).json({ error: "Clave incorrecta." });
+    return false;
   }
   clearFailures(key);
-  res.json(docs);
+  return true;
+}
+
+app.post("/api/docs", authMiddleware, (req, res) => {
+  if (claveValida(req, res)) res.json(docs);
+});
+
+app.post("/api/portafolio", authMiddleware, (req, res) => {
+  if (claveValida(req, res)) res.json(portafolio);
 });
 
 const PORT = process.env.PORT || 4000;

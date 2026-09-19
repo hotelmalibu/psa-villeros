@@ -1482,17 +1482,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <span style="color:var(--ink-faint); font-size:.8rem;">Toque un predio para ver su ficha.</span>
         </div>
 
-        <div class="grid-2" style="margin-top:2.2rem; align-items:start;">
-          <div>
-            <h3>Uso predominante del suelo (contexto)</h3>
-            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Clasificación ESA WorldCover 2021 (10 m) sobre los 60 predios caracterizados · 294 ha.</p>
-            <div id="econ-uso-chart"></div>
-          </div>
-          <div>
-            <h3>Uso del tope legal del 15% del avalúo</h3>
-            <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Incentivo anual frente al tope legal del 15% del avalúo, en los 9 predios. P07 alcanza el tope, que es el que fija su valor.</p>
-            <div id="econ-tope-chart"></div>
-          </div>
+        <div style="margin-top:2.2rem; max-width:640px;">
+          <h3>Uso predominante del suelo (contexto)</h3>
+          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Clasificación ESA WorldCover 2021 (10 m) sobre los 60 predios caracterizados · 294 ha.</p>
+          <div id="econ-uso-chart"></div>
         </div>
 
         <h3 class="block-title" id="econ-costo">Costo de oportunidad y valoración del incentivo</h3>
@@ -1507,14 +1500,34 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </table>
 
         <h3 class="block-title" id="econ-portafolio">Portafolio de los 9 predios priorizados</h3>
-        <p class="lead" style="margin-bottom:.8rem;">Seis predios de prioridad alta (P02, P03, P06, P07, P08 y P09) y tres de prioridad media (P17, P18 y P19). Las áreas provienen del levantamiento predial. El incentivo de P02, P03, P06, P08 y P09 proviene del documento técnico; el de P07, P17, P18 y P19 (†) se calculó con el mismo método.</p>
-        <div class="scrollx">
-          <table class="data" id="econ-predios-table">
-            <thead><tr><th>Predio</th><th>Prioridad</th><th>Área total (ha)</th><th>Modalidad</th><th>Avalúo catastral (COP)</th><th>Avalúo por ha (COP)</th><th>Tope legal 15% (COP/año)</th><th>Incentivo anual (COP)</th></tr></thead>
-            <tbody id="econ-predios-tbody"></tbody>
-          </table>
+        <p class="lead" style="margin-bottom:1rem;">Seis predios de prioridad alta (P02, P03, P06, P07, P08 y P09) y tres de prioridad media (P17, P18 y P19). Las áreas provienen del levantamiento predial; los valores económicos por predio (avalúo, tope legal e incentivo anual) son de acceso restringido.</p>
+
+        <div id="port-gate-wrap">
+          <div class="doc-gate card">
+            <h3>Clave de acceso al portafolio</h3>
+            <p style="font-size:.9rem; color:var(--ink-soft);">Ingrese la misma clave de la sección Documentos. Uso previsto para el equipo técnico y la supervisión municipal.</p>
+            <form id="port-gate-form">
+              <div class="field"><label for="port-clave">Clave</label><input id="port-clave" type="password" placeholder="••••••••••••" autocomplete="off"></div>
+              <p class="login-error" id="port-gate-error">Clave incorrecta.</p>
+              <button type="submit" class="btn">Desbloquear portafolio</button>
+            </form>
+          </div>
         </div>
-        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">† Incentivo calculado con el método del documento técnico: tarifa de referencia de $1.500.000 por hectárea al año (la aplicada en P02, P03, P08 y P11), limitada al 15% del avalúo catastral; en P07 el tope legal fija el valor. La modalidad sigue el umbral de cobertura natural (≥ 60% conservación; 30–60% rehabilitación; &lt; 30% restauración; ESA WorldCover 2021, Mapa 12). Fuente: Documento técnico del esquema de PSA, capítulos 4, 6 y 7, y levantamiento predial (KMZ) — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026. Cifras originalmente expresadas en dólares se convirtieron a COP con la TRM de referencia implícita en el documento técnico (≈ $4.012 por dólar).</p>
+
+        <div id="port-content" hidden>
+          <div class="stat-grid" id="port-stats"></div>
+          <p class="lead" style="margin-bottom:.8rem; font-size:.92rem;">El incentivo de P02, P03, P06, P08 y P09 proviene del documento técnico; el de P07, P17, P18 y P19 (†) se calculó con el mismo método.</p>
+          <div class="scrollx">
+            <table class="data" id="econ-predios-table">
+              <thead><tr><th>Predio</th><th>Prioridad</th><th>Área total (ha)</th><th>Modalidad</th><th>Avalúo catastral (COP)</th><th>Avalúo por ha (COP)</th><th>Tope legal 15% (COP/año)</th><th>Incentivo anual (COP)</th></tr></thead>
+              <tbody id="econ-predios-tbody"></tbody>
+            </table>
+          </div>
+          <h3 style="margin-top:1.6rem;">Uso del tope legal del 15% del avalúo</h3>
+          <p class="lead" style="font-size:.85rem; margin-bottom:.6rem;">Incentivo anual frente al tope legal del 15% del avalúo, en los 9 predios. P07 alcanza el tope, que es el que fija su valor.</p>
+          <div id="econ-tope-chart"></div>
+          <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">† Incentivo calculado con el método del documento técnico: tarifa de referencia de $1.500.000 por hectárea al año (la aplicada en P02, P03, P08 y P11), limitada al 15% del avalúo catastral; en P07 el tope legal fija el valor. La modalidad sigue el umbral de cobertura natural (≥ 60% conservación; 30–60% rehabilitación; &lt; 30% restauración; ESA WorldCover 2021, Mapa 12). Fuente: Documento técnico del esquema de PSA, capítulos 4, 6 y 7, y levantamiento predial (KMZ) — Consorcio Servicios Ambientales 2026, verificación catastral IGAC agosto de 2026. Cifras originalmente expresadas en dólares se convirtieron a COP con la TRM de referencia implícita en el documento técnico (≈ $4.012 por dólar).</p>
+        </div>
       </div>
     </section>
 
@@ -2065,7 +2078,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var FINANCIACION = [
     {amt:"Alcaldía de Coveñas", lbl:"Fuente de financiación del esquema — recursos propios del Municipio, vigencia 2026"},
     {amt:"Batallón I.M. N.º 6", lbl:"Financiador ancla — obligado por la Resolución 1070 de 2023"},
-    {amt:"$169,49 M/año", lbl:"Incentivo anual calculado para los 9 predios priorizados"},
+    {amt:"9 predios priorizados", lbl:"El incentivo anual por predio se consulta en Análisis económico (acceso con clave)"},
     {amt:"≈ $2.382 M/año", lbl:"Cofinanciación potencial identificada — banco de hábitat (TRM de referencia ≈ $4.012)"}
   ];
 
@@ -2126,28 +2139,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {n:"Construido", ha:0.1, predios:1}
   ];
 
-  // Datos por predio. avalúo y modalidad completos para los 9 predios. El incentivo viene del documento
-  // técnico en P02, P03, P06, P08 y P09; en los demás se calcula con el mismo método (ver renderEconomia).
-  // Modalidad: umbral de cobertura natural (ESA WorldCover 2021, Mapa 12): >= 60% conservación,
-  // 30-60% rehabilitación, < 30% restauración.
-  var TARIFA_HA = 1500000, TOPE_PCT = 0.15;
-  var PREDIOS_ECON = {
-    P02:{avaluo:328791000, incentivo:16509000, modalidad:"Rehabilitación"},
-    P03:{avaluo:58947000, incentivo:6103500, modalidad:"Rehabilitación"},
-    P06:{avaluo:195595000, incentivo:8071097, modalidad:"Conservación"},
-    P07:{avaluo:342655000, modalidad:"Restauración"},
-    P08:{avaluo:373492000, incentivo:38934000, modalidad:"Rehabilitación"},
-    P09:{avaluo:302518000, incentivo:17231507, modalidad:"Rehabilitación"},
-    P17:{avaluo:237301000, modalidad:"Restauración"},
-    P18:{avaluo:175760000, modalidad:"Restauración"},
-    P19:{avaluo:55278000, modalidad:"Rehabilitación"}
-  };
-
   var ECON_STATS = [
     {v:"9 predios · 149,6 ha", l:"Predios priorizados del portafolio (6 de prioridad alta y 3 de media)"},
     {v:"47,4 ha", l:"Superficie de los 9 predios dentro de la cuenca estricta"},
-    {v:"$2.070 M", l:"Avalúo catastral de los 9 predios (COP)"},
-    {v:"$169,49 M/año", l:"Incentivo anual calculado para los 9 predios"},
     {v:"≈ $1,34 M/ha·año", l:"Costo de oportunidad de referencia adoptado (menor entre BEN y VRT)"},
     {v:"15%", l:"Tope legal del incentivo sobre el avalúo catastral (Decreto 1076 de 2015)"}
   ];
@@ -2556,23 +2550,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
   function fmtHa(n, dec){ return n.toLocaleString("es-CO", { minimumFractionDigits:dec, maximumFractionDigits:dec }); }
   var PRED_COLORS = { "1-Alta":"#E4572E", "2-Media":"#F2A31F", "3-Baja":"#7CB342" };
 
-  // Completa, para cada predio, avalúo por hectárea, tope legal e incentivo anual. Donde el documento
-  // técnico no trae el incentivo se calcula: tarifa de referencia × área, limitada al 15% del avalúo.
-  function completarEcon(){
-    PREDIOS9_GEOJSON.features.forEach(function(f){
-      var p = f.properties, e = PREDIOS_ECON[p.id];
-      if(e.tope) return;
-      e.tope = Math.round(e.avaluo * TOPE_PCT);
-      e.avaluoHa = Math.round(e.avaluo / p.area);
-      if(!e.incentivo){ e.incentivo = Math.min(Math.round(TARIFA_HA * p.area), e.tope); e.calculado = true; }
-      e.usoTope = Math.round((e.incentivo / e.tope) * 1000) / 10;
-    });
-  }
-
   function renderEconomia(){
     var stats = document.getElementById("econ-stats-grid");
     if(!stats) return;
-    completarEcon();
     stats.innerHTML = ECON_STATS.map(function(s){
       return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
     }).join("");
@@ -2584,47 +2564,48 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+w+'%;"></div></div>'+
         '<span class="mono">'+fmtHa(d.ha,1)+' ha</span></div>';
     }).join("") + '</div>';
+  }
 
-    var ids = Object.keys(PREDIOS_ECON).sort(function(a,b){ return PREDIOS_ECON[b].usoTope - PREDIOS_ECON[a].usoTope; });
-    document.getElementById("econ-tope-chart").innerHTML = '<div class="bars-h">' + ids.map(function(k){
-      var pct = PREDIOS_ECON[k].usoTope;
-      return '<div class="bar-h-row"><span>'+k+'</span>'+
-        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+Math.max(6,Math.min(100,pct))+'%;"></div></div>'+
-        '<span class="mono">'+fmtHa(pct,1)+'%</span></div>';
-    }).join("") + '</div>';
+  // Portafolio de los 9 predios: los valores económicos llegan del servidor solo con la clave de acceso.
+  function renderPortafolio(data){
+    var t = data.totales;
+    document.getElementById("port-stats").innerHTML = [
+      { v:"$" + fmtHa(t.avaluo / 1e6, 0) + " M", l:"Avalúo catastral de los 9 predios (COP)" },
+      { v:"$" + fmtHa(t.tope / 1e6, 2) + " M/año", l:"Tope legal del 15% del avalúo (suma de los 9 predios)" },
+      { v:"$" + fmtHa(t.incentivo / 1e6, 2) + " M/año", l:"Incentivo anual calculado para los 9 predios" }
+    ].map(function(s){
+      return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
+    }).join("");
 
-    var feats = PREDIOS9_GEOJSON.features.map(function(f){ return f.properties; })
-      .sort(function(a,b){ return a.id < b.id ? -1 : 1; });
-    var totArea = 0, totAvaluo = 0, totTope = 0, totInc = 0;
-    var rows = feats.map(function(p){
-      var e = PREDIOS_ECON[p.id];
-      totArea += p.area; totAvaluo += e.avaluo; totTope += e.tope; totInc += e.incentivo;
+    var rows = data.predios.map(function(p){
       var col = PRED_COLORS[p.prioridad] || "#999";
       return '<tr><td><b>'+p.id+'</b></td>'+
         '<td><span class="tag" style="border-color:'+col+'; color:#13303B; background:'+col+'33;">'+p.prioridad.replace("-"," · ")+'</span></td>'+
-        '<td class="num">'+fmtHa(p.area,3)+'</td>'+
-        '<td>'+e.modalidad+'</td>'+
-        '<td class="num">'+fmtCOP(e.avaluo)+'</td><td class="num">'+fmtCOP(e.avaluoHa)+'</td><td class="num">'+fmtCOP(e.tope)+'</td>'+
-        '<td class="num">'+fmtCOP(e.incentivo)+(e.calculado ? ' †' : '')+'</td></tr>';
+        '<td class="num">'+fmtHa(p.area,3)+'</td><td>'+p.modalidad+'</td>'+
+        '<td class="num">'+fmtCOP(p.avaluo)+'</td><td class="num">'+fmtCOP(p.avaluoHa)+'</td><td class="num">'+fmtCOP(p.tope)+'</td>'+
+        '<td class="num">'+fmtCOP(p.incentivo)+(p.calculado ? ' †' : '')+'</td></tr>';
     }).join("");
-    rows += '<tr class="total"><td>Total</td><td></td><td class="num">'+fmtHa(totArea,3)+'</td><td></td>'+
-      '<td class="num">'+fmtCOP(totAvaluo)+'</td><td class="num">'+fmtCOP(totAvaluo/totArea)+'</td><td class="num">'+fmtCOP(totTope)+'</td><td class="num">'+fmtCOP(totInc)+'</td></tr>';
+    rows += '<tr class="total"><td>Total</td><td></td><td class="num">'+fmtHa(t.area,3)+'</td><td></td>'+
+      '<td class="num">'+fmtCOP(t.avaluo)+'</td><td class="num">'+fmtCOP(t.avaluoHa)+'</td><td class="num">'+fmtCOP(t.tope)+'</td><td class="num">'+fmtCOP(t.incentivo)+'</td></tr>';
     document.getElementById("econ-predios-tbody").innerHTML = rows;
+
+    var orden = data.predios.slice().sort(function(a,b){ return b.usoTope - a.usoTope; });
+    document.getElementById("econ-tope-chart").innerHTML = '<div class="bars-h">' + orden.map(function(p){
+      return '<div class="bar-h-row"><span>'+p.id+'</span>'+
+        '<div class="bar-h-track"><div class="bar-h-fill" style="width:'+Math.max(6,Math.min(100,p.usoTope))+'%;"></div></div>'+
+        '<span class="mono">'+fmtHa(p.usoTope,1)+'%</span></div>';
+    }).join("") + '</div>';
   }
 
+  // Ficha pública de cada predio (mapa): solo datos geográficos; los valores económicos están en el portafolio.
   function predioPopup(p){
-    completarEcon();
-    var e = PREDIOS_ECON[p.id];
     var rows = [
       ["Prioridad", p.prioridad.replace("-"," · ")],
-      ["Modalidad", e.modalidad],
       ["Número predial", p.predial],
       ["Área total", fmtHa(p.area,3)+" ha"],
       ["En la cuenca", fmtHa(p.cuenca,3)+" ha"],
-      ["Distancia a la represa", fmtHa(p.dist,1)+" m"],
-      ["Avalúo catastral", fmtCOP(e.avaluo)],
-      ["Tope legal 15%", fmtCOP(e.tope)+"/año"],
-      ["Incentivo anual", fmtCOP(e.incentivo)+(e.calculado ? " †" : "")]
+      ["En ronda hídrica", fmtHa(p.ronda,3)+" ha"],
+      ["Distancia a la represa", fmtHa(p.dist,1)+" m"]
     ];
     return '<div class="pred-popup"><b class="t">Predio '+p.id+'</b><table>'+rows.map(function(r){
       return '<tr><td>'+r[0]+'</td><td><b>'+r[1]+'</b></td></tr>';
@@ -3195,36 +3176,69 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderTour();
   });
 
-  /* ================= DOCUMENTOS (sección interna protegida) ================= */
-  // El listado no viaja en esta página: se pide al servidor con la sesión iniciada y la clave de acceso.
-  document.getElementById("doc-gate-form").addEventListener("submit", function(e){
-    e.preventDefault();
-    var v = document.getElementById("doc-clave").value.trim();
-    var err = document.getElementById("doc-gate-error");
-    var btn = this.querySelector("button[type=submit]");
-    btn.disabled = true;
-    fetch(API_BASE + "/api/docs", {
+  /* ================= ACCESO CON CLAVE: documentos y portafolio de predios ================= */
+  // Ni el listado de documentos ni los valores económicos del portafolio viajan en esta página: se piden al
+  // servidor con la sesión iniciada y la clave de acceso (la misma para ambas secciones).
+  var docsShown = false, portShown = false;
+
+  function gateRequest(path, clave){
+    return fetch(API_BASE + path, {
       method: "POST",
       headers: { "Content-Type":"application/json", "Authorization":"Bearer " + sessionStorage.getItem(AUTH_TOKEN_KEY) },
-      body: JSON.stringify({ clave:v })
+      body: JSON.stringify({ clave:clave })
     }).then(function(res){
       return res.json().then(function(body){ return { ok:res.ok, body:body }; });
-    }).then(function(r){
-      btn.disabled = false;
-      if(!r.ok){
-        err.textContent = r.body.error || "Clave incorrecta.";
+    });
+  }
+
+  var GATES = {
+    docs: { path:"/api/docs", form:"doc-gate-form", err:"doc-gate-error", wrap:"doc-gate-wrap", content:"doc-content", input:"doc-clave",
+            show:function(d){ renderDocumentos(d); docsShown = true; } },
+    port: { path:"/api/portafolio", form:"port-gate-form", err:"port-gate-error", wrap:"port-gate-wrap", content:"port-content", input:"port-clave",
+            show:function(d){ renderPortafolio(d); portShown = true; } }
+  };
+
+  function openGate(name, data){
+    var g = GATES[name];
+    g.show(data);
+    document.getElementById(g.wrap).hidden = true;
+    document.getElementById(g.content).hidden = false;
+  }
+
+  // Al acertar la clave en una sección, la otra se abre sola con la misma clave.
+  function openOthers(except, clave){
+    Object.keys(GATES).forEach(function(name){
+      if(name === except) return;
+      if((name === "docs" && docsShown) || (name === "port" && portShown)) return;
+      gateRequest(GATES[name].path, clave).then(function(r){
+        if(r.ok){ openGate(name, r.body); }
+      }).catch(function(){});
+    });
+  }
+
+  Object.keys(GATES).forEach(function(name){
+    var g = GATES[name];
+    document.getElementById(g.form).addEventListener("submit", function(e){
+      e.preventDefault();
+      var input = document.getElementById(g.input), err = document.getElementById(g.err), v = input.value.trim();
+      var btn = this.querySelector("button[type=submit]");
+      btn.disabled = true;
+      gateRequest(g.path, v).then(function(r){
+        btn.disabled = false;
+        if(!r.ok){
+          err.textContent = r.body.error || "Clave incorrecta.";
+          err.style.display = "block";
+          return;
+        }
+        err.style.display = "none";
+        input.value = "";
+        openGate(name, r.body);
+        openOthers(name, v);
+      }).catch(function(){
+        btn.disabled = false;
+        err.textContent = "No se pudo verificar la clave. Intente de nuevo.";
         err.style.display = "block";
-        return;
-      }
-      err.style.display = "none";
-      document.getElementById("doc-gate-wrap").hidden = true;
-      renderDocumentos(r.body);
-      document.getElementById("doc-content").hidden = false;
-      document.getElementById("doc-clave").value = "";
-    }).catch(function(){
-      btn.disabled = false;
-      err.textContent = "No se pudo verificar la clave. Intente de nuevo.";
-      err.style.display = "block";
+      });
     });
   });
 
@@ -3240,7 +3254,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
 
   /* ================= ASISTENTE (sample capability) ================= */
-  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media), incentivo anual calculado de $169,49 millones COP; costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
+  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media); costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
   var asisTurns = [{role:"user", content: ASIS_CONTEXT}];
   var sampleFn = null;
 
