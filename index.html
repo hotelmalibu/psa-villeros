@@ -248,13 +248,42 @@
   #lightbox img{max-width:100%; max-height:100%; box-shadow:0 10px 40px rgba(0,0,0,.4);}
   .lightbox-close{position:fixed; top:1.1rem; right:1.3rem; background:var(--paper-raised); border:1px solid var(--rule-strong); width:38px; height:38px; font-size:1.1rem;}
 
-  /* mapa virtual (dron) */
-  #drone-map{height:500px; border:1px solid var(--rule); background:var(--paper-sunken);}
-  @media (max-width:760px){#drone-map{height:380px;}}
-  .drone-footprint{cursor:zoom-in; outline:1px solid rgba(245,217,58,.55); transition:outline-color .12s ease, filter .12s ease;}
-  .drone-footprint:hover{outline:2px solid var(--gold); filter:brightness(1.12); z-index:1000 !important;}
-  .drone-popup img{width:220px; height:auto; display:block; margin-bottom:.4rem; cursor:zoom-in;}
-  .drone-popup .meta{font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint);}
+  /* mapa virtual (ortofoto + vegetación + altitud) */
+  .vmap{display:grid; grid-template-columns:minmax(0,1fr) 290px; border:1px solid var(--rule); background:var(--paper-raised);}
+  .vmap-stage{position:relative; min-width:0; min-height:0;}
+  #drone-map{height:640px; background:var(--paper-sunken);}
+  .vmap-loading{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:900; background:var(--paper-sunken); font-family:var(--font-mono); font-size:.8rem; color:var(--ink-soft);}
+  .vmap-loading[hidden]{display:none;}
+  .vmap-readout{position:absolute; left:10px; bottom:10px; z-index:900; background:rgba(8,20,40,.86); color:#EAF0FB; font-family:var(--font-mono); font-size:.72rem; line-height:1.5; padding:.4rem .65rem; pointer-events:none; max-width:calc(100% - 20px);}
+  .vmap-readout b{color:#F5D93A; font-weight:700;}
+  .vmap-tools{position:absolute; right:10px; top:10px; z-index:900; display:flex; gap:.4rem;}
+  .vmap-tools button{background:var(--paper-raised); border:1px solid var(--rule-strong); color:var(--ink); font-size:.75rem; font-family:var(--font-mono); padding:.4rem .6rem; box-shadow:0 1px 4px rgba(0,0,0,.25);}
+  .vmap-tools button:hover{border-color:var(--ink);}
+  .vmap-panel{border-left:1px solid var(--rule); padding:1rem 1rem 1.1rem; overflow-y:auto; max-height:640px; font-size:.84rem;}
+  .vmap-panel h4{font-size:.72rem; font-family:var(--font-mono); letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 .6rem;}
+  .vlayer{padding:.6rem 0; border-bottom:1px solid var(--rule);}
+  .vlayer:first-of-type{padding-top:0;}
+  .vlayer label.vt{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-weight:600; line-height:1.25;}
+  .vlayer label.vt input{margin-top:.15rem;}
+  .vlayer .vd{display:block; font-weight:400; font-size:.72rem; color:var(--ink-soft); margin-top:.1rem;}
+  .vlayer .op{display:flex; align-items:center; gap:.5rem; margin:.45rem 0 0 1.5rem; font-size:.7rem; color:var(--ink-faint); font-family:var(--font-mono);}
+  .vlayer .op input{flex:1; min-width:0;}
+  .vleg{margin:.5rem 0 0 1.5rem;}
+  .vleg-row{display:flex; align-items:center; gap:.5rem; font-size:.72rem; color:var(--ink-soft); margin:.18rem 0;}
+  .vleg-sw{width:16px; height:11px; flex:none; border:1px solid rgba(0,0,0,.25);}
+  .vleg-ramp{height:11px; border:1px solid rgba(0,0,0,.25); background:linear-gradient(to right,#00007f,#0000ff,#00ffff,#7fff7f,#ffff00,#ff7f00,#ff0000,#7f0000);}
+  .vleg-ends{display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:.68rem; color:var(--ink-soft); margin-top:.2rem;}
+  .vmap-note{font-size:.72rem; color:var(--ink-faint); margin:.8rem 0 0; line-height:1.45;}
+  #vmap:fullscreen{background:var(--paper-raised); grid-template-columns:minmax(0,1fr) 290px;}
+  #vmap:fullscreen #drone-map{height:100vh;}
+  #vmap:fullscreen .vmap-panel{max-height:100vh;}
+  @media (max-width:1180px){
+    .vmap{grid-template-columns:1fr;}
+    #drone-map{height:440px;}
+    .vmap-panel{border-left:0; border-top:1px solid var(--rule); max-height:none;}
+    #vmap:fullscreen{grid-template-columns:1fr; grid-template-rows:1fr auto;}
+    #vmap:fullscreen #drone-map{height:100%;}
+  }
 
   /* recorrido stepper */
   .tour-stage{display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; align-items:start;}
@@ -1290,13 +1319,50 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="view-head">
         <div class="eyebrow">06 · MAPA VIRTUAL</div>
         <h1>Mapa virtual del área de intervención</h1>
-        <p class="lead">Mosaico fotográfico real del vuelo de dron sobre la Represa Villeros: 30 tomas aéreas ubicadas sobre su huella real en el terreno (calculada a partir de su coordenada GPS y altura de vuelo), alojadas directamente en esta plataforma — sin depender de ningún visor externo. Toque cualquier foto del mosaico para verla en pantalla completa.</p>
+        <p class="lead">Ortofoto de alta resolución (7,75 cm por píxel) del vuelo de dron sobre la Represa Villeros, navegable con zoom continuo, con dos capas derivadas: un índice de vegetación calculado píxel a píxel sobre la propia foto y el modelo de elevación con altitudes. Todo está alojado en esta plataforma, sin depender de ningún visor externo.</p>
       </div>
 
-      <div id="drone-map"></div>
+      <div class="vmap" id="vmap">
+        <div class="vmap-stage">
+          <div id="drone-map" role="application" aria-label="Mapa virtual: ortofoto, vegetación y altitud de la Represa Villeros"></div>
+          <div class="vmap-loading" id="vmap-loading">Cargando mapa…</div>
+          <div class="vmap-tools">
+            <button type="button" id="vmap-home" title="Ver toda el área">Ver todo</button>
+            <button type="button" id="vmap-fs" title="Pantalla completa">⤢ Pantalla completa</button>
+          </div>
+          <div class="vmap-readout" id="vmap-readout">Mueva el cursor sobre el mapa · toque para fijar un punto</div>
+        </div>
+        <aside class="vmap-panel" aria-label="Capas del mapa virtual">
+          <h4>Capas</h4>
+          <div class="vlayer">
+            <label class="vt"><input type="checkbox" id="vl-ortho" checked><span>Ortofoto<span class="vd">Fotografía aérea georreferenciada a 7,75 cm/píxel</span></span></label>
+            <div class="op"><span>Opac.</span><input type="range" id="vo-ortho" min="0" max="100" value="100" aria-label="Opacidad de la ortofoto"></div>
+          </div>
+          <div class="vlayer">
+            <label class="vt"><input type="checkbox" id="vl-veg"><span>Vegetación (vigor)<span class="vd">Índice VARI calculado sobre cada píxel de la ortofoto</span></span></label>
+            <div class="op"><span>Opac.</span><input type="range" id="vo-veg" min="0" max="100" value="80" aria-label="Opacidad de la capa de vegetación"></div>
+            <div class="vleg">
+              <div class="vleg-row"><span class="vleg-sw" style="background:#C86E32"></span>Suelo / vegetación escasa</div>
+              <div class="vleg-row"><span class="vleg-sw" style="background:#EECD46"></span>Vigor bajo</div>
+              <div class="vleg-row"><span class="vleg-sw" style="background:#AAD63C"></span>Vigor medio</div>
+              <div class="vleg-row"><span class="vleg-sw" style="background:#46AF46"></span>Vigor alto</div>
+              <div class="vleg-row"><span class="vleg-sw" style="background:#04543C"></span>Vigor muy alto</div>
+            </div>
+          </div>
+          <div class="vlayer">
+            <label class="vt"><input type="checkbox" id="vl-dem"><span>Altitud (relieve)<span class="vd">Modelo de elevación de la superficie, con sombreado</span></span></label>
+            <div class="op"><span>Opac.</span><input type="range" id="vo-dem" min="0" max="100" value="75" aria-label="Opacidad de la capa de altitud"></div>
+            <div class="vleg">
+              <div class="vleg-ramp"></div>
+              <div class="vleg-ends"><span id="vleg-min"></span><span id="vleg-max"></span></div>
+            </div>
+          </div>
+          <p class="vmap-note" id="vmap-note"></p>
+        </aside>
+      </div>
       <p class="map-caption">
-        Cada imagen está ubicada en el mapa según la huella real que cubre en el terreno (coordenada GPS + altura de vuelo, dron DJI Mini 3 Pro, 15 de septiembre de 2026, ~200 m de altura relativa). Es un mosaico a partir de fotos individuales, no un ortomosaico procesado con corrección geométrica completa — por eso puede notarse un leve desajuste entre fotos contiguas.
-        <span class="src">Fuente: metadatos EXIF de las fotografías aéreas — componente SIG, Consorcio Servicios Ambientales 2026.</span>
+        Ortofoto y modelo de elevación exportados de DroneDeploy a partir del vuelo de dron (DJI Mini 3 Pro); el índice de vegetación se calcula en su navegador sobre la ortofoto, así que mantiene su misma resolución. La altitud corresponde a la superficie visible (incluye copas de árboles y construcciones), no al terreno desnudo.
+        <span class="src">Fuente: vuelo y procesamiento fotogramétrico — componente SIG, Consorcio Servicios Ambientales 2026.</span>
       </p>
 
       <h3 style="margin-top:1.8rem;">Galería del vuelo</h3>
@@ -1982,42 +2048,181 @@ svg.leaflet-image-layer.leaflet-interactive path {
     prediosMapInstance = map;
   }
 
-  /* ================= MAPA VIRTUAL (fotos de dron geolocalizadas) ================= */
+  /* ================= MAPA VIRTUAL (ortofoto + vegetación + altitud) ================= */
   var droneMapInstance = null;
-  // Huella real en el terreno de cada foto, a partir de su altura y el campo de
-  // visión de la cámara del dron (DJI Mini 3 Pro, equivalente a 24 mm en formato
-  // de 36 mm). No corrige el yaw del gimbal (Leaflet no rota imágenes sin un
-  // plugin aparte), así que es una aproximación — el mosaico resultante no es
-  // un ortomosaico procesado, pero cubre el terreno con foto real en vez de un
-  // fondo vacío.
-  var DRONE_HFOV = 73.74 * Math.PI / 180;
-  var DRONE_VFOV = 58.73 * Math.PI / 180;
-  function droneFootprintBounds(p){
-    var groundW = 2 * p.alt * Math.tan(DRONE_HFOV / 2);
-    var groundH = 2 * p.alt * Math.tan(DRONE_VFOV / 2);
-    var dLat = (groundH / 2) / 111320;
-    var dLon = (groundW / 2) / (111320 * Math.cos(p.lat * Math.PI / 180));
-    return [[p.lat - dLat, p.lon - dLon], [p.lat + dLat, p.lon + dLon]];
+  var VMAP = {
+    bounds: [[9.366695768885135, -75.70475860018237], [9.385503590681726, -75.69093357287554]],
+    dir: "tiles/",
+    nativeZoom: 20,
+    demNativeZoom: 19,
+    // Rampa de elevación del DEM exportado de DroneDeploy (azul = mínimo, rojo = máximo).
+    // El TIF viene ya coloreado, sin metros: hay que fijar aquí el rango de su leyenda
+    // (msnm) y poner calibrated en true. Mientras sea false, la altitud se marca como aproximada.
+    elevMin: 18,
+    elevMax: 80,
+    calibrated: false,
+    grid: { w: 1283, h: 1769, cell: 1.2, x0: -8427415.17804, y0: 1049493.55113 }
+  };
+
+  var VEG_STOPS = [
+    [0.03, 200, 110, 50, 0], [0.06, 200, 110, 50, 175], [0.10, 238, 205, 70, 205], [0.16, 170, 214, 60, 220],
+    [0.22, 70, 175, 70, 228], [0.30, 16, 130, 70, 236], [0.40, 4, 84, 60, 242], [0.60, 2, 50, 50, 248]
+  ];
+  var VEG_LUT = (function(){
+    var n = 1024, lut = new Uint8ClampedArray(n * 4);
+    for(var i = 0; i < n; i++){
+      var v = -0.1 + (i / (n - 1)) * 0.9, c = [0, 0, 0, 0];
+      if(v > VEG_STOPS[0][0]){
+        c = VEG_STOPS[VEG_STOPS.length - 1].slice(1);
+        for(var k = 1; k < VEG_STOPS.length; k++){
+          if(v <= VEG_STOPS[k][0]){
+            var a = VEG_STOPS[k - 1], b = VEG_STOPS[k], t = (v - a[0]) / (b[0] - a[0]);
+            c = [a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t, a[3] + (b[3] - a[3]) * t, a[4] + (b[4] - a[4]) * t];
+            break;
+          }
+        }
+      }
+      lut[i * 4] = c[0]; lut[i * 4 + 1] = c[1]; lut[i * 4 + 2] = c[2]; lut[i * 4 + 3] = c[3];
+    }
+    return lut;
+  })();
+
+  function vmapTileExists(index, layer, z, x, y){
+    var zl = index[layer] && index[layer][z]; var col = zl && zl[x];
+    return !!col && col.indexOf(y) !== -1;
+  }
+
+  function vmapMakeLayers(index){
+    var TileExisting = L.TileLayer.extend({
+      createTile: function(coords, done){
+        if(!vmapTileExists(index, this.options.layerName, coords.z, coords.x, coords.y)){
+          var empty = document.createElement("div");
+          setTimeout(function(){ done(null, empty); }, 0);
+          return empty;
+        }
+        return L.TileLayer.prototype.createTile.call(this, coords, done);
+      }
+    });
+    var VegLayer = L.GridLayer.extend({
+      createTile: function(coords, done){
+        var tile = document.createElement("canvas");
+        tile.width = tile.height = 256;
+        if(!vmapTileExists(index, "ortho", coords.z, coords.x, coords.y)){
+          setTimeout(function(){ done(null, tile); }, 0);
+          return tile;
+        }
+        var img = new Image();
+        img.onload = function(){
+          var ctx = tile.getContext("2d", { willReadFrequently: true });
+          ctx.drawImage(img, 0, 0, 256, 256);
+          var d = ctx.getImageData(0, 0, 256, 256), px = d.data;
+          for(var i = 0; i < px.length; i += 4){
+            var a = px[i + 3];
+            if(a < 8){ px[i + 3] = 0; continue; }
+            var r = px[i], g = px[i + 1], b = px[i + 2], den = g + r - b;
+            var vari = den > 8 ? (g - r) / den : 0;
+            var li = Math.round(((vari + 0.1) / 0.9) * 1023);
+            li = (li < 0 ? 0 : li > 1023 ? 1023 : li) * 4;
+            px[i] = VEG_LUT[li]; px[i + 1] = VEG_LUT[li + 1]; px[i + 2] = VEG_LUT[li + 2];
+            px[i + 3] = VEG_LUT[li + 3] * (a / 255);
+          }
+          ctx.putImageData(d, 0, 0);
+          done(null, tile);
+        };
+        img.onerror = function(){ done(null, tile); };
+        img.src = VMAP.dir + "ortho/" + coords.z + "/" + coords.x + "/" + coords.y + ".webp";
+        return tile;
+      }
+    });
+    var common = { minZoom: 14, maxZoom: 21, bounds: VMAP.bounds, updateWhenIdle: false, keepBuffer: 3 };
+    return {
+      ortho: new TileExisting(VMAP.dir + "ortho/{z}/{x}/{y}.webp", L.extend({ layerName: "ortho", maxNativeZoom: VMAP.nativeZoom, zIndex: 10 }, common)),
+      dem: new TileExisting(VMAP.dir + "dem/{z}/{x}/{y}.webp", L.extend({ layerName: "dem", maxNativeZoom: VMAP.demNativeZoom, zIndex: 20, opacity: 0.75 }, common)),
+      veg: new VegLayer(L.extend({ maxNativeZoom: VMAP.nativeZoom, zIndex: 30, opacity: 0.8 }, common))
+    };
   }
 
   function initDroneMap(){
     if(droneMapInstance) return;
     var el = document.getElementById("drone-map");
     if(!el || typeof L === "undefined") return;
-    var map = L.map(el, { attributionControl:false, zoomControl:true, minZoom:12, maxZoom:19 });
-    var pts = DRONE_PHOTOS.map(function(p){ return [p.lat, p.lon]; });
-    map.fitBounds(pts, { padding:[20,20] });
+    var loading = document.getElementById("vmap-loading");
+    var map = L.map(el, { attributionControl: false, zoomControl: true, minZoom: 14, maxZoom: 21, zoomSnap: 0.5, maxBoundsViscosity: 0.6 });
+    map.fitBounds(VMAP.bounds);
+    map.setMaxBounds(L.latLngBounds(VMAP.bounds).pad(0.35));
+    L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
+    droneMapInstance = map;
 
-    DRONE_PHOTOS.forEach(function(p, i){
-      var overlay = L.imageOverlay(IMG[p.img], droneFootprintBounds(p), {
-        opacity:0.98, interactive:true, className:"drone-footprint"
-      }).addTo(map);
-      overlay.on("click", function(){
-        openLightbox({ src: IMG[p.img], alt: "Toma aérea "+(i+1)+" · "+p.hora+" · "+p.alt+" m de altura" });
+    var demGrid = null;
+    function elevAt(latlng){
+      if(!demGrid) return null;
+      var p = L.CRS.EPSG3857.project(latlng), g = VMAP.grid;
+      var col = Math.floor((p.x - g.x0) / g.cell), row = Math.floor((g.y0 - p.y) / g.cell);
+      if(col < 0 || row < 0 || col >= g.w || row >= g.h) return null;
+      var v = demGrid[row * g.w + col];
+      if(!v) return null;
+      return VMAP.elevMin + ((v - 1) / 254) * (VMAP.elevMax - VMAP.elevMin);
+    }
+    function fmtCoord(latlng){
+      return Math.abs(latlng.lat).toFixed(5) + "° " + (latlng.lat >= 0 ? "N" : "S") + " · " + Math.abs(latlng.lng).toFixed(5) + "° " + (latlng.lng >= 0 ? "E" : "O");
+    }
+    function elevText(latlng){
+      var e = elevAt(latlng);
+      if(e === null) return "sin dato";
+      return "≈ " + Math.round(e) + " msnm" + (VMAP.calibrated ? "" : "*");
+    }
+
+    document.getElementById("vleg-min").textContent = VMAP.elevMin + " m";
+    document.getElementById("vleg-max").textContent = VMAP.elevMax + " m";
+    document.getElementById("vmap-note").textContent = VMAP.calibrated
+      ? "Altitud estimada de la superficie visible (incluye copas de árboles), a partir del modelo de elevación del vuelo."
+      : "* Altitud aproximada de la superficie visible (incluye copas de árboles). La escala de colores del modelo se ajusta al rango " + VMAP.elevMin + "–" + VMAP.elevMax + " msnm, provisional hasta confirmar la leyenda original.";
+
+    var readout = document.getElementById("vmap-readout"), pending = null;
+    map.on("mousemove", function(e){
+      pending = e.latlng;
+      if(readout._raf) return;
+      readout._raf = requestAnimationFrame(function(){
+        readout._raf = 0;
+        readout.innerHTML = fmtCoord(pending) + " · Altitud <b>" + elevText(pending) + "</b>";
       });
     });
+    var pin = null;
+    map.on("click", function(e){
+      if(pin) map.removeLayer(pin);
+      pin = L.circleMarker(e.latlng, { radius: 6, color: "#082F5E", weight: 2, fillColor: "#F5D93A", fillOpacity: 1 }).addTo(map);
+      pin.bindPopup('<div class="zon-popup"><b>Punto seleccionado</b>' + fmtCoord(e.latlng) + '<br>Altitud: ' + elevText(e.latlng) + '</div>').openPopup();
+    });
 
-    droneMapInstance = map;
+    document.getElementById("vmap-home").addEventListener("click", function(){ map.fitBounds(VMAP.bounds); });
+    var wrap = document.getElementById("vmap"), fsBtn = document.getElementById("vmap-fs");
+    if(!wrap.requestFullscreen){ fsBtn.hidden = true; }
+    fsBtn.addEventListener("click", function(){
+      if(document.fullscreenElement){ document.exitFullscreen(); } else { wrap.requestFullscreen(); }
+    });
+    document.addEventListener("fullscreenchange", function(){ setTimeout(function(){ map.invalidateSize(); }, 80); });
+
+    Promise.all([
+      fetch(VMAP.dir + "index.json").then(function(r){ if(!r.ok) throw new Error("índice"); return r.json(); }),
+      fetch(VMAP.dir + "dem_t.bin").then(function(r){ return r.ok ? r.arrayBuffer() : null; }).catch(function(){ return null; })
+    ]).then(function(res){
+      if(res[1]) demGrid = new Uint8Array(res[1]);
+      var layers = vmapMakeLayers(res[0]);
+      function bind(id, layer){
+        var cb = document.getElementById("vl-" + id), sl = document.getElementById("vo-" + id);
+        function sync(){ if(cb.checked){ layer.addTo(map); } else { map.removeLayer(layer); } }
+        cb.addEventListener("change", sync);
+        sl.addEventListener("input", function(){ layer.setOpacity(sl.value / 100); });
+        layer.setOpacity(sl.value / 100);
+        sync();
+      }
+      bind("ortho", layers.ortho);
+      bind("dem", layers.dem);
+      bind("veg", layers.veg);
+      loading.hidden = true;
+    }).catch(function(){
+      loading.textContent = "No se pudieron cargar las teselas del mapa. Intente recargar la página.";
+    });
   }
 
   function renderDroneGallery(){

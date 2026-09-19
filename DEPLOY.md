@@ -85,6 +85,20 @@ Si te olvidás de este paso, Hostinger seguirá sirviendo la versión vieja del
 sitio (aunque la API ya tenga el código nuevo) — es la causa más probable si
 alguna vez ves inconsistencias entre lo que ves en local y lo publicado ahí.
 
+## Teselas del Mapa virtual
+
+La ortofoto (7,75 cm/px) y el modelo de elevación del vuelo de dron viven como
+teselas web en `backend/tiles/` (`ortho/`, `dem/`, más `index.json` y
+`dem_t.bin` para consultar altitudes). `backend/server.js` las sirve en
+`/tiles`; la capa de vegetación se calcula en el navegador sobre las teselas de
+la ortofoto, así que no ocupa espacio. Están dentro de `backend/` (no en la
+raíz) para que el despliegue Git de Hostinger también las copie.
+
+El TIF de elevación exportado de DroneDeploy viene ya coloreado, sin metros
+reales: el rango de altitud (`elevMin`/`elevMax` en `VMAP`, dentro de
+`index.html`) debe salir de la leyenda de DroneDeploy. Mientras `calibrated`
+sea `false`, el mapa marca la altitud como aproximada.
+
 ## GeoServer (opcional, cuando lo necesites)
 
 Ver [`geoserver/README.md`](geoserver/README.md). No es necesario para que el

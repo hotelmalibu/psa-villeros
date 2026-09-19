@@ -35,6 +35,9 @@ const INDEX_PATH = INDEX_CANDIDATES.find((p) => {
   }
 });
 
+// Teselas de la ortofoto / altitud del Mapa virtual (backend/tiles).
+app.use("/tiles", express.static(path.join(__dirname, "tiles"), { maxAge: "7d" }));
+
 if (INDEX_PATH) {
   console.log("Sirviendo el sitio estático desde:", INDEX_PATH);
   app.get("/", (req, res) => res.sendFile(INDEX_PATH));
