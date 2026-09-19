@@ -103,12 +103,28 @@ ahí y pon `calibrated: true`.
 
 ## Modelo 3D
 
-`backend/models/villeros.glb` (≈ 20 MB) es la malla fotogramétrica original
-(2,1 M de triángulos, 17 texturas de 8192 px) simplificada a ≈ 460 mil
-triángulos con texturas de 2048 px en WebP y compresión meshopt. El visor usa
-three.js alojado en `backend/vendor/three/` (sin CDN) y solo descarga el modelo
-cuando el usuario pulsa «Cargar modelo 3D». `backend/server.js` sirve
-`/models` y `/vendor`.
+La malla fotogramétrica original (2,1 M de triángulos, 17 texturas de 8192 px)
+está simplificada a ≈ 450 mil triángulos, con texturas en WebP y compresión
+meshopt, en dos versiones dentro de `backend/models/`:
+
+- `villeros-lite.glb` (≈ 8 MB, texturas de 1024 px): es la que se carga al pulsar
+  «Cargar modelo 3D».
+- `villeros.glb` (≈ 20 MB, texturas de 2048 px): alta calidad. Se ofrece con un
+  botón y se descarga sola solo en equipos de escritorio con buena conexión.
+
+El visor usa three.js alojado en `backend/vendor/three/` (sin CDN).
+`backend/server.js` sirve `/models` y `/vendor`.
+
+## Rendimiento
+
+- Las imágenes del sitio (logos, planchas de mapas, galería) ya no van embebidas
+  en base64 dentro de `index.html`: viven en `backend/img/` con el hash del
+  contenido en el nombre (caché de un año) y cargan de forma diferida. Así el
+  HTML pasó de 10,5 MB a ≈ 0,9 MB (≈ 270 KB por la red, con gzip).
+- `backend/server.js` comprime en gzip (en memoria, sin dependencias) HTML, JS,
+  JSON y la cuadrícula de altitud. Las imágenes y los GLB ya vienen comprimidos.
+- **Si agregas una imagen nueva**, ponla en `backend/img/` y refiérela con una
+  ruta relativa (`img/nombre.webp`), no en base64.
 
 ## GeoServer (opcional, cuando lo necesites)
 

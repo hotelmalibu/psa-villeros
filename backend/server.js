@@ -3,6 +3,7 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const zlib = require("zlib");
 const path = require("path");
 const users = require("./users");
 
@@ -35,15 +36,70 @@ const INDEX_PATH = INDEX_CANDIDATES.find((p) => {
   }
 });
 
+// Comprime en gzip (en memoria, sin dependencias) los textos y binarios que sí se
+// comprimen: HTML, JS, JSON y la cuadrícula de altitud. Las imágenes (webp/jpg) y el
+// modelo GLB ya vienen comprimidos, así que se sirven tal cual.
+const GZIP_RE = /\.(js|json|bin|html|css|svg)$/;
+const gzCache = new Map();
+function gzipFile(file) {
+  const st = fs.statSync(file);
+  const key = file + ":" + st.mtimeMs;
+  let buf = gzCache.get(key);
+  if (!buf) {
+    buf = zlib.gzipSync(fs.readFileSync(file), { level: 9 });
+    gzCache.set(key, buf);
+  }
+  return buf;
+}
+function acceptsGzip(req) {
+  return /gzip/.test(req.headers["accept-encoding"] || "");
+}
+function sendGzipped(res, file, maxAgeSec) {
+  res.set({
+    "Content-Encoding": "gzip",
+    "Vary": "Accept-Encoding",
+    "Cache-Control": "public, max-age=" + maxAgeSec,
+  });
+  res.type(path.extname(file));
+  res.send(gzipFile(file));
+}
+function staticDir(dir, maxAgeSec, extraHeaders) {
+  const root = path.join(__dirname, dir);
+  const plain = express.static(root, {
+    maxAge: maxAgeSec * 1000,
+    setHeaders: (res) => extraHeaders && res.set(extraHeaders),
+  });
+  return (req, res, next) => {
+    if (req.method !== "GET" || !GZIP_RE.test(req.path) || !acceptsGzip(req)) return plain(req, res, next);
+    let file;
+    try {
+      file = path.normalize(path.join(root, decodeURIComponent(req.path)));
+      if (!file.startsWith(root + path.sep) || !fs.statSync(file).isFile()) return next();
+    } catch (e) {
+      return next();
+    }
+    if (extraHeaders) res.set(extraHeaders);
+    sendGzipped(res, file, maxAgeSec);
+  };
+}
+
 // Teselas de la ortofoto / altitud del Mapa virtual (backend/tiles).
-app.use("/tiles", express.static(path.join(__dirname, "tiles"), { maxAge: "7d" }));
+app.use("/tiles", staticDir("tiles", 7 * 86400));
 // Modelo 3D (GLB) y librería three.js del visor 3D, alojados localmente.
-app.use("/models", express.static(path.join(__dirname, "models"), { maxAge: "7d" }));
-app.use("/vendor", express.static(path.join(__dirname, "vendor"), { maxAge: "30d" }));
+app.use("/models", staticDir("models", 7 * 86400));
+app.use("/vendor", staticDir("vendor", 30 * 86400));
+// Imágenes del sitio (nombres con hash del contenido: se pueden cachear un año).
+app.use("/img", staticDir("img", 365 * 86400, { "Cache-Control": "public, max-age=31536000, immutable" }));
 
 if (INDEX_PATH) {
   console.log("Sirviendo el sitio estático desde:", INDEX_PATH);
-  app.get("/", (req, res) => res.sendFile(INDEX_PATH));
+  app.get("/", (req, res) => {
+    if (!acceptsGzip(req)) return res.sendFile(INDEX_PATH);
+    res.set("Cache-Control", "no-cache");
+    res.set({ "Content-Encoding": "gzip", "Vary": "Accept-Encoding" });
+    res.type("html");
+    res.send(gzipFile(INDEX_PATH));
+  });
 } else {
   console.warn(
     "AVISO: no se encontró index.html en ninguna ubicación esperada " +
