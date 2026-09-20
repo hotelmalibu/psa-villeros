@@ -1339,6 +1339,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <a href="#atlas" data-sec="atlas">Atlas</a>
       <a href="#mapa-virtual" data-sec="mapa-virtual">Mapa virtual</a>
       <a href="#participacion" data-sec="participacion">Participación social</a>
+      <a href="#biota" data-sec="biota">Inventario biota</a>
       <a href="#documentos" data-sec="documentos">Documentos <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg></a>
       <span class="role-chip" id="role-chip">rol</span>
       <button class="logout" id="logout-btn" title="Cerrar sesión">Salir</button>
@@ -1360,7 +1361,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </div>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><b>12,96 km²</b><span>Cuenca abastecedora</span></div>
+        <div class="hero-stat"><b>11,98 km²</b><span>Cuenca abastecedora</span></div>
         <div class="hero-stat"><b>22,2 ha</b><span>Espejo de agua de la represa</span></div>
         <div class="hero-stat hero-stat-2"><b>Priorizados: 149,6 ha</b><span>Cuenca estricta: 47,4 ha</span></div>
         <div class="hero-stat"><b>18 msnm</b><span>Cota de la represa</span></div>
@@ -1506,7 +1507,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <table class="data">
           <thead><tr><th>Método</th><th>Resultado (COP)</th><th>¿Se adopta?</th></tr></thead>
           <tbody>
-            <tr><td>BEN — Beneficio Económico Neto (ganadería de referencia)</td><td class="num">$1.295.833 /ha·mes</td><td><span class="tag pending">Mayor — no se adopta</span></td></tr>
+            <tr><td>BEN — Beneficio Económico Neto (ganadería de referencia)</td><td class="num">$1.395.833 /ha·mes</td><td><span class="tag pending">Mayor — no se adopta</span></td></tr>
             <tr><td>VRT — Valor de Renta de la Tierra (ganadería de referencia)</td><td class="num">$696.675 /ha·mes</td><td><span class="tag done">Menor — costo de oportunidad de referencia</span></td></tr>
             <tr><td>Aplicado en Villeros</td><td class="num">≈ $1,34 M /ha·año</td><td><span class="tag done">Referencia para los predios</span></td></tr>
           </tbody>
@@ -1596,7 +1597,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-amenaza"> Amenaza por incendio<span class="figs">467 polígonos · muy alta a muy baja</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-cobertura"> Cobertura del suelo<span class="figs">75 polígonos · 14 clases (CORINE)</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-represa" checked> Represa Villeros<span class="figs">Espejo de agua · polígono real</span></label>
-          <label class="leaflet-toggle"><input type="checkbox" id="toggle-cuenca" checked> Cuenca abastecedora<span class="figs">Límite de la microcuenca · 12,96 km²</span></label>
+          <label class="leaflet-toggle"><input type="checkbox" id="toggle-cuenca" checked> Cuenca abastecedora<span class="figs">Límite de la microcuenca · 11,98 km²</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-drenaje"> Drenaje<span class="figs">Red hídrica dentro del área de estudio</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-vias"> Vías<span class="figs">16 tramos · IGAC</span></label>
           <label class="leaflet-toggle"><input type="checkbox" id="toggle-catastro"> Catastro<span class="figs">137 predios · IGAC</span></label>
@@ -1744,8 +1745,98 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </section>
 
+    <!-- ---------------- INVENTARIO BIOTA ---------------- -->
+    <section class="section alt" id="biota">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Inventario biota</span>
+          <h2 class="sec-title">Inventario forestal de los 9 predios priorizados</h2>
+          <p class="lead">Composición y estructura de la vegetación arbórea con diámetro a la altura del pecho igual o superior a 10 cm, registrada en septiembre de 2026 en los nueve predios de intervención directa de la Represa Villeros. Los datos provienen del informe <i>Inventario forestal en los predios aledaños a la Represa Villeros, Coveñas, Sucre</i> (Consorcio Servicios Ambientales 2026). No incluye inventario de fauna.</p>
+        </div>
+
+        <nav class="subnav" aria-label="Contenido del inventario">
+          <a href="#biota-metodo">Método</a>
+          <a href="#biota-efectividad">Efectividad del muestreo</a>
+          <a href="#biota-composicion">Composición por predio</a>
+          <a href="#biota-especies">Especies y valor de importancia</a>
+          <a href="#biota-estructura">Estructura</a>
+        </nav>
+
+        <div class="stat-grid" id="biota-stats"></div>
+
+        <h3 class="block-title" id="biota-metodo">Método</h3>
+        <p class="lead" style="margin-bottom:.6rem;">Parcelas de 50 × 10 m (500 m²): dos en los predios de más de 5 ha y una en los de menos de 5 ha; en los predios pequeños con árboles dispersos se inventarió la totalidad del predio. En cada individuo con DAP ≥ 10 cm se midió la circunferencia a 1,30 m (DAP = CAP / π), la altura total con hipsómetro y sus coordenadas. Las clases diamétricas y altimétricas se definieron con la regla de Sturges; la efectividad del muestreo se evaluó con el software iNEXT (rarefacción y extrapolación).</p>
+        <p class="lead" style="font-size:.85rem; color:var(--ink-faint);">Centro de referencia del inventario: 9,379923° N · 75,698539° O. Siete individuos se identificaron solo hasta familia (Bignoniaceae sp. y Fabaceae sp.) y nueve hasta género (<i>Piscidia</i> sp.).</p>
+
+        <h3 class="block-title" id="biota-efectividad">Efectividad del muestreo por predio</h3>
+        <p class="lead" style="margin-bottom:.8rem;">Relación entre la riqueza de especies observada y la esperada por extrapolación. Varió entre el 25,4 % (P02) y el 87,0 % (P18) sin alcanzar el 100 % en ningún predio: aún hay especies no detectadas.</p>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Efectividad del muestreo (%)</h3>
+            <div id="biota-efect-chart"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Riqueza esperada y observada (especies)</h3>
+            <table class="data" id="biota-efect-table"><thead><tr><th>Predio</th><th>Esperada</th><th>Observada</th><th>Efectividad</th></tr></thead><tbody></tbody></table>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="biota-composicion">Composición por predio</h3>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Individuos registrados por predio</h3>
+            <div id="biota-ind-chart"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Especies registradas por predio</h3>
+            <div id="biota-spp-chart"></div>
+          </div>
+        </div>
+        <div class="scrollx">
+          <table class="data" id="biota-predios-table">
+            <thead><tr><th>Predio</th><th>Individuos</th><th>Especies</th><th>Familias</th><th>Familias más abundantes</th><th>Especies más abundantes (individuos)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h3 class="block-title" id="biota-especies">Especies registradas y valor de importancia</h3>
+        <p class="lead" style="margin-bottom:.8rem;">El índice de valor de importancia (IVI) suma la abundancia, la dominancia (área basal) y la frecuencia relativas de cada especie; su máximo teórico es 300 %. <i>Tabebuia rosea</i> (roble rosado) tiene la mayor abundancia (24,4 % de los individuos); <i>Ceiba pentandra</i>, <i>Mangifera indica</i> y <i>Pseudobombax septenatum</i> destacan por su área basal con pocos individuos.</p>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Quince especies con mayor IVI (%)</h3>
+            <div id="biota-ivi-chart"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Familias con más especies</h3>
+            <div id="biota-fam-chart"></div>
+          </div>
+        </div>
+        <div class="scrollx">
+          <table class="data" id="biota-species-table">
+            <thead><tr><th>Familia</th><th>Especie</th><th>Nombre común</th><th>Individuos</th><th>Abund. rel. (%)</th><th>Domin. rel. (%)</th><th>Frec. rel. (%)</th><th>IVI (%)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Nombres transcritos del informe de inventario (Tabla 2 y Tabla 3); las grafías de <i>Anacardium excelsum</i>, <i>Chloroleucon</i>, <i>Ficus</i>, <i>Handroanthus chrysanthus</i> y <i>Zanthoxylum</i> se corrigieron frente al original. El informe reporta 46 especies; la lista contiene 47 taxones y la tabla de valores relativos 48 filas (dos para <i>C. pentandra</i>), diferencia pendiente de depuración por el componente biótico.</p>
+
+        <h3 class="block-title" id="biota-estructura">Estructura diamétrica y altimétrica</h3>
+        <p class="lead" style="margin-bottom:.8rem;">La clase diamétrica I (10,18–30,67 cm) reúne 170 individuos, cerca del 74 % del total, y solo ocho superan los 71,65 cm de DAP: un arbolado joven o secundario. En altura, el intervalo entre 6,86 y 18,44 m concentra 202 individuos (87,8 %).</p>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Individuos por clase diamétrica (DAP, cm)</h3>
+            <div id="biota-diam-chart"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Individuos por clase altimétrica (m)</h3>
+            <div id="biota-alt-chart"></div>
+          </div>
+        </div>
+        <p class="lead" style="font-size:.85rem; color:var(--ink-faint);">El informe recomienda, para próximos inventarios, aumentar el esfuerzo de muestreo en los predios de menor efectividad, estandarizar el diseño de las unidades de muestreo e incorporar variables adicionales: regeneración natural, diámetro y cobertura de copa y evidencia de intervención o aprovechamiento.</p>
+      </div>
+    </section>
+
     <!-- ---------------- DOCUMENTOS ---------------- -->
-    <section class="section alt" id="documentos">
+    <section class="section" id="documentos">
       <div class="wrap">
         <div class="sec-head">
           <span class="sec-eyebrow">Sección interna</span>
@@ -1814,6 +1905,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
               <li><a href="#reunion-1">Socialización institucional y comunitaria</a></li>
               <li><a href="#reunion-2">Socialización del Producto N.º 1</a></li>
               <li><a href="#reunion-3">Taller de articulación institucional</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Inventario biota">
+            <h4><a href="#biota">Inventario biota</a></h4>
+            <ul>
+              <li><a href="#biota-efectividad">Efectividad del muestreo</a></li>
+              <li><a href="#biota-composicion">Composición por predio</a></li>
+              <li><a href="#biota-especies">Especies y valor de importancia</a></li>
+              <li><a href="#biota-estructura">Estructura del arbolado</a></li>
             </ul>
           </nav>
 
@@ -1904,6 +2005,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <h3>Estudios técnicos</h3>
   <ul>
     <li>Documento técnico del esquema de PSA (Producto 2) e Informe Técnico N.º 1: identificación, análisis y priorización predial (Producto 1) — Consorcio Servicios Ambientales 2026.</li>
+    <li>Inventario forestal en los predios aledaños a la Represa Villeros, Coveñas, Sucre (septiembre de 2026) — Consorcio Servicios Ambientales 2026: 230 individuos, 20 familias, 45 géneros y 46 especies en los 9 predios priorizados.</li>
     <li>Estudio Inalter S.A.S. (2019) y Resolución 1070 de 2023: sedimentación, calidad del agua cruda y fase de vejez de la represa.</li>
     <li>Batimetría con software Hypack Max (2009–2018): sedimentación acumulada.</li>
   </ul>
@@ -2073,7 +2175,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   ];
 
   var STATS = [
-    {n:12.96, dec:2, suffix:" km²", label:"Cuenca abastecedora (1.296 ha)"},
+    {n:11.98, dec:2, suffix:" km²", label:"Cuenca abastecedora (1.198 ha)"},
     {n:22.20, dec:2, suffix:" ha", label:"Espejo de agua de la represa"},
     {n:60, dec:0, suffix:"", label:"Predios caracterizados en el área de intervención"},
     {n:294, dec:0, suffix:" ha", label:"Superficie caracterizada"},
@@ -2231,7 +2333,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var REPRESA_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"NOMBRE":"Represa Villeros"},"geometry":{"type":"Polygon","coordinates":[[[-75.696968,9.384253],[-75.696815,9.384148],[-75.696636,9.384125],[-75.696467,9.384204],[-75.696351,9.384346],[-75.696225,9.384477],[-75.69604,9.384532],[-75.695851,9.384496],[-75.695769,9.384413],[-75.695725,9.384369],[-75.695628,9.384212],[-75.695508,9.384074],[-75.695384,9.383941],[-75.695288,9.383829],[-75.695265,9.383802],[-75.69514,9.38367],[-75.69501,9.383542],[-75.694894,9.383401],[-75.694816,9.383235],[-75.694802,9.383049],[-75.694878,9.382888],[-75.695009,9.382758],[-75.695132,9.382629],[-75.695243,9.382483],[-75.695343,9.382306],[-75.695398,9.382119],[-75.695356,9.381961],[-75.69521,9.381845],[-75.695069,9.381724],[-75.695036,9.381554],[-75.695072,9.381366],[-75.69511,9.38119],[-75.695133,9.381011],[-75.695155,9.380829],[-75.695209,9.380656],[-75.695283,9.38049],[-75.695322,9.380314],[-75.69538,9.380139],[-75.695515,9.379995],[-75.695686,9.37995],[-75.695838,9.380045],[-75.695946,9.380213],[-75.696025,9.38038],[-75.696147,9.380504],[-75.696328,9.380555],[-75.696513,9.380524],[-75.696667,9.380433],[-75.696788,9.380311],[-75.696926,9.380171],[-75.69707,9.380029],[-75.697013,9.379906],[-75.696845,9.379788],[-75.69684,9.37964],[-75.696956,9.379467],[-75.697019,9.379291],[-75.697021,9.379106],[-75.697044,9.378917],[-75.69715,9.378787],[-75.697323,9.378706],[-75.697484,9.378598],[-75.697591,9.378453],[-75.69762,9.378279],[-75.697631,9.378094],[-75.697693,9.377922],[-75.697781,9.377768],[-75.697876,9.377603],[-75.697992,9.377422],[-75.698124,9.377346],[-75.698254,9.377461],[-75.698317,9.377656],[-75.698291,9.377836],[-75.698244,9.378011],[-75.698238,9.378194],[-75.698247,9.378369],[-75.69821,9.378554],[-75.698102,9.378765],[-75.69809,9.378876],[-75.698275,9.37884],[-75.698381,9.3789],[-75.698427,9.378926],[-75.69844,9.379135],[-75.69834,9.379297],[-75.698224,9.379433],[-75.698209,9.379623],[-75.698306,9.379798],[-75.698466,9.379823],[-75.698639,9.379725],[-75.698797,9.379626],[-75.698965,9.379565],[-75.69914,9.379513],[-75.699269,9.379393],[-75.699371,9.379233],[-75.699481,9.379085],[-75.699612,9.378957],[-75.699769,9.378862],[-75.699956,9.37884],[-75.700131,9.378912],[-75.700231,9.379079],[-75.700182,9.379232],[-75.700016,9.379331],[-75.699873,9.379453],[-75.699762,9.379595],[-75.699627,9.379716],[-75.699482,9.379829],[-75.699358,9.379963],[-75.699277,9.380131],[-75.699268,9.380309],[-75.699336,9.380476],[-75.699403,9.380571],[-75.699448,9.380634],[-75.699581,9.38077],[-75.699734,9.380838],[-75.699911,9.380827],[-75.700116,9.380781],[-75.70031,9.380771],[-75.700359,9.380866],[-75.700375,9.380896],[-75.700298,9.381093],[-75.70014,9.381205],[-75.699953,9.38121],[-75.699771,9.381171],[-75.699593,9.381141],[-75.699408,9.381159],[-75.699241,9.381233],[-75.699098,9.381347],[-75.698953,9.381458],[-75.698791,9.38154],[-75.698617,9.381604],[-75.698441,9.381664],[-75.698268,9.381731],[-75.698107,9.381812],[-75.697964,9.381916],[-75.697835,9.38204],[-75.697712,9.382175],[-75.697585,9.382312],[-75.697448,9.382446],[-75.697351,9.382592],[-75.697352,9.382772],[-75.697403,9.382957],[-75.697452,9.383131],[-75.697475,9.383311],[-75.697452,9.383494],[-75.697384,9.383671],[-75.697355,9.383844],[-75.697409,9.384018],[-75.697385,9.384202],[-75.697242,9.384337],[-75.696968,9.384253]]]}}]};
 
   var TOUR = [
-    {title:"La cuenca abastecedora", text:"1.296 hectáreas alimentan la represa, repartidas entre tres municipios. Solo el 4% está en jurisdicción de Coveñas.", fact:"San Antero (Córdoba) 76,8% · Momil (Córdoba) 19,2% · Coveñas (Sucre) 4,0%", img:"mapa08"},
+    {title:"La cuenca abastecedora", text:"1.198 hectáreas alimentan la represa, repartidas entre tres municipios. Solo el 4% está en jurisdicción de Coveñas.", fact:"San Antero (Córdoba) 76,8% · Momil (Córdoba) 19,2% · Coveñas (Sucre) 4,0%", img:"mapa08"},
     {title:"La Represa Villeros", text:"22,20 hectáreas de espejo de agua, en fase de vejez: pierde capacidad a medida que se colmata.", fact:"77% del espejo de agua afectado por colmatación · 8.186 m³/año de sedimento", img:"mapa01"},
     {title:"El área de intervención del esquema", text:"Lo que Coveñas sí controla y puede ejecutar de forma directa: 60 predios rurales alrededor de la represa.", fact:"60 predios · 294 ha · 100% en jurisdicción de Coveñas", img:"mapa09"},
     {title:"Zonificación ambiental", text:"Cada predio se clasifica según su cobertura actual, para decidir si se conserva, se restaura o se recupera.", fact:"Restauración ecológica 456,07 ha (41,7%) · Recuperación 637,2 ha (58,3%)", img:"mapa04"},
@@ -2970,7 +3072,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     ], 100, "%");
 
     var kpis = [
-      { v:"12,96 km²", l:"Cuenca abastecedora (1.296 ha)" },
+      { v:"11,98 km²", l:"Cuenca abastecedora (1.198 ha)" },
       { v:"22,2 ha", l:"Espejo de agua de la represa · cota 18 msnm" },
       { v:"456,07 ha", l:"Zona de restauración ecológica (41,7 % de la cuenca)" },
       { v:"1.069 ha", l:"Con amenaza alta o muy alta de incendio forestal" },
@@ -2980,6 +3082,127 @@ svg.leaflet-image-layer.leaflet-interactive path {
     document.getElementById("atlas-kpis").innerHTML = kpis.map(function(k){
       return '<div class="stat"><div class="num" style="font-size:1.3rem;">'+k.v+'</div><div class="lbl">'+k.l+'</div></div>';
     }).join("");
+  }
+
+  /* ================= INVENTARIO BIOTA (informe de inventario forestal, septiembre de 2026) ================= */
+  var BIOTA = {
+    totales: { individuos:230, familias:20, generos:45, especies:46 },
+    efectividad: [
+      { p:"P02", esp:7.87, obs:2, ef:25.41 }, { p:"P03", esp:9.14, obs:7, ef:76.58 }, { p:"P06", esp:18.89, obs:12, ef:63.52 },
+      { p:"P07", esp:13.34, obs:10, ef:74.96 }, { p:"P08", esp:9.63, obs:8, ef:83.07 }, { p:"P09", esp:13.19, obs:9, ef:68.23 },
+      { p:"P17", esp:25.13, obs:16, ef:63.66 }, { p:"P18", esp:16.10, obs:14, ef:86.95 }, { p:"P19", esp:7.58, obs:6, ef:79.15 }
+    ],
+    predios: [
+      { p:"P02", ind:4, spp:2, fam:2, fams:"Euphorbiaceae, Polygonaceae", top:"<i>S. glandulosum</i> (2), <i>C. caracasana</i> (2)" },
+      { p:"P03", ind:26, spp:7, fam:3, fams:"Bignoniaceae (13), Polygonaceae (10), Fabaceae (3)", top:"<i>T. rosea</i> (11), <i>C. caracasana</i> (6), <i>T. americana</i> (4)" },
+      { p:"P06", ind:26, spp:12, fam:8, fams:"Fabaceae (8), Bignoniaceae (6), Malvaceae (4), Polygonaceae (4)", top:"<i>P. niopoides</i> (5), Bignoniaceae sp. (5), <i>S. apetala</i> (4), <i>C. caracasana</i> (4)" },
+      { p:"P07", ind:21, spp:10, fam:5, fams:"Fabaceae (7), Malvaceae (7), Urticaceae (4), Arecaceae (2), Bignoniaceae (1)", top:"<i>P. elegans</i> (4), <i>G. ulmifolia</i> (4), <i>C. peltata</i> (4), <i>P. guachapele</i> (2)" },
+      { p:"P08", ind:53, spp:8, fam:5, fams:"Bignoniaceae (34), Fabaceae (11), Lamiaceae (5), Malvaceae (2), Anacardiaceae (1)", top:"<i>T. rosea</i> (32; 60,4 %), <i>Piscidia</i> sp. (9), <i>T. grandis</i> (5)" },
+      { p:"P09", ind:13, spp:9, fam:8, fams:"Bignoniaceae (3), Arecaceae (2), Boraginaceae (2)", top:"<i>T. rosea</i> (3), <i>S. mauritiiformis</i> (2), <i>C. alliodora</i> (2)" },
+      { p:"P17", ind:32, spp:16, fam:15, fams:"Mayoría de familias con una o dos especies", top:"<i>A. excelsum</i> (7), <i>S. mauritiiformis</i> (7), <i>T. rosea</i> (3), <i>N. lanceolata</i> (2), <i>L. lanceolata</i> (2)" },
+      { p:"P18", ind:36, spp:14, fam:10, fams:"Myrtaceae (10), Bignoniaceae (5), Fabaceae (4), Malvaceae (4), Boraginaceae (3)", top:"<i>P. friedrichsthalianum</i> (10), <i>T. rosea</i> (4), <i>S. glandulosum</i> (4), <i>C. alliodora</i> (3)" },
+      { p:"P19", ind:19, spp:6, fam:6, fams:"Arecaceae (12), Bignoniaceae (2), Urticaceae (2)", top:"<i>S. mauritiiformis</i> (12; 63,2 %), <i>T. rosea</i> (2), <i>C. peltata</i> (2)" }
+    ],
+    // familia, especie, nombre común, individuos, abundancia rel. %, dominancia rel. %, frecuencia rel. %, IVI %
+    especies: [
+      ["Bignoniaceae","Tabebuia rosea","Roble rosado",56,24.35,7.38,1.15,32.88],
+      ["Malvaceae","Ceiba pentandra","Ceiba",2,0.87,14.86,3.45,19.18],
+      ["Polygonaceae","Coccoloba caracasana","Uvero",13,5.65,6.91,4.60,17.16],
+      ["Arecaceae","Sabal mauritiiformis","Palma amarga",23,10.00,2.75,1.15,13.89],
+      ["Anacardiaceae","Mangifera indica","Mango",4,1.74,10.92,1.15,13.81],
+      ["Malvaceae","Pseudobombax septenatum","Majagua",2,0.87,10.78,1.15,12.80],
+      ["Euphorbiaceae","Sapium glandulosum","Ñipi",6,2.61,2.76,6.90,12.27],
+      ["Malvaceae","Sterculia apetala","Camajón",8,3.48,4.39,2.30,10.17],
+      ["Fabaceae","Pseudoalbizzia niopoides","Guacamayo",8,3.48,5.47,1.15,10.10],
+      ["Urticaceae","Cecropia peltata","Yarumo",8,3.48,1.89,4.60,9.96],
+      ["Cannabaceae","Trema micranthum","Capulín cimarrón",1,0.43,0.07,9.20,9.70],
+      ["Anacardiaceae","Anacardium excelsum","Caracolí",7,3.04,4.27,2.30,9.61],
+      ["Myrtaceae","Psidium friedrichsthalianum","Guayaba agria",11,4.78,0.81,3.45,9.04],
+      ["Fabaceae","Piscidia sp.","Piscidia",9,3.91,1.89,1.15,6.95],
+      ["Malvaceae","Ceiba pentandra (segundo registro)","Ceiba",2,0.87,4.50,1.15,6.52],
+      ["Moraceae","Ficus citrifolia","Abrazapalo",1,0.43,4.66,1.15,6.24],
+      ["Bignoniaceae","Bignoniaceae sp.","Sin determinar",6,2.61,1.16,2.30,6.07],
+      ["Fabaceae","Gliricidia sepium","Matarratón",3,1.30,1.07,3.45,5.82],
+      ["Lecythidaceae","Lecythis lanceolata","Olla de mico",2,0.87,0.19,4.60,5.66],
+      ["Boraginaceae","Cordia alliodora","Vara de humo",5,2.17,0.78,2.30,5.25],
+      ["Apocynaceae","Rauvolfia littoralis","Solita",1,0.43,0.07,4.60,5.11],
+      ["Malvaceae","Guazuma ulmifolia","Guásimo",7,3.04,0.49,1.15,4.68],
+      ["Lamiaceae","Tectona grandis","Teca",5,2.17,0.51,1.15,3.83],
+      ["Arecaceae","Attalea butyracea","Palma de vino",2,0.87,1.60,1.15,3.62],
+      ["Anacardiaceae","Astronium graveolens","Santa Cruz",2,0.87,0.43,2.30,3.60],
+      ["Fabaceae","Platypodium elegans","Gallito",4,1.74,0.62,1.15,3.51],
+      ["Fabaceae","Samanea saman","Campano",1,0.43,0.75,2.30,3.48],
+      ["Lauraceae","Nectandra lanceolata","Laurel morotí",2,0.87,0.28,2.30,3.45],
+      ["Arecaceae","Attalea speciosa","Palma motacú",1,0.43,1.82,1.15,3.40],
+      ["Fabaceae","Platymiscium pinnatum","Trébol amarillo",2,0.87,0.15,2.30,3.32],
+      ["Euphorbiaceae","Hura crepitans","Ceiba de leche",1,0.43,0.52,2.30,3.25],
+      ["Bignoniaceae","Handroanthus chrysanthus","Polvillo",3,1.30,0.72,1.15,3.17],
+      ["Polygonaceae","Triplaris americana","Vara santa",4,1.74,0.23,1.15,3.12],
+      ["Rubiaceae","Genipa americana","Jagua",1,0.43,0.08,2.30,2.82],
+      ["Boraginaceae","Cordia alba","Uvito",1,0.43,1.17,1.15,2.75],
+      ["Arecaceae","Elaeis oleifera","Palma de aceite",1,0.43,0.84,1.15,2.43],
+      ["Sapindaceae","Sapindus saponaria","Jaboncillo",2,0.87,0.23,1.15,2.25],
+      ["Fabaceae","Pseudosamanea guachapele","Campano blanco",2,0.87,0.22,1.15,2.24],
+      ["Sapotaceae","Manilkara zapota","Níspero",1,0.43,0.54,1.15,2.12],
+      ["Fabaceae","Caesalpinia pluviosa","Acacia amarilla",2,0.87,0.06,1.15,2.08],
+      ["Bignoniaceae","Godmania aesculifolia","Cacho de vaca",1,0.43,0.29,1.15,1.87],
+      ["Apocynaceae","Tabernaemontana catharinensis","Palo víbora",1,0.43,0.23,1.15,1.82],
+      ["Fabaceae","Chloroleucon mangense","Carbonero",1,0.43,0.18,1.15,1.77],
+      ["Rutaceae","Zanthoxylum caribaeum","Chichón",1,0.43,0.14,1.15,1.73],
+      ["Fabaceae","Fabaceae sp.","Sin determinar",1,0.43,0.14,1.15,1.73],
+      ["Malvaceae","Pachira quinata","Ceiba tolúa",1,0.43,0.10,1.15,1.68],
+      ["Rutaceae","Citrus × limon","Limón",1,0.43,0.04,1.15,1.62],
+      ["Bignoniaceae","Crescentia cujete","Totumo",1,0.43,0.03,1.15,1.61]
+    ],
+    diam: [["I · 10,18–30,67",170],["II · 30,67–51,16",32],["III · 51,16–71,65",18],["IV · 71,65–92,14",2],["V · 92,14–112,63",2],["VI · 112,63–133,12",2],["VII · 133,12–153,61",0],["VIII · 153,61–174,10",3],["IX · 174,10–194,50",1]],
+    alt: [["I · 3,00–4,93",3],["II · 4,93–6,86",16],["III · 6,86–8,93",36],["IV · 8,93–10,72",27],["V · 10,72–12,65",43],["VI · 12,65–14,58",33],["VII · 14,58–16,51",44],["VIII · 16,51–18,44",19],["IX · 18,44–20,30",9]]
+  };
+
+  function biotaBars(id, rows, fmt, max){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var top = max || Math.max.apply(null, rows.map(function(r){ return r[1]; }));
+    el.innerHTML = '<div class="bars-h">' + rows.map(function(r){
+      var w = top ? Math.max(1, Math.round((r[1] / top) * 100)) : 0;
+      return '<div class="bar-h-row"><span>' + r[0] + '</span><div class="bar-h-track"><div class="bar-h-fill" style="width:' + w + '%;"></div></div><span class="mono">' + fmt(r[1]) + '</span></div>';
+    }).join("") + '</div>';
+  }
+
+  function renderBiota(){
+    var st = document.getElementById("biota-stats");
+    if(!st) return;
+    var T = BIOTA.totales;
+    st.innerHTML = [
+      { v: T.individuos + " individuos", l: "Árboles con DAP ≥ 10 cm registrados en los 9 predios" },
+      { v: T.especies + " especies", l: "Reportadas por el informe, en " + T.generos + " géneros" },
+      { v: T.familias + " familias", l: "Botánicas; Fabaceae es la de más especies (10)" },
+      { v: "25,4 % – 87,0 %", l: "Rango de efectividad del muestreo por predio (iNEXT)" }
+    ].map(function(s){ return '<div class="stat"><div class="num" style="font-size:1.25rem;">' + s.v + '</div><div class="lbl">' + s.l + '</div></div>'; }).join("");
+
+    var pct = function(v){ return fmtHa(v, 1) + " %"; }, ent = function(v){ return String(v); };
+    biotaBars("biota-efect-chart", BIOTA.efectividad.map(function(e){ return [e.p, e.ef]; }), pct, 100);
+    document.querySelector("#biota-efect-table tbody").innerHTML = BIOTA.efectividad.map(function(e){
+      return '<tr><td><b>' + e.p + '</b></td><td class="num">' + fmtHa(e.esp, 2) + '</td><td class="num">' + e.obs + '</td><td class="num">' + fmtHa(e.ef, 2) + ' %</td></tr>';
+    }).join("");
+
+    biotaBars("biota-ind-chart", BIOTA.predios.map(function(p){ return [p.p, p.ind]; }), ent);
+    biotaBars("biota-spp-chart", BIOTA.predios.map(function(p){ return [p.p, p.spp]; }), ent);
+    document.querySelector("#biota-predios-table tbody").innerHTML = BIOTA.predios.map(function(p){
+      return '<tr><td><b>' + p.p + '</b></td><td class="num">' + p.ind + '</td><td class="num">' + p.spp + '</td><td class="num">' + p.fam + '</td><td>' + p.fams + '</td><td>' + p.top + '</td></tr>';
+    }).join("") + '<tr class="total"><td>Total</td><td class="num">' + T.individuos + '</td><td class="num">' + T.especies + '</td><td class="num">' + T.familias + '</td><td colspan="2">Totales del conjunto de los 9 predios; las especies y familias se repiten entre predios.</td></tr>';
+
+    var sp = BIOTA.especies.slice();
+    biotaBars("biota-ivi-chart", sp.slice(0, 15).map(function(s){ return ['<i>' + s[1] + '</i>', s[7]]; }), pct);
+    var fams = {};
+    sp.forEach(function(s){ if(s[1].indexOf("segundo registro") === -1){ fams[s[0]] = (fams[s[0]] || 0) + 1; } });
+    var famRows = Object.keys(fams).map(function(k){ return [k, fams[k]]; }).sort(function(a, b){ return b[1] - a[1]; }).slice(0, 10);
+    biotaBars("biota-fam-chart", famRows, ent);
+    document.querySelector("#biota-species-table tbody").innerHTML = sp.map(function(s){
+      return '<tr><td>' + s[0] + '</td><td><i>' + s[1] + '</i></td><td>' + s[2] + '</td><td class="num">' + s[3] + '</td><td class="num">' + fmtHa(s[4], 2) + '</td><td class="num">' + fmtHa(s[5], 2) + '</td><td class="num">' + fmtHa(s[6], 2) + '</td><td class="num">' + fmtHa(s[7], 2) + '</td></tr>';
+    }).join("") + '<tr class="total"><td>Total</td><td></td><td></td><td class="num">230</td><td class="num">100</td><td class="num">100</td><td class="num">100</td><td class="num">300</td></tr>';
+
+    biotaBars("biota-diam-chart", BIOTA.diam, ent);
+    biotaBars("biota-alt-chart", BIOTA.alt, ent);
   }
 
   /* ================= ATLAS: real map viewer ================= */
@@ -3077,7 +3300,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     });
     represaLayer.addTo(map);
 
-    // Cuenca abastecedora — límite real de la microcuenca (12,96 km²)
+    // Cuenca abastecedora — límite real de la microcuenca (11,98 km²)
     var cuencaLayer = L.geoJSON(CUENCA_GEOJSON, {
       style: { color:"#F5D93A", weight:2.5, fill:false, dashArray:"6 4" }
     });
@@ -3310,7 +3533,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
 
   /* ================= ASISTENTE (sample capability) ================= */
-  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 12,96 km² (1.296 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media); costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
+  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 11,98 km² (1.198 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294 ha, 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; portafolio de análisis económico: 9 predios priorizados (149,6 ha; 6 de prioridad alta y 3 de media); costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
   var asisTurns = [{role:"user", content: ASIS_CONTEXT}];
   var sampleFn = null;
 
@@ -3388,6 +3611,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderParticipacion();
     renderAtlas();
     renderAtlasDashboard();
+    renderBiota();
     renderTour();
     renderDroneGallery();
     initAsistente();
