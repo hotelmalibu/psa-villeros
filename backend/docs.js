@@ -26,9 +26,10 @@ module.exports = {
       "titulo": "Producto 2 · Perfil del esquema de PSA",
       "docs": [
         {
-          "n": "Documento técnico del esquema de PSA — versión 1",
-          "s": "Producto 2",
-          "fmt": "DOCX"
+          "n": "Documento técnico del esquema de PSA — versión 2 (revisada)",
+          "s": "Producto 2 · con anexos jurídicos, cartográficos y bióticos",
+          "fmt": "DOCX",
+          "url": "/flipbook/producto2.html"
         },
         {
           "n": "Informe técnico de priorización predial SELVACODE v2",

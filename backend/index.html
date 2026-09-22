@@ -530,6 +530,7 @@
   .gate-msg .gate-act{display:inline-block; margin-top:.5rem; font:inherit; font-weight:700; color:inherit; background:transparent; border:1.5px solid currentColor; border-radius:999px; padding:.3rem .9rem; cursor:pointer;}
   @keyframes gate-spin{to{transform:rotate(360deg)}}
   .doc-row .ico{border-radius:8px;}
+  .doc-row a.open{font-weight:700; flex:none;}
   .doc-group h3{color:var(--navy);}
   .app-footer{background:var(--navy-dark); color:#BFD9DE; margin:0; padding:2.6rem 1.6rem; border:0; font-size:.8rem;}
   .app-footer .foot-in{max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.4rem;}
@@ -3417,6 +3418,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   // Ni el listado de documentos ni los valores económicos del portafolio viajan en esta página: se piden al
   // servidor con la sesión iniciada y la clave de acceso (la misma para ambas secciones).
   var docsShown = false, portShown = false;
+  var lastClave = null; // se guarda en memoria (no en almacenamiento) al acertar la clave, para "Leer en línea"
 
   // Devuelve siempre un resultado (nunca rechaza): { ok, status, body, timeout }. status 0 = sin conexion.
   function gateRequest(path, clave){
@@ -3517,20 +3519,45 @@ svg.leaflet-image-layer.leaflet-interactive path {
           return;
         }
         hideMsg(msg); input.value = "";
+        lastClave = v;
         openOthers(name, v);
       });
     });
   });
 
+  // Documentos con "url" se leen en línea (flipbook) en vez de solo listarse: pide al servidor una
+  // cookie de acceso de corta duración (con la misma clave ya digitada) y abre el visor en una pestaña.
+  function openFlipbook(url, link){
+    if(!lastClave){ return; }
+    var original = link.textContent;
+    link.textContent = "Abriendo…";
+    gateRequest("/api/flipbook/acceso", lastClave).then(function(r){
+      link.textContent = original;
+      if(r.ok && r.body && r.body.url){
+        window.open(r.body.url, "_blank", "noopener");
+      } else {
+        var d = describeFailure(r);
+        showMsg(document.getElementById("doc-gate-error"), d.kind, d.title, d.text, d.action);
+      }
+    });
+  }
+
   function renderDocumentos(data){
     var el = document.getElementById("doc-content");
     el.innerHTML = data.groups.map(function(g){
       var rows = g.docs.map(function(d){
+        var open = d.url ? ' <a href="#" class="open" data-flip-url="'+d.url+'">Leer en línea →</a>' : "";
         return '<div class="doc-row"><span class="ico">'+d.fmt+'</span>'+
-          '<span class="name">'+d.n+'<small>'+d.s+'</small></span></div>';
+          '<span class="name">'+d.n+'<small>'+d.s+'</small></span>'+open+'</div>';
       }).join("");
       return '<div class="doc-group"><h3>'+g.titulo+'</h3>'+rows+'</div>';
     }).join("");
+    [].slice.call(el.querySelectorAll("a.open[data-flip-url]")).forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        openFlipbook(a.getAttribute("data-flip-url"), a);
+      });
+    });
   }
 
   /* ================= ASISTENTE (sample capability) ================= */

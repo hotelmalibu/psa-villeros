@@ -21,6 +21,15 @@ cp ../index.html index.html
 - `GET /api/health` — verifica que el servicio está vivo.
 - `POST /api/auth/login` — body `{ "username": "...", "password": "..." }` → `{ token, user }`.
 - `GET /api/auth/me` — header `Authorization: Bearer <token>` → `{ user }`.
+- `POST /api/docs` / `POST /api/portafolio` — requieren sesión (`Authorization: Bearer`) y la clave de
+  acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `portafolio.js`.
+- `POST /api/flipbook/acceso` — misma sesión y clave que arriba; en vez de devolver datos, concede una
+  cookie de acceso de 20 minutos (`psa_flip`, http-only, `path=/flipbook`) y responde `{ ok, url }`. El
+  documento técnico completo (Producto 2) vive en `backend/flipbook/` como un lector tipo flipbook
+  (HTML + imágenes en `assets/`, generado con `scripts` fuera de este repo a partir del documento
+  fuente) y se sirve en `GET /flipbook/producto2.html` solo con esa cookie — sin ella responde 401. El
+  frontend pide la cookie por `fetch` y abre esa URL en una pestaña nueva (botón "Leer en línea" en
+  Documentos del contrato).
 
 ## Desplegar en Render (gratis)
 

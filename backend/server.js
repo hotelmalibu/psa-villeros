@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const fs = require("fs");
 const zlib = require("zlib");
 const path = require("path");
@@ -9,6 +10,7 @@ const users = require("./users");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 // Sirve el sitio estático (index.html) desde el mismo proceso, para hosts
 // (como el despliegue Git de Hostinger) que solo corren esta app de Node y
@@ -262,6 +264,60 @@ app.post("/api/docs", authMiddleware, (req, res) => {
 app.post("/api/portafolio", authMiddleware, (req, res) => {
   if (claveValida(req, res)) res.json(portafolio);
 });
+
+// Documento técnico completo (Producto 2), en formato flipbook: exige la misma sesión + clave de
+// acceso que /api/docs, pero el documento en sí (backend/flipbook, ~13 MB de HTML e imágenes) se
+// sirve como archivos estáticos normales para que el navegador los descargue en paralelo y los
+// cachee — por eso, en vez de devolverlo en la respuesta JSON, esta ruta concede una cookie de
+// acceso de corta duración (20 min, http-only, con alcance limitado a /flipbook) y el frontend
+// abre /flipbook/producto2.html en una pestaña nueva.
+const FLIPBOOK_TOKEN_TTL_SEC = 20 * 60;
+app.post("/api/flipbook/acceso", authMiddleware, (req, res) => {
+  if (!claveValida(req, res)) return;
+  const token = jwt.sign({ scope: "flipbook" }, SECRET, { expiresIn: FLIPBOOK_TOKEN_TTL_SEC });
+  res.cookie("psa_flip", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+    maxAge: FLIPBOOK_TOKEN_TTL_SEC * 1000,
+    path: "/flipbook",
+  });
+  res.json({ ok: true, url: "/flipbook/producto2.html" });
+});
+
+const FLIPBOOK_DENIED_HTML =
+  "<!doctype html><meta charset=\"utf-8\"><body style=\"font-family:sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.5rem;color:#233;text-align:center;line-height:1.5\">" +
+  "<h1 style=\"font-size:1.3rem\">%TITLE%</h1><p>%TEXT%</p></body>";
+
+function flipbookAuth(req, res, next) {
+  const token = req.cookies && req.cookies.psa_flip;
+  if (!token) {
+    return res
+      .status(401)
+      .type("html")
+      .send(
+        FLIPBOOK_DENIED_HTML.replace("%TITLE%", "Acceso no autorizado").replace(
+          "%TEXT%",
+          "Abra este documento desde la sección «Documentos del contrato» de la plataforma, con la clave de acceso."
+        )
+      );
+  }
+  try {
+    jwt.verify(token, SECRET);
+    next();
+  } catch (e) {
+    res
+      .status(401)
+      .type("html")
+      .send(
+        FLIPBOOK_DENIED_HTML.replace("%TITLE%", "El acceso expiró").replace(
+          "%TEXT%",
+          "Vuelva a la sección «Documentos del contrato» de la plataforma y ábralo de nuevo."
+        )
+      );
+  }
+}
+app.use("/flipbook", flipbookAuth, staticDir("flipbook", 1800));
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
