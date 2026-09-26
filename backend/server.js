@@ -223,10 +223,10 @@ app.get("/api/auth/me", authMiddleware, (req, res) => {
   });
 });
 
-// Secciones internas (documentos y portafolio de predios): exigen sesión iniciada Y la clave de acceso.
-// Sus datos viven en docs.js y portafolio.js y nunca viajan en el HTML de la página.
+// Secciones internas (documentos y detalle económico por predio y por aliado): exigen sesión iniciada Y la clave
+// de acceso. Sus datos viven en docs.js y economia.js y nunca viajan en el HTML de la página.
 const docs = require("./docs");
-const portafolio = require("./portafolio");
+const economia = require("./economia");
 const DOC_KEY_HASH =
   process.env.DOC_KEY_HASH || "$2a$10$4KRp1JOwicIIlhibWTu0qeSguDY0e21S/Wro5joF2ovPhX0n/G1iu";
 
@@ -261,8 +261,8 @@ app.post("/api/docs", authMiddleware, (req, res) => {
   if (claveValida(req, res)) res.json(docs);
 });
 
-app.post("/api/portafolio", authMiddleware, (req, res) => {
-  if (claveValida(req, res)) res.json(portafolio);
+app.post("/api/economia", authMiddleware, (req, res) => {
+  if (claveValida(req, res)) res.json(economia);
 });
 
 // Documento técnico completo (Producto 2), en formato flipbook: exige la misma sesión + clave de

@@ -119,7 +119,7 @@ El visor usa three.js alojado en `backend/vendor/three/` (sin CDN).
 
 - Ingreso: un único usuario, `publico` (contraseña en `backend/users.js`, solo su hash bcrypt). Para cambiarla: `npm run hash -- "nueva"` dentro de `backend/`.
 - Documentos: el listado (solo nombres, sin enlaces a Drive) vive en `backend/docs.js` y solo se entrega por `POST /api/docs`, que exige sesión iniciada y la clave de acceso a documentos (hash bcrypt en `server.js`, o variable de entorno `DOC_KEY_HASH`).
-- Portafolio de los 9 predios (avalúo, tope legal e incentivo por predio): los datos viven en `backend/portafolio.js` y se entregan por `POST /api/portafolio`, con la misma sesión y la misma clave que Documentos (los intentos fallidos se cuentan juntos). No están en `index.html`: si cambias un valor, edítalo en `portafolio.js`. Al acertar la clave en una de las dos secciones, la otra se abre sola.
+- Detalle económico (matriz de los 60 predios, cálculo del incentivo en los 9 predios del polígono de la cuenca y cuantificación propuesta por aliado, versión final del Producto 2): los datos viven en `backend/economia.js` y se entregan por `POST /api/economia`, con la misma sesión y la misma clave que Documentos (los intentos fallidos se cuentan juntos). No están en `index.html`: si cambias un valor, edítalo en `economia.js`. Al acertar la clave en una de las dos secciones, la otra se abre sola.
 - El modelo 3D se carga solo al ingresar y se guarda en el navegador (Cache Storage, clave `psa-models-v1`). Si cambias el GLB, sube el número de versión (`?v=1`) en `index.html`.
 
 ## Rendimiento

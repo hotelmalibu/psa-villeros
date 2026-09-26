@@ -21,8 +21,8 @@ cp ../index.html index.html
 - `GET /api/health` — verifica que el servicio está vivo.
 - `POST /api/auth/login` — body `{ "username": "...", "password": "..." }` → `{ token, user }`.
 - `GET /api/auth/me` — header `Authorization: Bearer <token>` → `{ user }`.
-- `POST /api/docs` / `POST /api/portafolio` — requieren sesión (`Authorization: Bearer`) y la clave de
-  acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `portafolio.js`.
+- `POST /api/docs` / `POST /api/economia` — requieren sesión (`Authorization: Bearer`) y la clave de
+  acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `economia.js`.
 - `POST /api/flipbook/acceso` — misma sesión y clave que arriba; en vez de devolver datos, concede una
   cookie de acceso de 20 minutos (`psa_flip`, http-only, `path=/flipbook`) y responde `{ ok, url }`. El
   documento técnico completo (Producto 2) vive en `backend/flipbook/` como un lector tipo flipbook
@@ -30,6 +30,14 @@ cp ../index.html index.html
   fuente) y se sirve en `GET /flipbook/producto2.html` solo con esa cookie — sin ella responde 401. El
   frontend pide la cookie por `fetch` y abre esa URL en una pestaña nueva (botón "Leer en línea" en
   Documentos del contrato).
+  La copia servida es el libro digital "versión final" (septiembre de 2026, 191 páginas), extraído del HTML
+  único que entregó el usuario (imágenes y fuentes a `assets/`), con dos tandas de correcciones puntuales para
+  cumplir las reglas del cliente. Primera: la gráfica de dos curvas del Anexo 2 (Mapa 16) se sustituyó por la
+  Figura 3 de una sola curva, se quitó del capítulo 13 la comparación con el costeo sobre área SIG y se
+  reemplazaron dos frases que aludían a un portafolio (capítulo 7.6 y ficha de P17). Segunda: se retiró el
+  concepto «área directa» y su cifra (las 47,4 ha) del capítulo 4, del capítulo 7.6 y de los Anexos 1, 3, 4 y 5,
+  dejando solo el área elegible y el dato geográfico de los 9 predios dentro del polígono de la cuenca. Al
+  reemplazar el libro por una versión corregida en el origen, esas correcciones dejan de ser necesarias.
 
 ## Desplegar en Render (gratis)
 
