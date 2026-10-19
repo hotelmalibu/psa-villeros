@@ -223,10 +223,12 @@ app.get("/api/auth/me", authMiddleware, (req, res) => {
   });
 });
 
-// Secciones internas (documentos y detalle económico por predio y por aliado): exigen sesión iniciada Y la clave
-// de acceso. Sus datos viven en docs.js y economia.js y nunca viajan en el HTML de la página.
+// Secciones internas (documentos, detalle económico por predio y por aliado, y detalle del análisis predial): exigen
+// sesión iniciada Y la clave de acceso. Sus datos viven en docs.js, economia.js y predial.js y nunca viajan en el HTML
+// de la página.
 const docs = require("./docs");
 const economia = require("./economia");
+const predial = require("./predial");
 const DOC_KEY_HASH =
   process.env.DOC_KEY_HASH || "$2a$10$4KRp1JOwicIIlhibWTu0qeSguDY0e21S/Wro5joF2ovPhX0n/G1iu";
 
@@ -265,15 +267,28 @@ app.post("/api/economia", authMiddleware, (req, res) => {
   if (claveValida(req, res)) res.json(economia);
 });
 
-// Documento técnico completo (Producto 2), en formato flipbook: exige la misma sesión + clave de
-// acceso que /api/docs, pero el documento en sí (backend/flipbook, ~13 MB de HTML e imágenes) se
-// sirve como archivos estáticos normales para que el navegador los descargue en paralelo y los
-// cachee — por eso, en vez de devolverlo en la respuesta JSON, esta ruta concede una cookie de
-// acceso de corta duración (20 min, http-only, con alcance limitado a /flipbook) y el frontend
-// abre /flipbook/producto2.html en una pestaña nueva.
+app.post("/api/predial", authMiddleware, (req, res) => {
+  if (claveValida(req, res)) res.json(predial);
+});
+
+// Documentos técnicos completos (Producto 2 y Producto 3), en formato flipbook: exigen la misma sesión + clave de
+// acceso que /api/docs, pero el documento en sí (backend/flipbook, ~13 MB el del Producto 2 y ~8 MB el del
+// Producto 3, entre HTML e imágenes) se sirve como archivos estáticos normales para que el navegador los descargue
+// en paralelo y los cachee — por eso, en vez de devolverlo en la respuesta JSON, esta ruta concede una cookie de
+// acceso de corta duración (20 min, http-only, con alcance limitado a /flipbook) y el frontend abre el visor del
+// documento pedido (body { clave, doc }; sin doc se entiende el Producto 2) en una pestaña nueva.
+const FLIPBOOKS = {
+  producto2: "/flipbook/producto2.html",
+  producto3: "/flipbook/producto3.html",
+};
 const FLIPBOOK_TOKEN_TTL_SEC = 20 * 60;
 app.post("/api/flipbook/acceso", authMiddleware, (req, res) => {
   if (!claveValida(req, res)) return;
+  const pedido = (req.body || {}).doc;
+  const doc = pedido === undefined ? "producto2" : pedido;
+  if (typeof doc !== "string" || !Object.prototype.hasOwnProperty.call(FLIPBOOKS, doc)) {
+    return res.status(400).json({ error: "Documento no disponible.", code: "documento" });
+  }
   const token = jwt.sign({ scope: "flipbook" }, SECRET, { expiresIn: FLIPBOOK_TOKEN_TTL_SEC });
   res.cookie("psa_flip", token, {
     httpOnly: true,
@@ -282,7 +297,7 @@ app.post("/api/flipbook/acceso", authMiddleware, (req, res) => {
     maxAge: FLIPBOOK_TOKEN_TTL_SEC * 1000,
     path: "/flipbook",
   });
-  res.json({ ok: true, url: "/flipbook/producto2.html" });
+  res.json({ ok: true, url: FLIPBOOKS[doc] });
 });
 
 const FLIPBOOK_DENIED_HTML =

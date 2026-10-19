@@ -378,8 +378,14 @@
   .logout{background:transparent; border:0; color:#EAF4F6; font-size:.82rem; font-weight:600; padding:.5rem .8rem; border-radius:999px;}
   .logout:hover{background:rgba(255,255,255,.12);}
   .nav-toggle{display:none; pointer-events:auto; margin:.9rem 1rem 0 0; background:var(--navy-dark); color:#fff; border:0; border-radius:999px; padding:.65rem 1.2rem; font-weight:700; font-size:.85rem; box-shadow:0 8px 26px rgba(0,0,0,.28);}
-  @media (min-width:1420px){ .role-chip{display:inline;} }
-  @media (max-width:1180px){
+  @media (min-width:1700px){ .role-chip{display:inline;} }
+  /* con ocho secciones el menú no cabe en anchos intermedios: se compacta y, por debajo de 1320 px, se pliega en «Menú» */
+  @media (min-width:1321px) and (max-width:1699px){
+    .site-nav a{font-size:.8rem; padding:.55rem .62rem;}
+    .site-nav a.active::after{left:.62rem; right:.62rem;}
+    .logout{padding:.5rem .6rem; font-size:.78rem;}
+  }
+  @media (max-width:1320px){
     .brand{padding:.6rem 1.2rem .8rem .9rem;}
     .brand-text small{display:none;}
     .nav-toggle{display:block;}
@@ -633,6 +639,96 @@
 
   .hero-stat-2 b{font-size:1.2rem; line-height:1.25;}
   .hero-stat-2 span{font-size:.95rem; font-weight:600; color:#EAF4F6; margin-top:.35rem;}
+
+  /* en pantallas angostas las tarjetas de una rejilla no deben ensancharse por su contenido (tablas, gráficas): scroll propio */
+  .grid-2 > *, .grid-3 > *{min-width:0;}
+
+  /* ---------- análisis predial (Producto 3) ---------- */
+  .pred-cta{margin:1.4rem 0 0; display:flex; flex-wrap:wrap; gap:.7rem 1.1rem; align-items:center; justify-content:center;}
+  .pred-cta span{font-size:.82rem; color:var(--ink-faint); max-width:46ch; text-align:left;}
+  .callout{margin:1.2rem 0 0; padding:1.1rem 1.3rem; border-radius:18px; background:var(--navy-soft); border:1px solid #BFDDE3; color:var(--ink-soft); font-size:.93rem; line-height:1.6;}
+  .callout b{color:var(--navy-dark);}
+  .mini-title{margin:1.4rem 0 .4rem; font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--gold-deep);}
+  .sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+  /* categorías registrales A–F */
+  .cat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:.9rem; margin:1.2rem 0;}
+  .cat-card{display:flex; gap:1rem; align-items:flex-start; padding:1.1rem 1.2rem; border:1px solid var(--rule); border-radius:20px; background:var(--paper-raised); box-shadow:var(--shadow);}
+  .cat-card h4{margin:0 0 .5rem; font-size:.93rem; line-height:1.35; font-weight:700; color:var(--navy-dark);}
+  .cat-card p{margin:.6rem 0 0; font-size:.86rem; color:var(--ink-soft); line-height:1.5;}
+  .cat-badge{flex:none; width:46px; height:46px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.3rem;}
+  .cat-mini{display:inline-flex; width:1.7rem; height:1.7rem; border-radius:8px; align-items:center; justify-content:center; font-weight:800; font-size:.85rem;}
+  .cat-badge.green,.cat-mini.green{background:var(--green-soft); color:var(--green-dark);}
+  .cat-badge.gold,.cat-mini.gold{background:var(--gold-soft); color:var(--gold-deep);}
+  .cat-badge.alert,.cat-mini.alert{background:var(--alert-soft); color:#8E2F15;}
+  .cat-badge.sky,.cat-mini.sky{background:var(--sky-soft); color:#0B4F6E;}
+  .cat-badge.neutral,.cat-mini.neutral{background:var(--paper-sunken); color:var(--ink-soft);}
+  .chips{display:flex; flex-wrap:wrap; gap:.35rem;}
+  .chip{display:inline-block; padding:.12rem .65rem; border-radius:999px; background:var(--navy-soft); color:var(--navy-dark); font-weight:700; font-size:.78rem;}
+  /* variables del modelo y desenlaces D1–D5 */
+  .var-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:.8rem;}
+  .var-card{padding:1rem 1.1rem; border:1px solid var(--rule); border-radius:18px; background:var(--paper-raised);}
+  .var-card .vn{display:block; font-weight:800; color:var(--gold-deep); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.3rem;}
+  .var-card h4{margin:0 0 .3rem; font-size:.95rem; color:var(--navy-dark);}
+  .var-card p{margin:0; font-size:.84rem; color:var(--ink-soft); line-height:1.5;}
+  .des-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:.9rem;}
+  .des-card{padding:1.1rem 1.2rem; border-radius:20px; border:1px solid var(--rule); background:var(--paper-raised); box-shadow:var(--shadow); border-top:5px solid var(--navy);}
+  .des-card h4{margin:.55rem 0 .4rem; font-size:.97rem; color:var(--navy-dark);}
+  .des-card p{margin:0; font-size:.86rem; color:var(--ink-soft); line-height:1.5;}
+  .des-card.d1{border-top-color:var(--green);} .des-card.d2{border-top-color:var(--gold);} .des-card.d3{border-top-color:var(--sky);} .des-card.d4{border-top-color:var(--alert);} .des-card.d5{border-top-color:var(--rule-strong);}
+  .dn,.dtag{display:inline-block; border-radius:999px; font-weight:800;}
+  .dn{padding:.12rem .7rem; font-size:.8rem;}
+  .dtag{padding:.18rem .7rem; font-weight:700; font-size:.78rem; white-space:nowrap;}
+  .dn.d1,.dtag.d1{background:var(--green-soft); color:var(--green-dark);}
+  .dn.d2,.dtag.d2{background:var(--gold-soft); color:var(--gold-deep);}
+  .dn.d3,.dtag.d3{background:var(--sky-soft); color:#0B4F6E;}
+  .dn.d4,.dtag.d4{background:var(--alert-soft); color:#8E2F15;}
+  .dn.d5,.dtag.d5{background:var(--paper-sunken); color:var(--ink-soft);}
+  /* instrumentos de formalización */
+  .inst-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:.9rem; align-items:start;}
+  .inst-card{padding:1.1rem 1.2rem; border:1px solid var(--rule); border-radius:20px; background:var(--paper-raised); box-shadow:var(--shadow);}
+  .inst-card h4{margin:0 0 .4rem; font-size:1rem; color:var(--navy);}
+  .inst-card dl{margin:0;}
+  .inst-card dt{font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-deep); margin-top:.55rem;}
+  .inst-card dd{margin:.1rem 0 0; font-size:.88rem; color:var(--ink-soft); line-height:1.5;}
+  details.mas{margin-top:.8rem; border-top:1px dashed var(--rule-strong); padding-top:.6rem;}
+  details.mas summary{cursor:pointer; font-weight:700; font-size:.84rem; color:var(--navy);}
+  details.mas p{margin:.6rem 0 0; font-size:.85rem; color:var(--ink-soft); line-height:1.55;}
+  /* listas */
+  .tick-list{list-style:none; margin:0; padding:0; display:grid; gap:.5rem; font-size:.9rem; color:var(--ink-soft);}
+  .tick-list li{position:relative; padding-left:1.4rem; line-height:1.5;}
+  .tick-list li::before{content:''; position:absolute; left:.1rem; top:.5em; width:.55rem; height:.55rem; border-radius:50%; background:var(--gold);}
+  .tick-list b{color:var(--ink);}
+  .cond-list{margin:0; padding-left:1.5rem; list-style:lower-roman; display:grid; gap:.5rem; color:var(--ink-soft); font-size:.95rem; line-height:1.55;}
+  .steps{list-style:none; counter-reset:paso; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:.9rem;}
+  .steps li{counter-increment:paso; position:relative; padding:1rem 1.1rem 1rem 3.6rem; border:1px solid var(--rule); border-radius:18px; background:var(--paper-raised); font-size:.87rem; color:var(--ink-soft); line-height:1.5;}
+  .steps li::before{content:counter(paso); position:absolute; left:1rem; top:1rem; width:2rem; height:2rem; border-radius:50%; background:var(--navy); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.92rem;}
+  .steps li b{display:block; color:var(--navy-dark); font-size:.95rem; margin-bottom:.15rem;}
+  .rec-list{margin:0; padding:0; list-style:none; counter-reset:rec; display:grid; gap:.9rem;}
+  .rec-list li{counter-increment:rec; position:relative; padding-left:2.5rem; font-size:.9rem; color:var(--ink-soft); line-height:1.5;}
+  .rec-list li::before{content:counter(rec); position:absolute; left:0; top:0; width:1.75rem; height:1.75rem; border-radius:50%; background:var(--gold-soft); color:var(--gold-deep); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.85rem;}
+  .rec-list b{display:block; color:var(--ink);}
+  /* detalle por predio (con clave): filtros de la ruta */
+  .pred-filtros{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin:.4rem 0 .8rem;}
+  .pf-l{font-size:.8rem; font-weight:700; color:var(--ink-faint);}
+  .chip-btn{border:1.5px solid var(--rule-strong); background:#fff; color:var(--navy); border-radius:999px; padding:.35rem .9rem; font-weight:700; font-size:.8rem; cursor:pointer; font-family:inherit;}
+  .chip-btn:hover{border-color:var(--navy); background:var(--navy-soft);}
+  .chip-btn[aria-pressed="true"]{background:var(--navy); color:#fff; border-color:var(--navy);}
+  .pf-buscar input{border:1.5px solid var(--rule-strong); border-radius:999px; padding:.4rem .9rem; font:inherit; font-size:.82rem; min-width:190px; background:#fff; color:var(--ink);}
+  .pf-n{font-size:.78rem; color:var(--ink-faint); margin-left:auto;}
+  .gtag{display:inline-block; border-radius:8px; padding:.05rem .5rem; font-weight:800; font-size:.76rem;}
+  .gtag.g1{background:var(--gold-soft); color:var(--gold-deep);}
+  .gtag.g2{background:var(--navy-soft); color:var(--navy-dark);}
+  .gtag.g3{background:var(--paper-sunken); color:var(--ink-soft);}
+  /* teléfono: las tablas se desplazan de lado; las columnas de texto largo conservan un ancho legible (filas bajas) */
+  @media (max-width:760px){
+    #predial-normas-table td:nth-child(n+2), #predial-reglas-table td:nth-child(2), #predial-reglas-table td:nth-child(4), #predial-riesgos-table td,
+    #predial-grupos-table td:nth-child(3), #pred-adq-tbody td:nth-child(2), #pred-poligono-tbody td:nth-child(3), #pred-poligono-tbody td:nth-child(6),
+    #pred-grupos-tbody td:nth-child(3){min-width:240px;}
+    #predial-nueve-table td:nth-child(4){min-width:220px;}
+    #pred-ruta-tbody td:nth-child(7){min-width:300px;}
+    .pf-buscar, .pf-buscar input{width:100%;}
+    .pf-n{margin-left:0;}
+  }
 </style>
 <style id="leaflet-css">
 /* required styles */
@@ -1350,6 +1446,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <a href="#mapa-virtual" data-sec="mapa-virtual">Mapa virtual</a>
       <a href="#participacion" data-sec="participacion">Participación social</a>
       <a href="#biota" data-sec="biota">Inventario biota</a>
+      <a href="#predial" data-sec="predial">Análisis predial</a>
       <a href="#documentos" data-sec="documentos">Documentos <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg></a>
       <span class="role-chip" id="role-chip">rol</span>
       <button class="logout" id="logout-btn" title="Cerrar sesión">Salir</button>
@@ -1384,7 +1481,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="sec-head">
           <span class="sec-eyebrow">Presentación</span>
           <h2 class="sec-title">Perfil del esquema de Pago por Servicios Ambientales para conservar el recurso hídrico de la Represa Villeros</h2>
-          <p class="lead">El perfil del esquema se formula para las áreas de importancia estratégica que alimentan la Represa Villeros. Diseña el modelo para formalizar acuerdos de conservación con los propietarios y las alternativas de incentivos económicos para conservar los predios; no contempla la adquisición de predios.</p>
+          <p class="lead">El perfil del esquema se formula para las áreas de importancia estratégica que alimentan la Represa Villeros. Diseña el modelo para formalizar acuerdos de conservación con los propietarios y las alternativas de incentivos económicos para conservar los predios; no incluye la adquisición de predios, cuya procedencia solo se analiza de forma prospectiva para los casos en que el acuerdo voluntario no es viable (Producto 3).</p>
           <div class="contract-strip">
             <span><b>Modalidad de PSA</b> Regulación y calidad hídrica</span>
             <span><b>Ubicación</b> Coveñas, Sucre</span>
@@ -1409,13 +1506,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <h3>Objetivo y meta del esquema</h3>
             <p style="font-size:.94rem; color:var(--ink-soft); margin-bottom:.8rem;">Formular el perfil del esquema de Pago por Servicios Ambientales en áreas de importancia estratégica para la conservación del recurso hídrico de la microcuenca de la Represa Villeros, en el municipio de Coveñas, Sucre.</p>
             <p style="font-size:.88rem; color:var(--ink-faint); margin-bottom:.8rem;"><b style="color:var(--ink-soft); font-weight:700;">Meta —</b> Orientar la conservación del recurso hídrico y el bienestar de los usuarios del servicio de acueducto de Coveñas mediante el perfil del esquema de PSA del área de importancia estratégica de la microcuenca.</p>
-            <p style="font-size:.88rem; color:var(--ink-faint); margin-bottom:0;"><b style="color:var(--ink-soft); font-weight:700;">Alcance —</b> Diseño del perfil: modelo para la formalización de acuerdos y alternativas de incentivos económicos para la conservación de los predios. No incluye la adquisición de predios.</p>
+            <p style="font-size:.88rem; color:var(--ink-faint); margin-bottom:0;"><b style="color:var(--ink-soft); font-weight:700;">Alcance —</b> Diseño del perfil: modelo para la formalización de acuerdos y alternativas de incentivos económicos para la conservación de los predios. No incluye la adquisición de predios; el Producto 3 analiza su procedencia solo de forma prospectiva y no vinculante.</p>
           </div>
           <div class="card">
             <h3>Avance de la formulación del esquema</h3>
             <p style="font-size:.94rem; color:var(--ink-soft);">La plataforma se actualiza a medida que cada producto del perfil del esquema avanza.</p>
             <div id="productos-list"></div>
-            <p style="font-size:.82rem; color:var(--ink-faint); margin:.8rem 0 0;">La versión final del Producto 2 se entregó a la Supervisión el 25 de septiembre de 2026, para confirmación de recibido.</p>
+            <p style="font-size:.82rem; color:var(--ink-faint); margin:.8rem 0 0;">La versión final del Producto 2 se entregó a la Supervisión el 25 de septiembre de 2026, para confirmación de recibido. El Producto 3, versión final de octubre de 2026, se presenta en el módulo <a href="#predial">Análisis predial</a>.</p>
           </div>
         </div>
 
@@ -1984,14 +2081,243 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </section>
 
+    <!-- ---------------- ANÁLISIS PREDIAL (Producto 3) ---------------- -->
+    <section class="section" id="predial">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="sec-eyebrow">Análisis predial · Producto 3</span>
+          <h2 class="sec-title">Modelo de gestión y prospectiva predial</h2>
+          <p class="lead">El Producto 3 cierra la cadena técnica del contrato: asigna a cada uno de los 60 predios, mediante nueve reglas de decisión, el instrumento jurídico con el que puede vincularse al esquema; reúne el menú de alternativas para formalizar los acuerdos y la ruta de adquisición para los casos en que el acuerdo voluntario no es viable. Los predios se identifican solo por su código (P01 a P60), en cumplimiento de la Ley 1581 de 2012.</p>
+          <p class="pred-cta"><a class="pill pill-teal" href="#documentos" data-read-book="producto3">Leer el Producto 3 en línea</a><span>Documento técnico completo (versión final, octubre de 2026): se abre con la clave de la sección Documentos.</span></p>
+        </div>
+
+        <nav class="subnav" aria-label="Contenido del análisis predial">
+          <a href="#predial-marco">Marco normativo</a>
+          <a href="#predial-partida">Punto de partida</a>
+          <a href="#predial-registral">Situación registral</a>
+          <a href="#predial-decision">Modelo de decisión</a>
+          <a href="#predial-instrumentos">Instrumentos de formalización</a>
+          <a href="#predial-adquisicion">Prospectiva de adquisición</a>
+          <a href="#predial-ruta">Ruta de gestión</a>
+          <a href="#predial-riesgos">Riesgos y salvaguardas</a>
+          <a href="#predial-conclusiones">Conclusiones</a>
+          <a href="#predial-detalle">Detalle por predio</a>
+        </nav>
+
+        <div class="stat-grid" id="predial-stats"></div>
+
+        <h3 class="block-title" id="predial-marco">Marco normativo de la gestión predial</h3>
+        <p class="lead" style="margin-bottom:.8rem;">El artículo 111 de la Ley 99 de 1993 declara de interés público las áreas de importancia estratégica para la conservación del recurso hídrico y ordena a los municipios destinar al menos el 1 % de sus ingresos corrientes a su adquisición y mantenimiento o a la financiación de esquemas de PSA en ellas. La norma pone las dos vías en pie de igualdad y deja la elección a un criterio técnico. La primera instancia, el acuerdo voluntario, se rige por el Decreto-Ley 870 de 2017 y su reglamento, el Decreto 1007 de 2018. La segunda, la adquisición directa, opera cuando el acuerdo voluntario no es viable o no es el instrumento más eficiente: se tramita como enajenación voluntaria de bienes declarados de utilidad pública e interés social (Ley 9 de 1989 y Ley 388 de 1997, artículos 58 a 61), con avalúo comercial conforme al Decreto 1420 de 1998 y la Resolución IGAC 620 de 2008.</p>
+        <div class="scrollx">
+          <table class="data" id="predial-normas-table">
+            <thead><tr><th>Norma</th><th>Materia</th><th>Implicación para la gestión predial</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="callout"><b>Análisis en el marco del artículo 111.</b> Adquirir y pagar por servicios ambientales no son vías excluyentes sino complementarias: la ley permite al municipio combinar ambas dentro de la misma área estratégica. El modelo de decisión operacionaliza esa complementariedad: el PSA es la vía preferente por costo-eficiencia y permanencia de la población rural, y la adquisición se reserva para los predios donde el acuerdo voluntario es jurídicamente inviable o donde la importancia hídrica exige control pleno y permanente del suelo.</div>
+
+        <h3 class="block-title" id="predial-partida">Punto de partida: el universo predial y su valoración</h3>
+        <p class="lead" style="margin-bottom:.8rem;">El área de intervención queda definida, con respaldo catastral pleno, en 60 predios: 294,0 hectáreas SIG y 225,5 hectáreas elegibles —el área elegible de cada predio es el mínimo entre su área SIG y su área catastral, de modo que el área pagada nunca supera la registrada ante el IGAC—. La valoración del incentivo, calculada por costo de oportunidad y contrastada predio a predio con el tope legal del 15 % del avalúo catastral por hectárea, arroja un costo anual de $247,5 millones para los 21 predios con costo de oportunidad positivo; con una operación estimada en $21,5 millones, la necesidad anual es de $268,9 millones. Los 39 predios restantes tienen costo de oportunidad cero y esperan la definición del piso mínimo del incentivo.</p>
+        <div class="grid-2" style="align-items:start;">
+          <figure class="figure" style="margin:0;">
+            <img src="img/mapa11.5b0ad4fa.webp" alt="Mapa 11: uso predominante del suelo por predio en el área de intervención, según ESA WorldCover 2021" loading="lazy">
+            <figcaption>Mapa 11. Localización y uso predominante del suelo de los 60 predios del área de intervención. Fuente: ESA WorldCover 2021 (10 m) sobre el levantamiento predial del proyecto.</figcaption>
+          </figure>
+          <div class="card">
+            <h3 style="font-size:1rem;">Cifras maestras del esquema</h3>
+            <table class="data" id="predial-maestras-table"><tbody></tbody></table>
+            <p class="dash-note">Fuente: Producto 2, versión final. El detalle económico por predio y por aliado es de acceso restringido (sección Análisis económico).</p>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="predial-registral">Situación registral de los predios del polígono de la cuenca</h3>
+        <p class="lead" style="margin-bottom:.8rem;">La consulta de los certificados de tradición y libertad ante la ORIP de Sincelejo (19 de septiembre de 2026) reveló que la ficha catastral no siempre refleja la situación jurídica real. De los nueve predios del polígono de la cuenca, solo dos tienen folio activo verificado —y ambos con condiciones que gestionar: copropiedad de cinco titulares en P02 y embargo parcial en P08—; tres carecen de folio referenciado (P06, P09 y P17), uno tiene folio cerrado (P07), uno tiene referencia de matrícula errónea (P03) y dos quedaron pendientes de consulta (P18 y P19). Es la situación que el contrato previó para el Producto 3: predios valiosos para el esquema cuya tenencia es precaria, cuyo folio no puede establecerse o cuyo titular no tiene hoy capacidad jurídica de firmar. Para ellos, el instrumento pertinente deja de ser el PSA y pasa a ser alguna de las alternativas que este modelo desarrolla, incluida la adquisición directa por el municipio.</p>
+        <div class="cat-grid" id="predial-cats"></div>
+        <div class="scrollx">
+          <table class="data" id="predial-nueve-table">
+            <thead><tr><th>Predio</th><th>Categoría</th><th>Modalidad</th><th>Instrumento recomendado (preliminar)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Anexo 1 del Producto 2 (Tablas A1.1 y A1.2) sobre los certificados de la ORIP de Sincelejo del 19 de septiembre de 2026. La modalidad y el instrumento son preliminares: la categoría registral de un predio puede cambiar y, con ella, el instrumento. Los incentivos por predio son de acceso restringido (Detalle por predio).</p>
+
+        <h3 class="block-title" id="predial-decision">Modelo de decisión del instrumento predial</h3>
+        <p class="lead" style="margin-bottom:1rem;">No todos los predios del área de intervención son candidatos igualmente idóneos para un acuerdo voluntario de PSA. Cuando la tenencia es precaria, existen conflictos de sucesión no resueltos, el folio de matrícula no puede establecerse o el propietario no tiene interés en suscribir un acuerdo temporal, el instrumento pertinente deja de ser el PSA y pasa a ser alguna de las alternativas del modelo. El modelo aplica, predio a predio, un criterio mixto de cuatro variables, y toda combinación de ellas conduce a uno de cinco desenlaces.</p>
+        <div class="var-grid" id="predial-vars"></div>
+        <h3 style="margin:1.6rem 0 .8rem;">Los cinco desenlaces posibles</h3>
+        <div class="des-grid" id="predial-desenlaces"></div>
+        <h3 style="margin:1.8rem 0 .6rem;">Las nueve reglas de decisión</h3>
+        <div class="scrollx">
+          <table class="data" id="predial-reglas-table">
+            <thead><tr><th>Regla</th><th>Condición verificada</th><th>Desenlace</th><th>Gestión asociada</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="lead" style="font-size:.85rem; color:var(--ink-faint);">Elaboración del Consorcio sobre la estrategia 8 del Producto 2, la Tabla 12 del Producto 2 y las fichas del Anexo 1.</p>
+        <p class="lead" style="font-size:.95rem;">La aplicación de las reglas es secuencial y documentada: cada predio recibe un acta de decisión del equipo técnico de la Secretaría de Desarrollo Social de la Alcaldía de Coveñas, con la regla aplicada, la evidencia registral que la sustenta y el plazo de la gestión asociada. Los cambios de instrumento (de PSA a adquisición, por ejemplo) se adoptan por mayoría de los integrantes con derecho a voto, con constancia en acta, como recomienda el capítulo 10 del Producto 2. El modelo es dinámico: la categoría registral de un predio puede cambiar —un folio se aclara, un embargo se levanta, la ANT adjudica— y, con ella, el instrumento. Por eso el modelo programa la reaplicación de las reglas al cierre de cada fase, comenzando por los predios de mayor prioridad del índice final.</p>
+        <div class="callout"><b>Por qué el PSA es la vía preferente.</b> La adquisición inmoviliza capital y desplaza a la población rural; el acuerdo voluntario conserva al propietario como aliado y deja el gasto condicionado a verificación. La adquisición se reserva, por eso, para los casos en que el derecho no permite acordar o la seguridad jurídica del activo hídrico lo exige.</div>
+
+        <h3 class="block-title" id="predial-instrumentos">Alternativas de formalización de acuerdos</h3>
+        <p class="lead" style="margin-bottom:1rem;">El instrumento base es el acuerdo voluntario de conservación del Producto 2: un contrato bilateral, de duración determinada (hasta cinco años, prorrogable), de cumplimiento verificable, que no constituye servidumbre ni limitación permanente del dominio. Sobre esa base, el modelo contempla ocho instrumentos según la situación jurídica de cada predio. Cada tarjeta se abre para leer cómo se aplica.</p>
+        <div class="inst-grid" id="predial-instr"></div>
+        <div class="grid-2" style="align-items:start; margin-top:1.4rem;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Contenido mínimo de los acuerdos</h3>
+            <p style="font-size:.88rem; color:var(--ink-soft); margin-bottom:.6rem;">La formalización se rige por una misma premisa: acuerdos voluntarios entre los beneficiarios y los proveedores del servicio ambiental, bajo el Decreto Ley 870 de 2017 y el Decreto 1007 de 2018. Los acuerdos se suscriben por escrito y contienen, como mínimo:</p>
+            <ul class="tick-list" id="predial-minimo"></ul>
+            <p style="font-size:.84rem; color:var(--ink-faint); margin:.8rem 0 0;">Incluye, además, la identificación de las partes, la delimitación georreferenciada del área objeto de conservación o restauración, la definición de los compromisos ambientales, la validación del incentivo económico y los mecanismos de verificación y seguimiento.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Cláusulas transversales a todo instrumento</h3>
+            <ul class="tick-list" id="predial-clausulas"></ul>
+            <p style="font-size:.84rem; color:var(--ink-faint); margin:.8rem 0 0;">El orden de despliegue de los instrumentos no es discrecional: sigue el índice de prioridad final sobre la totalidad de los 60 predios, de modo que las gestiones más exigentes —apoderamientos, acreditaciones de posesión, consultas a la ANT— se concentran primero donde el retorno hidrológico es mayor. Para los 51 predios fuera del polígono de la cuenca, el instrumento por defecto es el acuerdo estándar, reclasificable a medida que sus certificados se obtengan.</p>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="predial-adquisicion">Prospectiva de adquisición de predios</h3>
+        <p class="lead" style="margin-bottom:.8rem;">La adquisición directa es el desenlace D4 del modelo y procede cuando concurren tres condiciones:</p>
+        <ol class="cond-list" id="predial-cond"></ol>
+        <p class="lead" style="margin:1rem 0 1.2rem;">La adquisición no es una sanción ni un sustituto general del PSA: es la herramienta de cierre para los puntos del territorio donde el derecho no permite acordar. Por diseño, el esquema la reserva a predios del polígono de la cuenca o colindantes con el espejo de agua, donde la protección perimetral de la represa —la última línea de defensa identificada desde el diagnóstico— no puede quedar sujeta a un folio cerrado.</p>
+        <h3 style="margin:1.4rem 0 .8rem;">La ruta de adquisición en ocho pasos</h3>
+        <ol class="steps" id="predial-pasos"></ol>
+        <h3 style="margin:1.8rem 0 .6rem;">Predios candidatos</h3>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <p style="font-size:.93rem; color:var(--ink-soft); margin:0 0 .7rem;"><b style="color:var(--ink);">P07 — escenario base.</b> Con la información registral disponible, es el único predio con remisión directa a adquisición: folio cerrado por resolución de la SNR en 2024 tras un proceso judicial que canceló las anotaciones de dominio, y titular vigente no identificable. El incentivo calculado no puede ejecutarse mientras no haya con quién firmar. Si la ORIP identifica al titular y este manifiesta voluntad, P07 regresa a la vía del acuerdo; si no, es el primer candidato de adquisición.</p>
+            <p style="font-size:.93rem; color:var(--ink-soft); margin:0;"><b style="color:var(--ink);">P17 — escenario ampliado.</b> Es candidato condicional: sin folio referenciado, presunto baldío. Si la consulta ante la ANT concluye que es privado y su titular no tiene voluntad de vinculación, su prioridad dentro del polígono activa la regla R8.</p>
+          </div>
+          <div class="card">
+            <p style="font-size:.93rem; color:var(--ink-soft); margin:0 0 .7rem;"><b style="color:var(--ink);">P06 — contingente.</b> El polígono del vaso de la represa merece mención aparte: si resulta privado, es el predio de mayor prioridad de todo el esquema y su acuerdo debe ser el primero en suscribirse; la adquisición solo se contemplaría si no hubiera voluntad. Si resulta público, no hay nada que adquirir: procede el convenio interadministrativo. P18 y P19 se clasifican al obtenerse sus certificados.</p>
+            <p style="font-size:.84rem; color:var(--ink-faint); margin:0;"><b>Propuesta no vinculante del modelo prospectivo.</b> El presupuesto referencial se estima sobre el avalúo catastral oficial verificado y el precio final lo fija el avalúo comercial; sus valores por predio, y la comparación con el PSA, están en el Detalle por predio (con clave).</p>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="predial-ruta">Ruta de gestión de los 60 predios</h3>
+        <p class="lead" style="margin-bottom:.8rem;">La ruta no se agota en el polígono de la cuenca: el esquema trabaja sobre un universo predial completo precisamente para controlar las fugas de presión ganadera. Aplicando las reglas del modelo a la matriz consolidada del Producto 2, los 60 predios se ordenan en tres grupos operativos según su posición respecto del polígono de la cuenca y su costo de oportunidad. Para los nueve del polígono (G1) la ruta se especifica predio a predio; para los 51 restantes la regla aplicable es la R1, con la gestión estándar de la fase 1: confirmación de la capacidad de disposición y, en los predios de modalidad de restauración, acreditación multitemporal Sentinel-2 previa a la suscripción.</p>
+        <div class="scrollx">
+          <table class="data" id="predial-grupos-table">
+            <thead><tr><th>Grupo</th><th>Predios</th><th>Instrumento y ruta</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="grid-2" style="align-items:start; margin-top:1.2rem;">
+          <figure class="figure" style="margin:0;">
+            <img src="img/mapa12.720df5a2.webp" alt="Mapa 12: porcentaje de cobertura natural por predio y modalidad de PSA sugerida, según ESA WorldCover 2021" loading="lazy">
+            <figcaption>Mapa 12. Predominancia de cobertura natural y modalidad de PSA sugerida por predio. Fuente: porcentaje de cobertura natural por predio (ESA WorldCover 2021).</figcaption>
+          </figure>
+          <div class="card">
+            <h3 style="font-size:1rem;">Lo que muestra la ruta</h3>
+            <ul class="tick-list">
+              <li>22 de los 23 predios de conservación tienen costo de oportunidad cero y se vinculan al piso mínimo; la excepción es P06.</li>
+              <li>Los 21 predios con incentivo positivo concentran el presupuesto y, por eso, el rigor registral.</li>
+              <li>Los 22 predios de restauración añaden la acreditación multitemporal como condición previa a la suscripción.</li>
+              <li>El orden de suscripción dentro de cada grupo es siempre el del índice final, de modo que ningún desembolso se anticipa a su prioridad hidrológica.</li>
+            </ul>
+            <p style="font-size:.84rem; color:var(--ink-faint); margin:.8rem 0 0;">La prioridad y el índice corresponden a la versión final del Producto 2. La ruta predio a predio, con su regla, fase e incentivo, está en el Detalle por predio (con clave).</p>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="predial-riesgos">Riesgos y salvaguardas de la gestión predial</h3>
+        <div class="scrollx">
+          <table class="data" id="predial-riesgos-table">
+            <thead><tr><th>Riesgo</th><th>Manifestación en este esquema</th><th>Salvaguarda</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="lead" style="font-size:.9rem; margin-top:1rem;">Ninguna de estas salvaguardas sustituye la gestión política e institucional sostenida que el Producto 2 señaló como condición estructural: sin la vinculación de la CVS y de San Antero, la gestión predial de Coveñas protege el perímetro del embalse pero no incide sobre la fuente principal de sedimentación. La gestión interjurisdiccional corre por la estrategia 5 del esquema y se mantiene en agenda de manera permanente.</p>
+
+        <h3 class="block-title" id="predial-conclusiones">Conclusiones y recomendaciones</h3>
+        <div class="grid-2" style="align-items:start;">
+          <div class="card">
+            <h3 style="font-size:1rem;">Conclusiones</h3>
+            <p style="font-size:.93rem; color:var(--ink-soft);">El modelo de gestión predial cierra la cadena técnica del contrato: a los 60 predios valorados por el Producto 2 les asigna ahora, mediante nueve reglas auditables, el instrumento jurídico con el que cada uno puede vincularse al esquema. El resultado confirma el diseño original: el PSA voluntario es la vía de la inmensa mayoría —siete de los nueve predios del polígono de la cuenca conservan el acuerdo como instrumento objetivo— y la adquisición queda acotada a su función de cierre: un escenario base de un solo predio (P07) y uno ampliado condicional (P07 + P17).</p>
+            <p style="font-size:.93rem; color:var(--ink-soft);">La verificación registral demostró que la ficha catastral no basta para firmar: de los nueve predios del polígono de la cuenca, solo dos tienen folio activo verificado, y ambos con condiciones que gestionar.</p>
+            <p style="font-size:.93rem; color:var(--ink-soft);">El costo de la gestión predial es conocido y financiable: $268,9 millones anuales para el esquema completo y un presupuesto de adquisición referencial que cabe en la fuente del artículo 111 ejecutada en más de una vigencia.</p>
+            <p style="font-size:.88rem; color:var(--ink-faint); margin:0;">Ningún monto constituye un compromiso formalizado ni este documento genera obligación de suscribir contrato o convenio alguno: la cuantificación por aliado es una propuesta del modelo prospectivo, cuya formalización dependerá de la decisión voluntaria de cada actor en la fase de implementación.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem;">Recomendaciones</h3>
+            <ol class="rec-list" id="predial-recs"></ol>
+          </div>
+        </div>
+
+        <h3 class="block-title" id="predial-detalle">Detalle por predio</h3>
+        <p class="lead" style="margin-bottom:1rem;">Presupuesto referencial de adquisición, ruta de gestión de los nueve predios del polígono de la cuenca, resumen por grupos y ruta de gestión de los 60 predios, con su regla, fase e incentivo. Los valores económicos por predio son de acceso restringido.</p>
+
+        <div id="pred-gate-wrap">
+          <div class="doc-gate card">
+            <h3>Clave de acceso al detalle por predio</h3>
+            <p style="font-size:.9rem; color:var(--ink-soft);">Ingrese la misma clave de la sección Documentos. Uso previsto para el equipo técnico y la supervisión municipal.</p>
+            <form id="pred-gate-form">
+              <div class="field"><label for="pred-clave">Clave</label><input id="pred-clave" type="password" placeholder="••••••••••••" autocomplete="off"></div>
+              <div class="gate-msg" id="pred-gate-error" role="alert" aria-live="assertive"></div>
+              <button type="submit" class="btn">Desbloquear detalle por predio</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="pred-content" hidden>
+          <h3 style="margin-top:1.6rem;">Presupuesto referencial de adquisición</h3>
+          <div class="stat-grid" id="pred-adq-stats"></div>
+          <p class="lead" style="font-size:.9rem; margin-bottom:.6rem;" id="pred-adq-texto"></p>
+          <div class="scrollx">
+            <table class="data">
+              <thead><tr><th>Predio</th><th>Condición que activa la adquisición</th><th>Área catastral (ha)</th><th>Avalúo catastral (COP)</th><th>Escenario</th></tr></thead>
+              <tbody id="pred-adq-tbody"></tbody>
+            </table>
+          </div>
+          <p class="lead" style="font-size:.8rem; color:var(--ink-faint);" id="pred-adq-fuente"></p>
+          <h4 class="mini-title">Adquisición frente a PSA en P07</h4>
+          <p class="lead" style="font-size:.9rem;" id="pred-adq-comparacion"></p>
+
+          <h3 style="margin-top:2rem;">Ruta de gestión de los nueve predios del polígono de la cuenca</h3>
+          <div class="scrollx">
+            <table class="data">
+              <thead><tr><th>Predio</th><th>Regla</th><th>Gestiones previas</th><th>Instrumento objetivo</th><th>Plazo estimado</th><th>Desenlace esperado</th></tr></thead>
+              <tbody id="pred-poligono-tbody"></tbody>
+            </table>
+          </div>
+          <p class="lead" style="font-size:.9rem; margin-top:.8rem;" id="pred-poligono-nota"></p>
+
+          <h3 style="margin-top:2rem;">Resumen por grupos de predios</h3>
+          <div class="scrollx">
+            <table class="data">
+              <thead><tr><th>Grupo</th><th>Predios</th><th>Instrumento y ruta</th><th>Incentivo anual (COP)</th></tr></thead>
+              <tbody id="pred-grupos-tbody"></tbody>
+            </table>
+          </div>
+
+          <h3 style="margin-top:2rem;">Ruta de gestión predial de PSA para los 60 predios</h3>
+          <p class="lead" style="font-size:.9rem; margin-bottom:.6rem;">Modalidad, índice y prioridad finales e incentivo anual de la matriz consolidada del Producto 2, con la ruta de gestión (regla del modelo y grupo) y la fase de vinculación (F1 a F4). Los predios se ordenan por código; el orden no refleja prioridad. «Piso mínimo»: incentivo pendiente de la adopción del piso mínimo.</p>
+          <div class="pred-filtros" id="pred-filtros">
+            <span class="pf-l">Grupo:</span>
+            <button type="button" class="chip-btn" data-grupo="" aria-pressed="true">Todos</button>
+            <button type="button" class="chip-btn" data-grupo="G1" aria-pressed="false">G1 · Polígono de la cuenca</button>
+            <button type="button" class="chip-btn" data-grupo="G2" aria-pressed="false">G2 · Costo positivo</button>
+            <button type="button" class="chip-btn" data-grupo="G3" aria-pressed="false">G3 · Piso mínimo</button>
+            <label class="pf-buscar"><span class="sr">Buscar un predio</span><input type="search" id="pred-buscar" placeholder="Buscar predio (P07)" autocomplete="off"></label>
+            <span class="pf-n" id="pred-n" aria-live="polite"></span>
+          </div>
+          <div class="scrollx matrix-scroll">
+            <table class="data">
+              <thead><tr><th>Predio</th><th>Grupo</th><th>Modalidad</th><th>Índice final</th><th>Prioridad final</th><th>Incentivo anual (COP)</th><th>Ruta de gestión</th><th>Fase</th></tr></thead>
+              <tbody id="pred-ruta-tbody"></tbody>
+            </table>
+          </div>
+          <p class="lead" style="font-size:.8rem; color:var(--ink-faint);">Fuente: Producto 3, Modelo de gestión y prospectiva predial del esquema de PSA (versión final, octubre de 2026): Tablas 7, 8, 9 y 10, sobre la matriz consolidada del Producto 2 (versión final) y las fichas jurídicas del Anexo 1. Elaboración del Consorcio Servicios Ambientales 2026.</p>
+        </div>
+      </div>
+    </section>
+
+
     <!-- ---------------- DOCUMENTOS ---------------- -->
-    <section class="section" id="documentos">
+    <section class="section alt" id="documentos">
       <div class="wrap">
         <div class="sec-head">
           <span class="sec-eyebrow">Sección interna</span>
           <h2 class="sec-title">Documentos del contrato</h2>
           <p class="lead">Listado de los documentos del contrato. Esta sección exige una clave de acceso adicional a la del ingreso.</p>
-          <p style="margin:0 0 .2rem; display:flex; flex-wrap:wrap; gap:.8rem; align-items:center;"><a class="pill pill-teal" href="#documentos" data-read-book>Leer el libro digital en línea</a><span style="font-size:.82rem; color:var(--ink-faint);">Documento técnico completo (Producto 2, versión final): se abre con la clave de esta sección.</span></p>
+          <p class="pred-cta" style="margin-top:1.2rem;"><a class="pill pill-teal" href="#documentos" data-read-book="producto2">Leer el Producto 2 en línea</a><a class="pill pill-teal" href="#documentos" data-read-book="producto3">Leer el Producto 3 en línea</a><span>Documentos técnicos completos (versión final): se abren con la clave de esta sección.</span></p>
         </div>
         <div id="doc-gate-wrap">
           <div class="doc-gate card">
@@ -2068,6 +2394,18 @@ svg.leaflet-image-layer.leaflet-interactive path {
               <li><a href="#biota-composicion">Composición por predio</a></li>
               <li><a href="#biota-especies">Especies y valor de importancia</a></li>
               <li><a href="#biota-estructura">Estructura del arbolado</a></li>
+            </ul>
+          </nav>
+
+          <nav class="foot-col" aria-label="Análisis predial">
+            <h4><a href="#predial">Análisis predial</a></h4>
+            <ul>
+              <li><a href="#predial-registral">Situación registral</a></li>
+              <li><a href="#predial-decision">Modelo de decisión</a></li>
+              <li><a href="#predial-instrumentos">Instrumentos de formalización</a></li>
+              <li><a href="#predial-adquisicion">Prospectiva de adquisición</a></li>
+              <li><a href="#predial-ruta">Ruta de gestión</a></li>
+              <li><a href="#predial-detalle">Detalle por predio</a></li>
             </ul>
           </nav>
 
@@ -2158,6 +2496,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <h3>Estudios técnicos</h3>
   <ul>
     <li>Documento técnico del esquema de PSA (Producto 2, versión final) e Informe Técnico N.º 1: identificación, análisis y priorización predial (Producto 1) — Consorcio Servicios Ambientales 2026.</li>
+    <li>Modelo de gestión y prospectiva predial del esquema de PSA (Producto 3, versión final, octubre de 2026) — Consorcio Servicios Ambientales 2026: reglas de decisión, alternativas de formalización de acuerdos y prospectiva de adquisición de predios, sobre las fichas jurídicas del Anexo 1 del Producto 2 y los certificados de tradición y libertad expedidos por la ORIP de Sincelejo el 19 de septiembre de 2026.</li>
     <li>Inventario forestal en los predios aledaños a la Represa Villeros, Coveñas, Sucre (septiembre de 2026) — Consorcio Servicios Ambientales 2026: 230 individuos, 20 familias, 45 géneros y 46 especies en los nueve predios aledaños a la represa.</li>
     <li>Estudio Inalter S.A.S. (2019) y Resolución 1070 de 2023: sedimentación, calidad del agua cruda y fase de vejez de la represa.</li>
     <li>Batimetría con software Hypack Max (2009–2018): sedimentación acumulada.</li>
@@ -2166,6 +2505,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   <h3>Marco normativo y guías</h3>
   <ul>
     <li>Ley 99 de 1993, artículo 111 (modificado por el artículo 210 de la Ley 1450 de 2011, la Ley 1955 de 2019 y la Ley 2320 de 2023).</li>
+    <li>Marco de la gestión predial (Producto 3): Decreto 953 de 2013 y Decreto 1007 de 2018 (compilados en el Decreto 1076 de 2015), Ley 9 de 1989 y Ley 388 de 1997 (artículos 58 a 61), Decreto 1420 de 1998 y Resolución IGAC 620 de 2008 (avalúos comerciales), Ley 1579 de 2012 (registro de instrumentos públicos), Ley 160 de 1994 y Decreto 1071 de 2015 (baldíos).</li>
     <li>Decreto Ley 870 de 2017 (Pago por Servicios Ambientales) y Decreto 1076 de 2015 (artículos 2.2.9.8.2.2 y 2.2.9.8.2.5: modalidad de regulación y calidad hídrica y tope del 15 % del avalúo catastral).</li>
     <li>Resolución 2115 de 2007: calidad del agua para consumo humano.</li>
     <li>Guía del Proyecto Tipo PSA, modalidad hídrica (Ministerio de Ambiente y Desarrollo Sostenible, 2021).</li>
@@ -2252,6 +2592,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     mapa08: "img/mapa08.c3c73ddb.webp",
     mapa09: "img/mapa09.3b844638.webp",
     mapa11: "img/mapa11.5b0ad4fa.webp",
+    mapa12: "img/mapa12.720df5a2.webp",
     mapa18: "img/mapa18.f61d11d1.webp",
     droneP01: "img/droneP01.a3baaa9a.jpg",
     droneP02: "img/droneP02.7d6145bf.jpg",
@@ -2324,7 +2665,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var PRODUCTOS = [
     {n:1, nombre:"Diagnóstico y línea base ambiental", estado:"done", label:"Completado"},
     {n:2, nombre:"Perfil del esquema ambiental", estado:"done", label:"Completado · versión final"},
-    {n:3, nombre:"Diseño de alternativas de formalización de acuerdos en los predios", estado:"progress", label:"En curso"}
+    {n:3, nombre:"Diseño de alternativas de formalización de acuerdos en los predios", estado:"done", label:"Completado · versión final"}
   ];
 
   var STATS = [
@@ -2521,7 +2862,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     {title:"Zonificación ambiental", text:"Cada predio se clasifica según su cobertura actual, para decidir si se conserva, se restaura o se recupera.", fact:"Restauración ecológica 456,07 ha (41,7%) · Recuperación 637,2 ha (58,3%)", img:"mapa04"},
     {title:"Modalidades de PSA por predio", text:"El uso del suelo de cada predio determina su modalidad de incentivo: conservación, rehabilitación o restauración.", fact:"Conservación 23 predios/47 ha · Rehabilitación 15/81 ha · Restauración 22/166 ha", img:"mapa11"},
     {title:"El índice de prioridad de los 60 predios", text:"El índice de prioridad final pondera seis criterios sobre la totalidad de los 60 predios y ordena su vinculación progresiva según los recursos disponibles, sin portafolios ni subconjuntos. La proximidad a la represa pesa el 15 %.", fact:"60 predios · 225,5 ha elegibles · índice final de 35,7 a 68,2 · ≈ $247,5 M/año", img:"mapa18"},
-    {title:"Lo que sigue: Producto 3", text:"Con el perfil del esquema ambiental completado, el Producto 3 diseña las alternativas de formalización de acuerdos de conservación voluntarios en los predios, con las alternativas de incentivos económicos para sus propietarios, empezando por el corredor de ronda hídrica. El proyecto no contempla la adquisición de predios.", fact:"Producto 3 · Diseño de alternativas de formalización de acuerdos en los predios — en curso", img:"mapa06"}
+    {title:"Producto 3: gestión y prospectiva predial", text:"Con el perfil del esquema completado, el Producto 3 asigna a cada predio, mediante nueve reglas de decisión, el instrumento jurídico con el que puede vincularse —acuerdo de PSA, convenio público o, como cierre, adquisición— y presenta las alternativas para formalizar los acuerdos de conservación voluntarios. La adquisición solo se analiza de forma prospectiva y no vinculante.", fact:"Producto 3 · Modelo de gestión y prospectiva predial — completado · versión final (octubre de 2026)", img:"mapa12"}
   ];
 
   var PREDIOS9_GEOJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"P02","area":11.006,"ronda":1.846,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010068000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.701474,9.372316],[-75.701386,9.372674],[-75.701458,9.372832],[-75.701602,9.372933],[-75.701659,9.373135],[-75.701658,9.373393],[-75.701585,9.373622],[-75.701454,9.373751],[-75.701309,9.373994],[-75.701351,9.374138],[-75.701495,9.374425],[-75.701652,9.374785],[-75.70168,9.375172],[-75.70162,9.375545],[-75.70149,9.37576],[-75.70097,9.375629],[-75.70084,9.375614],[-75.700261,9.375942],[-75.699957,9.376084],[-75.699581,9.376169],[-75.699219,9.376382],[-75.698885,9.376697],[-75.698508,9.376954],[-75.698263,9.376996],[-75.698075,9.376981],[-75.698018,9.376794],[-75.698309,9.376221],[-75.698657,9.375792],[-75.698847,9.375434],[-75.698934,9.37519],[-75.698921,9.374932],[-75.69885,9.374587],[-75.698851,9.374343],[-75.69901,9.374215],[-75.69917,9.374],[-75.699403,9.373714],[-75.699664,9.373385],[-75.699897,9.372941],[-75.700173,9.372612],[-75.700348,9.372139],[-75.701474,9.372316]]]}},{"type":"Feature","properties":{"id":"P03","area":4.069,"ronda":0.06,"dist":0,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010238000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.699957,9.376084],[-75.700261,9.375942],[-75.70084,9.375614],[-75.70097,9.375629],[-75.70149,9.37576],[-75.701431,9.37596],[-75.701401,9.376219],[-75.701529,9.376764],[-75.701758,9.377167],[-75.702322,9.377212],[-75.701988,9.37757],[-75.701711,9.378214],[-75.700819,9.377135],[-75.700618,9.376933],[-75.700344,9.376817],[-75.700069,9.376888],[-75.699866,9.37716],[-75.699619,9.377388],[-75.699474,9.377574],[-75.699214,9.377645],[-75.699026,9.377573],[-75.69894,9.3773],[-75.699014,9.37707],[-75.699188,9.376928],[-75.699434,9.376814],[-75.699651,9.376642],[-75.699753,9.376542],[-75.699898,9.376356],[-75.699957,9.376084]]]}},{"type":"Feature","properties":{"id":"P06","area":33.785,"ronda":1.066,"dist":0,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010141000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696122,9.384879],[-75.695748,9.384548],[-75.695359,9.384116],[-75.695212,9.383944],[-75.695177,9.383903],[-75.694986,9.38368],[-75.694841,9.383511],[-75.694755,9.383418],[-75.69451,9.383151],[-75.694108,9.382719],[-75.694253,9.38239],[-75.69437,9.382046],[-75.694382,9.381981],[-75.694459,9.381573],[-75.694532,9.381257],[-75.69488,9.381086],[-75.695083,9.380786],[-75.695489,9.3805],[-75.695866,9.3802],[-75.69601,9.380201],[-75.696183,9.380133],[-75.696227,9.380116],[-75.696416,9.379844],[-75.696533,9.379529],[-75.696535,9.379055],[-75.696681,9.378812],[-75.696899,9.378296],[-75.697422,9.377552],[-75.698018,9.376794],[-75.698075,9.376981],[-75.698263,9.376996],[-75.698508,9.376954],[-75.698885,9.376697],[-75.699219,9.376382],[-75.699581,9.376169],[-75.699957,9.376084],[-75.699898,9.376356],[-75.699753,9.376542],[-75.699651,9.376642],[-75.699434,9.376814],[-75.699188,9.376928],[-75.699014,9.37707],[-75.69894,9.3773],[-75.699026,9.377573],[-75.699214,9.377645],[-75.699474,9.377574],[-75.699619,9.377388],[-75.700556,9.37788],[-75.700845,9.378082],[-75.700901,9.378326],[-75.700741,9.378584],[-75.700481,9.378798],[-75.69993,9.379111],[-75.699655,9.379283],[-75.699568,9.379383],[-75.699582,9.379584],[-75.69974,9.37967],[-75.700159,9.379672],[-75.700694,9.37976],[-75.700648,9.38042],[-75.700733,9.380765],[-75.700731,9.381123],[-75.700774,9.38121],[-75.700687,9.381353],[-75.700456,9.381323],[-75.700095,9.381236],[-75.699647,9.381363],[-75.699097,9.381605],[-75.698763,9.381876],[-75.698502,9.382162],[-75.698155,9.382333],[-75.697779,9.382461],[-75.697532,9.382589],[-75.697402,9.382818],[-75.697516,9.383005],[-75.697675,9.38312],[-75.697834,9.383164],[-75.697689,9.383321],[-75.697601,9.38345],[-75.697514,9.383579],[-75.697484,9.383794],[-75.697614,9.383895],[-75.697729,9.384111],[-75.697815,9.384312],[-75.697699,9.384455],[-75.697568,9.384498],[-75.697409,9.384483],[-75.697251,9.38431],[-75.697151,9.38418],[-75.696833,9.384165],[-75.69663,9.384207],[-75.696514,9.384336],[-75.696456,9.384479],[-75.696339,9.384722],[-75.696122,9.384879]]]}},{"type":"Feature","properties":{"id":"P07","area":42.187,"ronda":0,"dist":0,"zon":"Sin dato","cob":"Vias","predial":"702210002000000010047000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.694108,9.382719],[-75.693791,9.382345],[-75.69359,9.382114],[-75.693316,9.381927],[-75.692941,9.381796],[-75.692494,9.381565],[-75.692321,9.381478],[-75.692831,9.380246],[-75.692949,9.379845],[-75.693167,9.379329],[-75.693241,9.378985],[-75.693244,9.378167],[-75.69339,9.377838],[-75.693898,9.377251],[-75.694508,9.376479],[-75.694871,9.375906],[-75.695133,9.375477],[-75.695352,9.374961],[-75.695571,9.374402],[-75.695586,9.374144],[-75.69582,9.373585],[-75.696096,9.373084],[-75.696431,9.372397],[-75.696765,9.371939],[-75.696897,9.371609],[-75.697303,9.371152],[-75.697591,9.37144],[-75.697907,9.3718],[-75.698211,9.371887],[-75.698702,9.371918],[-75.699453,9.372007],[-75.700348,9.372139],[-75.700173,9.372612],[-75.699897,9.372941],[-75.699664,9.373385],[-75.699403,9.373714],[-75.69917,9.374],[-75.69901,9.374215],[-75.698851,9.374343],[-75.69885,9.374587],[-75.698921,9.374932],[-75.698934,9.37519],[-75.698847,9.375434],[-75.698657,9.375792],[-75.698309,9.376221],[-75.698018,9.376794],[-75.697422,9.377552],[-75.696899,9.378296],[-75.696681,9.378812],[-75.696535,9.379055],[-75.696533,9.379529],[-75.696416,9.379844],[-75.696227,9.380116],[-75.696183,9.380133],[-75.69601,9.380201],[-75.695866,9.3802],[-75.695489,9.3805],[-75.695083,9.380786],[-75.69488,9.381086],[-75.694532,9.381257],[-75.694459,9.381573],[-75.694382,9.381981],[-75.69437,9.382046],[-75.694253,9.38239],[-75.694108,9.382719]]]}},{"type":"Feature","properties":{"id":"P08","area":25.956,"ronda":2.12,"dist":3.3,"zon":"Restauración Ecológica","cob":"Sin dato","predial":"702210002000000010144000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697834,9.383164],[-75.697675,9.38312],[-75.697516,9.383005],[-75.697402,9.382818],[-75.697532,9.382589],[-75.697779,9.382461],[-75.698155,9.382333],[-75.698502,9.382162],[-75.698763,9.381876],[-75.699097,9.381605],[-75.699647,9.381363],[-75.700095,9.381236],[-75.700456,9.381323],[-75.700687,9.381353],[-75.700774,9.38121],[-75.700731,9.381123],[-75.700733,9.380765],[-75.700648,9.38042],[-75.700694,9.37976],[-75.700985,9.379073],[-75.701391,9.378658],[-75.701711,9.378214],[-75.701988,9.37757],[-75.702322,9.377212],[-75.703521,9.377217],[-75.702785,9.384274],[-75.702395,9.384387],[-75.701628,9.384499],[-75.70121,9.384426],[-75.700792,9.384123],[-75.700633,9.384122],[-75.699897,9.383875],[-75.699768,9.383731],[-75.699493,9.38363],[-75.699147,9.383557],[-75.697834,9.383164]]]}},{"type":"Feature","properties":{"id":"P09","area":11.775,"ronda":0.96,"dist":69.8,"zon":"Recuperación o Reclamación","cob":"Sin dato","predial":"702210002000000010143000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.703521,9.377217],[-75.702322,9.377212],[-75.701758,9.377167],[-75.701529,9.376764],[-75.701401,9.376219],[-75.701431,9.37596],[-75.70149,9.37576],[-75.70162,9.375545],[-75.70168,9.375172],[-75.701652,9.374785],[-75.701495,9.374425],[-75.701351,9.374138],[-75.701309,9.373994],[-75.701454,9.373751],[-75.701585,9.373622],[-75.701658,9.373393],[-75.701659,9.373135],[-75.701602,9.372933],[-75.701458,9.372832],[-75.701386,9.372674],[-75.701474,9.372316],[-75.701936,9.372476],[-75.701946,9.372481],[-75.702253,9.372663],[-75.702743,9.372895],[-75.703364,9.373113],[-75.703681,9.373171],[-75.703941,9.37333],[-75.703521,9.377217]]]}},{"type":"Feature","properties":{"id":"P17","area":12.964,"ronda":0,"dist":464.3,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010049000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.692284,9.368793],[-75.693092,9.369284],[-75.693398,9.368539],[-75.694003,9.368915],[-75.694442,9.367697],[-75.694829,9.368272],[-75.695016,9.368689],[-75.695116,9.369005],[-75.695244,9.369293],[-75.695381,9.369393],[-75.695461,9.369451],[-75.69498,9.370497],[-75.694805,9.370898],[-75.694949,9.370999],[-75.694934,9.371186],[-75.694846,9.371372],[-75.694598,9.371902],[-75.694394,9.372461],[-75.694363,9.372977],[-75.694709,9.373194],[-75.695544,9.373857],[-75.695486,9.374043],[-75.695053,9.373726],[-75.69478,9.373481],[-75.694607,9.373394],[-75.693512,9.372558],[-75.692706,9.371823],[-75.692245,9.371347],[-75.691972,9.371059],[-75.692106,9.370127],[-75.692284,9.368793]]]}},{"type":"Feature","properties":{"id":"P18","area":5.33,"ronda":0,"dist":477.4,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010071000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.696739,9.371451],[-75.696505,9.371995],[-75.695865,9.373069],[-75.695544,9.373857],[-75.694709,9.373194],[-75.694363,9.372977],[-75.694394,9.372461],[-75.694598,9.371902],[-75.694846,9.371372],[-75.694934,9.371186],[-75.694949,9.370999],[-75.694805,9.370898],[-75.69498,9.370497],[-75.696739,9.371451]]]}},{"type":"Feature","properties":{"id":"P19","area":2.536,"ronda":0,"dist":608.7,"zon":"Sin dato","cob":"Sin dato","predial":"702210002000000010048000000000"},"geometry":{"type":"Polygon","coordinates":[[[-75.697188,9.370936],[-75.696739,9.371451],[-75.69498,9.370497],[-75.695461,9.369451],[-75.695763,9.369596],[-75.696555,9.370259],[-75.697188,9.370936]]]}}]};
@@ -3430,6 +3771,271 @@ svg.leaflet-image-layer.leaflet-interactive path {
     }).join("");
   }
 
+  /* ================= ANÁLISIS PREDIAL (Producto 3, versión final, octubre de 2026) ================= */
+  var PREDIAL = {
+    stats: [
+      { v:"60 predios", l:"Universo de gestión: 294,0 ha SIG y 225,5 ha elegibles, con verificación catastral IGAC del 100 %" },
+      { v:"9 reglas · 5 desenlaces", l:"Reglas de decisión (R1 a R9) que asignan a cada predio uno de los desenlaces D1 a D5" },
+      { v:"2 de 9", l:"Predios del polígono de la cuenca con folio activo verificado (P02 y P08), ambos con condiciones por gestionar" },
+      { v:"8 instrumentos", l:"De formalización: del acuerdo de PSA estándar a la adquisición directa" },
+      { v:"7 de 9", l:"Predios del polígono de la cuenca que conservan el acuerdo voluntario como instrumento objetivo" },
+      { v:"8 pasos", l:"Ruta de adquisición, de la decisión motivada al manejo y monitoreo del predio adquirido" }
+    ],
+    normas: [
+      ["Ley 99 de 1993, art. 111 (mod. art. 210, Ley 1450 de 2011)", "Áreas de importancia estratégica; 1 % de ingresos corrientes", "Fundamento y fuente de financiación tanto de la adquisición como del PSA; declaratoria de interés público de las áreas."],
+      ["Decreto 953 de 2013 (comp. Dec. 1076 de 2015)", "Reglamenta el art. 111: priorización, adquisición y PSA", "Criterios de selección de predios (art. 5); administración y destinación de los predios adquiridos."],
+      ["Decreto-Ley 870 de 2017", "Instrumento de Pago por Servicios Ambientales", "Define el PSA como acuerdo voluntario y condicionado; habilita al ocupante de buena fe exenta de culpa como beneficiario."],
+      ["Decreto 1007 de 2018 (comp. Dec. 1076 de 2015, Tít. 9)", "Reglamentación operativa del PSA", "Tope del 15 % del avalúo; modalidades; acreditación multitemporal; contenido de los acuerdos."],
+      ["Ley 9 de 1989 · Ley 388 de 1997, arts. 58–61", "Enajenación voluntaria y expropiación por utilidad pública", "Procedimiento de la adquisición directa: oferta de compra, negociación, escritura; expropiación solo como última ratio."],
+      ["Decreto 1420 de 1998 · Res. IGAC 620 de 2008", "Avalúos comerciales", "Método del avalúo que fija el precio de adquisición (IGAC o lonja autorizada)."],
+      ["Ley 1579 de 2012", "Estatuto de Registro de Instrumentos Públicos", "El folio de matrícula es la fuente de la situación jurídica; ordena las gestiones ante la ORIP de Sincelejo."],
+      ["Ley 160 de 1994 · Decreto 1071 de 2015", "Régimen de baldíos; ANT", "Ruta para los predios de presunta naturaleza baldía (categoría F): adjudicación o constancia de trámite."],
+      ["Resolución 1070 de 2023, nums. 4.12–4.13", "Obligación de conservación del concesionario", "Fundamento de la financiación ancla recomendada; su formalización es voluntaria y se gestiona en la implementación."],
+      ["Ley 1581 de 2012", "Protección de datos personales", "Reserva de la información nominal de fichas y certificados; identificación por códigos P01–P60."]
+    ],
+    maestras: [
+      ["Universo predial", "<b>60 predios</b> · 294,0 ha SIG · 225,5 ha elegibles"],
+      ["Modalidades", "Conservación 23 predios / 47 ha · Rehabilitación 15 / 81 ha · Restauración 22 / 166 ha"],
+      ["Agroforestería (transversal)", "37 predios candidatos (rehabilitación + restauración, 247 ha)"],
+      ["Necesidad financiera anual", "$268.954.628 (incentivo $247.454.628 + operación $21.500.000)"]
+    ],
+    cats: [
+      { c:"A", tone:"green",   sit:"Folio verificado, activo, con titularidad plural y sin gravámenes", predios:["P02"], impl:"Apto para acuerdo de PSA; la firma exige la concurrencia de los cinco copropietarios o de un apoderado común." },
+      { c:"B", tone:"gold",    sit:"Folio verificado, activo, con medida cautelar vigente sobre una porción", predios:["P08"], impl:"El acuerdo debe suspenderse sobre la porción embargada; puede evaluarse un acuerdo parcial sobre el área no afectada." },
+      { c:"C", tone:"alert",   sit:"Folio verificado, cerrado por resolución administrativa", predios:["P07"], impl:"No es posible identificar al titular vigente. Remisión directa a las alternativas del Producto 3." },
+      { c:"D", tone:"gold",    sit:"Matrícula referenciada en catastro que no corresponde al predio", predios:["P03"], impl:"La existencia del predio y su avalúo están confirmados; falta establecer su folio correcto." },
+      { c:"E", tone:"sky",     sit:"Folio referenciado, certificado pendiente de consulta", predios:["P18", "P19"], impl:"Situación por confirmar; en principio, predios con matrícula y susceptibles de acuerdo." },
+      { c:"F", tone:"neutral", sit:"Sin folio de matrícula referenciado en la ficha catastral", predios:["P06", "P09", "P17"], impl:"Presunto baldío de la Nación, posesión sin título registrado o predio de entidad pública; la naturaleza jurídica determina el instrumento." }
+    ],
+    nueve: [
+      ["P02", "A", "Rehabilitación", "PSA con firma de los 5 copropietarios"],
+      ["P03", "D", "Rehabilitación", "PSA condicionado a confirmar el folio"],
+      ["P06", "F", "Conservación", "Depende de la naturaleza jurídica (privado / público)"],
+      ["P07", "C", "Restauración", "Remisión al Producto 3; vincular tras aclarar el folio"],
+      ["P08", "B", "Rehabilitación", "PSA sobre el área no embargada, previa verificación"],
+      ["P09", "F", "Rehabilitación", "PSA con poseedor u ocupante acreditado"],
+      ["P17", "F", "Restauración", "Establecer naturaleza jurídica; orden del índice final"],
+      ["P18", "E", "Restauración", "PSA condicionado al certificado y al piso mínimo"],
+      ["P19", "E", "Rehabilitación", "PSA condicionado al certificado y al piso mínimo"]
+    ],
+    vars: [
+      { t:"Índice de prioridad final", d:"Mide la contribución esperada del predio al servicio hidrológico." },
+      { t:"Costo de oportunidad", d:"Determina el valor del incentivo y la eficiencia del gasto." },
+      { t:"Situación jurídica verificada", d:"Las categorías registrales A a F de la verificación ante la ORIP." },
+      { t:"Interés expreso del propietario, poseedor u ocupante", d:"Se establece en la fase de concertación." }
+    ],
+    desenlaces: [
+      { d:"D1", t:"Acuerdo de PSA inmediato", x:"Folio en regla y voluntad confirmada; se suscribe con el contenido mínimo del capítulo 9 del Producto 2." },
+      { d:"D2", t:"Acuerdo de PSA condicionado", x:"La firma espera una gestión previa identificada (corrección registral, levantamiento de medida, acreditación de posesión, certificado pendiente)." },
+      { d:"D3", t:"Convenio público sin incentivo", x:"Si el titular resulta ser una entidad pública, el pago de un incentivo no procede; la conservación se garantiza mediante acto administrativo o convenio interadministrativo." },
+      { d:"D4", t:"Adquisición directa (art. 111)", x:"Para predios de alta prioridad hídrica donde el acuerdo voluntario es inviable o insuficiente; se desarrolla en la prospectiva de adquisición." },
+      { d:"D5", t:"Diferir y monitorear", x:"Predios de baja prioridad sin voluntad de vinculación; permanecen en el universo con control de fugas vía MRV, sin gasto." }
+    ],
+    reglas: [
+      ["R1", "Folio activo verificado, titular único, voluntad confirmada", "D1 · PSA inmediato", "Actualizar certificado (vigencia práctica de 30 días) y suscribir."],
+      ["R2", "Folio activo con copropiedad o proindiviso", "D1 · PSA inmediato", "Firma de la totalidad de los copropietarios o de un apoderado común con facultad expresa."],
+      ["R3", "Folio activo con gravamen o medida cautelar parcial", "D2 · PSA condicionado", "Verificar sobre plano y ortofoto si el área de interés coincide con la porción afectada; acuerdo parcial sobre el área libre o suspensión hasta el levantamiento."],
+      ["R4", "Folio cerrado o titular vigente no identificable", "D2 → D4", "Solicitar a la ORIP el folio derivado y el titular; si la aclaración fracasa o no hay voluntad y la prioridad lo amerita, pasar a adquisición."],
+      ["R5", "Matrícula referenciada errónea (no corresponde al predio)", "D2 · PSA condicionado", "Búsqueda por código catastral en ORIP y Ventanilla Única; solicitar al IGAC la corrección de la referencia cruzada."],
+      ["R6", "Certificado pendiente de consulta", "D2 · PSA condicionado", "Obtener y analizar el certificado; reclasificar con estas mismas reglas."],
+      ["R7", "Sin folio referenciado — naturaleza jurídica por establecer", "D1 / D3 / D2", "Consultar naturaleza en SNC; si es baldío: ocupante como beneficiario con constancia ANT; si es entidad pública: convenio sin incentivo (D3); si es posesión privada: PSA con poseedor acreditado de buena fe exenta de culpa."],
+      ["R8", "Prioridad muy alta en cuenca + acuerdo voluntario inviable o sin voluntad", "D4 · Adquisición", "Ruta de la prospectiva de adquisición: estudio de títulos, avalúo comercial, oferta de compra, enajenación voluntaria."],
+      ["R9", "Prioridad baja o muy baja + sin voluntad", "D5 · Diferir", "Mantener en el universo MRV; control de fugas con Sentinel-2 y vuelo anual de dron."]
+    ],
+    instr: [
+      { t:"Acuerdo de PSA estándar", cuando:"Folio en regla y voluntad confirmada", predios:"P02 (cat. A); P03, P18, P19 tras gestión", req:"Contenido mínimo del cap. 9 del Producto 2; certificado actualizado (≤ 30 días); área elegible como base de pago.",
+        det:"Es el instrumento base: un acuerdo voluntario de conservación, contrato bilateral de duración determinada (hasta cinco años, prorrogable), de cumplimiento verificable, que no constituye servidumbre ni limitación permanente del dominio. Su contenido mínimo: identificación del predio con número predial y folio, acreditación del aliado, delimitación georreferenciada del área objeto del incentivo con indicación de la base de área adoptada, uso del suelo acordado, monto y condiciones de verificación del desembolso, cláusulas de terminación y de cesión. Aplica de inmediato a los predios de categoría A y, cumplida la gestión previa, a los de categorías B, D y E." },
+      { t:"Acuerdo con apoderado común", cuando:"Copropiedad o proindiviso", predios:"P02", req:"Firma de todos los copropietarios o poder especial con facultad expresa.",
+        det:"Cuando el folio muestra titulares en común y proindiviso —como los cinco de P02—, el acuerdo debe suscribirse por la totalidad de ellos o por un apoderado común con facultad expresa para comprometer el uso del inmueble. La gestión previa consiste en convocar a los copropietarios, verificar poderes y definir con ellos, sobre la ortofoto, el área objeto del acuerdo. No se exige partición previa: la indivisión no impide el acuerdo, solo exige la concurrencia de voluntades." },
+      { t:"Acuerdo parcial", cuando:"Gravamen o medida sobre una porción", predios:"P08", req:"Verificación de linderos sobre ortofoto; exclusión expresa de la porción afectada.",
+        det:"Cuando una medida cautelar pesa sobre una porción del predio —el embargo ejecutivo sobre la porción de una sociedad en P08—, la suscripción debe suspenderse sobre esa porción hasta que la medida se levante. Pero si el área que el esquema quiere vincular no coincide con la porción embargada —lo que se establece sobre el plano del folio y la ortofoto—, puede suscribirse un acuerdo parcial sobre el área libre, dejando constancia expresa de la exclusión y de la posibilidad de ampliación posterior." },
+      { t:"Acuerdo con poseedor u ocupante", cuando:"Posesión u ocupación de buena fe exenta de culpa", predios:"P09; cat. F según consulta", req:"Acreditación en la forma reglamentaria; cláusula de cesión reforzada.",
+        det:"El Decreto-Ley 870 de 2017 admite como beneficiario del incentivo al poseedor y al ocupante de buena fe exenta de culpa, sin exigir saneamiento predial previo, siempre que esa calidad se acredite en la forma que prevé la reglamentación: declaraciones, vecindad, actos de señor y dueño, ausencia de controversia sobre la tenencia. Es la vía natural para predios de categoría F cuya consulta concluya posesión privada sin título registrado (candidato típico: P09). El acuerdo identifica al aliado por su calidad acreditada, no por folio, y la cláusula de cesión protege al esquema si la situación jurídica evoluciona." },
+      { t:"Convenio interadministrativo", cuando:"Titular es entidad pública", predios:"P06 (hipótesis)", req:"Sin pago de incentivo; obligaciones de manejo y MRV equivalentes.",
+        det:"Si la consulta de naturaleza jurídica concluye que el titular es una entidad pública —hipótesis abierta para P06, el polígono que contiene el vaso de la represa—, el pago de un incentivo no procede: la conservación se gestiona por vía administrativa, mediante convenio con la entidad titular, y el monto calculado queda liberado dentro del presupuesto. El convenio incorpora las mismas obligaciones de manejo y el mismo MRV del acuerdo estándar." },
+      { t:"Vinculación de baldíos (ANT)", cuando:"Naturaleza baldía confirmada", predios:"P06, P17 (hipótesis)", req:"Constancia de trámite ante la ANT; ocupante como beneficiario.",
+        det:"Si el predio resulta ser un baldío de la Nación ocupado sin adjudicación, la vinculación procede con el ocupante como beneficiario del incentivo, con constancia del trámite ante la Agencia Nacional de Tierras: solicitud de adjudicación en curso o inexistencia de procedimiento agrario en contra. Aplica a los predios de categoría F cuya hipótesis baldía se confirme." },
+      { t:"Adquisición directa (art. 111)", cuando:"Acuerdo voluntario inviable + prioridad alta", predios:"P07; otros según la prospectiva de adquisición", req:"Ruta de la prospectiva de adquisición; avalúo comercial (Decreto 1420 de 1998).",
+        det:"Es el desenlace D4 del modelo de decisión y se desarrolla en la sección siguiente, Prospectiva de adquisición de predios: tres condiciones de procedencia, una ruta de ocho pasos y un presupuesto referencial no vinculante." },
+      { t:"Complementarios (servidumbre, comodato, donación)", cuando:"Facilitan conectividad u operación", predios:"Según oferta del propietario", req:"Sin incentivo; concepto previo del equipo técnico.",
+        det:"De manera subsidiaria, y solo cuando faciliten la vinculación sin sustituir el PSA, el esquema puede acudir a la servidumbre ecológica voluntaria (franjas de conectividad), el comodato de áreas para infraestructura del esquema (viveros, cortafuegos) y la donación de franjas de ronda a favor del municipio. Ninguno genera pago de incentivo y todos requieren concepto previo del equipo técnico." }
+    ],
+    minimo: [
+      ["Duración", "hasta por cinco (5) años, prorrogables de manera sucesiva según la evolución del esquema y la disponibilidad de recursos."],
+      ["Delimitación", "descripción y extensión del área y predio objeto del incentivo durante el período del acuerdo."],
+      ["Uso del suelo", "definición del uso acordado para el área objeto del incentivo."],
+      ["Condiciones ambientales", "condiciones mínimas para el manejo de las zonas no cubiertas por el incentivo, en concordancia con las normas de uso del suelo y las buenas prácticas ambientales."],
+      ["Responsabilidades", "acciones de administración, custodia y conservación que asumirá el beneficiario sobre las áreas incluidas en el acuerdo."]
+    ],
+    clausulas: [
+      "Cesión al nuevo propietario en caso de transferencia del predio.",
+      "Condicionalidad del desembolso a verificación positiva en cada corte.",
+      "Suspensión y terminación unilateral por incumplimiento.",
+      "Reserva de datos personales conforme a la Ley 1581 de 2012."
+    ],
+    cond: [
+      "el predio pertenece al área de importancia estratégica declarada de interés público (artículo 111 de la Ley 99 de 1993) y satisface los criterios de priorización del artículo 5 del Decreto 953 de 2013;",
+      "el acuerdo voluntario es inviable —titular no identificable, conflicto de tenencia insoluble, ausencia definitiva de voluntad— o insuficiente frente a la necesidad de control permanente del suelo; y",
+      "la prioridad hídrica del predio, medida por el índice final, justifica inmovilizar capital público en lugar de pagar un incentivo anual."
+    ],
+    pasos: [
+      ["Decisión motivada.", "Acta del equipo técnico que aplica la regla R8, con la evidencia registral y el orden del índice final; verificación de procedencia frente al Decreto 953 de 2013."],
+      ["Estudio de títulos.", "Cadena de tradición de al menos veinte años, gravámenes, medidas cautelares, falsas tradiciones; para P07, obtención previa del folio derivado del cierre de 2024 y de la identificación del titular vigente ante la ORIP."],
+      ["Saneamiento previo.", "Cuando el estudio lo exija: levantamiento de medidas, aclaración de áreas y linderos (en P07 la diferencia SIG–catastro es del 176 %, la mayor del universo), englobes o desenglobes."],
+      ["Avalúo comercial.", "Practicado por el IGAC o por lonja autorizada, conforme al Decreto 1420 de 1998 y la Resolución IGAC 620 de 2008. El avalúo catastral es solo referencia presupuestal."],
+      ["Oferta de compra.", "Comunicación formal al titular con el avalúo como precio base; inscripción de la oferta en el folio (Ley 388 de 1997, art. 61)."],
+      ["Enajenación voluntaria.", "Negociación directa, promesa y escritura pública; registro ante la ORIP de Sincelejo. La expropiación —judicial o administrativa— queda como última ratio, solo agotada la etapa voluntaria."],
+      ["Incorporación y destinación.", "Ingreso al inventario municipal con destinación exclusiva a conservación del recurso hídrico; administración directa o mediante acuerdo con la autoridad ambiental, como prevé el Decreto 953 de 2013."],
+      ["Manejo y MRV.", "El predio adquirido entra al mismo sistema de monitoreo del esquema (visitas, Sentinel-2, dron anual) y a las acciones de restauración que su modalidad exige, incluida la gestión del fuego."]
+    ],
+    grupos: [
+      ["G1 · Polígono de la cuenca", 9, "Ruta específica predio a predio: acuerdos con gestión previa registral, convenio público o adquisición."],
+      ["G2 · Fuera del polígono de la cuenca, con costo de oportunidad positivo", 14, "PSA estándar (regla R1): verificación registral en fase 1 y suscripción en orden del índice final; acreditación multitemporal previa en los de restauración."],
+      ["G3 · Fuera del polígono de la cuenca, con costo de oportunidad cero", 37, "PSA al piso mínimo (regla R1): verificación registral en fase 1; suscripción condicionada a la adopción del piso (sección 7.5 del Producto 2)."]
+    ],
+    riesgos: [
+      ["Suscripción con quien no puede comprometer el predio", "Copropiedad sin partición (P02); titular no identificable (P07); matrícula errónea (P03)", "Ningún acuerdo se firma sin certificado actualizado (≤ 30 días) y verificación de la capacidad de disposición; apoderados con facultad expresa."],
+      ["Acuerdo sobre área jurídicamente afectada", "Embargo parcial vigente en P08", "Acuerdo parcial con exclusión expresa de la porción embargada; verificación cartográfica previa."],
+      ["Pago de incentivo improcedente a entidad pública", "Hipótesis abierta sobre P06 (vaso de la represa)", "Consulta de naturaleza jurídica previa a toda gestión; si es público, convenio sin incentivo y liberación del monto."],
+      ["Incentivo que premia deforestación previa", "22 predios de restauración exigen acreditar ausencia de cobertura en los últimos 5 años", "Análisis multitemporal Sentinel-2 anterior a la suscripción (Decreto 1076 de 2015); incorporado a la fase 1."],
+      ["Rotación de propietarios o venta de predios vinculados", "Mercado de tierras activo en el corredor Coveñas–San Antero", "Cláusula de cesión al nuevo propietario, condicionada a la aceptación de las obligaciones pactadas, en todo instrumento."],
+      ["Sobreprecio o lesión en la adquisición", "Diferencias SIG–catastro de hasta 176 % (P07); avalúo catastral como única referencia actual", "Avalúo comercial obligatorio (Dec. 1420/1998, Res. IGAC 620/2008); conciliación de linderos previa."],
+      ["Desplazamiento de población rural", "Predios con valor de construcción registrado (viviendas y mejoras)", "Preferencia por PSA y acuerdos parciales sobre predios habitados; verificación social de campo antes de cualquier oferta de compra."],
+      ["Vulneración de datos personales", "Fichas catastrales y certificados con información nominal sensible", "Identificación por códigos P01–P60 en todo documento público; custodia reservada (Ley 1581 de 2012)."],
+      ["Inequidad del incentivo", "39 predios con costo de oportunidad cero, típicamente los más pequeños", "Definición del piso mínimo antes de suscribir acuerdos con esos predios; atención preferente a mujeres rurales de pequeña y mediana propiedad (Guía Técnica del MADS)."],
+      ["Pérdida del activo por fuga de presión", "La presión ganadera puede desplazarse a predios no vinculados", "El universo completo (60 predios) permanece bajo MRV aunque no todos tengan incentivo; reaplicación periódica de las reglas de decisión."]
+    ],
+    recs: [
+      ["Instalar antes de gastar.", "La concurrencia voluntaria de los actores como cofinanciadores ancla, antes de comprometer desembolso alguno."],
+      ["Firmar primero lo firmable.", "P02 y P09 pueden ser los dos primeros acuerdos del esquema dentro de la fase 2; su valor demostrativo ante la comunidad y la autoridad ambiental supera su peso presupuestal."],
+      ["Tramitar P07 sin esperar.", "La solicitud del folio derivado ante la ORIP es la gestión más larga de toda la ruta; iniciarla en el marco de la gestión de la primera fase prioritaria."],
+      ["Resolver la naturaleza de P06 como prioridad analítica.", "Es el predio de mayor índice del universo y su desenlace (acuerdo prioritario, convenio público o adquisición contingente) reordena el presupuesto del esquema."],
+      ["Mantener la gestión interjurisdiccional en agenda.", "La gestión predial de Coveñas protege la última línea de defensa; la fuente del sedimento sigue en Córdoba y solo la estrategia 5 puede alcanzarla."]
+    ]
+  };
+
+  function renderPredial(){
+    var P = PREDIAL, el = document.getElementById("predial-stats");
+    if(!el) return;
+    var tone = {}; P.cats.forEach(function(c){ tone[c.c] = c.tone; });
+    var set = function(id, html){ var n = document.getElementById(id); if(n){ n.innerHTML = html; } };
+    var tb = function(id, html){ var n = document.querySelector("#" + id + " tbody"); if(n){ n.innerHTML = html; } };
+    var roman = ["I", "II", "III", "IV"];
+
+    el.innerHTML = P.stats.map(function(s){
+      return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>';
+    }).join("");
+
+    tb("predial-normas-table", P.normas.map(function(r){
+      return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';
+    }).join(""));
+    tb("predial-maestras-table", P.maestras.map(function(r){
+      return '<tr><td style="color:var(--ink-faint);">'+r[0]+'</td><td>'+r[1]+'</td></tr>';
+    }).join(""));
+
+    set("predial-cats", P.cats.map(function(c){
+      return '<div class="cat-card"><span class="cat-badge '+c.tone+'">'+c.c+'</span><div><h4>'+c.sit+'</h4>'+
+        '<div class="chips">'+c.predios.map(function(p){ return '<span class="chip">'+p+'</span>'; }).join("")+'</div>'+
+        '<p>'+c.impl+'</p></div></div>';
+    }).join(""));
+    tb("predial-nueve-table", P.nueve.map(function(r){
+      return '<tr><td><b>'+r[0]+'</b></td><td><span class="cat-mini '+tone[r[1]]+'">'+r[1]+'</span></td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';
+    }).join(""));
+
+    set("predial-vars", P.vars.map(function(v, i){
+      return '<div class="var-card"><span class="vn">Variable '+roman[i]+'</span><h4>'+v.t+'</h4><p>'+v.d+'</p></div>';
+    }).join(""));
+    set("predial-desenlaces", P.desenlaces.map(function(d){
+      var k = d.d.toLowerCase();
+      return '<div class="des-card '+k+'"><span class="dn '+k+'">'+d.d+'</span><h4>'+d.t+'</h4><p>'+d.x+'</p></div>';
+    }).join(""));
+    tb("predial-reglas-table", P.reglas.map(function(r){
+      return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td><span class="dtag d'+r[2].charAt(1)+'">'+r[2]+'</span></td><td>'+r[3]+'</td></tr>';
+    }).join(""));
+
+    set("predial-instr", P.instr.map(function(i){
+      return '<article class="inst-card"><h4>'+i.t+'</h4><dl><dt>Aplica cuando</dt><dd>'+i.cuando+'</dd><dt>Predios candidatos</dt><dd>'+i.predios+'</dd>'+
+        '<dt>Requisitos esenciales</dt><dd>'+i.req+'</dd></dl><details class="mas"><summary>Cómo se aplica</summary><p>'+i.det+'</p></details></article>';
+    }).join(""));
+    set("predial-minimo", P.minimo.map(function(m){ return '<li><b>'+m[0]+':</b> '+m[1]+'</li>'; }).join(""));
+    set("predial-clausulas", P.clausulas.map(function(c){ return '<li>'+c+'</li>'; }).join(""));
+    set("predial-cond", P.cond.map(function(c){ return '<li>'+c+'</li>'; }).join(""));
+    set("predial-pasos", P.pasos.map(function(p){ return '<li><b>'+p[0]+'</b>'+p[1]+'</li>'; }).join(""));
+
+    tb("predial-grupos-table", P.grupos.map(function(g){
+      return '<tr><td><b>'+g[0]+'</b></td><td class="num">'+g[1]+'</td><td>'+g[2]+'</td></tr>';
+    }).join("") + '<tr class="total"><td>Total</td><td class="num">'+P.grupos.reduce(function(s, g){ return s + g[1]; }, 0)+'</td><td></td></tr>');
+
+    tb("predial-riesgos-table", P.riesgos.map(function(r){
+      return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';
+    }).join(""));
+    set("predial-recs", P.recs.map(function(r){ return '<li><b>'+r[0]+'</b>'+r[1]+'</li>'; }).join(""));
+  }
+
+  // Detalle por predio del Producto 3: llega del servidor solo con la clave de acceso (POST /api/predial).
+  var predRuta = [], predFiltro = { grupo:"", q:"" };
+
+  function pintarRutaPredios(){
+    var tbody = document.getElementById("pred-ruta-tbody");
+    if(!tbody) return;
+    var q = predFiltro.q.toLowerCase();
+    var filas = predRuta.filter(function(r){
+      return (!predFiltro.grupo || r.grupo === predFiltro.grupo) &&
+        (!q || r.id.toLowerCase().indexOf(q) >= 0 || r.modalidad.toLowerCase().indexOf(q) >= 0 || r.prioridad.toLowerCase().indexOf(q) >= 0 || r.ruta.toLowerCase().indexOf(q) >= 0);
+    });
+    tbody.innerHTML = filas.map(function(r){
+      return '<tr><td><b>'+r.id+'</b></td><td><span class="gtag '+r.grupo.toLowerCase()+'">'+r.grupo+'</span></td><td>'+r.modalidad+'</td>'+
+        '<td class="num">'+fmtHa(r.indice,1)+'</td><td>'+r.prioridad+'</td><td class="num">'+(r.incentivo ? fmtCOP(r.incentivo) : "Piso mínimo")+'</td>'+
+        '<td>'+r.ruta+'</td><td class="num">'+r.fase+'</td></tr>';
+    }).join("") || '<tr><td colspan="8">Ningún predio coincide con el filtro.</td></tr>';
+    var suma = filas.reduce(function(s, r){ return s + r.incentivo; }, 0);
+    document.getElementById("pred-n").textContent = filas.length + " de " + predRuta.length + " predios · incentivo anual de los mostrados: " + fmtCOP(suma);
+  }
+
+  function renderPredialDetalle(data){
+    var A = data.adquisicion, E = A.escenarios, C = A.comparacionP07;
+    var stat = function(s){ return '<div class="stat"><div class="num" style="font-size:1.25rem;">'+s.v+'</div><div class="lbl">'+s.l+'</div></div>'; };
+    document.getElementById("pred-adq-stats").innerHTML = [
+      { v:"$" + fmtHa(E[0].avaluo / 1e6, 1) + " M", l:"Presupuesto referencial del escenario base de adquisición (" + E[0].detalle + "), sobre el avalúo catastral" },
+      { v:"$" + fmtHa(E[1].avaluo / 1e6, 1) + " M", l:"Presupuesto referencial del escenario ampliado (" + E[1].detalle + "), condicional" },
+      { v:"$" + fmtHa(C.quinquenio / 1e6, 1) + " M", l:"Costo del incentivo de P07 en un quinquenio ($" + fmtHa(C.incentivoAnual / 1e6, 1) + " M al año), frente a $" + fmtHa(C.adquisicion / 1e6, 1) + " M de adquisición" }
+    ].map(stat).join("");
+    document.getElementById("pred-adq-texto").textContent = A.presupuesto;
+    document.getElementById("pred-adq-tbody").innerHTML = A.candidatos.map(function(c){
+      return '<tr><td><b>'+c.id+'</b></td><td>'+c.condicion+'</td><td class="num">'+fmtHa(c.areaCat,2)+'</td><td class="num">'+fmtCOP(c.avaluo)+'</td><td>'+c.escenario+'</td></tr>';
+    }).join("") + E.map(function(e){
+      return '<tr class="total"><td>'+e.n+'</td><td>'+e.detalle+'</td><td class="num">'+fmtHa(e.areaCat,2)+'</td><td class="num">'+fmtCOP(e.avaluo)+'</td><td></td></tr>';
+    }).join("");
+    document.getElementById("pred-adq-fuente").textContent = "Fuente: " + A.fuente + " Propuesta no vinculante del modelo prospectivo.";
+    document.getElementById("pred-adq-comparacion").textContent = A.comparacion;
+
+    document.getElementById("pred-poligono-tbody").innerHTML = data.rutaPoligono.map(function(r){
+      return '<tr><td><b>'+r.id+'</b></td><td>'+r.regla+'</td><td>'+r.gestiones+'</td><td>'+r.instrumento+'</td><td>'+r.plazo+'</td><td>'+r.desenlace+'</td></tr>';
+    }).join("");
+    document.getElementById("pred-poligono-nota").textContent = data.rutaPoligonoNota;
+
+    document.getElementById("pred-grupos-tbody").innerHTML = data.grupos.map(function(g){
+      return '<tr><td><b>'+g.g+'</b> · '+g.nombre+'</td><td class="num">'+g.predios+'</td><td>'+g.ruta+'</td><td class="num">'+g.incentivo+'</td></tr>';
+    }).join("") + '<tr class="total"><td>Total</td><td class="num">'+data.gruposTotal.predios+'</td><td></td><td class="num">'+data.gruposTotal.incentivo+'</td></tr>';
+
+    predRuta = data.rutaPredios;
+    predFiltro = { grupo:"", q:"" };
+    var bar = document.getElementById("pred-filtros"), buscar = document.getElementById("pred-buscar");
+    if(!bar.getAttribute("data-listo")){
+      bar.setAttribute("data-listo", "1");
+      bar.addEventListener("click", function(e){
+        var b = e.target.closest("[data-grupo]");
+        if(!b) return;
+        predFiltro.grupo = b.getAttribute("data-grupo");
+        [].slice.call(bar.querySelectorAll("[data-grupo]")).forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        pintarRutaPredios();
+      });
+      buscar.addEventListener("input", function(){ predFiltro.q = buscar.value.trim(); pintarRutaPredios(); });
+    }
+    buscar.value = "";
+    pintarRutaPredios();
+  }
+
   /* ================= ATLAS: real map viewer ================= */
   var atlasIndex = 0;
   function showMap(i, container, imgEl, captionTextEl, captionSrcEl){
@@ -3637,20 +4243,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderTour();
   });
 
-  /* ================= ACCESO CON CLAVE: documentos y detalle económico ================= */
-  // Ni el listado de documentos ni los valores económicos por predio y por aliado viajan en esta página: se piden al
-  // servidor con la sesión iniciada y la clave de acceso (la misma para ambas secciones).
-  var docsShown = false, detShown = false;
+  /* ================= ACCESO CON CLAVE: documentos, detalle económico y detalle por predio ================= */
+  // Ni el listado de documentos ni los valores económicos por predio y por aliado ni el detalle del análisis predial viajan
+  // en esta página: se piden al servidor con la sesión iniciada y la clave de acceso (la misma para las tres secciones).
+  var shown = { docs:false, det:false, pred:false };
   var lastClave = null; // se guarda en memoria (no en almacenamiento) al acertar la clave, para "Leer en línea"
 
   // Devuelve siempre un resultado (nunca rechaza): { ok, status, body, timeout }. status 0 = sin conexion.
-  function gateRequest(path, clave){
+  function gateRequest(path, clave, extra){
     var ctl = ("AbortController" in window) ? new AbortController() : null;
     var timer = ctl ? setTimeout(function(){ ctl.abort(); }, 25000) : null;
+    var payload = { clave:clave };
+    if(extra){ Object.keys(extra).forEach(function(k){ payload[k] = extra[k]; }); }
     var opts = {
       method: "POST",
       headers: { "Content-Type":"application/json", "Authorization":"Bearer " + sessionStorage.getItem(AUTH_TOKEN_KEY) },
-      body: JSON.stringify({ clave:clave })
+      body: JSON.stringify(payload)
     };
     if(ctl){ opts.signal = ctl.signal; }
     return fetch(API_BASE + path, opts).then(function(res){
@@ -3698,9 +4306,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   var GATES = {
     docs: { path:"/api/docs", form:"doc-gate-form", err:"doc-gate-error", wrap:"doc-gate-wrap", content:"doc-content", input:"doc-clave",
-            show:function(d){ renderDocumentos(d); docsShown = true; } },
+            show:function(d){ renderDocumentos(d); shown.docs = true; } },
     det: { path:"/api/economia", form:"det-gate-form", err:"det-gate-error", wrap:"det-gate-wrap", content:"det-content", input:"det-clave",
-           show:function(d){ renderDetalle(d); detShown = true; } }
+           show:function(d){ renderDetalle(d); shown.det = true; } },
+    pred: { path:"/api/predial", form:"pred-gate-form", err:"pred-gate-error", wrap:"pred-gate-wrap", content:"pred-content", input:"pred-clave",
+            show:function(d){ renderPredialDetalle(d); shown.pred = true; } }
   };
 
   function openGate(name, data){
@@ -3710,11 +4320,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
     document.getElementById(g.content).hidden = false;
   }
 
-  // Al acertar la clave en una sección, la otra se abre sola con la misma clave.
+  // Al acertar la clave en una sección, las otras se abren solas con la misma clave.
   function openOthers(except, clave){
     Object.keys(GATES).forEach(function(name){
-      if(name === except) return;
-      if((name === "docs" && docsShown) || (name === "det" && detShown)) return;
+      if(name === except || shown[name]) return;
       gateRequest(GATES[name].path, clave).then(function(r){
         if(r.ok){ openGate(name, r.body); }
       }).catch(function(){});
@@ -3750,11 +4359,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
   // Documentos con "url" se leen en línea (flipbook) en vez de solo listarse: pide al servidor una
   // cookie de acceso de corta duración (con la misma clave ya digitada) y abre el visor en una pestaña.
-  function openFlipbook(url, link){
+  function openFlipbook(doc, link){
     if(!lastClave){ return; }
     var original = link.textContent;
     link.textContent = "Abriendo…";
-    gateRequest("/api/flipbook/acceso", lastClave).then(function(r){
+    gateRequest("/api/flipbook/acceso", lastClave, { doc:doc }).then(function(r){
       link.textContent = original;
       if(r.ok && r.body && r.body.url){
         window.open(r.body.url, "_blank", "noopener");
@@ -3765,13 +4374,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
     });
   }
 
-  // Botón "Leer el libro digital en línea" de la portada del proyecto: con la clave ya validada abre el libro;
-  // si no, lleva a la sección Documentos y deja el cursor en el campo de la clave.
+  // Botones «Leer el Producto N en línea» (Documentos y Análisis predial): con la clave ya validada abren el documento
+  // (data-read-book = producto2 o producto3); si no, llevan a la sección Documentos y dejan el cursor en el campo de la clave.
   document.addEventListener("click", function(e){
     var b = e.target.closest("[data-read-book]");
     if(!b) return;
     e.preventDefault();
-    if(lastClave){ openFlipbook("/flipbook/producto2.html", b); return; }
+    if(lastClave){ openFlipbook(b.getAttribute("data-read-book") || "producto2", b); return; }
     var sec = document.getElementById("documentos");
     if(sec){ sec.scrollIntoView({ behavior:"smooth", block:"start" }); }
     // al terminar el desplazamiento (la página carga imágenes al pasar y cambia de alto) se centra el campo de la clave
@@ -3789,22 +4398,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var el = document.getElementById("doc-content");
     el.innerHTML = data.groups.map(function(g){
       var rows = g.docs.map(function(d){
-        var open = d.url ? ' <a href="#" class="open" data-flip-url="'+d.url+'">Leer en línea →</a>' : "";
+        var open = d.url ? ' <a href="#" class="open" data-flip-doc="'+(d.doc || "producto2")+'">Leer en línea →</a>' : "";
         return '<div class="doc-row"><span class="ico">'+d.fmt+'</span>'+
           '<span class="name">'+d.n+'<small>'+d.s+'</small></span>'+open+'</div>';
       }).join("");
       return '<div class="doc-group"><h3>'+g.titulo+'</h3>'+rows+'</div>';
     }).join("");
-    [].slice.call(el.querySelectorAll("a.open[data-flip-url]")).forEach(function(a){
+    [].slice.call(el.querySelectorAll("a.open[data-flip-doc]")).forEach(function(a){
       a.addEventListener("click", function(e){
         e.preventDefault();
-        openFlipbook(a.getAttribute("data-flip-url"), a);
+        openFlipbook(a.getAttribute("data-flip-doc"), a);
       });
     });
   }
 
   /* ================= ASISTENTE (sample capability) ================= */
-  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 11,98 km² (1.198 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294,0 ha SIG y 225,5 ha elegibles (el incentivo se liquida sobre el mínimo entre el área SIG y la catastral), 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; índice de prioridad final (versión final del Producto 2, septiembre de 2026): proximidad 15 %, erosión potencial 25 %, cobertura natural 20 %, costo de oportunidad 15 %, recarga de acuífero 15 % y amenaza 10 %, con valores entre 35,7 y 68,2 y cinco escenarios de sensibilidad; el esquema se formula sobre la totalidad de los 60 predios, sin portafolios ni subconjuntos; incentivo de los 60 predios sobre áreas elegibles: $247.454.628 al año (21 predios con costo de oportunidad positivo y 39 con costo cero, con piso mínimo por definir); necesidad anual con operación: $268.954.628; sedimento protegido: 1.318 t/año; los 9 predios dentro del polígono de la cuenca (149,6 ha) son un dato geográfico; costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado, versión final), 3 diseño de alternativas de formalización de acuerdos en los predios (en curso). El proyecto no contempla la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
+  var ASIS_CONTEXT = "Eres el asistente de una plataforma institucional del esquema de Pago por Servicios Ambientales (PSA) de la microcuenca Represa Villeros, municipio de Coveñas, Sucre, Colombia (Contrato COV-CMA-010-2026). Responde en español, en 2 a 5 frases, solo con datos de este contexto; si no lo sabes, dilo. Contratante: Municipio de Coveñas. Contratista: Consorcio Servicios Ambientales 2026. Financiador ancla: Batallón de Infantería de Marina No. 6. Modalidad de PSA: regulación y calidad hídrica (Decreto 1076 de 2015, art. 2.2.9.8.2.2). Marco normativo: Art. 111 Ley 99/1993 (mod. art. 210 Ley 1450/2011); Decreto Ley 870 de 2017; Decreto 1076 de 2015; Resolución 1070 de 2023; PDM Coveñas + Social 2024-2027. Cifras: cuenca abastecedora 11,98 km² (1.198 ha); reparto San Antero 76,8%, Momil 19,2%, Coveñas 4,0%; represa 22,20 ha; sedimentación 8.186 m3/año, 77% del espejo afectado; área de intervención 60 predios, 294,0 ha SIG y 225,5 ha elegibles (el incentivo se liquida sobre el mínimo entre el área SIG y la catastral), 100% en Coveñas; zonificación: Restauración 456,07 ha (41,7%), Recuperación 637,2 ha (58,3%); modalidades: Conservación 23 predios/47 ha, Rehabilitación 15/81 ha, Restauración 22/166 ha; índice de prioridad final (versión final del Producto 2, septiembre de 2026): proximidad 15 %, erosión potencial 25 %, cobertura natural 20 %, costo de oportunidad 15 %, recarga de acuífero 15 % y amenaza 10 %, con valores entre 35,7 y 68,2 y cinco escenarios de sensibilidad; el esquema se formula sobre la totalidad de los 60 predios, sin portafolios ni subconjuntos; incentivo de los 60 predios sobre áreas elegibles: $247.454.628 al año (21 predios con costo de oportunidad positivo y 39 con costo cero, con piso mínimo por definir); necesidad anual con operación: $268.954.628; sedimento protegido: 1.318 t/año; los 9 predios dentro del polígono de la cuenca (149,6 ha) son un dato geográfico; costo de oportunidad de referencia ≈ $1,34 millones COP por hectárea al año. Productos: 1 diagnóstico (completado), 2 perfil del esquema ambiental (completado, versión final), 3 diseño de alternativas de formalización de acuerdos en los predios (completado, versión final de octubre de 2026): modelo de gestión y prospectiva predial con nueve reglas de decisión (R1 a R9) y cinco desenlaces (D1 a D5), ocho instrumentos de formalización (acuerdo de PSA estándar, con apoderado común, parcial, con poseedor u ocupante, convenio interadministrativo, vinculación de baldíos ante la ANT, adquisición directa y complementarios) y una ruta de adquisición de ocho pasos; de los nueve predios del polígono de la cuenca solo dos (P02 y P08) tienen folio activo verificado y siete conservan el acuerdo voluntario como instrumento objetivo; la adquisición se analiza solo de forma prospectiva y no vinculante (escenario base: P07; ampliado: P07 y P17). El proyecto no incluye la adquisición de predios. El PSA es un incentivo económico voluntario y condicionado, no un subsidio ni una indemnización: quien se beneficia del servicio hidrológico aporta, quien conserva el ecosistema que lo produce recibe.";
   var asisTurns = [{role:"user", content: ASIS_CONTEXT}];
   var sampleFn = null;
 
@@ -3884,6 +4493,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     renderAtlas();
     renderAtlasDashboard();
     renderBiota();
+    renderPredial();
     renderTour();
     renderDroneGallery();
     initAsistente();

@@ -29,7 +29,8 @@ module.exports = {
           "n": "Documento técnico del esquema de PSA — versión final",
           "s": "Producto 2 · septiembre de 2026 · con anexos jurídicos, cartográficos y bióticos",
           "fmt": "DOCX",
-          "url": "/flipbook/producto2.html"
+          "url": "/flipbook/producto2.html",
+          "doc": "producto2"
         },
         {
           "n": "Informe técnico de priorización predial SELVACODE v2",
@@ -40,6 +41,23 @@ module.exports = {
           "n": "Informe técnico de avances N.º 1 (SELVACODE)",
           "s": "Insumo técnico",
           "fmt": "DOCX"
+        }
+      ]
+    },
+    {
+      "titulo": "Producto 3 · Modelo de gestión y prospectiva predial",
+      "docs": [
+        {
+          "n": "Modelo de gestión y prospectiva predial del esquema de PSA — versión final",
+          "s": "Producto 3 · octubre de 2026 · edición digital de 34 páginas",
+          "fmt": "PDF",
+          "url": "/flipbook/producto3.html",
+          "doc": "producto3"
+        },
+        {
+          "n": "Socialización del Producto 3 — gestión y prospectiva predial",
+          "s": "Octubre de 2026 · 13 diapositivas",
+          "fmt": "PPTX"
         }
       ]
     },

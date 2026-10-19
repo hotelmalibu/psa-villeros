@@ -21,9 +21,12 @@ cp ../index.html index.html
 - `GET /api/health` — verifica que el servicio está vivo.
 - `POST /api/auth/login` — body `{ "username": "...", "password": "..." }` → `{ token, user }`.
 - `GET /api/auth/me` — header `Authorization: Bearer <token>` → `{ user }`.
-- `POST /api/docs` / `POST /api/economia` — requieren sesión (`Authorization: Bearer`) y la clave de
-  acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `economia.js`.
-- `POST /api/flipbook/acceso` — misma sesión y clave que arriba; en vez de devolver datos, concede una
+- `POST /api/docs` / `POST /api/economia` / `POST /api/predial` — requieren sesión (`Authorization: Bearer`) y la
+  clave de acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `economia.js` / `predial.js` (este
+  último, el detalle por predio del módulo Análisis predial: presupuesto referencial de adquisición, ruta de los
+  nueve predios del polígono, grupos y ruta de gestión de los 60 predios — Producto 3).
+- `POST /api/flipbook/acceso` — misma sesión y clave que arriba; body `{ "clave": "...", "doc": "producto2" | "producto3" }`
+  (sin `doc` se entiende el Producto 2; un `doc` desconocido responde 400); en vez de devolver datos, concede una
   cookie de acceso de 20 minutos (`psa_flip`, http-only, `path=/flipbook`) y responde `{ ok, url }`. El
   documento técnico completo (Producto 2) vive en `backend/flipbook/` como un lector tipo flipbook
   (HTML + imágenes en `assets/`, generado con `scripts` fuera de este repo a partir del documento
@@ -38,6 +41,11 @@ cp ../index.html index.html
   concepto «área directa» y su cifra (las 47,4 ha) del capítulo 4, del capítulo 7.6 y de los Anexos 1, 3, 4 y 5,
   dejando solo el área elegible y el dato geográfico de los 9 predios dentro del polígono de la cuenca. Al
   reemplazar el libro por una versión corregida en el origen, esas correcciones dejan de ser necesarias.
+  El Producto 3 (modelo de gestión y prospectiva predial, octubre de 2026) se lee en `GET /flipbook/producto3.html`, con la
+  misma cookie: es un lector de imágenes de las 34 páginas de la edición digital en PDF que entregó el usuario
+  (`backend/flipbook/producto3/p01.webp` … `p34.webp`; el PDF trae el texto en curvas, por eso no es un lector de texto).
+  Se regenera con `.claude/build-src/producto3/render_paginas.py` y `build_reader.js`; trae selector de capítulos,
+  botones de página y una vista ampliada de cada pliego.
 
 ## Desplegar en Render (gratis)
 
