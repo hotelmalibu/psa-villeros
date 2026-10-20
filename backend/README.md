@@ -25,7 +25,7 @@ cp ../index.html index.html
   clave de acceso adicional (body `{ "clave": "..." }`) → devuelven `docs.js` / `economia.js` / `predial.js` (este
   último, el detalle por predio del módulo Análisis predial: presupuesto referencial de adquisición, ruta de los
   nueve predios del polígono, grupos y ruta de gestión de los 60 predios — Producto 3).
-- `POST /api/flipbook/acceso` — misma sesión y clave que arriba; body `{ "clave": "...", "doc": "producto2" | "producto3" }`
+- `POST /api/flipbook/acceso` — misma sesión y clave que arriba; body `{ "clave": "...", "doc": "producto1" | "producto2" | "producto3" }`
   (sin `doc` se entiende el Producto 2; un `doc` desconocido responde 400); en vez de devolver datos, concede una
   cookie de acceso de 20 minutos (`psa_flip`, http-only, `path=/flipbook`) y responde `{ ok, url }`. El
   documento técnico completo (Producto 2) vive en `backend/flipbook/` como un lector tipo flipbook
@@ -46,6 +46,15 @@ cp ../index.html index.html
   (`backend/flipbook/producto3/p01.webp` … `p34.webp`; el PDF trae el texto en curvas, por eso no es un lector de texto).
   Se regenera con `.claude/build-src/producto3/render_paginas.py` y `build_reader.js`; trae selector de capítulos,
   botones de página y una vista ampliada de cada pliego.
+  El Producto 1 (diagnóstico del área de estudio, agosto de 2026) se lee en `GET /flipbook/producto1.html`, también con esa
+  cookie: es el libro de 108 páginas (HTML de texto con StPageFlip y fuentes embebidas) que entregó el usuario, servido sin
+  cambios (idéntico byte a byte al `index.html` de su paquete), con sus 41 imágenes en `backend/flipbook/media/` (las rutas
+  relativas `media/…` del HTML se resuelven ahí). Se instala con `.claude/build-src/producto1/instalar_producto1.py` a partir
+  del zip del libro; ese zip no trae la imagen decorativa `i001…png` (una marca de agua totalmente transparente que el HTML
+  cita en cuatro reglas CSS), así que el script la recupera del PDF para que el navegador no pida un 404. Las cifras del
+  libro no se tocaron: usa 12,96 km² para la cuenca (una delimitación esquemática a partir de la Resolución 1070 de 2023 y del
+  estudio de Inalter, que el propio libro dice que debe reemplazarse por la delimitación cartográfica oficial) mientras la
+  plataforma muestra 11,98 km² (1.198 ha) de la delimitación cartográfica.
 
 ## Desplegar en Render (gratis)
 

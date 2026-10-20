@@ -535,7 +535,7 @@
   .gate-msg.info b::before{content:""; display:inline-block; width:.8em; height:.8em; margin-right:.5em; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; vertical-align:-.1em; animation:gate-spin .8s linear infinite;}
   .gate-msg .gate-act{display:inline-block; margin-top:.5rem; font:inherit; font-weight:700; color:inherit; background:transparent; border:1.5px solid currentColor; border-radius:999px; padding:.3rem .9rem; cursor:pointer;}
   @keyframes gate-spin{to{transform:rotate(360deg)}}
-  .doc-row .ico{border-radius:8px;}
+  .doc-row .ico{border-radius:8px; min-width:3.3rem; text-align:center; box-sizing:border-box;}
   .doc-row a.open{font-weight:700; flex:none;}
   .doc-group h3{color:var(--navy);}
   .fin-cat{display:inline-flex; align-items:center; gap:.4rem; padding:.28rem .65rem; border-radius:999px; font-size:.78rem; font-weight:700; white-space:nowrap;}
@@ -646,6 +646,8 @@
   /* ---------- análisis predial (Producto 3) ---------- */
   .pred-cta{margin:1.4rem 0 0; display:flex; flex-wrap:wrap; gap:.7rem 1.1rem; align-items:center; justify-content:center;}
   .pred-cta span{font-size:.82rem; color:var(--ink-faint); max-width:46ch; text-align:left;}
+  .pred-cta.tres .pill{padding:.8rem 1.35rem; font-size:.92rem;}
+  .pred-cta.tres span{flex-basis:100%; max-width:none; text-align:center;}
   .callout{margin:1.2rem 0 0; padding:1.1rem 1.3rem; border-radius:18px; background:var(--navy-soft); border:1px solid #BFDDE3; color:var(--ink-soft); font-size:.93rem; line-height:1.6;}
   .callout b{color:var(--navy-dark);}
   .mini-title{margin:1.4rem 0 .4rem; font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--gold-deep);}
@@ -2316,8 +2318,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="sec-head">
           <span class="sec-eyebrow">Sección interna</span>
           <h2 class="sec-title">Documentos del contrato</h2>
-          <p class="lead">Listado de los documentos del contrato. Esta sección exige una clave de acceso adicional a la del ingreso.</p>
-          <p class="pred-cta" style="margin-top:1.2rem;"><a class="pill pill-teal" href="#documentos" data-read-book="producto2">Leer el Producto 2 en línea</a><a class="pill pill-teal" href="#documentos" data-read-book="producto3">Leer el Producto 3 en línea</a><span>Documentos técnicos completos (versión final): se abren con la clave de esta sección.</span></p>
+          <p class="lead">Los tres productos del contrato, en su versión final, para leer en línea. Esta sección exige una clave de acceso adicional a la del ingreso.</p>
+          <p class="pred-cta tres" style="margin-top:1.2rem;"><a class="pill pill-teal" href="#documentos" data-read-book="producto1">Leer el Producto 1 en línea</a><a class="pill pill-teal" href="#documentos" data-read-book="producto2">Leer el Producto 2 en línea</a><a class="pill pill-teal" href="#documentos" data-read-book="producto3">Leer el Producto 3 en línea</a><span>Documentos técnicos completos (versión final): se abren con la clave de esta sección.</span></p>
         </div>
         <div id="doc-gate-wrap">
           <div class="doc-gate card">

@@ -271,13 +271,15 @@ app.post("/api/predial", authMiddleware, (req, res) => {
   if (claveValida(req, res)) res.json(predial);
 });
 
-// Documentos técnicos completos (Producto 2 y Producto 3), en formato flipbook: exigen la misma sesión + clave de
-// acceso que /api/docs, pero el documento en sí (backend/flipbook, ~13 MB el del Producto 2 y ~8 MB el del
-// Producto 3, entre HTML e imágenes) se sirve como archivos estáticos normales para que el navegador los descargue
-// en paralelo y los cachee — por eso, en vez de devolverlo en la respuesta JSON, esta ruta concede una cookie de
-// acceso de corta duración (20 min, http-only, con alcance limitado a /flipbook) y el frontend abre el visor del
-// documento pedido (body { clave, doc }; sin doc se entiende el Producto 2) en una pestaña nueva.
+// Documentos técnicos completos de los tres productos, en formato flipbook: exigen la misma sesión + clave de
+// acceso que /api/docs, pero el documento en sí (backend/flipbook: ~6 MB el del Producto 1, ~13 MB el del
+// Producto 2 y ~8 MB el del Producto 3, entre HTML e imágenes) se sirve como archivos estáticos normales para que
+// el navegador los descargue en paralelo y los cachee — por eso, en vez de devolverlo en la respuesta JSON, esta
+// ruta concede una cookie de acceso de corta duración (20 min, http-only, con alcance limitado a /flipbook) y el
+// frontend abre el visor del documento pedido (body { clave, doc }; sin doc se entiende el Producto 2) en una
+// pestaña nueva.
 const FLIPBOOKS = {
+  producto1: "/flipbook/producto1.html",
   producto2: "/flipbook/producto2.html",
   producto3: "/flipbook/producto3.html",
 };
